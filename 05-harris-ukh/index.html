@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>HARRIS УКХ RF-7850M-HH / RF-7800V-HH</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="../style.css?v=b89d93891ebf">
+  <link rel="stylesheet" href="../style.css?v=63f708678bb5">
 </head>
 <body>
   <main class="page">
@@ -94,6 +94,7 @@
 
     <section id="rezhymy" class="section">
       <h2>Режими роботи</h2>
+      <div class="note"><strong>Перелік для тесту:</strong> RF-7850M-HH підтримує FIX, QL1A, QL2, QL3, QLW, TNW, ANW2C і STC. У презентації CWR розглядається окремо як ретрансляторна мережева можливість, тому до цього переліку режимів у тестовому питанні її не додають.</div>
       <h3>Порівняння доступних мереж</h3>
       <div class="network-comparison-wrap">
       <table class="network-comparison">
@@ -192,6 +193,7 @@
           </tr>
         </tbody>
       </table>
+      <p class="table-note"><strong>Ретранслятор TNW:</strong> доступні режими <strong>Black</strong> і <strong>Red</strong>. У Black радіостанція може перебувати в неконтрольованому місці, а ключові дані видалені. У Red станцію контролює користувач.</p>
       </div>
       <p class="table-note"><strong>Термінологія CWR:</strong> <em>stage</em> - ретрансляторний вузол або точка доступу до IP-магістралі, а <em>outstation</em> - абонентська радіостанція. Коли абонент переходить у зону покриття іншого вузла, радіостанція автоматично реєструється на доступному новому вузлі, зберігаючи доступ до мережі.</p>
       <p class="table-note"><strong>Скорочення:</strong> MACA - Multiple Access with Collision Avoidance; PTT - Push-to-Talk; TOD - Time of Day; GPS - Global Positioning System; FCS - Free Channel Search; TDMA - Time Division Multiple Access; MANET - Mobile Ad Hoc Network; IP - Internet Protocol; Rx - Receive; Tx - Transmit.</p>
@@ -425,13 +427,41 @@
       <h3>Dual PTT</h3>
       <p>Функція дає можливість працювати з двома мережами FIX через дві тангенти, якщо вимкнена MACA. На екзамені важливо прив'язати Dual PTT саме до режиму Fixed Frequency і одночасної роботи у двох мережах.</p>
 
-      <h3>KDU / КДП та інтерфейсні екрани</h3>
-      <ul>
-        <li>Презентація показує роботу з KDU/КДП, вебінтерфейсом, меню та екранними символами.</li>
-        <li>Окремо виділені екрани тесту системи, налаштування часу й дати, перегляду статичної IP-адреси, ID та імені радіостанції.</li>
-        <li>Є блок із завантаженням конфігурації з флеш-накопичувача.</li>
-        <li>Для практики потрібно впізнавати призначення пунктів меню: Navigation, Messages, Alerts, Voice Mail, PTT to Record, Reports.</li>
-      </ul>
+      <h3 id="radio-info">Перегляд ID та імені радіостанції</h3>
+      <p><strong>RF-7850M-HH:</strong></p>
+      <div class="menu-path"><span>9 PGM</span><span>APP</span><span>MISC</span><span>CID</span><span>RADIO NAME</span></div>
+      <p>На показаному в презентації екрані значення становлять <code>CID 7</code> та <code>RADIO NAME R7</code>. У меню між полями переходять стрілками, вибір підтверджують кнопкою <kbd class="key-button">ENT</kbd>.</p>
+      <p><strong>RF-7800V-HH:</strong></p>
+      <div class="menu-path"><span>9 PGM</span><span>MISC</span><span>CID</span><span>RADIO NAME</span></div>
+      <p>У прикладі для цієї моделі відображено <code>CID 1</code> та <code>RADIO NAME R1</code>.</p>
+
+      <h3 id="static-ip">Перегляд статичної IP-адреси</h3>
+      <p><strong>RF-7850M-HH:</strong></p>
+      <div class="menu-path"><span>9 PGM</span><span>APP</span><span>IP CONFIG</span><span>NETWORK ADAPTER</span><span>ETHERNET</span><span>STATIC ADDRESS</span></div>
+      <p>У прикладі презентації показано адресу <code>192.168.001.001</code>.</p>
+      <p><strong>RF-7800V-HH:</strong></p>
+      <div class="menu-path"><span>9 PGM</span><span>IP CONFIG</span></div>
+      <p>У прикладі презентації показано адресу <code>192.168.002.001</code>. Кожний пункт меню відкривають кнопкою <kbd class="key-button">ENT</kbd>.</p>
+
+      <h3 id="flash-config">Завантаження конфігурації з флеш-накопичувача</h3>
+      <div class="menu-path"><span>7 APPS</span><span>FILL RADIO</span><span>FILL FROM FILE</span><span>EXTUSBDRIVE*</span><span>файл конфігурації</span></div>
+      <p>Після підключення накопичувача відкрий <code>EXTUSBDRIVE*</code> і вибери потрібний файл конфігурації. На слайді як приклад показано <code>R3_7850.cpafill</code>.</p>
+
+      <h3 id="tac-chat">TAC CHAT і голосові повідомлення</h3>
+      <p><strong>Текстове повідомлення:</strong></p>
+      <div class="menu-path"><span>CALL MENU</span><span>NAVIGATION</span><span>&gt;&gt;&gt;</span><span>MESSAGES</span><span>TAC CHAT</span><span>EDIT TEXT</span><span>текст</span><span>контакт</span></div>
+      <p><strong>Голосове повідомлення Voice Mail:</strong></p>
+      <div class="menu-path"><span>CALL MENU</span><span>NAVIGATION</span><span>&gt;&gt;&gt;</span><span>MESSAGES</span><span>VOICE MAIL</span><span>PTT TO RECORD</span><span>контакт</span></div>
+      <ol>
+        <li>Відкрий <code>VOICE MAIL</code> і натисни <kbd class="key-button">ENT</kbd>.</li>
+        <li>Натисни <kbd class="key-button">PTT</kbd>, продиктуй повідомлення та відпусти тангенту.</li>
+        <li>Підтвердь запис кнопкою <kbd class="key-button">ENT</kbd>, обери контакт і знову натисни <kbd class="key-button">ENT</kbd>.</li>
+      </ol>
+      <p>Максимальна тривалість голосового повідомлення - <strong>60 секунд</strong>. Voice Mail є записаним повідомленням, яке передається як дані. Для тесту його пов'язують із режимами пакетної роботи з <strong>MACA, TDMA або ANW2</strong>, а не лише з голосовими QL2 і QL3.</p>
+
+      <h3>Індивідуальний виклик</h3>
+      <div class="menu-path"><span>CALL MENU</span><span>NAVIGATION</span><span>CALL</span><span>RADIO CONTACT</span><span>контакт</span></div>
+      <p>Після вибору контакту підтвердь виклик кнопкою <kbd class="key-button">ENT</kbd>.</p>
     </section>
 
     <section id="dostup-ta-obsluhovuvannia" class="section">
@@ -471,10 +501,10 @@
     <div class="topic-quiz-cta"><div><strong>Перевір себе</strong><span>Перевір знання за матеріалами цієї теми.</span></div><a class="topic-quiz-button" href="../quiz.html?topic=5">Почати вікторину <span aria-hidden="true">→</span></a></div>
 
   </main>
-  <script src="../asset-version.js?v=b89d93891ebf"></script>
+  <script src="../asset-version.js?v=63f708678bb5"></script>
 
-  <script src="../search-index.js?v=b89d93891ebf"></script>
-  <script src="../topic-search.js?v=b89d93891ebf"></script>
-  <script src="../site-ui.js?v=b89d93891ebf"></script>
+  <script src="../search-index.js?v=63f708678bb5"></script>
+  <script src="../topic-search.js?v=63f708678bb5"></script>
+  <script src="../site-ui.js?v=63f708678bb5"></script>
 </body>
 </html>
