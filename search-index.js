@@ -391,7 +391,7 @@ window.SEARCH_INDEX = {
       "topic": "Експлуатація HARRIS КХ RF-7800H-MP / MPR-9600-MP",
       "section": "Робота в режимі 3G+",
       "url": "07-harris-kh-ekspluatatsiia/index.html#three-g-plus",
-      "text": "Робота в режимі 3G+ 3G+ доступний у RF-7800H-MP і дає змогу працювати з кореспондентами мереж 3G та ALE. Перед викликом визнач, у якому режимі працює потрібний кореспондент, а потім застосуй відповідну процедуру. Кнопкою 3 MODE обери 3G+ . Змінюй частотний план кнопками < , > , ^ , v та підтверджуй кнопкою ENT . Меню до синхронізації 3G BROADCAST SYNC 3G BCAST SYNC-ALL ALE AUTOMATIC ALE MANUAL Меню після синхронізації 3G BEST 3G MANUAL 3G AUTOMATIC ALE AUTOMATIC ALE MANUAL 3G SEND GPS REPORT 3G BCAST SYNC-ALL 3G BROADCAST SYNC У 3G+ назва команди одразу показує, до якого алгоритму належить дія: 3G або ALE ."
+      "text": "Робота в режимі 3G+ 3G+ доступний у RF-7800H-MP і дає змогу працювати з кореспондентами мереж 3G та ALE. Перед викликом визнач, у якому режимі працює потрібний кореспондент, а потім застосуй відповідну процедуру. Кнопкою 3 MODE обери 3G+ . Змінюй частотний план кнопками < , > , ^ , v та підтверджуй кнопкою ENT . Визнач, у якому режимі працює радіостанція кореспондента — ALE або 3G , — і застосуй правила відповідного розділу. Меню до синхронізації 3G BROADCAST SYNC 3G BCAST SYNC-ALL ALE AUTOMATIC ALE MANUAL Меню після синхронізації 3G BEST 3G MANUAL 3G AUTOMATIC ALE AUTOMATIC ALE MANUAL 3G SEND GPS REPORT 3G BCAST SYNC-ALL 3G BROADCAST SYNC У 3G+ назва команди одразу показує, до якого алгоритму належить дія: 3G або ALE ."
     }
   ]
 };
