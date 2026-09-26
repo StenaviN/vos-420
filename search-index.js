@@ -355,7 +355,7 @@ window.SEARCH_INDEX = {
       "topic": "Експлуатація HARRIS КХ RF-7800H-MP / MPR-9600-MP",
       "section": "Антена, IP-адреса та HUB",
       "url": "07-harris-kh-ekspluatatsiia/index.html#antena-merezha",
-      "text": "Антена, IP-адреса та HUB Тип антени 8 PGM CONFIG ACCESSORY HIGH VOLTAGE / 50 OM HIGH VOLTAGE обирають для штирьової антени. Для диполя обирають 50 OM . IP-адреса прямого USB-підключення 8 PGM CONFIG NETWORK INTERFACE ETHERNET ADDRESS DIRECT USB ENABLE 169.254.78.1 Скидання HUB 8 PGM MAINTENANCE RESET HUB YES Скидання HUB передбачене лише для RF-7800H-MP ."
+      "text": "Антена, IP-адреса та HUB Тип антени 8 PGM CONFIG ACCESSORY HIGH VOLTAGE | 50 OM HIGH VOLTAGE обирають для штирьової антени. Для диполя обирають 50 OM . IP-адреса прямого USB-підключення 8 PGM CONFIG NETWORK INTERFACE ETHERNET ADDRESS DIRECT USB ENABLE 169.254.78.1 Скидання HUB 8 PGM MAINTENANCE RESET HUB YES Скидання HUB передбачене лише для RF-7800H-MP ."
     },
     {
       "topic": "Експлуатація HARRIS КХ RF-7800H-MP / MPR-9600-MP",
@@ -379,19 +379,19 @@ window.SEARCH_INDEX = {
       "topic": "Експлуатація HARRIS КХ RF-7800H-MP / MPR-9600-MP",
       "section": "Робота в режимі ALE",
       "url": "07-harris-kh-ekspluatatsiia/index.html#ale",
-      "text": "Робота в режимі ALE ALE (Automatic Link Establishment) автоматично встановлює канал з окремою станцією, мережею або групою. Перед викликом обидві станції мають перебувати в режимі сканування. Кнопкою 3 MODE обери ALE . Після встановлення з'єднання за потреби вибери параметр кнопками < , > , ^ , v , зміни його та підтвердь кнопкою ENT . Виклик 1 CALL AUTOMATIC / MANUAL ENT INDIVIDUAL / NET / GROUP ENT ім'я адресата ENT AUTOMATIC: станція використовує результати оцінювання каналів і автоматичний алгоритм виклику. MANUAL: оператор самостійно обирає параметри виклику. INDIVIDUAL / NET / GROUP: виклик окремої станції, мережі або групи. Завершення з'єднання CLR TERMINATE LINK? YES ENT Після завершення з'єднання станція повертається до сканування. Текстові повідомлення Для коротких текстових повідомлень ALE використовує AMD (Automatic Message Display) . Створення повідомлення 8 PGM MODE ALE AMD TX MSG EDIT текст до 100 символів ENT Вибір і передавання 7 OPT ALE TX MSG / RX MSG номер повідомлення ENT виклик адресата"
+      "text": "Робота в режимі ALE ALE (Automatic Link Establishment) автоматично встановлює канал з окремою станцією, мережею або групою. Перед викликом обидві станції мають перебувати в режимі сканування. Кнопкою 3 MODE обери ALE . Після встановлення з'єднання за потреби вибери параметр кнопками < , > , ^ , v , зміни його та підтвердь кнопкою ENT . Виклик 1 CALL AUTOMATIC | MANUAL ENT INDIVIDUAL | NET | GROUP ENT ім'я адресата ENT AUTOMATIC: станція використовує результати оцінювання каналів і автоматичний алгоритм виклику. MANUAL: оператор самостійно обирає параметри виклику. INDIVIDUAL | NET | GROUP: виклик окремої станції, мережі або групи. Завершення з'єднання CLR TERMINATE LINK? YES ENT Після завершення з'єднання станція повертається до сканування. Текстові повідомлення Для коротких текстових повідомлень ALE використовує AMD (Automatic Message Display) . Створення повідомлення 8 PGM MODE ALE AMD TX MSG EDIT текст до 100 символів ENT Вибір і передавання 7 OPT ALE TX MSG | RX MSG номер повідомлення ENT виклик адресата"
     },
     {
       "topic": "Експлуатація HARRIS КХ RF-7800H-MP / MPR-9600-MP",
       "section": "Оцінювання каналів LQA",
       "url": "07-harris-kh-ekspluatatsiia/index.html#lqa",
-      "text": "Оцінювання каналів LQA LQA (Link Quality Analysis) визначає якість каналів перед встановленням зв'язку. Під час процедури станції повинні перебувати в режимі сканування. EXCHANGE Двосторонній обмін між двома кореспондентами. Результати оцінювання формуються на обох станціях. SOUND Одностороннє зондування від головної станції до підлеглої. Результати зберігаються на станції, яка приймає зондування. Якщо LQA виконано, під час виклику обирається канал з найкращою оцінкою. Якщо попередніх оцінок немає, станція починає із запрограмованої частоти з найбільшим номіналом. LQA в ALE 7 OPT ALE ENT LQA ENT EXCHANGE / SOUND ENT ім'я адресата ENT Перегляд результатів 7 OPT ALE ENT SCORE ENT REVIEW ENT ім'я станції ENT"
+      "text": "Оцінювання каналів LQA LQA (Link Quality Analysis) визначає якість каналів перед встановленням зв'язку. Під час процедури станції повинні перебувати в режимі сканування. EXCHANGE Двосторонній обмін між двома кореспондентами. Результати оцінювання формуються на обох станціях. SOUND Одностороннє зондування від головної станції до підлеглої. Результати зберігаються на станції, яка приймає зондування. Якщо LQA виконано, під час виклику обирається канал з найкращою оцінкою. Якщо попередніх оцінок немає, станція починає із запрограмованої частоти з найбільшим номіналом. LQA в ALE 7 OPT ALE ENT LQA ENT EXCHANGE | SOUND ENT ім'я адресата ENT Перегляд результатів 7 OPT ALE ENT SCORE ENT REVIEW ENT ім'я станції ENT"
     },
     {
       "topic": "Експлуатація HARRIS КХ RF-7800H-MP / MPR-9600-MP",
       "section": "Робота в режимі 3G",
       "url": "07-harris-kh-ekspluatatsiia/index.html#three-g",
-      "text": "Робота в режимі 3G Режим 3G доступний у RF-7800H-MP. Перед встановленням зв'язку обери однаковий частотний план і синхронізуй станції. Кнопкою 3 MODE обери 3G . Змінюй частотний план кнопками < , > , ^ , v та підтверджуй кнопкою ENT . Синхронізація 1 CALL BROADCAST SYNC ENT 1 CALL BROADCAST SYNC-ALL ENT 1 CALL SYNC REQUEST ENT BROADCAST SYNC: передавання синхронізації для поточного плану. BROADCAST SYNC-ALL: передавання синхронізації для всіх налаштованих планів. SYNC REQUEST: запит синхронізації підлеглою станцією. Встановлення з'єднання 1 CALL MANUAL / AUTOMATIC / BEST ENT NET / STATION ENT ім'я мережі або станції ENT BEST використовує найкращий канал за наявними оцінками. З'єднання завершують так само, як в ALE: CLR → TERMINATE LINK? → YES → ENT . LQA в 3G 7 OPT 3G ENT LQA ENT EXCHANGE / SOUND ENT адресат ENT 7 OPT 3G ENT SCORE ENT REVIEW ENT станція ENT"
+      "text": "Робота в режимі 3G Режим 3G доступний у RF-7800H-MP. Перед встановленням зв'язку обери однаковий частотний план і синхронізуй станції. Кнопкою 3 MODE обери 3G . Змінюй частотний план кнопками < , > , ^ , v та підтверджуй кнопкою ENT . Синхронізація 1 CALL BROADCAST SYNC ENT 1 CALL BROADCAST SYNC-ALL ENT 1 CALL SYNC REQUEST ENT BROADCAST SYNC: передавання синхронізації для поточного плану. BROADCAST SYNC-ALL: передавання синхронізації для всіх налаштованих планів. SYNC REQUEST: запит синхронізації підлеглою станцією. Встановлення з'єднання 1 CALL MANUAL | AUTOMATIC | BEST ENT NET | STATION ENT ім'я мережі або станції ENT BEST використовує найкращий канал за наявними оцінками. З'єднання завершують так само, як в ALE: CLR → TERMINATE LINK? → YES → ENT . LQA в 3G 7 OPT 3G ENT LQA ENT EXCHANGE | SOUND ENT адресат ENT 7 OPT 3G ENT SCORE ENT REVIEW ENT станція ENT"
     },
     {
       "topic": "Експлуатація HARRIS КХ RF-7800H-MP / MPR-9600-MP",
@@ -403,7 +403,7 @@ window.SEARCH_INDEX = {
       "topic": "Експлуатація HARRIS КХ RF-7800H-MP / MPR-9600-MP",
       "section": "SMS і GPS-звіт у 3G",
       "url": "07-harris-kh-ekspluatatsiia/index.html#three-g-povidomlennia",
-      "text": "SMS і GPS-звіт у 3G Надсилання SMS 7 OPT MSG SMS NEW MSG текст до 160 символів STATION / NET ім'я адресата ENT У пам'яті зберігається до 10 SMS . Надсилання GPS-звіту 1 CALL SEND GPS REPORT STATION / NET ім'я адресата SEND ALERT NO / YES ENT Перегляд отриманих координат 7 OPT GPS-APR VIEW"
+      "text": "SMS і GPS-звіт у 3G Надсилання SMS 7 OPT MSG SMS NEW MSG текст до 160 символів STATION | NET ім'я адресата ENT У пам'яті зберігається до 10 SMS . Надсилання GPS-звіту 1 CALL SEND GPS REPORT STATION | NET ім'я адресата SEND ALERT NO | YES ENT Перегляд отриманих координат 7 OPT GPS-APR VIEW"
     },
     {
       "topic": "Експлуатація HARRIS КХ RF-7800H-MP / MPR-9600-MP",
