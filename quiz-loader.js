@@ -1,7 +1,7 @@
 "use strict";
 
 window.QUIZ_META = {
-  totalQuestions: 357,
+  totalQuestions: 364,
   topics: [
     { key: "1", id: "topic1-basics", shortLabel: "Тема 1", name: "Основи радіозв'язку", path: "01-osnovy-radiozviazku", defaultSize: 25 },
     { key: "2", id: "topic2-safety", shortLabel: "Тема 2", name: "Техніка безпеки", path: "02-tehnika-bezpeky", defaultSize: 20 },
