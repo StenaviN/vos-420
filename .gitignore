@@ -1,0 +1,21 @@
+# Video files
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.webm
+*.wmv
+*.m4v
+*.mpeg
+*.mpg
+*.3gp
+*.ts
+*.mts
+*.m2ts
+
+# Local tooling and incomplete downloads
+.codex-remote-attachments/
+.codex-docx-render/
+.playwright-cli/
+output/
+*.crdownload

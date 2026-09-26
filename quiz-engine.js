@@ -8,6 +8,37 @@ const letters = ["А", "Б", "В", "Г"];
 const STATE_VERSION = 4;
 const ACTIVE_KEY = `vos420-${config.id}-active-v4`;
 const STATS_KEY = "vos420-quiz-statistics-v1";
+const DISTRACTOR_HISTORY_KEY = "vos420-distractor-history-v1";
+const CURATED_EXTRA_DISTRACTORS = {
+  "t1-01": ["Бойовий статут механізованих військ", "Настанова з фізичної підготовки", "Інструкція з експлуатації радіостанції"],
+  "t1-34": ["Ведення чергового прийому", "Контроль робочої частоти", "Фіксація прийнятих сигналів"],
+  "t3-10": ["Спочатку збільшується, потім зменшується", "Залежить лише від амплітуди", "Стає нескінченною"],
+  "t4-01": ["Джерело живлення, фідер і заземлення", "Модулятор, акумулятор і мікрофон", "Передавач, GPS і дисплей"],
+  "t4-21": ["Лише вихідну потужність", "Тільки дальність прямої видимості", "Тільки фізичні розміри антени"],
+  "t4-45": ["Здатність підвищувати потужність передавача", "Відношення опору антени до опору фідера", "Ширину смуги робочих частот"],
+  "t5-01": ["Для стратегічної ланки управління", "Для авіаційного диспетчерського зв'язку", "Для морської навігації"],
+  "t5-04": ["30-108 МГц", "30-88 МГц", "108-512 МГц"],
+  "t5-48": ["До 1 м", "До 2 м", "До 10 м"],
+  "t5-49": ["10 Ом", "100 Ом", "300 Ом"],
+  "t5-52": ["Рівень заряду батареї", "Наявність GPS-координат", "Назву активного пресета"],
+  "t5-53": ["Утримувати ENT п'ять секунд", "Одночасно натиснути PTT і SQL", "Тричі натиснути APPS"],
+  "t5-54": ["Відновлює заводські частоти", "Блокує передню панель", "Запускає повний BIT"],
+  "t5-55": ["Тільки в ANW2C", "Тільки в Quicklook 1A", "У всіх мережах TNW"],
+  "t5-58": ["У двох MACA2-мережах", "У мережах ANW2C і TNW", "Лише між QL1A та STC"],
+  "t5-59": ["[APPS] > RADIO INFO", "[MENU] > GPS > TEST", "[PGM] > NETWORK > BIT"],
+  "t5-60": ["Щодня виконувати ZEROIZE", "Щодня змінювати антенний порт", "Щодня перепрограмовувати всі мережі"],
+  "t5-61": ["9,6 кбіт/с", "32 кбіт/с", "120 кбіт/с"],
+  "t5-76": ["25 см і 100 см", "30 см і 90 см", "60 см і 120 см"],
+  "t6-29": ["2,5 кГц", "10 кГц", "20 кГц"],
+  "t6-44": ["Citadel-128", "AES-64", "DES-56"],
+  "t6-45": ["USB", "RS-232", "Bluetooth"],
+  "t6-58": ["OFF", "CT", "AUTO"],
+  "t6-59": ["TEST COMPLETE", "SYSTEM OK", "BIT OK"],
+  "t6-60": ["0,1-0,9", "2,0-2,9", "3,0-3,9"],
+  "t6-61": ["FIX та 3G", "ALE та 3G+", "HOP та 3G"],
+  "t7-08": ["169.254.1.1", "192.168.78.1", "169.254.78.2"],
+  "t7-09": ["RF-7850M-HH", "Для RF-7800H-MP і MPR-9600-MP", "Для жодної з цих моделей"]
+};
 const state = {
   questions: [], index: 0, score: 0, selected: null, answered: false,
   mistakes: [], answers: [], activeElapsedMs: 0, timerStartedAt: null,
@@ -135,9 +166,130 @@ function isMastered(stat) {
   return answered >= 2 && stat.streak >= 2 && stat.correct / answered >= 0.8;
 }
 
+function normalizedOptionText(value) {
+  return String(value).toLocaleLowerCase("uk-UA").replace(/[’'`]/g, "'").replace(/[^\p{L}\p{N}%+/-]+/gu, " ").trim();
+}
+
+function optionShape(value) {
+  const text = String(value).trim();
+  if (text.includes("→")) return "path";
+  if (/\d/.test(text)) return "numeric";
+  if (text.length <= 42 && !/[a-zа-яіїєґ]/u.test(text)) return "code";
+  if (text.length >= 70) return "long";
+  return "text";
+}
+
+function stableRank(seed) {
+  let hash = 2166136261;
+  for (const character of seed) {
+    hash ^= character.codePointAt(0);
+    hash = Math.imul(hash, 16777619);
+  }
+  return hash >>> 0;
+}
+
+function preferredOptionShape(options, fallback) {
+  const counts = new Map();
+  options.forEach((value) => counts.set(optionShape(value), (counts.get(optionShape(value)) || 0) + 1));
+  return [...counts.entries()].sort((left, right) => right[1] - left[1])[0]?.[0] || optionShape(fallback);
+}
+
+function expandDistractorPools() {
+  const snapshots = config.questions.map((item) => ({
+    item,
+    correct: item.correct !== undefined ? item.correct : Array.isArray(item.options) ? item.options[item.answer] : undefined,
+    wrong: Array.isArray(item.wrong)
+      ? [...item.wrong]
+      : Array.isArray(item.options) ? item.options.filter((value, index) => index !== item.answer) : []
+  }));
+
+  snapshots.forEach(({ item, correct: correctAnswer, wrong }) => {
+    if (correctAnswer === undefined) return;
+    item.correct = correctAnswer;
+    item.primaryWrong = wrong.slice(0, 3);
+    if (wrong.length >= 6) {
+      item.wrong = wrong.slice(0, 6);
+      return;
+    }
+    const correct = normalizedOptionText(correctAnswer);
+    const seen = new Set([correct, ...wrong.map(normalizedOptionText)]);
+    for (const text of CURATED_EXTRA_DISTRACTORS[item.id] || []) {
+      const normalized = normalizedOptionText(text);
+      if (!normalized || seen.has(normalized)) continue;
+      wrong.push(text);
+      seen.add(normalized);
+      if (wrong.length === 6) break;
+    }
+    if (wrong.length === 6) {
+      item.wrong = wrong;
+      return;
+    }
+    const shape = preferredOptionShape(wrong, correctAnswer);
+    const sourceTopic = item.sourceTopicId || config.id;
+    const candidates = [];
+
+    snapshots.forEach((source) => {
+      if (source.item === item || (source.item.sourceTopicId || config.id) !== sourceTopic) return;
+      const sameSection = source.item.topic === item.topic;
+      source.wrong.forEach((text) => {
+        const normalized = normalizedOptionText(text);
+        if (!normalized || seen.has(normalized)) return;
+        candidates.push({
+          text,
+          score: (optionShape(text) === shape ? 1000 : 0)
+            + (sameSection ? 200 : 0)
+            - Math.min(150, Math.abs(String(text).length - String(correctAnswer).length)),
+          rank: stableRank(`${item.id || item.question}|${text}`)
+        });
+      });
+    });
+
+    candidates.sort((left, right) => right.score - left.score || left.rank - right.rank);
+    for (const candidate of candidates) {
+      const normalized = normalizedOptionText(candidate.text);
+      if (seen.has(normalized)) continue;
+      wrong.push(candidate.text);
+      seen.add(normalized);
+      if (wrong.length === 6) break;
+    }
+    item.wrong = wrong;
+  });
+}
+
+function readDistractorHistory() {
+  try { return JSON.parse(localStorage.getItem(DISTRACTOR_HISTORY_KEY)) || {}; }
+  catch { return {}; }
+}
+
+function selectDistractors(item) {
+  const pool = Array.isArray(item.wrong) ? item.wrong : [];
+  if (pool.length <= 3) return shuffled(pool).slice(0, 3);
+  const primary = Array.isArray(item.primaryWrong) ? item.primaryWrong : pool.slice(0, 3);
+  const history = readDistractorHistory();
+  let selected;
+  let signature;
+  for (let attempt = 0; attempt < 8; attempt += 1) {
+    const twoPrimary = shuffled(primary).slice(0, 2);
+    const primaryKeys = new Set(primary.map(normalizedOptionText));
+    const extraPool = pool.filter((text) => !primaryKeys.has(normalizedOptionText(text)));
+    const selectedKeys = new Set(twoPrimary.map(normalizedOptionText));
+    const additional = shuffled(extraPool.length ? extraPool : pool.filter((text) => !selectedKeys.has(normalizedOptionText(text))))[0];
+    selected = [...twoPrimary, additional];
+    signature = selected.map(normalizedOptionText).sort().join("|");
+    if (signature !== history[item.id]) break;
+  }
+  history[item.id] = signature;
+  try { localStorage.setItem(DISTRACTOR_HISTORY_KEY, JSON.stringify(history)); }
+  catch { /* The quiz remains usable without storage. */ }
+  return selected;
+}
+
+expandDistractorPools();
+
 function normalizedQuestion(item) {
   if (item.correct !== undefined) {
-    return { ...item, options: shuffled([{ text: item.correct, correct: true }, ...item.wrong.map((text) => ({ text, correct: false }))]) };
+    const wrong = selectDistractors(item);
+    return { ...item, options: shuffled([{ text: item.correct, correct: true }, ...wrong.map((text) => ({ text, correct: false }))]) };
   }
   return { ...item, options: shuffled(item.options.map((text, index) => ({ text, correct: index === item.answer }))) };
 }

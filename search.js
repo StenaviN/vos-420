@@ -110,7 +110,8 @@
     matches.slice(0, 50).forEach(({ entry }) => {
       const link = document.createElement("a");
       link.className = "search-result";
-      link.href = entry.url;
+      const [path, hash] = entry.url.split("#");
+      link.href = `${path}?search=${encodeURIComponent(query)}${hash ? `#${hash}` : ""}`;
       const heading = document.createElement("strong");
       heading.textContent = entry.section;
       const topic = document.createElement("span");
