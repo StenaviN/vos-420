@@ -355,7 +355,7 @@ window.SEARCH_INDEX = {
       "topic": "Експлуатація HARRIS КХ RF-7800H-MP / MPR-9600-MP",
       "section": "Антена, IP-адреса та HUB",
       "url": "07-harris-kh-ekspluatatsiia/index.html#antena-merezha",
-      "text": "Антена, IP-адреса та HUB Тип антени 8 PGM CONFIG ACCESSORY HIGH VOLTAGE / 50 OM HIGH VOLTAGE обирають для штирьової антени. Для диполя обирають 50 OM . IP-адреса прямого USB-підключення 8 PGM CONFIG NETWORK INTERFACE ETHERNET ADDRESS DIRECT USB ENABLE 169.254.78.1 CLR ×3 Скидання HUB 8 PGM MAINTENANCE RESET HUB YES Скидання HUB передбачене лише для RF-7800H-MP ."
+      "text": "Антена, IP-адреса та HUB Тип антени 8 PGM CONFIG ACCESSORY HIGH VOLTAGE / 50 OM HIGH VOLTAGE обирають для штирьової антени. Для диполя обирають 50 OM . IP-адреса прямого USB-підключення 8 PGM CONFIG NETWORK INTERFACE ETHERNET ADDRESS DIRECT USB ENABLE 169.254.78.1 Скидання HUB 8 PGM MAINTENANCE RESET HUB YES Скидання HUB передбачене лише для RF-7800H-MP ."
     },
     {
       "topic": "Експлуатація HARRIS КХ RF-7800H-MP / MPR-9600-MP",
