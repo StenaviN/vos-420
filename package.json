@@ -1,0 +1,7 @@
+{
+  "name": "vos-420-notes",
+  "private": true,
+  "scripts": {
+    "build:search": "node build-search-index.mjs"
+  }
+}

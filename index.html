@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Конспекти ВОС-420 з радіозв'язку</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page">
+    <div class="hero">
+      <h1>Конспекти ВОС-420 з радіозв'язку</h1>
+    </div>
+
+    <div class="home-tabs" role="tablist" aria-label="Розділи головної сторінки">
+      <button id="topicsTab" class="home-tab active" type="button" role="tab" aria-selected="true" aria-controls="topicsPanel" data-home-tab="topics">Вивчені теми</button>
+      <button id="quizTab" class="home-tab" type="button" role="tab" aria-selected="false" aria-controls="quizPanel" data-home-tab="quiz">Перевірка знань</button>
+      <button id="searchTab" class="home-tab" type="button" role="tab" aria-selected="false" aria-controls="searchPanel" data-home-tab="search">Пошук</button>
+    </div>
+
+    <section id="quizPanel" class="section quiz-launcher" role="tabpanel" aria-labelledby="quizTab" hidden>
+      <div class="launcher-heading">
+        <div><p class="launcher-label">Перевірка знань</p><h2 id="quizLauncherTitle">Сформуй вікторину за темами</h2></div>
+        <label class="select-all"><input id="selectAllTopics" type="checkbox"><span>Обрати всі</span></label>
+      </div>
+      <div class="topic-picker">
+        <label><input type="checkbox" name="quizTopic" value="1" data-questions="50"><span><strong>Тема 1</strong>Основи радіозв'язку</span></label>
+        <label><input type="checkbox" name="quizTopic" value="2" data-questions="35"><span><strong>Тема 2</strong>Техніка безпеки</span></label>
+        <label><input type="checkbox" name="quizTopic" value="3" data-questions="40"><span><strong>Тема 3</strong>Радіохвилі та завади</span></label>
+        <label><input type="checkbox" name="quizTopic" value="4" data-questions="45"><span><strong>Тема 4</strong>Радіостанції та антени</span></label>
+        <label><input type="checkbox" name="quizTopic" value="5" data-questions="81"><span><strong>Тема 5</strong>HARRIS RF-7850M-HH</span></label>
+        <label><input type="checkbox" name="quizTopic" value="6" data-questions="64"><span><strong>Тема 6</strong>HARRIS КХ RF-7800H-MP / MPR-9600-MP</span></label>
+        <label><input type="checkbox" name="quizTopic" value="7" data-questions="42"><span><strong>Тема 7</strong>Експлуатація HARRIS КХ</span></label>
+      </div>
+      <div class="launcher-footer"><p id="quizSelectionSummary">Обрано 0 тем · доступно 0 питань</p><div><button id="openQuizStats" class="launcher-secondary" type="button" disabled>Статистика</button><button id="startSelectedQuiz" class="launcher-primary" type="button" disabled>Налаштувати вікторину</button></div></div>
+      <p id="quizSelectionError" class="launcher-error" hidden>Обери принаймні одну тему.</p>
+    </section>
+
+    <section id="searchPanel" class="section search-panel" role="tabpanel" aria-labelledby="searchTab" hidden>
+      <h2>Пошук у конспектах</h2>
+      <form id="searchForm" class="search-form" role="search">
+        <label for="searchInput" class="visually-hidden">Пошуковий запит</label>
+        <input id="searchInput" type="search" inputmode="search" autocomplete="off" placeholder="Наприклад: заземлення 4 Ом">
+        <button id="clearSearch" class="search-clear" type="button" title="Очистити пошук" aria-label="Очистити пошук" hidden>×</button>
+        <button class="search-submit" type="submit">Знайти</button>
+      </form>
+      <p class="search-index-note">Після додавання або зміни тем онови пошуковий індекс: <code>npm run build:search</code></p>
+      <p id="searchStatus" class="search-status" aria-live="polite"></p>
+      <div id="searchResults" class="search-results"></div>
+    </section>
+
+    <div id="topicsPanel" class="home-tab-panel" role="tabpanel" aria-labelledby="topicsTab">
+    <section class="section">
+      <h2>Вивчені теми</h2>
+      <div class="grid">
+        <article class="card">
+          <h3><a href="01-osnovy-radiozviazku/index.html">1. Основи радіозв'язку: організація, режими, радіообмін</a></h3>
+          <p>Документи, способи організації радіозв'язку, режими роботи, встановлення зв'язку, передача сигналів і команд, правила безпеки в ефірі.</p>
+        </article>
+
+        <article class="card">
+          <h3><a href="02-tehnika-bezpeky/index.html">2. Техніка безпеки при експлуатації засобів радіозв'язку</a></h3>
+          <p>Інструктажі, допуск до самостійної роботи, електробезпека, заземлення, безпека під час роботи з радіостанціями та АЩП.</p>
+        </article>
+
+        <article class="card">
+          <h3><a href="03-radiohvyli-radiozviazok-zavady/index.html">3. Радіохвилі, радіозв'язок і радіозавади</a></h3>
+          <p>Характеристики хвиль, формула довжини хвилі, поляризація, інтерференція, дифракція, КХ/УКХ, переваги й недоліки радіозв'язку, природні та штучні завади.</p>
+        </article>
+
+        <article class="card">
+          <h3><a href="04-pobudova-radiostantsii-antenny/index.html">4. Побудова радіостанції та антени</a></h3>
+          <p>Система радіозв'язку, передавач, приймач, модуляція, сучасні радіостанції, антени, фідери, КСХ, смуга пропускання, діаграма спрямованості та підсилення.</p>
+        </article>
+
+        <article class="card">
+          <h3><a href="05-harris-ukh/index.html">5. HARRIS УКХ RF-7850M-HH / RF-7800V-HH</a></h3>
+          <p>Призначення, ТТХ, режими роботи, вокодери, шифрування, GPS, живлення, органи керування, Black Repeater, Dual PTT, KDU/КДП та сервісні екрани.</p>
+        </article>
+
+        <article class="card">
+          <h3><a href="06-harris-kh/index.html">6. HARRIS КХ RF-7800H-MP / MPR-9600-MP</a></h3>
+          <p>Призначення, ТТХ, режими FIX, ALE, 3G, 3G+ і HOP, модеми, вокодери, шифрування, органи керування, підготовка та вбудоване тестування.</p>
+        </article>
+
+        <article class="card">
+          <h3><a href="07-harris-kh-ekspluatatsiia/index.html">7. Експлуатація HARRIS КХ RF-7800H-MP / MPR-9600-MP</a></h3>
+          <p>Практичні налаштування, тестування, FIX, синхронізація HOP, виклики й LQA в ALE та 3G, повідомлення AMD і SMS, LDV, GPS-звіти та робота в 3G+.</p>
+        </article>
+      </div>
+    </section>
+
+    </div>
+
+  </main>
+  <script src="search-index.js"></script>
+  <script src="quiz-launcher.js"></script>
+  <script src="search.js"></script>
+</body>
+</html>

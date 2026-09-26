@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HARRIS КХ RF-7800H-MP / MPR-9600-MP</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <main class="page">
+    <div class="topbar"><a href="../index.html">До змісту</a></div>
+
+    <header class="hero">
+      <h1>Радіостанції HARRIS КХ RF-7800H-MP / MPR-9600-MP</h1>
+      <p>Призначення, тактико-технічні характеристики, режими FIX, ALE, 3G, 3G+ і HOP, модеми, вокодери, шифрування, органи керування, підготовка до роботи та вбудоване тестування короткохвильових радіостанцій HARRIS Falcon.</p>
+    </header>
+
+    <div class="topic-quiz-cta"><div><strong>Перевір себе</strong><span>Пройди вікторину з випадковими питаннями та статистикою.</span></div><a class="topic-quiz-button" href="../quiz.html?topic=6">Почати вікторину <span aria-hidden="true">→</span></a></div>
+
+    <section id="pryznachennia" class="section">
+      <h2>Призначення</h2>
+      <p><strong>RF-7800H-MP Falcon III</strong> і <strong>MPR-9600-MP Falcon II</strong> призначені для надійного телефонного зв'язку та передавання даних у радіонапрямку або радіомережі. Радіостанції можуть працювати в переносному, мобільному на автошасі та стаціонарному варіантах.</p>
+      <p>Обидві моделі належать до сімейства Falcon, підтримують захищений зв'язок і роботу в складних умовах. RF-7800H-MP має ширший діапазон частот і додаткові можливості, яких немає у MPR-9600-MP.</p>
+      <div class="model-gallery" aria-label="Моделі переносних КХ радіостанцій HARRIS">
+        <figure class="topic-figure">
+          <img src="rf-7800h-mp.png" alt="Тактична короткохвильова радіостанція HARRIS RF-7800H-MP">
+          <figcaption><strong>RF-7800H-MP Falcon III</strong> - тактична короткохвильова радіостанція.</figcaption>
+        </figure>
+        <figure class="topic-figure">
+          <img src="mpr-9600-mp.jpg" alt="Тактична короткохвильова радіостанція HARRIS MPR-9600-MP">
+          <figcaption><strong>MPR-9600-MP Falcon II</strong> - тактична короткохвильова радіостанція.</figcaption>
+        </figure>
+      </div>
+      <div><span class="tag">КХ</span><span class="tag">Falcon II / III</span><span class="tag">голос</span><span class="tag">дані</span><span class="tag">ALE / 3G</span><span class="tag">ППРЧ</span></div>
+    </section>
+
+    <section id="moduliatsii" class="section">
+      <h2>Види модуляції</h2>
+      <p>Модуляція визначає, як голос або інший низькочастотний сигнал змінює радіочастотну несучу. Передавач і приймач повинні використовувати однаковий вид модуляції, інакше мова буде спотворена або взагалі не відновиться.</p>
+      <dl class="term-list">
+        <div>
+          <dt>USB</dt>
+          <dd><strong>Upper Sideband, верхня бокова смуга.</strong> Передавач подавляє несучу та нижню бокову смугу, а в ефір передає тільки верхню бокову смугу з мовною інформацією. Приймач відновлює несучу й перетворює сигнал назад у звук. Такий спосіб економить потужність передавача та займає меншу смугу частот, тому USB є основним варіантом телефонної роботи між однотипними КХ радіостанціями HARRIS.</dd>
+        </div>
+        <div>
+          <dt>LSB</dt>
+          <dd><strong>Lower Sideband, нижня бокова смуга.</strong> Працює за тим самим принципом, що й USB, але передається нижня бокова смуга, а верхня та несуча подавляються. На прийманні обов'язково потрібно вибрати LSB. Якщо одна станція працює в USB, а інша в LSB, мова не відтворюватиметься нормально. У навчальному матеріалі LSB пов'язаний переважно з роботою радіоаматорів у КХ діапазоні.</dd>
+        </div>
+        <div>
+          <dt>AME</dt>
+          <dd><strong>Amplitude Modulation Equivalent.</strong> Радіостанція передає несучу разом з однією боковою смугою, створюючи сигнал, який може прийняти звичайний АМ-приймач. Частина потужності витрачається на несучу, тому режим менш енергоефективний за USB, але забезпечує сумісність із радіостанціями старого парку, які не підтримують односмугову роботу з подавленою несучою.</dd>
+        </div>
+        <div>
+          <dt>CW</dt>
+          <dd><strong>Continuous Wave, телеграфія.</strong> Під час натискання телеграфного ключа радіостанція вмикає несучу, а під час відпускання вимикає її. Послідовності коротких і довгих імпульсів утворюють знаки азбуки Морзе. CW потребує вузької смуги приймання і дає змогу розпізнавати сигнал за слабкого або зашумленого каналу.</dd>
+        </div>
+        <div>
+          <dt>FM</dt>
+          <dd><strong>Frequency Modulation, частотна модуляція.</strong> Голос змінює миттєву частоту несучої, тоді як її амплітуда залишається майже сталою. FM краще протидіє амплітудним шумам, але потребує ширшої смуги, тому застосовується для зв'язку між однотипними станціями в УКХ діапазоні. Режим доступний у RF-7800H-MP і відсутній у MPR-9600-MP.</dd>
+        </div>
+      </dl>
+      <p class="note"><strong>Не плутати:</strong> модуляція визначає спосіб перенесення сигналу радіоканалом; вокодер перетворює мову на цифровий потік; модем перетворює цифрові дані на сигнал, придатний для передавання каналом.</p>
+    </section>
+
+    <section id="rezhymy" class="section">
+      <h2>Режими роботи</h2>
+      <table class="responsive-table">
+        <thead><tr><th>Режим</th><th>Призначення</th><th>Канали та налаштування</th></tr></thead>
+        <tbody>
+          <tr><td data-label="Режим"><strong>FIX</strong><br>Fixed Frequency</td><td data-label="Призначення">Робота на фіксованій частоті. Задаються частота, модуляція, потужність, шифрування, вокодер та інші параметри.</td><td data-label="Канали">0-199; налаштування з клавіатури або ПЕОМ</td></tr>
+          <tr><td data-label="Режим"><strong>HOP</strong><br>Frequency Hopping</td><td data-label="Призначення">Псевдовипадковий перескок робочої частоти для стійкого зв'язку за потужних радіоперешкод.</td><td data-label="Канали">19 Hop Sets; налаштування з клавіатури або ПЕОМ</td></tr>
+          <tr><td data-label="Режим"><strong>ALE</strong><br>Automatic Link Establishment</td><td data-label="Призначення">Адаптивний вибір найкращого робочого каналу й автоматичне встановлення зв'язку за MIL-STD-188-141A/B.</td><td data-label="Канали">0-99; програмування з ПЕОМ</td></tr>
+          <tr><td data-label="Режим"><strong>3G</strong><br>Third Generation</td><td data-label="Призначення">Третє покоління КХ протоколів за STANAG 4538 з автоматичним керуванням ARCS (Automatic Radio Control System).</td><td data-label="Канали">100-162; програмування з ПЕОМ; у MPR-9600-MP відсутній</td></tr>
+          <tr><td data-label="Режим"><strong>3G+</strong><br>Third Generation Plus</td><td data-label="Призначення">Одночасний контроль мереж ALE та 3G.</td><td data-label="Канали">1-62; у MPR-9600-MP відсутній</td></tr>
+        </tbody>
+      </table>
+      <h3>Допустима різниця часу</h3>
+      <table><thead><tr><th>Режим</th><th>Максимальна різниця часу</th></tr></thead><tbody><tr><td>3G</td><td>7 хв</td></tr><tr><td>HOP</td><td>90 с</td></tr><tr><td>ALE</td><td>30 с</td></tr></tbody></table>
+    </section>
+
+    <section id="ale" class="section">
+      <h2>ALE</h2>
+      <ul>
+        <li>Сканує набір до 100 частот і вибирає найкращу для зв'язку в поточний момент.</li>
+        <li>Аналізує канал за допомогою FSK (Frequency Shift Keying).</li>
+        <li>Перевірка однієї частоти займає близько 12 секунд.</li>
+      </ul>
+    </section>
+
+    <section id="three-g" class="section">
+      <h2>3G за STANAG 4538</h2>
+      <p>3G є розвитком ALE з вищою швидкістю аналізу частот. Замість FSK використовується PSK (Phase Shift Keying), швидкість передавання інформації сягає 2400 біт/с, а аналіз однієї частоти займає близько 3 секунд.</p>
+      <ul>
+        <li><strong>Link Protection</strong> захищає від несанкціонованого доступу.</li>
+        <li>ARCS (Automatic Radio Control System) автоматизує встановлення зв'язку та вибір каналу.</li>
+        <li>3G і адаптивний широкосмуговий канал до 24 кГц програмуються тільки через CPA (Communications Programming Application).</li>
+        <li>Для роботи потрібна синхронізація часу. Її отримують через GPS або вводять вручну.</li>
+        <li>Різниця часу між станціями не повинна перевищувати 7 хвилин.</li>
+      </ul>
+    </section>
+
+    <section id="ldv" class="section">
+      <h2>LDV: Last Ditch Voice</h2>
+      <p><strong>LDV</strong> - голосове повідомлення «останньої надії» для дуже низької якості каналу, коли за SNR приблизно від -3 до 0 дБ звичайний голос може не проходити. LDV передається тільки в режимі 3G.</p>
+      <ul>
+        <li>ARQ (Automatic Repeat reQuest) забезпечує передавання повідомлення без помилок.</li>
+        <li>Прийняте повідомлення відтворюється одразу та записується для повторного прослуховування.</li>
+        <li>У пам'яті зберігається лише одне, останнє прийняте повідомлення.</li>
+        <li>Параметри LDV зазвичай залишають зі стандартними значеннями.</li>
+      </ul>
+    </section>
+
+    <section id="hop" class="section">
+      <h2>HOP: псевдовипадковий перескок частоти</h2>
+      <p>У HOP передавач швидко змінює робочу частоту за заданим алгоритмом, що ускладнює виявлення робочих субчастот і постановку навмисної радіозавади. Синхронізацію виконують вручну або автоматично, а різниця часу між станціями не повинна перевищувати 90 секунд.</p>
+      <p>Перескок відбувається в смузі навколо центральної частоти з кроком <strong>5 кГц</strong>.</p>
+    </section>
+
+    <section id="potuzhnist" class="section">
+      <h2>Потужність передавача</h2>
+      <table><thead><tr><th>Рівень</th><th>Потужність</th></tr></thead><tbody><tr><td>LOW</td><td>1 Вт</td></tr><tr><td>MEDIUM</td><td>5 Вт</td></tr><tr><td>HIGH</td><td>20 Вт</td></tr></tbody></table>
+      <p>У КХ діапазоні RF-7800H-MP забезпечує до 20 Вт, а під час роботи в УКХ діапазоні - до 10 Вт.</p>
+    </section>
+
+    <section id="modemy" class="section">
+      <h2>Модеми</h2>
+      <table class="responsive-table">
+        <thead><tr><th>Модем</th><th>Призначення</th><th>MPR-9600-MP</th></tr></thead>
+        <tbody>
+          <tr><td data-label="Модем">MIL-110B<br><strong>MIL-STD-188-110B</strong></td><td data-label="Призначення">Режими FIX та ALE</td><td data-label="MPR-9600-MP">Доступний</td></tr>
+          <tr><td data-label="Модем">SERIAL</td><td data-label="Призначення">FIX, ALE, HOP у КХ; 2400 біт/с</td><td data-label="MPR-9600-MP">Доступний</td></tr>
+          <tr><td data-label="Модем">ARQ<br><strong>Automatic Repeat reQuest</strong></td><td data-label="Призначення">FIX, ALE, HOP; 2400 біт/с</td><td data-label="MPR-9600-MP">Доступний</td></tr>
+          <tr><td data-label="Модем">WBHF<br><strong>Wideband High Frequency</strong></td><td data-label="Призначення">Широкосмуговий 3G; до 120 кбіт/с</td><td data-label="MPR-9600-MP">Недоступний</td></tr>
+          <tr><td data-label="Модем">WBFSK<br><strong>Wideband Frequency Shift Keying</strong></td><td data-label="Призначення">Широкосмугова робота тільки в УКХ</td><td data-label="MPR-9600-MP">Недоступний</td></tr>
+          <tr><td data-label="Модем">XDL<br><strong>Фірмове позначення HARRIS</strong></td><td data-label="Призначення">Тільки 3G; 75-9600 біт/с</td><td data-label="MPR-9600-MP">Недоступний</td></tr>
+        </tbody>
+      </table>
+      <p>RF-7800H-MP передає широкосмугові дані у смузі 3-24 кГц зі швидкістю до 120 кбіт/с.</p>
+    </section>
+
+    <section id="vokodery" class="section">
+      <h2>Вокодери</h2>
+      <table class="responsive-table">
+        <thead><tr><th>Тип</th><th>Характеристика</th><th>MPR-9600-MP</th></tr></thead>
+        <tbody>
+          <tr><td data-label="Тип">CLR<br><strong>Clear</strong></td><td data-label="Характеристика">Без вокодера, аналогова телефонія</td><td data-label="MPR-9600-MP">Доступний</td></tr>
+          <tr><td data-label="Тип">CVSD<br><strong>Continuously Variable Slope Delta Modulation</strong></td><td data-label="Характеристика">Цифрова телефонія з дельта-модуляцією для УКХ</td><td data-label="MPR-9600-MP">Недоступний</td></tr>
+          <tr><td data-label="Тип">AVS<br><strong>Analog Voice Security</strong></td><td data-label="Характеристика">Аналогове шифрування мови, скремблювання</td><td data-label="MPR-9600-MP">Доступний</td></tr>
+          <tr><td data-label="Тип">DV24<br><strong>Digital Voice 2400</strong></td><td data-label="Характеристика">Цифрова телефонія 2400 біт/с; застарілі системи</td><td data-label="MPR-9600-MP">Доступний</td></tr>
+          <tr><td data-label="Тип">DV6<br><strong>Digital Voice 600</strong></td><td data-label="Характеристика">Цифрова телефонія 600 біт/с; застарілі системи</td><td data-label="MPR-9600-MP">Доступний</td></tr>
+          <tr><td data-label="Тип">ME24<br><strong>MELP (Mixed Excitation Linear Prediction)</strong></td><td data-label="Характеристика">Цифрова телефонія 2400 біт/с; сучасні системи</td><td data-label="MPR-9600-MP">Доступний</td></tr>
+          <tr><td data-label="Тип">ME12<br><strong>MELP (Mixed Excitation Linear Prediction)</strong></td><td data-label="Характеристика">Цифрова телефонія 1200 біт/с; сучасні системи</td><td data-label="MPR-9600-MP">Недоступний</td></tr>
+          <tr><td data-label="Тип">ME6<br><strong>MELP (Mixed Excitation Linear Prediction)</strong></td><td data-label="Характеристика">Цифрова телефонія 600 біт/с; сучасні системи</td><td data-label="MPR-9600-MP">Доступний</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="porivniannia" class="section">
+      <h2>Порівняння RF-7800H-MP і MPR-9600-MP</h2>
+      <p><strong>Головна відмінність:</strong> RF-7800H-MP має ширший діапазон, підтримує 3G/3G+, широкосмугові модеми, додаткові вокодери, AES та Ethernet. MPR-9600-MP зберігає базові КХ-режими, модеми й вокодери Falcon II.</p>
+      <div class="comparison-key" aria-label="Позначення в таблиці">
+        <span class="key-neutral">Спільне</span>
+        <span class="key-available">Доступне</span>
+        <span class="key-missing">Недоступне</span>
+      </div>
+      <table class="responsive-table model-comparison">
+        <thead><tr><th>Можливість</th><th>RF-7800H-MP Falcon III</th><th>MPR-9600-MP Falcon II</th></tr></thead>
+        <tbody>
+          <tr>
+            <td data-label="Можливість">Діапазон частот</td>
+            <td data-label="RF-7800H-MP"><strong>1,5-59,9999 МГц</strong><span class="availability exclusive">КХ та частина УКХ</span></td>
+            <td data-label="MPR-9600-MP"><strong>1,6-29,9999 МГц</strong><span class="availability shared">КХ</span></td>
+          </tr>
+          <tr>
+            <td data-label="Можливість">Режими роботи</td>
+            <td data-label="RF-7800H-MP"><div class="feature-values"><span>FIX</span><span>HOP</span><span>ALE</span><span class="feature-available">3G</span><span class="feature-available">3G+</span></div><span class="availability exclusive">Додатково: 3G і 3G+</span></td>
+            <td data-label="MPR-9600-MP"><div class="feature-values"><span>FIX</span><span>HOP</span><span>ALE</span><span class="feature-unavailable">3G</span><span class="feature-unavailable">3G+</span></div><span class="availability missing">3G і 3G+ недоступні</span></td>
+          </tr>
+          <tr>
+            <td data-label="Можливість">Види модуляції</td>
+            <td data-label="RF-7800H-MP"><div class="feature-values"><span>USB</span><span>LSB</span><span>AME</span><span>CW</span><span class="feature-available">FM</span></div><span class="availability exclusive">Додатково: FM в УКХ</span></td>
+            <td data-label="MPR-9600-MP"><div class="feature-values"><span>USB</span><span>LSB</span><span>AME</span><span>CW</span><span class="feature-unavailable">FM</span></div><span class="availability missing">FM недоступна</span></td>
+          </tr>
+          <tr>
+            <td data-label="Можливість">Модеми</td>
+            <td data-label="RF-7800H-MP"><div class="feature-values"><span>MIL-110B</span><span>SERIAL</span><span>ARQ</span><span class="feature-available">WBHF</span><span class="feature-available">WBFSK</span><span class="feature-available">XDL</span></div><span class="availability exclusive">Додатково: WBHF, WBFSK, XDL</span></td>
+            <td data-label="MPR-9600-MP"><div class="feature-values"><span>MIL-110B</span><span>SERIAL</span><span>ARQ</span><span class="feature-unavailable">WBHF</span><span class="feature-unavailable">WBFSK</span><span class="feature-unavailable">XDL</span></div><span class="availability missing">WBHF, WBFSK і XDL недоступні</span></td>
+          </tr>
+          <tr>
+            <td data-label="Можливість">Вокодери</td>
+            <td data-label="RF-7800H-MP"><div class="feature-values"><span>CLR</span><span>AVS</span><span>DV24</span><span>DV6</span><span class="feature-available">CVSD</span><span>ME24</span><span class="feature-available">ME12</span><span>ME6</span></div><span class="availability exclusive">Додатково: CVSD і ME12</span></td>
+            <td data-label="MPR-9600-MP"><div class="feature-values"><span>CLR</span><span>AVS</span><span>DV24</span><span>DV6</span><span class="feature-unavailable">CVSD</span><span>ME24</span><span class="feature-unavailable">ME12</span><span>ME6</span></div><span class="availability missing">CVSD і ME12 недоступні</span></td>
+          </tr>
+          <tr>
+            <td data-label="Можливість">Шифрування</td>
+            <td data-label="RF-7800H-MP"><div class="feature-values"><span>Citadel-128</span><span class="feature-available">AES-128/256</span></div><span class="availability exclusive">Додатково: AES-128/256</span></td>
+            <td data-label="MPR-9600-MP"><div class="feature-values"><span>Citadel-128</span><span class="feature-unavailable">AES-128/256</span></div><span class="availability missing">AES-128/256 недоступне</span></td>
+          </tr>
+          <tr>
+            <td data-label="Можливість">Мережі даних</td>
+            <td data-label="RF-7800H-MP"><div class="feature-values"><span>PPP</span><span class="feature-available">Ethernet</span></div><span class="availability exclusive">Додатково: Ethernet</span></td>
+            <td data-label="MPR-9600-MP"><div class="feature-values"><span>PPP</span><span class="feature-unavailable">Ethernet</span></div><span class="availability missing">Ethernet недоступний</span></td>
+          </tr>
+          <tr>
+            <td data-label="Можливість">Маса без / з АКБ</td>
+            <td data-label="RF-7800H-MP"><strong>3,9 / 4,3 кг</strong></td>
+            <td data-label="MPR-9600-MP"><strong>4,5 / 5,3 кг</strong></td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="table-note"><strong>Скорочення:</strong> USB - Upper Sideband; LSB - Lower Sideband; AME - Amplitude Modulation Equivalent; CW - Continuous Wave; FM - Frequency Modulation; AES - Advanced Encryption Standard; PPP - Point-to-Point Protocol.</p>
+    </section>
+
+    <section id="ttkh" class="section">
+      <h2>Шифрування, дані, живлення і захищеність</h2>
+      <ul>
+        <li>Citadel-128 підтримують обидві моделі; AES-128/256 доступне у RF-7800H-MP.</li>
+        <li>Вбудований GPS визначає місцеположення та може автоматично передавати координати.</li>
+        <li>PPP підтримують обидві моделі; Ethernet доступний у RF-7800H-MP.</li>
+        <li>Живлення: акумуляторна BB-2590/U Li-ion 24 В, 7,5 А·год або незаряджувана BA-5390/U Li-MnO2 24 В, 11,2 А·год.</li>
+        <li>Робоча напруга: 21,5-32 В, номінально 26 В.</li>
+        <li>Температурний діапазон: від -40 до +71 °C.</li>
+        <li>Допускається занурення у воду на глибину до 1 м; обладнання розраховане на вібрації наземної тактичної експлуатації.</li>
+      </ul>
+    </section>
+
+    <section id="komplekt" class="section">
+      <h2>Основний комплект RF-7800H-MP</h2>
+      <ul>
+        <li>блок радіостанції та акумуляторний блок;</li>
+        <li>мікротелефонна гарнітура H-250/U;</li>
+        <li>BB-2590/U Li-ion або BA-5390/U Li-MnO2;</li>
+        <li>GPS-антена та система заземлення;</li>
+        <li>штирьова антена OE-505;</li>
+        <li>диполь RF-1940-AT001 та адаптер диполя;</li>
+        <li>USB-кабель для програмування і передавання даних;</li>
+        <li>програмне забезпечення та зарядна база.</li>
+      </ul>
+    </section>
+
+    <section id="rozmi" class="section">
+      <h2>Роз'єми</h2>
+      <table class="responsive-table">
+        <thead><tr><th>Роз'єм</th><th>Призначення</th><th>Розташування</th></tr></thead>
+        <tbody>
+          <tr><td data-label="Роз'єм">J7 HF/VHF ANT</td><td data-label="Призначення">Антена</td><td data-label="Розташування">Передня панель</td></tr>
+          <tr><td data-label="Роз'єм">J3 DATA</td><td data-label="Призначення">Інтерфейс RS-232</td><td data-label="Розташування">Передня панель</td></tr>
+          <tr><td data-label="Роз'єм">J2 GPS</td><td data-label="Призначення">GPS-антена</td><td data-label="Розташування">Передня панель</td></tr>
+          <tr><td data-label="Роз'єм">J4 KDU</td><td data-label="Призначення">КДП</td><td data-label="Розташування">Передня панель</td></tr>
+          <tr><td data-label="Роз'єм">J1 AUDIO</td><td data-label="Призначення">Мікротелефонна гарнітура</td><td data-label="Розташування">Передня панель</td></tr>
+          <tr><td data-label="Роз'єм">J5 USB</td><td data-label="Призначення">USB-кабель</td><td data-label="Розташування">Передня панель</td></tr>
+          <tr><td data-label="Роз'єм">J6</td><td data-label="Призначення">Заземлення</td><td data-label="Розташування">Передня панель</td></tr>
+          <tr><td data-label="Роз'єм">J10 BATTERY</td><td data-label="Призначення">Акумуляторна батарея</td><td data-label="Розташування">Задня панель</td></tr>
+          <tr><td data-label="Роз'єм">J9 ACCESSORY</td><td data-label="Призначення">Допоміжне устаткування</td><td data-label="Розташування">Задня панель</td></tr>
+        </tbody>
+      </table>
+      <p>На задній панелі також розташоване гніздо батарейки HUB для BIOS радіостанції.</p>
+    </section>
+
+    <section id="keruvannia" class="section">
+      <h2>Перемикач і клавіатура</h2>
+      <h3>Положення перемикача</h3>
+      <dl class="term-list">
+        <div><dt>OFF</dt><dd>Радіостанція вимкнена.</dd></div>
+        <div><dt>Z</dt><dd>Увімкнення в режимі стирання запрограмованих параметрів.</dd></div>
+        <div><dt>LD</dt><dd>Режим технічного обслуговування працівниками HARRIS.</dd></div>
+        <div><dt>CT</dt><dd>Режим засекреченого зв'язку.</dd></div>
+        <div><dt>PT</dt><dd>Відкритий режим.</dd></div>
+        <div><dt>CLR</dt><dd>Вимкнення для довготривалого зберігання.</dd></div>
+      </dl>
+      <h3>Основні кнопки</h3>
+      <ul>
+        <li><strong>1 CALL:</strong> виклик ALE, синхронізаційний виклик 3G або синхронізація HOP.</li>
+        <li><strong>2 LT:</strong> яскравість дисплея. <strong>3 MODE:</strong> вибір FIX, ALE, 3G або HOP.</li>
+        <li><strong>+/- VOL:</strong> гучність. <strong>+/- PRE:</strong> вибір запрограмованих каналів.</li>
+        <li><strong>4 SQL:</strong> шумоподавлювач. <strong>7 OPT:</strong> опції меню. <strong>8 PGM:</strong> програмування.</li>
+        <li><strong>CLR:</strong> крок назад. <strong>ENT:</strong> підтвердження вводу. Кнопка 0 показує продовження екрана.</li>
+        <li>Стрілки переміщують курсор меню, кнопки 6 і 9 змінюють параметри.</li>
+      </ul>
+    </section>
+
+    <section id="pidhotovka" class="section">
+      <h2>Підготовка до роботи</h2>
+      <ol>
+        <li>Підключити акумуляторну батарею BB-2590/U Li-ion.</li>
+        <li>Підключити антену.</li>
+        <li>Підключити GPS-антену.</li>
+        <li>Підключити мікротелефонну гарнітуру H-250/U.</li>
+        <li>За можливості обладнати систему заземлення.</li>
+        <li>Увімкнути радіостанцію, встановивши перемикач у положення PT.</li>
+      </ol>
+      <p>Після завантаження повідомлення <code>DEFAULT PASSWORD DETECTED</code> означає, що код користувача не задано.</p>
+    </section>
+
+    <section id="bit" class="section">
+      <h2>Вбудоване тестування</h2>
+      <ol>
+        <li><strong>BIT / SYSTEM:</strong> перевірка системи. Успішне завершення позначається повідомленням <code>PASSED</code>.</li>
+        <li><strong>BATTERY:</strong> перевірка акумулятора, напруги та стану батарейки HUB, а також оцінка залишкового ресурсу.</li>
+        <li><strong>VSWR:</strong> перевірка підсилювача потужності та КСХ антени на робочій частоті.</li>
+      </ol>
+      <p>Для справного підсилювача показана вихідна потужність має бути більшою за 0. Нормальний КСХ у матеріалі: <strong>1,0-1,9</strong>. Якщо з'являється <code>VSWR TEST FAILED</code>, потрібно перевірити підключення та цілісність антени, за потреби замінити її.</p>
+    </section>
+
+    <div class="topic-quiz-cta"><div><strong>Перевір себе</strong><span>Закріпи характеристики, режими, органи керування та порядок тестування.</span></div><a class="topic-quiz-button" href="../quiz.html?topic=6">Почати вікторину <span aria-hidden="true">→</span></a></div>
+  </main>
+</body>
+</html>
