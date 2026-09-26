@@ -539,6 +539,10 @@ p {
   padding: 18px;
 }
 
+.page > .section + .section {
+  margin-top: 18px;
+}
+
 .card h2,
 .card h3,
 .section h2,
