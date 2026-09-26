@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Експлуатація HARRIS КХ RF-7800H-MP / MPR-9600-MP</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="../style.css?v=43161cb50728">
+  <link rel="stylesheet" href="../style.css?v=9a2e1277dfca">
 </head>
 <body>
   <main class="page">
@@ -58,6 +58,16 @@
       <p>Скидання HUB передбачене лише для <strong>RF-7800H-MP</strong>.</p>
     </section>
 
+    <section id="chas-tod" class="section">
+      <h2>Перевірка часу TOD</h2>
+      <p>Якщо HOP не синхронізується, перевір час станції. У матеріалі вказано, що значне розходження часу між станціями призводить до відмови синхронізації.</p>
+      <h3>Перегляд часу</h3>
+      <div class="menu-path"><span>7 OPT</span><span>ENT</span><span>GPS-TOD</span></div>
+      <h3>Налаштування часового зміщення</h3>
+      <div class="menu-path"><span>8 PGM</span><span>ENT</span><span>CONFIG</span><span>ENT</span><span>TOD</span><span>ENT</span><span>UTC offset</span><span>ENT</span></div>
+      <p><strong>TOD (Time of Day)</strong> має відповідати єдиній часовій основі мережі. Значення зміщення від UTC встановлюють згідно з поточними умовами та розпорядженням щодо організації зв'язку.</p>
+    </section>
+
     <section id="fix" class="section">
       <h2>Робота в режимі FIX</h2>
       <p><strong>FIX</strong> — зв'язок на заздалегідь запрограмованій фіксованій частоті.</p>
@@ -90,16 +100,6 @@
         <div><dt>AUTO</dt><dd>Автоматична синхронізація за наявності GPS-антени.</dd></div>
       </dl>
       <div class="note">Після зміни Hop Set синхронізацію потрібно виконати повторно.</div>
-    </section>
-
-    <section id="chas-tod" class="section">
-      <h2>Перевірка часу TOD</h2>
-      <p>Якщо HOP не синхронізується, перевір час станції. У матеріалі вказано, що значне розходження часу між станціями призводить до відмови синхронізації.</p>
-      <h3>Перегляд часу</h3>
-      <div class="menu-path"><span>7 OPT</span><span>ENT</span><span>GPS-TOD</span></div>
-      <h3>Налаштування часового зміщення</h3>
-      <div class="menu-path"><span>8 PGM</span><span>ENT</span><span>CONFIG</span><span>ENT</span><span>TOD</span><span>ENT</span><span>UTC offset</span><span>ENT</span></div>
-      <p><strong>TOD (Time of Day)</strong> має відповідати єдиній часовій основі мережі. Значення зміщення від UTC встановлюють згідно з поточними умовами та розпорядженням щодо організації зв'язку.</p>
     </section>
 
     <section id="ale" class="section">
@@ -198,10 +198,10 @@
 
     <div class="topic-quiz-cta"><div><strong>Перевір себе</strong><span>Закріпи порядок тестування, синхронізації, викликів, LQA, SMS, LDV і GPS-звітів.</span></div><a class="topic-quiz-button" href="../quiz.html?topic=7">Почати вікторину <span aria-hidden="true">→</span></a></div>
   </main>
-  <script src="../asset-version.js?v=43161cb50728"></script>
+  <script src="../asset-version.js?v=9a2e1277dfca"></script>
 
-  <script src="../search-index.js?v=43161cb50728"></script>
-  <script src="../topic-search.js?v=43161cb50728"></script>
-  <script src="../site-ui.js?v=43161cb50728"></script>
+  <script src="../search-index.js?v=9a2e1277dfca"></script>
+  <script src="../topic-search.js?v=9a2e1277dfca"></script>
+  <script src="../site-ui.js?v=9a2e1277dfca"></script>
 </body>
 </html>
