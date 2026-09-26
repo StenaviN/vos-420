@@ -343,19 +343,19 @@ window.SEARCH_INDEX = {
       "topic": "Експлуатація HARRIS КХ RF-7800H-MP / MPR-9600-MP",
       "section": "Перед початком роботи",
       "url": "07-harris-kh-ekspluatatsiia/index.html#pered-robotoyu",
-      "text": "Перед початком роботи Перед виходом в ефір перевір підключення антени, живлення та гарнітури. Режим, частоти, адреси й ключові параметри обох кореспондентів мають відповідати плану зв'язку. Важливо: режими 3G і 3G+ доступні у RF-7800H-MP, але не підтримуються MPR-9600-MP. Процедури FIX, HOP і ALE застосовують відповідно до завантаженої конфігурації станції. Потужність, узгоджувач і назва станції 7 RADIO ENT Пункти одного рівня в меню RADIO: TX POWER Вибір LOW , MED або HIGH . INTERNAL COUPLER ENABLE вмикає внутрішній антенний узгоджувач; BY PASSED обходить його. RADIO NAME Перевірка або введення імені станції, яке використовується в адресних режимах."
+      "text": "Перед початком роботи Перед виходом в ефір перевір підключення антени, живлення та гарнітури. Режим, частоти, адреси й ключові параметри обох кореспондентів мають відповідати плану зв'язку. Обов'язково: перед початком роботи ввімкни внутрішній антенний узгоджувач : у пункті INTERNAL COUPLER має бути встановлено ENABLE . Важливо: режими 3G і 3G+ доступні у RF-7800H-MP, але не підтримуються MPR-9600-MP. Процедури FIX, HOP і ALE застосовують відповідно до завантаженої конфігурації станції. Потужність, узгоджувач і назва станції 7 OPT RADIO ENT Пункти одного рівня в меню RADIO: TX POWER Вибір LOW , MED або HIGH . INTERNAL COUPLER Перед роботою обов'язково встанови ENABLE , щоб увімкнути внутрішній антенний узгоджувач. BY PASSED обходить його. RADIO NAME Перевірка або введення імені станції, яке використовується в адресних режимах."
     },
     {
       "topic": "Експлуатація HARRIS КХ RF-7800H-MP / MPR-9600-MP",
       "section": "Контроль справності",
       "url": "07-harris-kh-ekspluatatsiia/index.html#testuvannia",
-      "text": "Контроль справності Системний тест 7 TEST BIT SYSTEM TEST IN PROGRESS TEST PASSED Повідомлення TEST PASSED означає успішне завершення вбудованого системного тесту. Батарея та антенно-фідерний тракт 7 TEST BATTERY 7 TEST VSWR Тест BATTERY показує стан живлення. VSWR перевіряє роботу підсилювача та узгодження антени на поточній робочій частоті."
+      "text": "Контроль справності Системний тест 7 OPT TEST BIT SYSTEM TEST IN PROGRESS TEST PASSED Повідомлення TEST PASSED означає успішне завершення вбудованого системного тесту. Батарея та антенно-фідерний тракт 7 OPT TEST BATTERY 7 OPT TEST VSWR Тест BATTERY показує стан живлення. VSWR перевіряє роботу підсилювача та узгодження антени на поточній робочій частоті."
     },
     {
       "topic": "Експлуатація HARRIS КХ RF-7800H-MP / MPR-9600-MP",
       "section": "Антена, IP-адреса та HUB",
       "url": "07-harris-kh-ekspluatatsiia/index.html#antena-merezha",
-      "text": "Антена, IP-адреса та HUB Тип антени 8 CONFIG ACCESSORY HIGH VOLTAGE / 50 OM HIGH VOLTAGE обирають для штирьової антени. Для диполя обирають 50 OM . IP-адреса прямого USB-підключення 8 CONFIG NETWORK INTERFACE ETHERNET ADDRESS DIRECT USB ENABLE 169.254.78.1 CLR ×3 Скидання HUB 8 MAINTENANCE RESET HUB YES Скидання HUB передбачене лише для RF-7800H-MP ."
+      "text": "Антена, IP-адреса та HUB Тип антени 8 PGM CONFIG ACCESSORY HIGH VOLTAGE / 50 OM HIGH VOLTAGE обирають для штирьової антени. Для диполя обирають 50 OM . IP-адреса прямого USB-підключення 8 PGM CONFIG NETWORK INTERFACE ETHERNET ADDRESS DIRECT USB ENABLE 169.254.78.1 CLR ×3 Скидання HUB 8 PGM MAINTENANCE RESET HUB YES Скидання HUB передбачене лише для RF-7800H-MP ."
     },
     {
       "topic": "Експлуатація HARRIS КХ RF-7800H-MP / MPR-9600-MP",
@@ -373,7 +373,7 @@ window.SEARCH_INDEX = {
       "topic": "Експлуатація HARRIS КХ RF-7800H-MP / MPR-9600-MP",
       "section": "Перевірка часу TOD",
       "url": "07-harris-kh-ekspluatatsiia/index.html#chas-tod",
-      "text": "Перевірка часу TOD Якщо HOP не синхронізується, перевір час станції. У матеріалі вказано, що значне розходження часу між станціями призводить до відмови синхронізації. Перегляд часу 7 ENT GPS-TOD Налаштування часового зміщення 8 ENT CONFIG ENT TOD ENT UTC offset ENT TOD (Time of Day) має відповідати єдиній часовій основі мережі. Значення зміщення від UTC встановлюють згідно з поточними умовами та розпорядженням щодо організації зв'язку."
+      "text": "Перевірка часу TOD Якщо HOP не синхронізується, перевір час станції. У матеріалі вказано, що значне розходження часу між станціями призводить до відмови синхронізації. Перегляд часу 7 OPT ENT GPS-TOD Налаштування часового зміщення 8 PGM ENT CONFIG ENT TOD ENT UTC offset ENT TOD (Time of Day) має відповідати єдиній часовій основі мережі. Значення зміщення від UTC встановлюють згідно з поточними умовами та розпорядженням щодо організації зв'язку."
     },
     {
       "topic": "Експлуатація HARRIS КХ RF-7800H-MP / MPR-9600-MP",
@@ -385,19 +385,19 @@ window.SEARCH_INDEX = {
       "topic": "Експлуатація HARRIS КХ RF-7800H-MP / MPR-9600-MP",
       "section": "Оцінювання каналів LQA",
       "url": "07-harris-kh-ekspluatatsiia/index.html#lqa",
-      "text": "Оцінювання каналів LQA LQA (Link Quality Analysis) визначає якість каналів перед встановленням зв'язку. Під час процедури станції повинні перебувати в режимі сканування. EXCHANGE Двосторонній обмін між двома кореспондентами. Результати оцінювання формуються на обох станціях. SOUND Одностороннє зондування від головної станції до підлеглої. Результати зберігаються на станції, яка приймає зондування. Якщо LQA виконано, під час виклику обирається канал з найкращою оцінкою. Якщо попередніх оцінок немає, станція починає із запрограмованої частоти з найбільшим номіналом. LQA в ALE 7 ALE ENT LQA ENT EXCHANGE / SOUND ENT ім'я адресата ENT Перегляд результатів 7 ALE ENT SCORE ENT REVIEW ENT ім'я станції ENT"
+      "text": "Оцінювання каналів LQA LQA (Link Quality Analysis) визначає якість каналів перед встановленням зв'язку. Під час процедури станції повинні перебувати в режимі сканування. EXCHANGE Двосторонній обмін між двома кореспондентами. Результати оцінювання формуються на обох станціях. SOUND Одностороннє зондування від головної станції до підлеглої. Результати зберігаються на станції, яка приймає зондування. Якщо LQA виконано, під час виклику обирається канал з найкращою оцінкою. Якщо попередніх оцінок немає, станція починає із запрограмованої частоти з найбільшим номіналом. LQA в ALE 7 OPT ALE ENT LQA ENT EXCHANGE / SOUND ENT ім'я адресата ENT Перегляд результатів 7 OPT ALE ENT SCORE ENT REVIEW ENT ім'я станції ENT"
     },
     {
       "topic": "Експлуатація HARRIS КХ RF-7800H-MP / MPR-9600-MP",
       "section": "Текстові повідомлення в ALE",
       "url": "07-harris-kh-ekspluatatsiia/index.html#ale-povidomlennia",
-      "text": "Текстові повідомлення в ALE Для коротких текстових повідомлень ALE використовує AMD (Automatic Message Display) . Створення повідомлення 8 MODE ALE AMD TX MSG EDIT текст до 100 символів ENT Вибір і передавання 7 ALE TX MSG / RX MSG номер повідомлення ENT виклик адресата"
+      "text": "Текстові повідомлення в ALE Для коротких текстових повідомлень ALE використовує AMD (Automatic Message Display) . Створення повідомлення 8 PGM MODE ALE AMD TX MSG EDIT текст до 100 символів ENT Вибір і передавання 7 OPT ALE TX MSG / RX MSG номер повідомлення ENT виклик адресата"
     },
     {
       "topic": "Експлуатація HARRIS КХ RF-7800H-MP / MPR-9600-MP",
       "section": "Робота в режимі 3G",
       "url": "07-harris-kh-ekspluatatsiia/index.html#three-g",
-      "text": "Робота в режимі 3G Режим 3G доступний у RF-7800H-MP. Перед встановленням зв'язку обери однаковий частотний план і синхронізуй станції. Синхронізація 1 CALL BROADCAST SYNC ENT 1 CALL BROADCAST SYNC-ALL ENT 1 CALL SYNC REQUEST ENT BROADCAST SYNC: передавання синхронізації для поточного плану. BROADCAST SYNC-ALL: передавання синхронізації для всіх налаштованих планів. SYNC REQUEST: запит синхронізації підлеглою станцією. Встановлення з'єднання 1 CALL MANUAL / AUTOMATIC / BEST ENT NET / STATION ENT ім'я мережі або станції ENT BEST використовує найкращий канал за наявними оцінками. З'єднання завершують так само, як в ALE: CLR → TERMINATE LINK? → YES → ENT . LQA в 3G 7 3G ENT LQA ENT EXCHANGE / SOUND ENT адресат ENT 7 3G ENT SCORE ENT REVIEW ENT станція ENT"
+      "text": "Робота в режимі 3G Режим 3G доступний у RF-7800H-MP. Перед встановленням зв'язку обери однаковий частотний план і синхронізуй станції. Синхронізація 1 CALL BROADCAST SYNC ENT 1 CALL BROADCAST SYNC-ALL ENT 1 CALL SYNC REQUEST ENT BROADCAST SYNC: передавання синхронізації для поточного плану. BROADCAST SYNC-ALL: передавання синхронізації для всіх налаштованих планів. SYNC REQUEST: запит синхронізації підлеглою станцією. Встановлення з'єднання 1 CALL MANUAL / AUTOMATIC / BEST ENT NET / STATION ENT ім'я мережі або станції ENT BEST використовує найкращий канал за наявними оцінками. З'єднання завершують так само, як в ALE: CLR → TERMINATE LINK? → YES → ENT . LQA в 3G 7 OPT 3G ENT LQA ENT EXCHANGE / SOUND ENT адресат ENT 7 OPT 3G ENT SCORE ENT REVIEW ENT станція ENT"
     },
     {
       "topic": "Експлуатація HARRIS КХ RF-7800H-MP / MPR-9600-MP",
@@ -409,7 +409,7 @@ window.SEARCH_INDEX = {
       "topic": "Експлуатація HARRIS КХ RF-7800H-MP / MPR-9600-MP",
       "section": "SMS і GPS-звіт у 3G",
       "url": "07-harris-kh-ekspluatatsiia/index.html#three-g-povidomlennia",
-      "text": "SMS і GPS-звіт у 3G Надсилання SMS 7 MSG SMS NEW MSG текст до 160 символів STATION / NET ім'я адресата ENT У пам'яті зберігається до 10 SMS . Надсилання GPS-звіту 1 CALL SEND GPS REPORT STATION / NET ім'я адресата SEND ALERT NO / YES ENT Перегляд отриманих координат 7 GPS-APR VIEW"
+      "text": "SMS і GPS-звіт у 3G Надсилання SMS 7 OPT MSG SMS NEW MSG текст до 160 символів STATION / NET ім'я адресата ENT У пам'яті зберігається до 10 SMS . Надсилання GPS-звіту 1 CALL SEND GPS REPORT STATION / NET ім'я адресата SEND ALERT NO / YES ENT Перегляд отриманих координат 7 OPT GPS-APR VIEW"
     },
     {
       "topic": "Експлуатація HARRIS КХ RF-7800H-MP / MPR-9600-MP",

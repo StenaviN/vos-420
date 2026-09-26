@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Експлуатація HARRIS КХ RF-7800H-MP / MPR-9600-MP</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="../style.css?v=70dda6636444">
+  <link rel="stylesheet" href="../style.css?v=701f3818a2e9">
 </head>
 <body>
   <main class="page">
@@ -21,15 +21,16 @@
     <section id="pered-robotoyu" class="section">
       <h2>Перед початком роботи</h2>
       <p>Перед виходом в ефір перевір підключення антени, живлення та гарнітури. Режим, частоти, адреси й ключові параметри обох кореспондентів мають відповідати плану зв'язку.</p>
+      <div class="note"><strong>Обов'язково:</strong> перед початком роботи ввімкни <strong>внутрішній антенний узгоджувач</strong>: у пункті <code>INTERNAL COUPLER</code> має бути встановлено <code>ENABLE</code>.</div>
       <div class="note"><strong>Важливо:</strong> режими <strong>3G</strong> і <strong>3G+</strong> доступні у RF-7800H-MP, але не підтримуються MPR-9600-MP. Процедури FIX, HOP і ALE застосовують відповідно до завантаженої конфігурації станції.</div>
       <h3>Потужність, узгоджувач і назва станції</h3>
       <div class="menu-path" aria-label="Налаштування радіостанції">
-        <span>7</span><span>RADIO</span><span>ENT</span>
+        <span>7 OPT</span><span>RADIO</span><span>ENT</span>
       </div>
       <p><strong>Пункти одного рівня в меню RADIO:</strong></p>
       <ul class="compact-options">
         <li><strong>TX POWER</strong><br>Вибір <code>LOW</code>, <code>MED</code> або <code>HIGH</code>.</li>
-        <li><strong>INTERNAL COUPLER</strong><br><code>ENABLE</code> вмикає внутрішній антенний узгоджувач; <code>BY PASSED</code> обходить його.</li>
+        <li><strong>INTERNAL COUPLER</strong><br>Перед роботою обов'язково встанови <code>ENABLE</code>, щоб увімкнути внутрішній антенний узгоджувач. <code>BY PASSED</code> обходить його.</li>
         <li><strong>RADIO NAME</strong><br>Перевірка або введення імені станції, яке використовується в адресних режимах.</li>
       </ul>
     </section>
@@ -37,23 +38,23 @@
     <section id="testuvannia" class="section">
       <h2>Контроль справності</h2>
       <h3>Системний тест</h3>
-      <div class="menu-path"><span>7</span><span>TEST</span><span>BIT</span><span>SYSTEM</span><span>TEST IN PROGRESS</span><span>TEST PASSED</span></div>
+      <div class="menu-path"><span>7 OPT</span><span>TEST</span><span>BIT</span><span>SYSTEM</span><span>TEST IN PROGRESS</span><span>TEST PASSED</span></div>
       <p>Повідомлення <code>TEST PASSED</code> означає успішне завершення вбудованого системного тесту.</p>
       <h3>Батарея та антенно-фідерний тракт</h3>
-      <div class="menu-path"><span>7</span><span>TEST</span><span>BATTERY</span></div>
-      <div class="menu-path"><span>7</span><span>TEST</span><span>VSWR</span></div>
+      <div class="menu-path"><span>7 OPT</span><span>TEST</span><span>BATTERY</span></div>
+      <div class="menu-path"><span>7 OPT</span><span>TEST</span><span>VSWR</span></div>
       <p>Тест <strong>BATTERY</strong> показує стан живлення. <strong>VSWR</strong> перевіряє роботу підсилювача та узгодження антени на поточній робочій частоті.</p>
     </section>
 
     <section id="antena-merezha" class="section">
       <h2>Антена, IP-адреса та HUB</h2>
       <h3>Тип антени</h3>
-      <div class="menu-path"><span>8</span><span>CONFIG</span><span>ACCESSORY</span><span>HIGH VOLTAGE / 50 OM</span></div>
+      <div class="menu-path"><span>8 PGM</span><span>CONFIG</span><span>ACCESSORY</span><span>HIGH VOLTAGE / 50 OM</span></div>
       <p><code>HIGH VOLTAGE</code> обирають для штирьової антени. Для диполя обирають <code>50 OM</code>.</p>
       <h3>IP-адреса прямого USB-підключення</h3>
-      <div class="menu-path"><span>8</span><span>CONFIG</span><span>NETWORK</span><span>INTERFACE</span><span>ETHERNET</span><span>ADDRESS</span><span>DIRECT USB</span><span>ENABLE</span><span>169.254.78.1</span><span>CLR ×3</span></div>
+      <div class="menu-path"><span>8 PGM</span><span>CONFIG</span><span>NETWORK</span><span>INTERFACE</span><span>ETHERNET</span><span>ADDRESS</span><span>DIRECT USB</span><span>ENABLE</span><span>169.254.78.1</span><span>CLR ×3</span></div>
       <h3>Скидання HUB</h3>
-      <div class="menu-path"><span>8</span><span>MAINTENANCE</span><span>RESET HUB</span><span>YES</span></div>
+      <div class="menu-path"><span>8 PGM</span><span>MAINTENANCE</span><span>RESET HUB</span><span>YES</span></div>
       <p>Скидання HUB передбачене лише для <strong>RF-7800H-MP</strong>.</p>
     </section>
 
@@ -95,9 +96,9 @@
       <h2>Перевірка часу TOD</h2>
       <p>Якщо HOP не синхронізується, перевір час станції. У матеріалі вказано, що значне розходження часу між станціями призводить до відмови синхронізації.</p>
       <h3>Перегляд часу</h3>
-      <div class="menu-path"><span>7</span><span>ENT</span><span>GPS-TOD</span></div>
+      <div class="menu-path"><span>7 OPT</span><span>ENT</span><span>GPS-TOD</span></div>
       <h3>Налаштування часового зміщення</h3>
-      <div class="menu-path"><span>8</span><span>ENT</span><span>CONFIG</span><span>ENT</span><span>TOD</span><span>ENT</span><span>UTC offset</span><span>ENT</span></div>
+      <div class="menu-path"><span>8 PGM</span><span>ENT</span><span>CONFIG</span><span>ENT</span><span>TOD</span><span>ENT</span><span>UTC offset</span><span>ENT</span></div>
       <p><strong>TOD (Time of Day)</strong> має відповідати єдиній часовій основі мережі. Значення зміщення від UTC встановлюють згідно з поточними умовами та розпорядженням щодо організації зв'язку.</p>
     </section>
 
@@ -125,18 +126,18 @@
       </dl>
       <p>Якщо LQA виконано, під час виклику обирається канал з найкращою оцінкою. Якщо попередніх оцінок немає, станція починає із запрограмованої частоти з найбільшим номіналом.</p>
       <h3>LQA в ALE</h3>
-      <div class="menu-path"><span>7</span><span>ALE</span><span>ENT</span><span>LQA</span><span>ENT</span><span>EXCHANGE / SOUND</span><span>ENT</span><span>ім'я адресата</span><span>ENT</span></div>
+      <div class="menu-path"><span>7 OPT</span><span>ALE</span><span>ENT</span><span>LQA</span><span>ENT</span><span>EXCHANGE / SOUND</span><span>ENT</span><span>ім'я адресата</span><span>ENT</span></div>
       <h3>Перегляд результатів</h3>
-      <div class="menu-path"><span>7</span><span>ALE</span><span>ENT</span><span>SCORE</span><span>ENT</span><span>REVIEW</span><span>ENT</span><span>ім'я станції</span><span>ENT</span></div>
+      <div class="menu-path"><span>7 OPT</span><span>ALE</span><span>ENT</span><span>SCORE</span><span>ENT</span><span>REVIEW</span><span>ENT</span><span>ім'я станції</span><span>ENT</span></div>
     </section>
 
     <section id="ale-povidomlennia" class="section">
       <h2>Текстові повідомлення в ALE</h2>
       <p>Для коротких текстових повідомлень ALE використовує <strong>AMD (Automatic Message Display)</strong>.</p>
       <h3>Створення повідомлення</h3>
-      <div class="menu-path"><span>8</span><span>MODE</span><span>ALE</span><span>AMD</span><span>TX MSG</span><span>EDIT</span><span>текст до 100 символів</span><span>ENT</span></div>
+      <div class="menu-path"><span>8 PGM</span><span>MODE</span><span>ALE</span><span>AMD</span><span>TX MSG</span><span>EDIT</span><span>текст до 100 символів</span><span>ENT</span></div>
       <h3>Вибір і передавання</h3>
-      <div class="menu-path"><span>7</span><span>ALE</span><span>TX MSG / RX MSG</span><span>номер повідомлення</span><span>ENT</span><span>виклик адресата</span></div>
+      <div class="menu-path"><span>7 OPT</span><span>ALE</span><span>TX MSG / RX MSG</span><span>номер повідомлення</span><span>ENT</span><span>виклик адресата</span></div>
     </section>
 
     <section id="three-g" class="section">
@@ -155,8 +156,8 @@
       <div class="menu-path"><span>1 CALL</span><span>MANUAL / AUTOMATIC / BEST</span><span>ENT</span><span>NET / STATION</span><span>ENT</span><span>ім'я мережі або станції</span><span>ENT</span></div>
       <p><strong>BEST</strong> використовує найкращий канал за наявними оцінками. З'єднання завершують так само, як в ALE: <code>CLR → TERMINATE LINK? → YES → ENT</code>.</p>
       <h3>LQA в 3G</h3>
-      <div class="menu-path"><span>7</span><span>3G</span><span>ENT</span><span>LQA</span><span>ENT</span><span>EXCHANGE / SOUND</span><span>ENT</span><span>адресат</span><span>ENT</span></div>
-      <div class="menu-path"><span>7</span><span>3G</span><span>ENT</span><span>SCORE</span><span>ENT</span><span>REVIEW</span><span>ENT</span><span>станція</span><span>ENT</span></div>
+      <div class="menu-path"><span>7 OPT</span><span>3G</span><span>ENT</span><span>LQA</span><span>ENT</span><span>EXCHANGE / SOUND</span><span>ENT</span><span>адресат</span><span>ENT</span></div>
+      <div class="menu-path"><span>7 OPT</span><span>3G</span><span>ENT</span><span>SCORE</span><span>ENT</span><span>REVIEW</span><span>ENT</span><span>станція</span><span>ENT</span></div>
     </section>
 
     <section id="ldv" class="section">
@@ -173,12 +174,12 @@
     <section id="three-g-povidomlennia" class="section">
       <h2>SMS і GPS-звіт у 3G</h2>
       <h3>Надсилання SMS</h3>
-      <div class="menu-path"><span>7</span><span>MSG</span><span>SMS</span><span>NEW MSG</span><span>текст до 160 символів</span><span>STATION / NET</span><span>ім'я адресата</span><span>ENT</span></div>
+      <div class="menu-path"><span>7 OPT</span><span>MSG</span><span>SMS</span><span>NEW MSG</span><span>текст до 160 символів</span><span>STATION / NET</span><span>ім'я адресата</span><span>ENT</span></div>
       <p>У пам'яті зберігається до <strong>10 SMS</strong>.</p>
       <h3>Надсилання GPS-звіту</h3>
       <div class="menu-path"><span>1 CALL</span><span>SEND GPS REPORT</span><span>STATION / NET</span><span>ім'я адресата</span><span>SEND ALERT NO / YES</span><span>ENT</span></div>
       <h3>Перегляд отриманих координат</h3>
-      <div class="menu-path"><span>7</span><span>GPS-APR</span><span>VIEW</span></div>
+      <div class="menu-path"><span>7 OPT</span><span>GPS-APR</span><span>VIEW</span></div>
     </section>
 
     <section id="three-g-plus" class="section">
@@ -197,10 +198,10 @@
 
     <div class="topic-quiz-cta"><div><strong>Перевір себе</strong><span>Закріпи порядок тестування, синхронізації, викликів, LQA, SMS, LDV і GPS-звітів.</span></div><a class="topic-quiz-button" href="../quiz.html?topic=7">Почати вікторину <span aria-hidden="true">→</span></a></div>
   </main>
-  <script src="../asset-version.js?v=70dda6636444"></script>
+  <script src="../asset-version.js?v=701f3818a2e9"></script>
 
-  <script src="../search-index.js?v=70dda6636444"></script>
-  <script src="../topic-search.js?v=70dda6636444"></script>
-  <script src="../site-ui.js?v=70dda6636444"></script>
+  <script src="../search-index.js?v=701f3818a2e9"></script>
+  <script src="../topic-search.js?v=701f3818a2e9"></script>
+  <script src="../site-ui.js?v=701f3818a2e9"></script>
 </body>
 </html>
