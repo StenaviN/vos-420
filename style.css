@@ -873,7 +873,8 @@ th {
   background: #f8faf9;
 }
 
-.menu-path span {
+.menu-path span,
+.key-button {
   position: relative;
   max-width: 100%;
   padding: 5px 8px;
@@ -885,6 +886,14 @@ th {
   font-size: 14px;
   font-weight: 700;
   overflow-wrap: anywhere;
+}
+
+.key-button {
+  display: inline-block;
+  margin: 0 2px;
+  line-height: 1.2;
+  vertical-align: baseline;
+  white-space: nowrap;
 }
 
 .menu-path span:not(:last-child)::after {
