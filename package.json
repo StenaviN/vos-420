@@ -2,6 +2,9 @@
   "name": "vos-420-notes",
   "private": true,
   "scripts": {
-    "build:search": "node build-search-index.mjs"
+    "build:search-index": "node build-search-index.mjs",
+    "build:assets": "node build-asset-versions.mjs",
+    "build:search": "npm run build:search-index && npm run build:assets",
+    "build": "npm run build:search"
   }
 }

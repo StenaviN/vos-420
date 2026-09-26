@@ -27,6 +27,12 @@ document.querySelectorAll("[data-topic-link]").forEach((link) => {
 });
 
 const loaded = [];
+function versionedAsset(source) {
+  if (!window.ASSET_VERSION) return source;
+  const separator = source.includes("?") ? "&" : "?";
+  return `${source}${separator}v=${encodeURIComponent(window.ASSET_VERSION)}`;
+}
+
 function loadTopic(index) {
   if (index >= selectedMeta.length) {
     const isMixed = loaded.length > 1;
@@ -59,14 +65,14 @@ function loadTopic(index) {
       questions
     };
     const engine = document.createElement("script");
-    engine.src = "quiz-engine.js";
+    engine.src = versionedAsset("quiz-engine.js");
     document.body.append(engine);
     return;
   }
 
   const meta = selectedMeta[index];
   const script = document.createElement("script");
-  script.src = `${meta.path}/quiz-data.js`;
+  script.src = versionedAsset(`${meta.path}/quiz-data.js`);
   script.addEventListener("load", () => {
     loaded.push({ meta, config: window.QUIZ_CONFIG });
     window.QUIZ_CONFIG = null;
