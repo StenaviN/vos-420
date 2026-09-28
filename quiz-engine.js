@@ -5,8 +5,8 @@ if (!config || !Array.isArray(config.questions)) throw new Error("QUIZ_CONFIG is
 const isMixed = config.topicIds.length > 1;
 
 const letters = ["А", "Б", "В", "Г"];
-const STATE_VERSION = 4;
-const ACTIVE_KEY = `vos420-${config.id}-active-v4`;
+const STATE_VERSION = 5;
+const ACTIVE_KEY = `vos420-${config.id}-active-v5`;
 const STATS_KEY = "vos420-quiz-statistics-v1";
 const DISTRACTOR_HISTORY_KEY = "vos420-distractor-history-v1";
 const CURATED_EXTRA_DISTRACTORS = {
@@ -18,9 +18,12 @@ const CURATED_EXTRA_DISTRACTORS = {
   "t4-45": ["Здатність підвищувати потужність передавача", "Відношення опору антени до опору фідера", "Ширину смуги робочих частот"],
   "t5-01": ["Для стратегічної ланки управління", "Для авіаційного диспетчерського зв'язку", "Для морської навігації"],
   "t5-04": ["30-108 МГц", "30-88 МГц", "108-512 МГц"],
+  "t5-18": ["32 кбіт/с", "48 кбіт/с", "96 кбіт/с"],
+  "t5-33": ["Вона реєструється на новому вузлі лише після ручного перезапуску", "Вона залишається прив'язаною до попереднього вузла до втрати живлення", "Оператор має вручну обрати новий ретрансляторний вузол"],
   "t5-48": ["До 1 м", "До 2 м", "До 10 м"],
   "t5-49": ["10 Ом", "100 Ом", "300 Ом"],
-  "t5-52": ["Рівень заряду батареї", "Наявність GPS-координат", "Назву активного пресета"],
+  "t5-50": ["Так, якщо передаються лише дані", "Так, якщо встановлено мінімальну потужність", "Так, якщо використовується коротка антена"],
+  "t5-52": ["Справність антенного узгоджувача", "Рівень прийнятого сигналу", "Частоту активної мережі"],
   "t5-53": ["Утримувати ENT п'ять секунд", "Одночасно натиснути PTT і 1 SQL", "Тричі натиснути 7 APPS"],
   "t5-54": ["Відновлює заводські частоти", "Блокує передню панель", "Запускає повний BIT"],
   "t5-55": ["Тільки в ANW2C", "Тільки в Quicklook 1A", "У всіх мережах TNW"],
@@ -170,30 +173,6 @@ function normalizedOptionText(value) {
   return String(value).toLocaleLowerCase("uk-UA").replace(/[’'`]/g, "'").replace(/[^\p{L}\p{N}%+/-]+/gu, " ").trim();
 }
 
-function optionShape(value) {
-  const text = String(value).trim();
-  if (text.includes("→")) return "path";
-  if (/\d/.test(text)) return "numeric";
-  if (text.length <= 42 && !/[a-zа-яіїєґ]/u.test(text)) return "code";
-  if (text.length >= 70) return "long";
-  return "text";
-}
-
-function stableRank(seed) {
-  let hash = 2166136261;
-  for (const character of seed) {
-    hash ^= character.codePointAt(0);
-    hash = Math.imul(hash, 16777619);
-  }
-  return hash >>> 0;
-}
-
-function preferredOptionShape(options, fallback) {
-  const counts = new Map();
-  options.forEach((value) => counts.set(optionShape(value), (counts.get(optionShape(value)) || 0) + 1));
-  return [...counts.entries()].sort((left, right) => right[1] - left[1])[0]?.[0] || optionShape(fallback);
-}
-
 function expandDistractorPools() {
   const snapshots = config.questions.map((item) => ({
     item,
@@ -220,38 +199,8 @@ function expandDistractorPools() {
       seen.add(normalized);
       if (wrong.length === 6) break;
     }
-    if (wrong.length === 6) {
-      item.wrong = wrong;
-      return;
-    }
-    const shape = preferredOptionShape(wrong, correctAnswer);
-    const sourceTopic = item.sourceTopicId || config.id;
-    const candidates = [];
-
-    snapshots.forEach((source) => {
-      if (source.item === item || (source.item.sourceTopicId || config.id) !== sourceTopic) return;
-      const sameSection = source.item.topic === item.topic;
-      source.wrong.forEach((text) => {
-        const normalized = normalizedOptionText(text);
-        if (!normalized || seen.has(normalized)) return;
-        candidates.push({
-          text,
-          score: (optionShape(text) === shape ? 1000 : 0)
-            + (sameSection ? 200 : 0)
-            - Math.min(150, Math.abs(String(text).length - String(correctAnswer).length)),
-          rank: stableRank(`${item.id || item.question}|${text}`)
-        });
-      });
-    });
-
-    candidates.sort((left, right) => right.score - left.score || left.rank - right.rank);
-    for (const candidate of candidates) {
-      const normalized = normalizedOptionText(candidate.text);
-      if (seen.has(normalized)) continue;
-      wrong.push(candidate.text);
-      seen.add(normalized);
-      if (wrong.length === 6) break;
-    }
+    // Use only distractors authored for this question. Borrowing from other
+    // questions can mix units or introduce answers from an unrelated context.
     item.wrong = wrong;
   });
 }
