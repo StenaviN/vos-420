@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>HARRIS УКХ RF-7850M-HH / RF-7800V-HH</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="../style.css?v=4fdf6a77ed9e">
+  <link rel="stylesheet" href="../style.css?v=96da7dd765a5">
 </head>
 <body>
   <main class="page">
@@ -26,6 +26,7 @@
       <p>Вбудований GPS використовується для визначення позиції та синхронізації режимів Quicklook 3, Quicklook Wide і TNW.</p>
       <p>До сімейства також належать возимі варіанти RF-7850M-V501 / V511 і RF-7800V-V501 / V511. У радіостанцію можна запрограмувати 25 мереж, з яких 13 доступні безпосередньо перемикачем.</p>
       <p><strong>MACA2</strong> запобігає колізіям під час багатостанційного обміну даними: перед передаванням пакета станція запитує готовність адресата, отримує підтвердження, а інші станції тимчасово звільняють канал. Голос і дані можуть використовувати один канал, але надто довге утримання <kbd class="key-button">PTT</kbd> може спричинити втрату даних.</p>
+      <p><strong>Варіанти MACA:</strong> Classic використовують із версіями прошивки нижче 4.7, Advanced - із версією 4.7 і вище.</p>
 
       <div class="model-gallery" aria-label="Моделі портативних УКХ радіостанцій HARRIS">
         <figure class="topic-figure">
@@ -388,6 +389,7 @@
         <li><kbd class="key-button">APPS</kbd> - прикладне меню, <kbd class="key-button">PGM</kbd> - меню програмування, <kbd class="key-button">SQL</kbd> - шумоподавлення, <kbd class="key-button">LT</kbd> - підсвітка.</li>
         <li><kbd class="key-button">ENT</kbd> - введення або зміна підсвіченого поля; <kbd class="key-button">CLR</kbd> - повернення на рівень вище або скидання поля.</li>
         <li>Стрілки переміщують курсор; екранна клавіша <kbd class="key-button">DEL</kbd> видаляє літеру, <kbd class="key-button">CLR</kbd> очищає поле.</li>
+        <li>Клавіша кругових стрілок на цифрі <kbd class="key-button">0</kbd> перемикає повний статус, головний екран TAC CHAT і короткий статус; під час редагування вона вводить пробіл.</li>
         <li>Блокування передньої панелі - екранна клавіша <kbd class="key-button">LOCK</kbd>; розблокування - швидко натиснути <kbd class="key-button">CLR</kbd> 5 разів.</li>
       </ul>
     </section>
@@ -426,6 +428,10 @@
 
       <h3>Dual PTT</h3>
       <p>Функція дає можливість працювати з двома мережами FIX через дві тангенти, якщо вимкнена MACA. На екзамені важливо прив'язати Dual PTT саме до режиму Fixed Frequency і одночасної роботи у двох мережах.</p>
+
+      <h3 id="time-date">Час і дата</h3>
+      <div class="menu-path"><span>7 APPS</span><span>TIME AND DATE</span><span>дата і час</span></div>
+      <p>У меню <code>TIME AND DATE</code> встановлюють дату та час радіостанції. Екранна клавіша <kbd class="key-button">UTC</kbd> змінює формат дати та дає внести поправку часового поясу.</p>
 
       <h3 id="radio-info">Перегляд ID та імені радіостанції</h3>
       <p><strong>RF-7850M-HH:</strong></p>
@@ -477,8 +483,9 @@
       <p>Доступні екрани й меню залежать від рівня. Параметр KEEP LOGIN зберігає вхід після циклу живлення і потребує щонайменше рівня 2.</p>
 
       <h3>Built-In Test (BIT)</h3>
+      <div class="menu-path"><span>7 APPS</span><span>BUILT IN TEST</span><span>NON-INTERACTIVE</span><span>TEST STATUS</span><span>RESULTS</span></div>
       <ul>
-        <li>Меню: <kbd class="key-button">APPS</kbd> → <code>BUILT IN TEST</code>.</li>
+        <li>Після завершення неінтерактивного тесту відкрий <code>RESULTS</code> для перегляду результатів.</li>
         <li>Інтерактивні тести перевіряють підсвітку, LCD, клавіатуру, перемикач, мікрофони та гучномовці.</li>
         <li>Неінтерактивні тести перевіряють криптомодуль, передню панель, GPS, DSP, RAM, файлову систему, синтезатор, USB, VAA та інші внутрішні вузли.</li>
         <li>RUN ALL запускає всі неінтерактивні тести; результати показують кількість пройдених і невдалих перевірок.</li>
@@ -497,10 +504,10 @@
     <div class="topic-quiz-cta"><div><strong>Перевір себе</strong><span>Перевір знання за матеріалами цієї теми.</span></div><a class="topic-quiz-button" href="../quiz.html?topic=5">Почати вікторину <span aria-hidden="true">→</span></a></div>
 
   </main>
-  <script src="../asset-version.js?v=4fdf6a77ed9e"></script>
+  <script src="../asset-version.js?v=96da7dd765a5"></script>
 
-  <script src="../search-index.js?v=4fdf6a77ed9e"></script>
-  <script src="../topic-search.js?v=4fdf6a77ed9e"></script>
-  <script src="../site-ui.js?v=4fdf6a77ed9e"></script>
+  <script src="../search-index.js?v=96da7dd765a5"></script>
+  <script src="../topic-search.js?v=96da7dd765a5"></script>
+  <script src="../site-ui.js?v=96da7dd765a5"></script>
 </body>
 </html>
