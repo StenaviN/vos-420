@@ -5,9 +5,10 @@
   const root = document.querySelector("main");
   if (!root || !terms.length) return;
 
+  const autoExcludedTerms = new Set(["rf", "hh"]);
   const byTerm = new Map(terms.map((entry) => [entry.term.toLocaleLowerCase("uk-UA"), entry]));
   const candidates = terms
-    .filter((entry) => entry.term.length >= 2)
+    .filter((entry) => entry.term.length >= 2 && !autoExcludedTerms.has(entry.term.toLocaleLowerCase("uk-UA")))
     .map((entry) => entry.term)
     .sort((left, right) => right.length - left.length)
     .map((term) => term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
