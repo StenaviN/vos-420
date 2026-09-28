@@ -9,23 +9,26 @@ const startButton = document.querySelector("#startSelectedQuiz");
 const homeTabs = [...document.querySelectorAll("[data-home-tab]")];
 const topicsPanel = document.querySelector("#topicsPanel");
 const quizPanel = document.querySelector("#quizPanel");
+const glossaryPanel = document.querySelector("#glossaryPanel");
 const searchPanel = document.querySelector("#searchPanel");
 
 function homeTabFromUrl() {
   if (location.hash === "#quiz") return "quiz";
+  if (location.hash === "#glossary" || location.hash.startsWith("#glossary:")) return "glossary";
   if (location.hash === "#search") return "search";
   return "topics";
 }
 
 function updateHomeTabUrl(name) {
   const url = new URL(location.href);
-  url.hash = name === "quiz" ? "quiz" : name === "search" ? "search" : "topics";
+  url.hash = name === "quiz" ? "quiz" : name === "glossary" ? "glossary" : name === "search" ? "search" : "topics";
   if (url.href !== location.href) history.pushState(null, "", url);
 }
 
 function showHomeTab(name, updateUrl = false) {
   topicsPanel.hidden = name !== "topics";
   quizPanel.hidden = name !== "quiz";
+  glossaryPanel.hidden = name !== "glossary";
   searchPanel.hidden = name !== "search";
   homeTabs.forEach((button) => {
     const active = button.dataset.homeTab === name;

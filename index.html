@@ -5,11 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Конспекти ВОС-420 з радіозв'язку</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="style.css?v=11e04f4b8651">
+  <link rel="stylesheet" href="style.css?v=772fd3fa69d7">
 </head>
 <body>
   <main class="page">
-    <div class="topbar"><span></span><a href="glossary.html">Глосарій</a></div>
     <div class="hero">
       <h1>Конспекти ВОС-420 з радіозв'язку</h1>
     </div>
@@ -17,6 +16,7 @@
     <div class="home-tabs" role="tablist" aria-label="Розділи головної сторінки">
       <button id="topicsTab" class="home-tab active" type="button" role="tab" aria-selected="true" aria-controls="topicsPanel" data-home-tab="topics">Вивчені теми</button>
       <button id="quizTab" class="home-tab" type="button" role="tab" aria-selected="false" aria-controls="quizPanel" data-home-tab="quiz">Перевірка знань</button>
+      <button id="glossaryTab" class="home-tab" type="button" role="tab" aria-selected="false" aria-controls="glossaryPanel" data-home-tab="glossary">Глосарій</button>
       <button id="searchTab" class="home-tab" type="button" role="tab" aria-selected="false" aria-controls="searchPanel" data-home-tab="search">Пошук</button>
     </div>
 
@@ -37,6 +37,22 @@
       <div class="launcher-footer"><p id="quizSelectionSummary">Обрано 0 тем · доступно 0 питань</p><div><button id="openQuizStats" class="launcher-secondary" type="button" disabled>Статистика</button><button id="startSelectedQuiz" class="launcher-primary" type="button" disabled>Налаштувати вікторину</button></div></div>
       <p id="quizSelectionError" class="launcher-error" hidden>Обери принаймні одну тему.</p>
     </section>
+
+    <div id="glossaryPanel" class="home-tab-panel" role="tabpanel" aria-labelledby="glossaryTab" hidden>
+      <section class="section glossary-tools" aria-labelledby="homeGlossaryTitle">
+        <h2 id="homeGlossaryTitle">Глосарій</h2>
+        <p>Скорочення, англійські назви, українські відповідники та короткі пояснення термінів із конспектів ВОС-420.</p>
+        <form id="glossarySearchForm" class="search-form" role="search">
+          <label class="visually-hidden" for="glossarySearchInput">Термін або пояснення</label>
+          <input id="glossarySearchInput" type="search" autocomplete="off" placeholder="Наприклад: LQA або синхронізація">
+          <button id="glossarySearchClear" class="search-clear" type="button" title="Очистити пошук" aria-label="Очистити пошук" hidden>×</button>
+          <button class="search-submit" type="submit">Знайти</button>
+        </form>
+        <p id="glossaryStatus" class="search-status" aria-live="polite"></p>
+        <nav id="glossaryIndex" class="glossary-index" aria-label="Алфавітний покажчик"></nav>
+      </section>
+      <div id="glossaryList" class="glossary-list"></div>
+    </div>
 
     <section id="searchPanel" class="section search-panel" role="tabpanel" aria-labelledby="searchTab" hidden>
       <h2>Пошук у конспектах</h2>
@@ -95,11 +111,13 @@
     </div>
 
   </main>
-  <script src="asset-version.js?v=11e04f4b8651"></script>
+  <script src="asset-version.js?v=772fd3fa69d7"></script>
 
-  <script src="search-index.js?v=11e04f4b8651"></script>
-  <script src="quiz-launcher.js?v=11e04f4b8651"></script>
-  <script src="search.js?v=11e04f4b8651"></script>
-  <script src="site-ui.js?v=11e04f4b8651"></script>
+  <script src="search-index.js?v=772fd3fa69d7"></script>
+  <script src="glossary-data.js?v=772fd3fa69d7"></script>
+  <script src="glossary.js?v=772fd3fa69d7"></script>
+  <script src="quiz-launcher.js?v=772fd3fa69d7"></script>
+  <script src="search.js?v=772fd3fa69d7"></script>
+  <script src="site-ui.js?v=772fd3fa69d7"></script>
 </body>
 </html>

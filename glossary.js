@@ -8,6 +8,7 @@
   const input = document.querySelector("#glossarySearchInput");
   const clear = document.querySelector("#glossarySearchClear");
   const status = document.querySelector("#glossaryStatus");
+  const embedded = Boolean(document.querySelector("#glossaryPanel"));
   const topicMeta = {
     1: ["Тема 1", "01-osnovy-radiozviazku/index.html"],
     2: ["Тема 2", "02-tehnika-bezpeky/index.html"],
@@ -34,6 +35,15 @@
   function matches(entry, query) {
     if (!query) return true;
     return normalized([entry.term, entry.full, entry.uk, entry.description].join(" ")).includes(normalized(query));
+  }
+
+  function hashFor(id) {
+    return embedded ? `#glossary:${id}` : `#${id}`;
+  }
+
+  function idFromHash() {
+    const hash = decodeURIComponent(window.location.hash.slice(1));
+    return embedded && hash.startsWith("glossary:") ? hash.slice("glossary:".length) : hash;
   }
 
   function makeEntry(entry) {
@@ -98,9 +108,16 @@
       list.append(section);
 
       const link = document.createElement("a");
-      link.href = `#${section.id}`;
+      link.href = hashFor(section.id);
       link.textContent = key;
       link.setAttribute("aria-label", `Перейти до розділу ${key}`);
+      if (embedded) {
+        link.addEventListener("click", (event) => {
+          event.preventDefault();
+          history.pushState(null, "", hashFor(section.id));
+          section.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+        });
+      }
       index.append(link);
     }
     status.textContent = query ? `Знайдено: ${visible.length}` : `Термінів: ${visible.length}`;
@@ -130,5 +147,5 @@
   const initialQuery = new URLSearchParams(window.location.search).get("q") || "";
   input.value = initialQuery;
   render(initialQuery);
-  if (window.location.hash) requestAnimationFrame(() => document.getElementById(window.location.hash.slice(1))?.focus());
+  if (window.location.hash) requestAnimationFrame(() => document.getElementById(idFromHash())?.focus());
 })();
