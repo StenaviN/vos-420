@@ -1,6 +1,33 @@
 "use strict";
 (() => {
-const q = (id, topic, question, correct, wrong, explanation, reference) => ({ id, topic, question, correct, wrong, explanation, reference });
+const extraDistractors = {
+  "t7-01": ["RF POWER"], "t7-02": ["AUTO"], "t7-03": ["SYSTEM READY"], "t7-04": ["POWER SUPPLY"],
+  "t7-05": ["Лише вихідну потужність передавача без перевірки узгодження"],
+  "t7-06": ["INTERNAL COUPLER"], "t7-07": ["HIGH IMPEDANCE"], "t7-08": ["169.254.78.2"],
+  "t7-09": ["RF-7800H-MP і MPR-9600-MP залежно від антени"],
+  "t7-10": ["Автоматичний вибір найкращої частоти за LQA"], "t7-11": ["Стрілками < | >"],
+  "t7-12": ["1 CALL"], "t7-13": ["Однаковий канал FIX і синхронізований GPS-звіт"],
+  "t7-14": ["1 CALL → SYNC → REQUEST → ENT"], "t7-15": ["1 CALL → SYNC → BROADCAST → ENT"],
+  "t7-16": ["Автоматична синхронізація від головної станції без GPS"], "t7-17": ["До дванадцяти годин"],
+  "t7-18": ["Після кожного переходу між каналами FIX"], "t7-19": ["Time Offset Data"],
+  "t7-20": ["TIME OFFSET"], "t7-21": ["На одному каналі FIX без сканування"],
+  "t7-22": ["INDIVIDUAL або BROADCAST"], "t7-23": ["CLR → END CALL → ENT"],
+  "t7-24": ["Для синхронізації часу між станціями"],
+  "t7-25": ["EXCHANGE односторонній, SOUND двосторонній"],
+  "t7-26": ["На обох станціях після автоматичного підтвердження"],
+  "t7-27": ["Послідовно перебирає канали від найнижчої частоти"],
+  "t7-28": ["Першу частоту у списку каналів незалежно від номіналу"],
+  "t7-29": ["Automatic Message Data"], "t7-30": ["120 символів"],
+  "t7-31": ["RF-7800H-MP і MPR-9600-MP лише в режимі 3G"],
+  "t7-32": ["BROADCAST ALL PLANS"], "t7-33": ["LQA"],
+  "t7-34": ["Після входу в режим 3G до встановлення з'єднання"],
+  "t7-35": ["Запис зберігається і передається окремою командою SEND"],
+  "t7-36": ["2 хв"], "t7-37": ["120 символів"], "t7-38": ["До 20"],
+  "t7-39": ["REQUEST GPS REPORT"], "t7-40": ["7 OPT → GPS-APR → RX REPORT"],
+  "t7-41": ["Він автоматично об'єднує всі мережі 3G в одну"],
+  "t7-42": ["Який канал FIX запрограмовано в кореспондента"]
+};
+const q = (id, topic, question, correct, wrong, explanation, reference) => ({ id, topic, question, correct, wrong, extraWrong: extraDistractors[id] || [], explanation, reference });
 window.QUIZ_CONFIG = {
   id: "topic7-harris-hf-operation",
   label: "ВОС-420 · Експлуатація HARRIS КХ",

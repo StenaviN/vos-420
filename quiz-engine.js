@@ -5,8 +5,8 @@ if (!config || !Array.isArray(config.questions)) throw new Error("QUIZ_CONFIG is
 const isMixed = config.topicIds.length > 1;
 
 const letters = ["А", "Б", "В", "Г"];
-const STATE_VERSION = 5;
-const ACTIVE_KEY = `vos420-${config.id}-active-v5`;
+const STATE_VERSION = 6;
+const ACTIVE_KEY = `vos420-${config.id}-active-v6`;
 const STATS_KEY = "vos420-quiz-statistics-v1";
 const DISTRACTOR_HISTORY_KEY = "vos420-distractor-history-v1";
 const CURATED_EXTRA_DISTRACTORS = {
@@ -186,7 +186,6 @@ function expandDistractorPools() {
   snapshots.forEach(({ item, correct: correctAnswer, wrong }) => {
     if (correctAnswer === undefined) return;
     item.correct = correctAnswer;
-    item.primaryWrong = wrong.slice(0, 3);
     if (wrong.length >= 6) {
       item.wrong = wrong.slice(0, 6);
       return;
@@ -214,17 +213,11 @@ function readDistractorHistory() {
 function selectDistractors(item) {
   const pool = Array.isArray(item.wrong) ? item.wrong : [];
   if (pool.length <= 3) return shuffled(pool).slice(0, 3);
-  const primary = Array.isArray(item.primaryWrong) ? item.primaryWrong : pool.slice(0, 3);
   const history = readDistractorHistory();
   let selected;
   let signature;
   for (let attempt = 0; attempt < 8; attempt += 1) {
-    const twoPrimary = shuffled(primary).slice(0, 2);
-    const primaryKeys = new Set(primary.map(normalizedOptionText));
-    const extraPool = pool.filter((text) => !primaryKeys.has(normalizedOptionText(text)));
-    const selectedKeys = new Set(twoPrimary.map(normalizedOptionText));
-    const additional = shuffled(extraPool.length ? extraPool : pool.filter((text) => !selectedKeys.has(normalizedOptionText(text))))[0];
-    selected = [...twoPrimary, additional];
+    selected = shuffled(pool).slice(0, 3);
     signature = selected.map(normalizedOptionText).sort().join("|");
     if (signature !== history[item.id]) break;
   }
