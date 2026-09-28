@@ -10,8 +10,6 @@ const ACTIVE_KEY = `vos420-${config.id}-active-v5`;
 const STATS_KEY = "vos420-quiz-statistics-v1";
 const DISTRACTOR_HISTORY_KEY = "vos420-distractor-history-v1";
 const CURATED_EXTRA_DISTRACTORS = {
-  "t1-01": ["Бойовий статут механізованих військ", "Настанова з фізичної підготовки", "Інструкція з експлуатації радіостанції"],
-  "t1-34": ["Ведення чергового прийому", "Контроль робочої частоти", "Фіксація прийнятих сигналів"],
   "t3-10": ["Спочатку збільшується, потім зменшується", "Залежить лише від амплітуди", "Стає нескінченною"],
   "t4-01": ["Джерело живлення, фідер і заземлення", "Модулятор, акумулятор і мікрофон", "Передавач, GPS і дисплей"],
   "t4-21": ["Лише вихідну потужність", "Тільки дальність прямої видимості", "Тільки фізичні розміри антени"],
@@ -177,9 +175,12 @@ function expandDistractorPools() {
   const snapshots = config.questions.map((item) => ({
     item,
     correct: item.correct !== undefined ? item.correct : Array.isArray(item.options) ? item.options[item.answer] : undefined,
-    wrong: Array.isArray(item.wrong)
-      ? [...item.wrong]
-      : Array.isArray(item.options) ? item.options.filter((value, index) => index !== item.answer) : []
+    wrong: [
+      ...(Array.isArray(item.wrong)
+        ? item.wrong
+        : Array.isArray(item.options) ? item.options.filter((value, index) => index !== item.answer) : []),
+      ...(Array.isArray(item.extraWrong) ? item.extraWrong : [])
+    ]
   }));
 
   snapshots.forEach(({ item, correct: correctAnswer, wrong }) => {
