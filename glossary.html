@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Глосарій ВОС-420</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="style.css?v=11e04f4b8651">
+</head>
+<body>
+  <main class="page glossary-page">
+    <div class="topbar"><a href="index.html">До змісту</a></div>
+    <header class="hero">
+      <h1>Глосарій</h1>
+      <p>Скорочення, англійські назви, українські відповідники та короткі пояснення термінів із конспектів ВОС-420.</p>
+    </header>
+
+    <section class="section glossary-tools" aria-labelledby="glossarySearchTitle">
+      <h2 id="glossarySearchTitle">Пошук термінів</h2>
+      <form id="glossarySearchForm" class="search-form" role="search">
+        <label class="visually-hidden" for="glossarySearchInput">Термін або пояснення</label>
+        <input id="glossarySearchInput" type="search" autocomplete="off" placeholder="Наприклад: LQA або синхронізація">
+        <button id="glossarySearchClear" class="search-clear" type="button" title="Очистити пошук" aria-label="Очистити пошук" hidden>×</button>
+        <button class="search-submit" type="submit">Знайти</button>
+      </form>
+      <p id="glossaryStatus" class="search-status" aria-live="polite"></p>
+      <nav id="glossaryIndex" class="glossary-index" aria-label="Алфавітний покажчик"></nav>
+    </section>
+
+    <div id="glossaryList" class="glossary-list"></div>
+  </main>
+  <script src="asset-version.js?v=11e04f4b8651"></script>
+  <script src="glossary-data.js?v=11e04f4b8651"></script>
+  <script src="glossary.js?v=11e04f4b8651"></script>
+  <script src="site-ui.js?v=11e04f4b8651"></script>
+</body>
+</html>
