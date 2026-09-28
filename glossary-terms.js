@@ -7,7 +7,7 @@
 
   const byTerm = new Map(terms.map((entry) => [entry.term.toLocaleLowerCase("uk-UA"), entry]));
   const candidates = terms
-    .filter((entry) => entry.term.length >= 3 || entry.term === "3G")
+    .filter((entry) => entry.term.length >= 2)
     .map((entry) => entry.term)
     .sort((left, right) => right.length - left.length)
     .map((term) => term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));

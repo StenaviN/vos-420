@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>HARRIS УКХ RF-7850M-HH / RF-7800V-HH</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="../style.css?v=772fd3fa69d7">
+  <link rel="stylesheet" href="../style.css?v=7ff85fb80bd6">
 </head>
 <body>
   <main class="page">
@@ -24,9 +24,9 @@
     <section id="pryznachennia" class="section">
       <h2>Призначення і можливості</h2>
       <p>Портативна радіостанція RF-7850M-HH / RF-7800V-HH забезпечує радіозв'язок в УКХ діапазоні для тактичної ланки управління. Вона підтримує голос і дані, відкриту та захищену роботу, аналогові й цифрові сигнали, фіксовані частоти та режими псевдовипадкового перестроювання робочої частоти.</p>
-      <p>Вбудований GPS використовується для визначення позиції та синхронізації режимів Quicklook 3, Quicklook Wide і TNW.</p>
+      <p>Вбудований GPS використовується для визначення позиції та синхронізації режимів QL3, QLW і TNW.</p>
       <p>До сімейства також належать возимі варіанти RF-7850M-V501 / V511 і RF-7800V-V501 / V511. У радіостанцію можна запрограмувати 25 мереж, з яких 13 доступні безпосередньо перемикачем.</p>
-      <p><strong>Multiple Access Collision Avoidance, generation 2 (MACA2)</strong> - запобігає колізіям під час багатостанційного обміну даними: перед передаванням пакета станція запитує готовність адресата, отримує підтвердження, а інші станції тимчасово звільняють канал. Голос і дані можуть використовувати один канал, але надто довге утримання <kbd class="key-button">PTT</kbd> може спричинити втрату даних.</p>
+      <p><strong>MACA2</strong> запобігає колізіям під час багатостанційного обміну даними: перед передаванням пакета станція запитує готовність адресата, отримує підтвердження, а інші станції тимчасово звільняють канал. Голос і дані можуть використовувати один канал, але надто довге утримання <kbd class="key-button">PTT</kbd> може спричинити втрату даних.</p>
       <p><strong>Варіанти MACA:</strong> Classic використовують із версіями прошивки нижче 4.7, Advanced - із версією 4.7 і вище.</p>
 
       <div class="model-gallery" aria-label="Моделі портативних УКХ радіостанцій HARRIS">
@@ -39,15 +39,13 @@
           <figcaption><strong>RF-7800V-HH</strong> - портативна УКХ радіостанція 30-108 МГц.</figcaption>
         </figure>
       </div>
-      <p class="table-note"><strong>Позначення моделей:</strong> Radio Frequency (RF); Handheld (HH); Very High Frequency (VHF).</p>
-
       <div>
         <span class="tag">УКХ</span>
         <span class="tag">голос</span>
         <span class="tag">дані</span>
         <span class="tag">ППРЧ</span>
         <span class="tag">GPS</span>
-        <span class="tag">AES / Citadel</span>
+        <span class="tag">AES / CITADEL</span>
       </div>
     </section>
 
@@ -57,29 +55,24 @@
         <thead>
           <tr>
             <th>Позначення</th>
-            <th>Назва</th>
             <th>Тип роботи</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>AM</td>
-            <td><strong>Amplitude Modulation</strong><br>Амплітудна модуляція</td>
             <td>Аналогові сигнали; для RF-7850M-HH від 108,025 до 512 МГц</td>
           </tr>
           <tr>
             <td>FM</td>
-            <td><strong>Frequency Modulation</strong><br>Частотна модуляція</td>
             <td>Аналогові сигнали</td>
           </tr>
           <tr>
             <td>ASK</td>
-            <td><strong>Amplitude Shift Keying</strong><br>Амплітудна маніпуляція</td>
             <td>Цифрові сигнали; для RF-7850M-HH від 108,025 до 512 МГц</td>
           </tr>
           <tr>
             <td>FSK</td>
-            <td><strong>Frequency Shift Keying</strong><br>Частотна маніпуляція</td>
             <td>Цифрові сигнали</td>
           </tr>
         </tbody>
@@ -90,8 +83,8 @@
       <h2>Вокодери</h2>
       <p><strong>Вокодер</strong> перетворює голос на цифровий потік і назад. У навчальному матеріалі для обох моделей наведено два типи:</p>
       <dl class="term-list">
-        <div><dt>MELP</dt><dd><strong>Mixed Excitation Linear Prediction</strong> - цифрова телефонія зі швидкістю 2400 біт/с.</dd></div>
-        <div><dt>CVSD</dt><dd><strong>Continuously Variable Slope Delta Modulation</strong> - цифрова телефонія зі швидкістю 16000 біт/с.</dd></div>
+        <div><dt>MELP</dt><dd>Цифрова телефонія зі швидкістю 2400 біт/с.</dd></div>
+        <div><dt>CVSD</dt><dd>Цифрова телефонія зі швидкістю 16000 біт/с.</dd></div>
       </dl>
     </section>
 
@@ -114,7 +107,7 @@
         </thead>
         <tbody>
           <tr>
-            <td data-label="Режим"><strong>FIX</strong><span>Fixed Frequency</span></td>
+            <td data-label="Режим"><strong>FIX</strong></td>
             <td data-label="Доступ / трафік">MACA; голос і дані</td>
             <td data-label="Канал">25 / 75 кГц</td>
             <td data-label="Швидкість">64 / 192 кбіт/с</td>
@@ -123,7 +116,7 @@
             <td data-label="Особливості">Dual PTT у двох FIX-мережах, коли MACA вимкнено</td>
           </tr>
           <tr>
-            <td data-label="Режим"><strong>QL1A</strong><span>Quicklook 1A</span></td>
+            <td data-label="Режим"><strong>QL1A</strong></td>
             <td data-label="Доступ / трафік">MACA; голос і дані</td>
             <td data-label="Канал">25 кГц</td>
             <td data-label="Швидкість">16 кбіт/с</td>
@@ -132,7 +125,7 @@
             <td data-label="Особливості">ППРЧ понад 100 разів/с; сумісність зі старішими Harris</td>
           </tr>
           <tr>
-            <td data-label="Режим"><strong>QL2</strong><span>Quicklook 2</span></td>
+            <td data-label="Режим"><strong>QL2</strong></td>
             <td data-label="Доступ / трафік">Тільки голос</td>
             <td data-label="Канал">-</td>
             <td data-label="Швидкість">-</td>
@@ -141,7 +134,7 @@
             <td data-label="Особливості">ППРЧ понад 300 разів/с</td>
           </tr>
           <tr>
-            <td data-label="Режим"><strong>QL3</strong><span>Quicklook 3</span></td>
+            <td data-label="Режим"><strong>QL3</strong></td>
             <td data-label="Доступ / трафік">Тільки голос</td>
             <td data-label="Канал">-</td>
             <td data-label="Швидкість">-</td>
@@ -150,7 +143,7 @@
             <td data-label="Особливості">TOD +/- 1 хв або GPS; SLOW / MED / FAST, FCS та AUTO</td>
           </tr>
           <tr>
-            <td data-label="Режим"><strong>QLW</strong><span>Quicklook Wide</span></td>
+            <td data-label="Режим"><strong>QLW</strong></td>
             <td data-label="Доступ / трафік">MACA2; голос і дані</td>
             <td data-label="Канал">75 кГц</td>
             <td data-label="Швидкість">64 кбіт/с</td>
@@ -159,7 +152,7 @@
             <td data-label="Особливості">TOD +/- 1 хв або GPS; ППРЧ понад 100 разів/с</td>
           </tr>
           <tr>
-            <td data-label="Режим"><strong>TNW</strong><span>Tactical Networking Waveform</span></td>
+            <td data-label="Режим"><strong>TNW</strong></td>
             <td data-label="Доступ / трафік">TDMA; голос+дані, дані або VR-TNW</td>
             <td data-label="Канал">25 / 75 кГц</td>
             <td data-label="Швидкість">2,4 кбіт/с GPS<br>14 кбіт/с IP</td>
@@ -168,7 +161,7 @@
             <td data-label="Особливості">TOD +/- 1,5 хв або GPS; автоматичний Time Master; репітер Black / Red</td>
           </tr>
           <tr>
-            <td data-label="Режим"><strong>ANW2C</strong><span>Adaptive Networking Wideband Waveform 2C</span></td>
+            <td data-label="Режим"><strong>ANW2C</strong></td>
             <td data-label="Доступ / трафік">ANW2 / TDMA; голос і дані</td>
             <td data-label="Канал">1,2 МГц</td>
             <td data-label="Швидкість">3-1372 кбіт/с</td>
@@ -177,7 +170,7 @@
             <td data-label="Особливості">Самоорганізована адаптивна мережа; до 30 радіостанцій у локальній мережі</td>
           </tr>
           <tr>
-            <td data-label="Режим"><strong>STC</strong><span>Satellite TDMA Capability</span></td>
+            <td data-label="Режим"><strong>STC</strong></td>
             <td data-label="Доступ / трафік">Супутниковий TDMA</td>
             <td data-label="Канал">25 або 5 кГц</td>
             <td data-label="Швидкість">Залежить від конфігурації</td>
@@ -186,8 +179,8 @@
             <td data-label="Особливості">Фіксовані частоти; військовий супутник виконує роль ретранслятора</td>
           </tr>
           <tr>
-            <td data-label="Режим"><strong>CWR</strong><span>Country Wide Repeater</span></td>
-            <td data-label="Доступ / трафік">Fixed Frequency + MACA2; PTT та IP-дані</td>
+            <td data-label="Режим"><strong>CWR</strong></td>
+            <td data-label="Доступ / трафік">FIX + MACA2; PTT та IP-дані</td>
             <td data-label="Канал">За базовою FIX-мережею</td>
             <td data-label="Швидкість">За базовою FIX-мережею</td>
             <td data-label="Частоти">За конфігурацією мережі</td>
@@ -199,7 +192,6 @@
       <p class="table-note"><strong>Ретранслятор TNW:</strong> доступні режими <strong>Black</strong> і <strong>Red</strong>. У Black радіостанція може перебувати в неконтрольованому місці, а ключові дані видалені. У Red станцію контролює користувач.</p>
       </div>
       <p class="table-note"><strong>Термінологія CWR:</strong> <em>stage</em> - ретрансляторний вузол або точка доступу до IP-магістралі, а <em>outstation</em> - абонентська радіостанція. Коли абонент переходить у зону покриття іншого вузла, радіостанція автоматично реєструється на доступному новому вузлі, зберігаючи доступ до мережі.</p>
-      <p class="table-note"><strong>Скорочення:</strong> Multiple Access Collision Avoidance (MACA); Push-to-Talk (PTT); Time of Day (TOD); Global Positioning System (GPS); Free Channel Search (FCS); Time Division Multiple Access (TDMA); Mobile Ad Hoc Network (MANET); Internet Protocol (IP); Receive (Rx); Transmit (Tx); Fixed Frequency (FF); Line of Sight (LOS); Quicklook (QL); Voice Repeater TNW (VR-TNW).</p>
     </section>
 
     <section id="modeli" class="section">
@@ -234,7 +226,7 @@
             <td data-label="RF-7800V-HH">MELP 2400 біт/с, CVSD 16000 біт/с<span class="availability shared">Однаково</span></td>
           </tr>
           <tr>
-            <td data-label="Можливість">Quicklook і TNW</td>
+            <td data-label="Можливість">QL і TNW</td>
             <td data-label="RF-7850M-HH">30-511,975 МГц</td>
             <td data-label="RF-7800V-HH">30-107,075 МГц</td>
           </tr>
@@ -250,8 +242,8 @@
           </tr>
           <tr>
             <td data-label="Можливість">Інші спільні можливості</td>
-            <td data-label="RF-7850M-HH">25 мереж, 13 положень перемикача, GPS, Citadel/AES, CWR</td>
-            <td data-label="RF-7800V-HH">25 мереж, 13 положень перемикача, GPS, Citadel/AES, CWR</td>
+            <td data-label="RF-7850M-HH">25 мереж, 13 положень перемикача, GPS, CITADEL/AES, CWR</td>
+            <td data-label="RF-7800V-HH">25 мереж, 13 положень перемикача, GPS, CITADEL/AES, CWR</td>
           </tr>
         </tbody>
       </table>
@@ -272,15 +264,15 @@
           <tr><td>Вибір перемикачем</td><td>13 мереж</td></tr>
           <tr><td>MELP</td><td>2400 біт/с</td></tr>
           <tr><td>CVSD</td><td>16000 біт/с</td></tr>
-          <tr><td>Шифрування</td><td>Citadel, Advanced Encryption Standard (AES) 128/256 біт</td></tr>
+          <tr><td>Шифрування</td><td>CITADEL, AES 128/256 біт</td></tr>
           <tr><td>Живлення</td><td>Li-ion батарея 10,8 В, 4,8 / 5,8 / 6,8 А/год</td></tr>
           <tr><td>Середній час роботи АКБ</td><td>Близько 18 год за циклу 10% TX / 10% RX / 80% очікування при +20 °C; при -20 °C скорочується приблизно на 20-25%</td></tr>
           <tr><td>Температура без батареї</td><td>-30 °C до +60 °C</td></tr>
           <tr><td>Температура з батареєю</td><td>-20 °C до +60 °C</td></tr>
           <tr><td>Занурення у воду</td><td>До 5 м</td></tr>
           <tr><td>Вологість</td><td>До 95%</td></tr>
-          <tr><td>Антенний порт</td><td>50 Ом, роз'єм Threaded Neill-Concelman Connector (TNC)</td></tr>
-          <tr><td>Стабільність частоти</td><td>+/- 1 part per million (ppm)</td></tr>
+          <tr><td>Антенний порт</td><td>50 Ом, роз'єм TNC</td></tr>
+          <tr><td>Стабільність частоти</td><td>+/- 1 ppm</td></tr>
           <tr><td>Вага без батареї</td><td>680 г</td></tr>
           <tr><td>Вага з батареєю</td><td>1,09 кг за Operation Manual Rev. L; у навчальній презентації вказано 910 г. На екзамені орієнтуватися на формулювання викладача.</td></tr>
         </tbody>
@@ -354,9 +346,9 @@
 
       <h3>Перед виходом у зв'язок</h3>
       <ul>
-        <li>Радіостанція має бути заздалегідь запрограмована через Communications Planning Application (CPA), передню панель або Web User Interface (Web UI).</li>
-        <li>Перевірити тип мережі, назву мережі, Plain Text (PT) / Cipher Text (CT), рівень потужності, Receive (RX) / Transmit (TX) частоти або hopset, вокодер і швидкість.</li>
-        <li>У режимі CT мають бути завантажені відповідні Communications Security (COMSEC) ключі; для Quicklook 3 і Quicklook Wide також потрібні Transmission Security (TRANSEC) key та Network Identification (Network ID).</li>
+        <li>Радіостанція має бути заздалегідь запрограмована через CPA, передню панель або Web UI.</li>
+        <li>Перевірити тип мережі, назву мережі, PT / CT, рівень потужності, Rx / Tx частоти або hopset, вокодер і швидкість.</li>
+        <li>У режимі CT мають бути завантажені відповідні ключі COMSEC; для QL3 і QLW також потрібні ключ TRANSEC та Network ID.</li>
         <li>Для економії АКБ передавати лише за потреби й застосовувати найнижчу потужність, достатню для стійкого зв'язку.</li>
       </ul>
 
@@ -388,9 +380,9 @@
       <h3>Клавіатура</h3>
       <ul>
         <li>Екранні клавіші виконують функції згідно з підписами на дисплеї.</li>
-        <li><kbd class="key-button">7 APPS</kbd> (Applications) - прикладне меню, <kbd class="key-button">9 PGM</kbd> (Programming) - меню програмування, <kbd class="key-button">1 SQL</kbd> (Squelch) - шумоподавлення, <kbd class="key-button">3 LT</kbd> (Light) - підсвітка.</li>
-        <li><kbd class="key-button">ENT</kbd> (Enter) - введення або зміна підсвіченого поля; <kbd class="key-button">CLR</kbd> (Clear) - повернення на рівень вище або скидання поля.</li>
-        <li>Стрілки переміщують курсор; екранна клавіша <kbd class="key-button">DEL</kbd> (Delete) видаляє літеру, <kbd class="key-button">CLR</kbd> очищає поле.</li>
+        <li><kbd class="key-button">7 APPS</kbd> - прикладне меню, <kbd class="key-button">9 PGM</kbd> - меню програмування, <kbd class="key-button">1 SQL</kbd> - шумоподавлення, <kbd class="key-button">3 LT</kbd> - підсвітка.</li>
+        <li><kbd class="key-button">ENT</kbd> - введення або зміна підсвіченого поля; <kbd class="key-button">CLR</kbd> - повернення на рівень вище або скидання поля.</li>
+        <li>Стрілки переміщують курсор; екранна клавіша <kbd class="key-button">DEL</kbd> видаляє літеру, <kbd class="key-button">CLR</kbd> очищає поле.</li>
         <li>Клавіша <kbd class="key-button">0 ↻</kbd> перемикає повний статус, головний екран TAC CHAT і короткий статус; під час редагування вона вводить пробіл.</li>
         <li>Блокування передньої панелі - екранна клавіша <kbd class="key-button">LOCK</kbd>; розблокування - швидко натиснути <kbd class="key-button">CLR</kbd> 5 разів.</li>
       </ul>
@@ -407,7 +399,7 @@
 
       <h3>Сканування каналів</h3>
       <ul>
-        <li>Працює лише для Fixed Frequency; список може містити до 25 мереж.</li>
+        <li>Працює лише для FIX; список може містити до 25 мереж.</li>
         <li>Недоступне у режимах ППРЧ і в мережах з Legacy MACA або MACA2.</li>
         <li>Для надійного CT-сканування рекомендовано не більше п'яти мереж плюс одна пріоритетна RX-мережа та довга преамбула ROBUST.</li>
         <li>Режими сканування: inactive, manual, automatic; за Dual PTT доступний Dual PTT Scan.</li>
@@ -429,19 +421,17 @@
       </ul>
 
       <h3>Dual PTT</h3>
-      <p>Функція дає можливість працювати з двома мережами FIX через дві тангенти, якщо вимкнена MACA. На екзамені важливо прив'язати Dual PTT саме до режиму Fixed Frequency і одночасної роботи у двох мережах.</p>
+      <p>Функція дає можливість працювати з двома мережами FIX через дві тангенти, якщо вимкнена MACA. На екзамені важливо прив'язати Dual PTT саме до режиму FIX і одночасної роботи у двох мережах.</p>
 
       <h3 id="time-date">Час і дата</h3>
       <div class="menu-path"><span>7 APPS</span><span>TIME AND DATE</span><span>дата і час</span></div>
-      <p>У меню <code>TIME AND DATE</code> встановлюють дату та час радіостанції. Екранна клавіша <kbd class="key-button">UTC</kbd> (Coordinated Universal Time) змінює формат дати та дає внести поправку часового поясу.</p>
+      <p>У меню <code>TIME AND DATE</code> встановлюють дату та час радіостанції. Екранна клавіша <kbd class="key-button">UTC</kbd> змінює формат дати та дає внести поправку часового поясу.</p>
 
       <h3 id="radio-info">Перегляд ID та імені радіостанції</h3>
       <p><strong>RF-7850M-HH:</strong></p>
       <div class="menu-path"><span>9 PGM</span><span>APP</span><span>MISC</span><span>CID</span><span>RADIO NAME</span></div>
       <p><strong>RF-7800V-HH:</strong></p>
       <div class="menu-path"><span>9 PGM</span><span>MISC</span><span>CID</span><span>RADIO NAME</span></div>
-      <p>Combat Net ID (CID); Identification (ID).</p>
-
       <h3 id="static-ip">Перегляд статичної IP-адреси</h3>
       <p><strong>RF-7850M-HH:</strong></p>
       <div class="menu-path"><span>9 PGM</span><span>APP</span><span>IP CONFIG</span><span>NETWORK ADAPTER</span><span>ETHERNET</span><span>STATIC ADDRESS</span></div>
@@ -479,19 +469,19 @@
         </thead>
         <tbody>
           <tr><td>1</td><td>Operator - повсякденна експлуатація</td></tr>
-          <tr><td>2</td><td>Communications Security (COMSEC) - робота з криптографічними функціями й ключами</td></tr>
+          <tr><td>2</td><td>COMSEC - робота з криптографічними функціями й ключами</td></tr>
           <tr><td>3</td><td>Communications Officer - розширене програмування та конфігурація.<br><strong>Вхід:</strong> <code>level3</code> / <code>hh03</code></td></tr>
           <tr><td>4</td><td>Maintenance - технічне обслуговування</td></tr>
         </tbody>
       </table>
       <p>Доступні екрани й меню залежать від рівня. Параметр KEEP LOGIN зберігає вхід після циклу живлення і потребує щонайменше рівня 2.</p>
 
-      <h3>Built-In Test (BIT)</h3>
+      <h3>BIT</h3>
       <div class="menu-path"><span>7 APPS</span><span>BUILT IN TEST</span><span>NON-INTERACTIVE</span><span>TEST STATUS</span><span>RESULTS</span></div>
       <ul>
         <li>Після завершення неінтерактивного тесту відкрий <code>RESULTS</code> для перегляду результатів.</li>
-        <li>Інтерактивні тести перевіряють підсвітку, Liquid Crystal Display (LCD), клавіатуру, перемикач, мікрофони та гучномовці.</li>
-        <li>Неінтерактивні тести перевіряють криптомодуль, передню панель, Global Positioning System (GPS), Digital Signal Processor (DSP), Random Access Memory (RAM), файлову систему, синтезатор, Universal Serial Bus (USB), Vehicular Amplifier Adapter (VAA) та інші внутрішні вузли.</li>
+        <li>Інтерактивні тести перевіряють підсвітку, LCD, клавіатуру, перемикач, мікрофони та гучномовці.</li>
+        <li>Неінтерактивні тести перевіряють криптомодуль, передню панель, GPS, DSP, RAM, файлову систему, синтезатор, USB, VAA та інші внутрішні вузли.</li>
         <li>RUN ALL запускає всі неінтерактивні тести; результати показують кількість пройдених і невдалих перевірок.</li>
       </ul>
 
@@ -508,13 +498,13 @@
     <div class="topic-quiz-cta"><div><strong>Перевір себе</strong><span>Перевір знання за матеріалами цієї теми.</span></div><a class="topic-quiz-button" href="../quiz.html?topic=5">Почати вікторину <span aria-hidden="true">→</span></a></div>
 
   </main>
-  <script src="../asset-version.js?v=772fd3fa69d7"></script>
+  <script src="../asset-version.js?v=7ff85fb80bd6"></script>
 
-  <script src="../search-index.js?v=772fd3fa69d7"></script>
-  <script src="../topic-search.js?v=772fd3fa69d7"></script>
+  <script src="../search-index.js?v=7ff85fb80bd6"></script>
+  <script src="../topic-search.js?v=7ff85fb80bd6"></script>
   <script>window.GLOSSARY_ROOT = "../";</script>
-  <script src="../glossary-data.js?v=772fd3fa69d7"></script>
-  <script src="../glossary-terms.js?v=772fd3fa69d7"></script>
-  <script src="../site-ui.js?v=772fd3fa69d7"></script>
+  <script src="../glossary-data.js?v=7ff85fb80bd6"></script>
+  <script src="../glossary-terms.js?v=7ff85fb80bd6"></script>
+  <script src="../site-ui.js?v=7ff85fb80bd6"></script>
 </body>
 </html>
