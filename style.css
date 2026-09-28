@@ -711,13 +711,6 @@ th {
   width: 10%;
 }
 
-.network-comparison td:first-child span {
-  display: block;
-  margin-top: 3px;
-  color: var(--muted);
-  font-size: 11px;
-}
-
 .table-note {
   margin: 12px 0 0;
   color: var(--muted);
@@ -1147,13 +1140,6 @@ code {
 
   .network-comparison td:first-child::before {
     display: none;
-  }
-
-  .network-comparison td:first-child span {
-    display: inline;
-    margin: 0 0 0 7px;
-    font-size: 12px;
-    font-weight: 400;
   }
 
   .responsive-table,
