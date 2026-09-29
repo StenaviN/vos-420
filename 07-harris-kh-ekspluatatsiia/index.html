@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Експлуатація HARRIS КХ RF-7800H-MP / MPR-9600-MP</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="../style.css?v=1a71d96b9fdc">
+  <link rel="stylesheet" href="../style.css?v=a3d927b38cb6">
 </head>
 <body>
   <main class="page">
@@ -33,16 +33,17 @@
       <p>Перед виходом в ефір перевір підключення антени, живлення та гарнітури. Режим, частоти, адреси й ключові параметри обох кореспондентів мають відповідати плану зв'язку.</p>
       <div class="note"><strong>Обов'язково:</strong> перед початком роботи ввімкни <strong>внутрішній антенний узгоджувач</strong>: у пункті <code>INTERNAL COUPLER</code> має бути встановлено <code>ENABLE</code>.</div>
       <div class="note"><strong>Важливо:</strong> режими <strong>3G</strong> і <strong>3G+</strong> доступні у RF-7800H-MP, але не підтримуються MPR-9600-MP. Процедури FIX, HOP і ALE застосовують відповідно до завантаженої конфігурації станції.</div>
-      <h3>Потужність, узгоджувач і назва станції</h3>
-      <div class="menu-path" aria-label="Налаштування радіостанції">
-        <span>7 OPT</span><span>RADIO</span>
-      </div>
-      <p><strong>Пункти одного рівня в меню RADIO:</strong></p>
-      <ul class="compact-options">
-        <li><strong>TX POWER</strong><br>Вибір <code>LOW</code>, <code>MED</code> або <code>HIGH</code>.</li>
-        <li><strong>INTERNAL COUPLER</strong><br>Перед роботою обов'язково встанови <code>ENABLE</code>, щоб увімкнути внутрішній антенний узгоджувач. <code>BY PASSED</code> обходить його.</li>
-        <li><strong>RADIO NAME</strong><br>Перевірка або введення імені станції, яке використовується в адресних режимах.</li>
-      </ul>
+      <h3>Перевірка потужності передавача</h3>
+      <div class="menu-path"><span>7 OPT</span><span>RADIO</span><span>TX POWER</span><span>LOW | MED | HIGH</span></div>
+      <p>Перевір установлений рівень вихідної потужності та обери потрібне значення відповідно до умов роботи.</p>
+
+      <h3>Перевірка внутрішнього антенного узгоджувача</h3>
+      <div class="menu-path"><span>7 OPT</span><span>RADIO</span><span>INTERNAL COUPLER</span><span>ENABLE | BY PASSED</span></div>
+      <p>Перед роботою обов'язково встанови <code>ENABLE</code>, щоб увімкнути внутрішній антенний узгоджувач. <code>BY PASSED</code> обходить його.</p>
+
+      <h3>Перевірка назви станції</h3>
+      <div class="menu-path"><span>7 OPT</span><span>RADIO</span><span>RADIO NAME</span></div>
+      <p>Перевір або введи ім'я станції, яке використовується в адресних режимах.</p>
     </section>
 
     <section id="testuvannia" class="section">
@@ -217,13 +218,13 @@
 
     <div class="topic-quiz-cta"><div><strong>Перевір себе</strong><span>Перевір знання за матеріалами цієї теми.</span></div><a class="topic-quiz-button" href="../quiz.html?topic=7">Почати вікторину <span aria-hidden="true">→</span></a></div>
   </main>
-  <script src="../asset-version.js?v=1a71d96b9fdc"></script>
+  <script src="../asset-version.js?v=a3d927b38cb6"></script>
 
-  <script src="../search-index.js?v=1a71d96b9fdc"></script>
-  <script src="../topic-search.js?v=1a71d96b9fdc"></script>
+  <script src="../search-index.js?v=a3d927b38cb6"></script>
+  <script src="../topic-search.js?v=a3d927b38cb6"></script>
   <script>window.GLOSSARY_ROOT = "../";</script>
-  <script src="../glossary-data.js?v=1a71d96b9fdc"></script>
-  <script src="../glossary-terms.js?v=1a71d96b9fdc"></script>
-  <script src="../site-ui.js?v=1a71d96b9fdc"></script>
+  <script src="../glossary-data.js?v=a3d927b38cb6"></script>
+  <script src="../glossary-terms.js?v=a3d927b38cb6"></script>
+  <script src="../site-ui.js?v=a3d927b38cb6"></script>
 </body>
 </html>
