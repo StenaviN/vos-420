@@ -175,3 +175,115 @@
     image.removeAttribute("src");
   });
 })();
+
+(() => {
+  const topicMain = document.querySelector("main.page");
+  const hero = topicMain?.querySelector(":scope > header.hero");
+  const sections = topicMain ? [...topicMain.querySelectorAll(":scope > section[id]")] : [];
+  if (!hero || !sections.length) return;
+
+  const storageKey = `vos420:collapsed-sections:${location.pathname}`;
+  let storedIds = [];
+  try {
+    const stored = JSON.parse(localStorage.getItem(storageKey) || "[]");
+    if (Array.isArray(stored)) storedIds = stored;
+  } catch {
+    storedIds = [];
+  }
+  const collapsedIds = new Set(storedIds);
+  const controls = new Map();
+
+  const headingText = (heading) => {
+    const clone = heading.cloneNode(true);
+    clone.querySelectorAll("button").forEach((button) => button.remove());
+    return clone.textContent.trim();
+  };
+
+  const saveState = () => {
+    try {
+      localStorage.setItem(storageKey, JSON.stringify([...collapsedIds]));
+    } catch {
+      // The controls still work when browser storage is unavailable.
+    }
+  };
+
+  const setCollapsed = (section, collapsed, { save = true } = {}) => {
+    const control = controls.get(section.id);
+    if (!control) return;
+    section.classList.toggle("is-collapsed", collapsed);
+    control.content.hidden = collapsed;
+    control.button.setAttribute("aria-expanded", String(!collapsed));
+    control.button.title = collapsed ? "Розгорнути розділ" : "Згорнути розділ";
+    control.button.setAttribute("aria-label", `${collapsed ? "Розгорнути" : "Згорнути"} розділ «${control.title}»`);
+    control.button.querySelector("span").textContent = collapsed ? "▸" : "▾";
+    if (collapsed) collapsedIds.add(section.id);
+    else collapsedIds.delete(section.id);
+    if (save) saveState();
+  };
+
+  sections.forEach((section) => {
+    const heading = section.querySelector(":scope > h2");
+    if (!heading) return;
+
+    const content = document.createElement("div");
+    content.className = "section-collapsible-content";
+    content.id = `${section.id}-content`;
+    while (heading.nextSibling) content.append(heading.nextSibling);
+    section.append(content);
+
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "section-toggle";
+    button.setAttribute("aria-controls", content.id);
+    button.innerHTML = '<span aria-hidden="true"></span>';
+    const title = headingText(heading);
+    controls.set(section.id, { button, content, title });
+    button.addEventListener("click", () => setCollapsed(section, !section.classList.contains("is-collapsed")));
+    heading.append(button);
+    setCollapsed(section, collapsedIds.has(section.id), { save: false });
+  });
+
+  const toolbar = document.createElement("div");
+  toolbar.className = "section-collapse-toolbar";
+  toolbar.setAttribute("aria-label", "Керування розділами конспекту");
+  toolbar.innerHTML = `
+    <button type="button" data-action="expand"><span aria-hidden="true">＋</span> Розгорнути все</button>
+    <button type="button" data-action="collapse"><span aria-hidden="true">−</span> Згорнути все</button>`;
+  const searchPanel = topicMain.querySelector(":scope > .topic-search-panel");
+  (searchPanel || hero).after(toolbar);
+
+  toolbar.addEventListener("click", (event) => {
+    const action = event.target.closest("button")?.dataset.action;
+    if (!action) return;
+    sections.forEach((section) => setCollapsed(section, action === "collapse", { save: false }));
+    saveState();
+  });
+
+  const revealTarget = (target) => {
+    const section = target?.matches?.("section[id]") ? target : target?.closest?.("section[id]");
+    if (section && controls.has(section.id)) setCollapsed(section, false);
+  };
+
+  const revealHash = () => {
+    if (!location.hash) return;
+    try {
+      revealTarget(document.getElementById(decodeURIComponent(location.hash.slice(1))));
+    } catch {
+      // Ignore malformed URL fragments.
+    }
+  };
+
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest("a[href*='#']");
+    if (!link) return;
+    const url = new URL(link.href, location.href);
+    if (url.pathname !== location.pathname || !url.hash) return;
+    try {
+      revealTarget(document.getElementById(decodeURIComponent(url.hash.slice(1))));
+    } catch {
+      // Ignore malformed URL fragments.
+    }
+  });
+  window.addEventListener("hashchange", revealHash);
+  revealHash();
+})();

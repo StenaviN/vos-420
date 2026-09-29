@@ -650,6 +650,62 @@ p {
   margin-top: 18px;
 }
 
+.section-collapse-toolbar {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin: 0 0 12px;
+}
+
+.section-collapse-toolbar button {
+  min-height: 38px;
+  padding: 7px 11px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: var(--paper);
+  color: var(--muted);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.section-collapse-toolbar button:hover,
+.section-collapse-toolbar button:focus-visible {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.section-toggle {
+  float: right;
+  display: inline-grid;
+  width: 34px;
+  height: 34px;
+  margin: -3px 0 0 10px;
+  padding: 0;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: var(--paper);
+  color: var(--accent);
+  font: 700 20px/1 "Segoe UI Symbol", sans-serif;
+  cursor: pointer;
+}
+
+.section-toggle:hover,
+.section-toggle:focus-visible {
+  border-color: var(--accent);
+  background: var(--soft);
+}
+
+.section.is-collapsed > h2 {
+  margin-bottom: 0;
+}
+
+.section-collapsible-content[hidden] {
+  display: none;
+}
+
 .card h2,
 .card h3,
 .section h2,
