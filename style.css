@@ -847,6 +847,123 @@ th {
   font-size: 13px;
 }
 
+.procedure-shot {
+  margin: 18px 0 22px;
+}
+
+.procedure-shot-button {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+  background: #ffffff;
+  cursor: zoom-in;
+}
+
+.procedure-shot-button img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.procedure-shot-button::after {
+  content: "⛶";
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 4px;
+  background: rgba(17, 47, 39, 0.88);
+  color: #ffffff;
+  font-size: 21px;
+  line-height: 1;
+}
+
+.procedure-shot-button:hover,
+.procedure-shot-button:focus-visible {
+  border-color: var(--accent);
+}
+
+.procedure-shot figcaption {
+  margin-top: 7px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.procedure-shot-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.procedure-shot-pair .procedure-shot {
+  min-width: 0;
+  margin-top: 0;
+}
+
+.media-viewer {
+  width: min(96vw, 1500px);
+  max-width: none;
+  height: min(94vh, 1000px);
+  max-height: none;
+  padding: 48px 12px 12px;
+  border: 0;
+  border-radius: 6px;
+  background: #18221f;
+  color: #ffffff;
+}
+
+.media-viewer::backdrop {
+  background: rgba(8, 16, 14, 0.78);
+}
+
+.media-viewer-close {
+  position: absolute;
+  z-index: 2;
+  top: 8px;
+  right: 10px;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 4px;
+  background: #ffffff;
+  color: #142f27;
+  font-size: 25px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.media-viewer-stage {
+  width: 100%;
+  height: calc(100% - 40px);
+  overflow: auto;
+  overscroll-behavior: contain;
+  touch-action: pan-x pan-y pinch-zoom;
+}
+
+.media-viewer-stage img {
+  display: block;
+  width: auto;
+  min-width: min(100%, 960px);
+  max-width: none;
+  height: auto;
+  margin: 0 auto;
+  background: #ffffff;
+}
+
+.media-viewer-caption {
+  margin: 8px 0 0;
+  color: #e2ece8;
+  font-size: 13px;
+  text-align: center;
+}
+
 .note {
   border-left: 4px solid var(--accent);
   padding: 10px 12px;
@@ -1074,6 +1191,11 @@ code {
 }
 
 @media (max-width: 800px) {
+  .procedure-shot-pair {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
   .model-gallery {
     grid-template-columns: 1fr;
   }
@@ -1249,6 +1371,17 @@ code {
 }
 
 @media (max-width: 560px) {
+  .media-viewer {
+    width: 100vw;
+    height: 100dvh;
+    margin: 0;
+    border-radius: 0;
+  }
+
+  .media-viewer-stage img {
+    min-width: max(100%, 900px);
+  }
+
   .back-to-top {
     right: calc(12px + env(safe-area-inset-right, 0px));
     bottom: calc(12px + env(safe-area-inset-bottom, 0px));
