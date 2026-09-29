@@ -870,23 +870,23 @@ th {
 .availability {
   display: block;
   margin-top: 7px;
-  padding: 3px 7px;
-  border-left: 3px solid #2f7663;
-  background: #edf7f3;
-  color: #245d4f;
+  padding: 2px 0 2px 7px;
+  border-left: 2px solid #7b8783;
+  background: transparent;
+  color: #52605c;
   font-size: 12px;
   font-weight: 700;
 }
 
 .availability.exclusive {
-  border-left-color: #b26a00;
-  background: #fff3d6;
-  color: #744600;
+  border-left-color: #2f7663;
+  background: transparent;
+  color: #245d4f;
 }
 
 .availability.missing {
   border-left-color: #a94242;
-  background: #fff0f0;
+  background: transparent;
   color: #7c3030;
 }
 
@@ -898,22 +898,22 @@ th {
 
 .feature-values span {
   padding: 3px 6px;
-  border-bottom: 2px solid #9aa5a1;
-  background: #f3f6f5;
+  border: 1px solid #c8cfcc;
+  background: transparent;
   color: #33413d;
   font-size: 13px;
   font-weight: 700;
 }
 
 .feature-values .feature-available {
-  border-bottom-color: #2f7663;
-  background: #e8f5f0;
+  border-color: #70a293;
+  background: transparent;
   color: #1f6654;
 }
 
 .feature-values .feature-unavailable {
-  border-bottom-color: #b84a4a;
-  background: #fff0f0;
+  border-color: #d19a9a;
+  background: transparent;
   color: #913737;
   text-decoration: line-through;
   text-decoration-thickness: 1.5px;
