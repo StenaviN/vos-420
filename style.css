@@ -971,6 +971,12 @@ th {
   margin: 14px 0;
 }
 
+.note-important {
+  border-left-color: #ad6b00;
+  background: #fff4d6;
+  color: #553900;
+}
+
 .menu-path {
   display: flex;
   flex-wrap: wrap;
