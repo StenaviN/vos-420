@@ -880,13 +880,13 @@ th {
 
 .availability.exclusive {
   border-left-color: #2f7663;
-  background: transparent;
+  background: #eef7f3;
   color: #245d4f;
 }
 
 .availability.missing {
   border-left-color: #a94242;
-  background: transparent;
+  background: #fff2f2;
   color: #7c3030;
 }
 
@@ -906,15 +906,22 @@ th {
 }
 
 .feature-values .feature-available {
-  border-color: #70a293;
-  background: transparent;
-  color: #1f6654;
+  border-color: #2f7663;
+  background: #2f7663;
+  color: #ffffff;
+}
+
+.feature-values .feature-available .glossary-term,
+.feature-values .feature-available .glossary-term:hover,
+.feature-values .feature-available .glossary-term:focus-visible {
+  border-bottom-color: rgba(255, 255, 255, 0.72);
+  color: #ffffff;
 }
 
 .feature-values .feature-unavailable {
-  border-color: #d19a9a;
-  background: transparent;
-  color: #913737;
+  border-color: #bd6262;
+  background: #f9dddd;
+  color: #842f2f;
   text-decoration: line-through;
   text-decoration-thickness: 1.5px;
 }
