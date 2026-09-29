@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Експлуатація HARRIS КХ RF-7800H-MP / MPR-9600-MP</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="../style.css?v=7549995cd759">
+  <link rel="stylesheet" href="../style.css?v=918f3e52d5c7">
 </head>
 <body>
   <main class="page">
@@ -43,6 +43,14 @@
       <div class="menu-path"><span>7 OPT</span><span>RADIO</span><span>RADIO NAME</span></div>
       <p>Перевір або введи ім'я станції, яке використовується в адресних режимах.</p>
 
+      <h3 id="chas-tod">Перевірка та встановлення часу TOD</h3>
+      <p>Якщо HOP не синхронізується, перевір час станції. Значне розходження часу між станціями призводить до відмови синхронізації.</p>
+      <p><strong>Перегляд часу:</strong></p>
+      <div class="menu-path"><span>7 OPT</span><span>GPS-TOD</span></div>
+      <p><strong>Налаштування часового зміщення:</strong></p>
+      <div class="menu-path"><span>8 PGM</span><span>CONFIG</span><span>TOD</span><span>UTC offset</span></div>
+      <p><strong>TOD</strong> має відповідати єдиній часовій основі мережі. Значення зміщення від UTC встановлюють згідно з поточними умовами та розпорядженням щодо організації зв'язку.</p>
+
       <h3 id="systemnyi-test">Системний тест</h3>
       <div class="menu-path"><span>7 OPT</span><span>TEST</span><span>BIT</span><span>SYSTEM</span><span>TEST IN PROGRESS</span><span>TEST PASSED</span></div>
       <p>Повідомлення <code>TEST PASSED</code> означає успішне завершення вбудованого системного тесту.</p>
@@ -66,16 +74,6 @@
     <section id="ip-adresa" class="section">
       <h2>IP-адреса прямого USB-підключення</h2>
       <div class="menu-path"><span>8 PGM</span><span>CONFIG</span><span>NETWORK</span><span>INTERFACE</span><span>ETHERNET</span><span>ADDRESS</span><span>DIRECT USB</span><span>ENABLE</span><span>169.254.78.1</span></div>
-    </section>
-
-    <section id="chas-tod" class="section">
-      <h2>Перевірка часу TOD</h2>
-      <p>Якщо HOP не синхронізується, перевір час станції. У матеріалі вказано, що значне розходження часу між станціями призводить до відмови синхронізації.</p>
-      <h3>Перегляд часу</h3>
-      <div class="menu-path"><span>7 OPT</span><span>GPS-TOD</span></div>
-      <h3>Налаштування часового зміщення</h3>
-      <div class="menu-path"><span>8 PGM</span><span>CONFIG</span><span>TOD</span><span>UTC offset</span></div>
-      <p><strong>TOD</strong> має відповідати єдиній часовій основі мережі. Значення зміщення від UTC встановлюють згідно з поточними умовами та розпорядженням щодо організації зв'язку.</p>
     </section>
 
     <section id="fix" class="section">
@@ -215,13 +213,13 @@
 
     <div class="topic-quiz-cta"><div><strong>Перевір себе</strong><span>Перевір знання за матеріалами цієї теми.</span></div><a class="topic-quiz-button" href="../quiz.html?topic=7">Почати вікторину <span aria-hidden="true">→</span></a></div>
   </main>
-  <script src="../asset-version.js?v=7549995cd759"></script>
+  <script src="../asset-version.js?v=918f3e52d5c7"></script>
 
-  <script src="../search-index.js?v=7549995cd759"></script>
-  <script src="../topic-search.js?v=7549995cd759"></script>
+  <script src="../search-index.js?v=918f3e52d5c7"></script>
+  <script src="../topic-search.js?v=918f3e52d5c7"></script>
   <script>window.GLOSSARY_ROOT = "../";</script>
-  <script src="../glossary-data.js?v=7549995cd759"></script>
-  <script src="../glossary-terms.js?v=7549995cd759"></script>
-  <script src="../site-ui.js?v=7549995cd759"></script>
+  <script src="../glossary-data.js?v=918f3e52d5c7"></script>
+  <script src="../glossary-terms.js?v=918f3e52d5c7"></script>
+  <script src="../site-ui.js?v=918f3e52d5c7"></script>
 </body>
 </html>
