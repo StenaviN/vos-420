@@ -13,6 +13,7 @@
     .sort((left, right) => right.length - left.length)
     .map((term) => term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
   const pattern = new RegExp(`(^|[^\\p{L}\\p{N}])(${candidates.join("|")})(?=$|[^\\p{L}\\p{N}])`, "giu");
+  const usbCableContext = /(?:USB\s*[-‑–—]?\s*(?:кабел|підключ|порт|інтерфейс)|(?:кабел|підключ|порт|інтерфейс)[^.!?]{0,24}USB|DIRECT\s+USB)/iu;
   const excluded = "script, style, code, kbd, a, button, input, textarea, select, .menu-path, .glossary-inline, .topbar";
   const nodes = [];
   const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
@@ -39,6 +40,9 @@
       marker.setAttribute("role", "button");
       marker.setAttribute("aria-expanded", "false");
       marker.dataset.glossaryTerm = entry.term;
+      if (entry.term.toLocaleLowerCase("uk-UA") === "usb" && usbCableContext.test(node.nodeValue)) {
+        marker.dataset.glossaryContext = "bus";
+      }
       marker.textContent = match[2];
       fragment.append(marker);
       cursor = termStart + match[2].length;
@@ -56,6 +60,12 @@
   const coarsePointer = window.matchMedia("(hover: none), (pointer: coarse)");
   let openMarker = null;
   let inline = null;
+
+  function entryFor(marker) {
+    const entry = byTerm.get(marker.dataset.glossaryTerm.toLocaleLowerCase("uk-UA"));
+    const context = marker.dataset.glossaryContext;
+    return context && entry.contexts?.[context] ? { ...entry, ...entry.contexts[context] } : entry;
+  }
 
   function content(entry, includeLink) {
     const wrapper = document.createElement("div");
@@ -84,7 +94,7 @@
 
   function showTooltip(marker) {
     if (coarsePointer.matches) return;
-    const entry = byTerm.get(marker.dataset.glossaryTerm.toLocaleLowerCase("uk-UA"));
+    const entry = entryFor(marker);
     tooltip.replaceChildren(content(entry, false));
     tooltip.hidden = false;
     const rect = marker.getBoundingClientRect();
@@ -112,7 +122,7 @@
       return;
     }
     closeInline();
-    const entry = byTerm.get(marker.dataset.glossaryTerm.toLocaleLowerCase("uk-UA"));
+    const entry = entryFor(marker);
     inline = document.createElement("div");
     inline.className = "glossary-inline";
     inline.append(content(entry, true));

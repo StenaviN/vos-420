@@ -445,7 +445,7 @@ window.SEARCH_INDEX = {
       "topic": "Програмування HARRIS КХ RF-7800H-MP",
       "section": "Програмування радіостанції через USB-кабель",
       "url": "08-harris-kh-programuvannia/index.html#usb-programuvannia",
-      "text": "Програмування радіостанції через USB-кабель Для прямого підключення до RF-7800H-MP увімкни інтерфейс DIRECT USB і перевір IP-адресу радіостанції. 8 PGM CONFIG NETWORK INTERFACE ETHERNET ADDRESS DIRECT USB ENABLE 169.254.78.1 Це початкове налаштування для подальшого програмування станції через USB-кабель."
+      "text": "Програмування радіостанції через USB-кабель Перегляд налаштування DIRECT USB та IP-адреси радіостанції"
     }
   ]
 };
