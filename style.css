@@ -896,7 +896,7 @@ th {
   gap: 6px;
 }
 
-.feature-values span {
+.feature-values > span {
   padding: 3px 6px;
   border: 1px solid #c8cfcc;
   background: transparent;
@@ -1209,9 +1209,13 @@ code {
 }
 
 .glossary-term {
+  padding: 0;
+  border: 0;
   border-bottom: 1px dotted color-mix(in srgb, var(--accent) 72%, transparent);
+  background: transparent;
   color: inherit;
   cursor: help;
+  font: inherit;
   text-decoration: none;
 }
 
