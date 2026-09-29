@@ -54,6 +54,7 @@ window.GLOSSARY_TERMS = [
   { term: "GPS-TOD", full: "GPS Time of Day", uk: "час доби за GPS", description: "Меню перегляду точної часової основи, отриманої або синхронізованої через GPS.", topics: [7] },
   { term: "HF", full: "High Frequency", uk: "високі частоти; КХ", description: "Міжнародне позначення діапазону високих частот, що відповідає КХ.", topics: [6, 8] },
   { term: "HOP", full: "Frequency Hopping", uk: "режим перескоку частоти", description: "Робота зі синхронізованою зміною частот за завантаженим Hop Set.", topics: [6, 7, 8] },
+  { term: "HUB", full: "Hold-Up Battery", uk: "внутрішня резервна батарея", description: "Підтримує збереження запрограмованих параметрів і завантажених даних радіостанції, коли основне живлення від'єднане.", topics: [7] },
   { term: "Hopset", full: "Hopset", uk: "набір параметрів перескоку частоти", description: "Набір частотних і часових параметрів, за якими працює мережа HOP.", topics: [8] },
   { term: "HH", full: "Handheld", uk: "портативна радіостанція", description: "Позначення ручного портативного виконання у назві моделі.", topics: [5] },
   { term: "ID", full: "Identification", uk: "ідентифікатор", description: "Унікальне позначення об'єкта, мережі або радіостанції.", topics: [5] },
