@@ -1021,12 +1021,28 @@ th {
   margin-top: 0;
 }
 
+.procedure-shot-pair .procedure-shot-button {
+  display: grid;
+  aspect-ratio: 4 / 3;
+  place-items: center;
+}
+
+.procedure-shot-pair .procedure-shot-button img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 .procedure-steps {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 18px;
   margin: 22px 0;
   counter-reset: procedure-step;
+}
+
+.procedure-steps.two-up {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .procedure-step {
@@ -1055,8 +1071,17 @@ th {
 }
 
 .procedure-step .procedure-shot-button {
-  width: min(100%, 280px);
+  display: grid;
+  width: 100%;
+  aspect-ratio: 4 / 3;
   margin: 0 auto;
+  place-items: center;
+}
+
+.procedure-step .procedure-shot-button img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .procedure-step figcaption {
@@ -1544,7 +1569,8 @@ code {
 }
 
 @media (max-width: 560px) {
-  .procedure-steps {
+  .procedure-steps,
+  .procedure-steps.two-up {
     grid-template-columns: 1fr;
     gap: 24px;
   }
