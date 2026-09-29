@@ -469,7 +469,7 @@ window.SEARCH_INDEX = {
       "topic": "Програмування Harris КХ",
       "section": "Перевірка плану",
       "url": "08-harris-kh-programuvannia/index.html#perevirka",
-      "text": "Перевірка плану Actions Validate Plan Після завершення налаштувань виконай перевірку плану. Переглянь результати перевірки та виправ помилки до використання конфігурації. Validate Plan у вікні CPA."
+      "text": "Перевірка плану Actions Validate Plan Після завершення налаштувань виконай перевірку плану. Переглянь результати перевірки та виправ помилки до використання конфігурації. Validate Plan у вікні CPA. Повідомлення про режим шифрування SMS Можливе повідомлення: Make sure your radio is in CT Mode or SMS will not work. Повідомлення з'являється, коли для станцій параметр Station Cipher Mode має значення CT Only . Рішення: Обери всі радіостанції плану. У панелі властивостей відкрий наведений шлях. Зміни Station Cipher Mode на PT/CT . Повторно виконай Actions → Validate Plan . Station Configuration 3G SMS Station Cipher Mode PT/CT Повідомлення для станцій із параметром Station Cipher Mode = CT Only ."
     }
   ]
 };

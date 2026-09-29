@@ -90,7 +90,7 @@ window.GLOSSARY_TERMS = [
   { term: "RF", full: "Radio Frequency", uk: "радіочастота", description: "Позначення радіочастотного обладнання або тракту; використовується у назвах моделей.", topics: [5, 8] },
   { term: "RS-232", full: "Recommended Standard 232", uk: "стандарт послідовного інтерфейсу", description: "Стандарт дротового послідовного обміну даними між пристроями.", topics: [6] },
   { term: "Rx", full: "Receive", uk: "приймання", description: "Позначення приймального тракту або частоти приймання.", topics: [5, 7] },
-  { term: "SMS", full: "Short Message Service", uk: "служба коротких повідомлень", description: "Передавання коротких текстових повідомлень у режимі 3G.", topics: [7] },
+  { term: "SMS", full: "Short Message Service", uk: "служба коротких повідомлень", description: "Передавання коротких текстових повідомлень у режимі 3G.", topics: [7, 8] },
   { term: "SNR", full: "Signal-to-Noise Ratio", uk: "відношення сигнал/шум", description: "Показник співвідношення потужності корисного сигналу до шуму.", topics: [6] },
   { term: "SQL", full: "Squelch", uk: "шумоподавлення", description: "Функція приглушення шуму приймача за відсутності корисного сигналу.", topics: [5, 6] },
   { term: "STC", full: "Satellite TDMA Capability", uk: "супутникова можливість TDMA", description: "Режим роботи через військовий супутниковий ретранслятор.", topics: [5] },
