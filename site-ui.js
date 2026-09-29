@@ -247,16 +247,32 @@
   toolbar.className = "section-collapse-toolbar";
   toolbar.setAttribute("aria-label", "Керування розділами конспекту");
   toolbar.innerHTML = `
-    <button type="button" data-action="expand"><span aria-hidden="true">＋</span> Розгорнути все</button>
-    <button type="button" data-action="collapse"><span aria-hidden="true">−</span> Згорнути все</button>`;
+    <button type="button" data-action="expand" aria-keyshortcuts="Alt+Shift+ArrowDown"><span aria-hidden="true">＋</span> Розгорнути все</button>
+    <button type="button" data-action="collapse" aria-keyshortcuts="Alt+Shift+ArrowUp"><span aria-hidden="true">−</span> Згорнути все</button>`;
   const searchPanel = topicMain.querySelector(":scope > .topic-search-panel");
   (searchPanel || hero).after(toolbar);
+
+  const setAllCollapsed = (collapsed) => {
+    sections.forEach((section) => setCollapsed(section, collapsed, { save: false }));
+    saveState();
+  };
 
   toolbar.addEventListener("click", (event) => {
     const action = event.target.closest("button")?.dataset.action;
     if (!action) return;
-    sections.forEach((section) => setCollapsed(section, action === "collapse", { save: false }));
-    saveState();
+    setAllCollapsed(action === "collapse");
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (!event.altKey || !event.shiftKey || event.ctrlKey || event.metaKey) return;
+    if (event.target.closest("input, textarea, select, [contenteditable='true']")) return;
+    if (event.key === "ArrowUp") {
+      event.preventDefault();
+      setAllCollapsed(true);
+    } else if (event.key === "ArrowDown") {
+      event.preventDefault();
+      setAllCollapsed(false);
+    }
   });
 
   const revealTarget = (target) => {
