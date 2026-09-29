@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Експлуатація HARRIS КХ RF-7800H-MP / MPR-9600-MP</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="../style.css?v=742ae04050fe">
+  <link rel="stylesheet" href="../style.css?v=8b96b3f0ca18">
 </head>
 <body>
   <main class="page">
@@ -20,6 +20,16 @@
 
     <section id="pered-robotoyu" class="section">
       <h2>Перед початком роботи</h2>
+      <h3>Підключення та ввімкнення</h3>
+      <ol>
+        <li>Підключи акумуляторну батарею <code>BB-2590/U Li-ion</code>.</li>
+        <li>Підключи антену.</li>
+        <li>Підключи GPS-антену.</li>
+        <li>Підключи мікротелефонну гарнітуру <code>H-250/U</code>.</li>
+        <li>За можливості обладнай систему заземлення.</li>
+        <li>Увімкни радіостанцію, встановивши перемикач у положення <code>PT</code>.</li>
+      </ol>
+      <p>Після завантаження повідомлення <code>DEFAULT PASSWORD DETECTED</code> означає, що код користувача не задано.</p>
       <p>Перед виходом в ефір перевір підключення антени, живлення та гарнітури. Режим, частоти, адреси й ключові параметри обох кореспондентів мають відповідати плану зв'язку.</p>
       <div class="note"><strong>Обов'язково:</strong> перед початком роботи ввімкни <strong>внутрішній антенний узгоджувач</strong>: у пункті <code>INTERNAL COUPLER</code> має бути встановлено <code>ENABLE</code>.</div>
       <div class="note"><strong>Важливо:</strong> режими <strong>3G</strong> і <strong>3G+</strong> доступні у RF-7800H-MP, але не підтримуються MPR-9600-MP. Процедури FIX, HOP і ALE застосовують відповідно до завантаженої конфігурації станції.</div>
@@ -36,14 +46,16 @@
     </section>
 
     <section id="testuvannia" class="section">
-      <h2>Контроль справності</h2>
+      <h2>Вбудоване тестування</h2>
       <h3>Системний тест</h3>
       <div class="menu-path"><span>7 OPT</span><span>TEST</span><span>BIT</span><span>SYSTEM</span><span>TEST IN PROGRESS</span><span>TEST PASSED</span></div>
       <p>Повідомлення <code>TEST PASSED</code> означає успішне завершення вбудованого системного тесту.</p>
       <h3>Батарея та антенно-фідерний тракт</h3>
       <div class="menu-path"><span>7 OPT</span><span>TEST</span><span>BATTERY</span></div>
       <div class="menu-path"><span>7 OPT</span><span>TEST</span><span>VSWR</span></div>
-      <p>Тест <strong>BATTERY</strong> показує стан живлення. <strong>VSWR</strong> перевіряє роботу підсилювача та узгодження антени на поточній робочій частоті.</p>
+      <p><strong>BATTERY</strong> перевіряє акумулятор, напругу, стан батарейки HUB та оцінює залишковий ресурс.</p>
+      <p><strong>VSWR</strong> перевіряє підсилювач потужності та КСХ антени на поточній робочій частоті. Для справного підсилювача показана вихідна потужність має бути більшою за 0; нормальний КСХ у матеріалі — <strong>1,0–1,9</strong>.</p>
+      <p>Якщо з'являється <code>VSWR TEST FAILED</code>, перевір підключення та цілісність антени, за потреби заміни її.</p>
     </section>
 
     <section id="antena-merezha" class="section">
@@ -205,13 +217,13 @@
 
     <div class="topic-quiz-cta"><div><strong>Перевір себе</strong><span>Перевір знання за матеріалами цієї теми.</span></div><a class="topic-quiz-button" href="../quiz.html?topic=7">Почати вікторину <span aria-hidden="true">→</span></a></div>
   </main>
-  <script src="../asset-version.js?v=742ae04050fe"></script>
+  <script src="../asset-version.js?v=8b96b3f0ca18"></script>
 
-  <script src="../search-index.js?v=742ae04050fe"></script>
-  <script src="../topic-search.js?v=742ae04050fe"></script>
+  <script src="../search-index.js?v=8b96b3f0ca18"></script>
+  <script src="../topic-search.js?v=8b96b3f0ca18"></script>
   <script>window.GLOSSARY_ROOT = "../";</script>
-  <script src="../glossary-data.js?v=742ae04050fe"></script>
-  <script src="../glossary-terms.js?v=742ae04050fe"></script>
-  <script src="../site-ui.js?v=742ae04050fe"></script>
+  <script src="../glossary-data.js?v=8b96b3f0ca18"></script>
+  <script src="../glossary-terms.js?v=8b96b3f0ca18"></script>
+  <script src="../site-ui.js?v=8b96b3f0ca18"></script>
 </body>
 </html>
