@@ -6,12 +6,32 @@
   button.className = "back-to-top";
   button.title = "Повернутися на початок сторінки";
   button.setAttribute("aria-label", "Повернутися на початок сторінки");
+  button.setAttribute("aria-hidden", "true");
+  button.tabIndex = -1;
   button.innerHTML = '<span aria-hidden="true">↑</span>';
   button.addEventListener("click", () => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
   });
   document.body.append(button);
+
+  const visibilityThreshold = 240;
+  let updateQueued = false;
+
+  const updateVisibility = () => {
+    const visible = window.scrollY > visibilityThreshold;
+    button.classList.toggle("is-visible", visible);
+    button.setAttribute("aria-hidden", String(!visible));
+    button.tabIndex = visible ? 0 : -1;
+    updateQueued = false;
+  };
+
+  window.addEventListener("scroll", () => {
+    if (updateQueued) return;
+    updateQueued = true;
+    window.requestAnimationFrame(updateVisibility);
+  }, { passive: true });
+  updateVisibility();
 })();
 
 (() => {
