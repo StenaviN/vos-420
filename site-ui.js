@@ -35,6 +35,96 @@
 })();
 
 (() => {
+  const topicMain = document.querySelector("main.page");
+  if (!topicMain?.querySelector(":scope > .topbar") || !topicMain.querySelector(":scope > header.hero")) return;
+
+  const headings = [...topicMain.querySelectorAll(":scope > section[id] > h2, :scope > section[id] h3")];
+  if (!headings.length) return;
+
+  const usedIds = new Set([...document.querySelectorAll("[id]")].map((element) => element.id));
+  const slugify = (value) => value
+    .toLocaleLowerCase("uk")
+    .normalize("NFC")
+    .replace(/[^\p{L}\p{N}]+/gu, "-")
+    .replace(/^-+|-+$/g, "") || "rozdil";
+
+  const uniqueId = (base) => {
+    let candidate = base;
+    let suffix = 2;
+    while (usedIds.has(candidate)) candidate = `${base}-${suffix++}`;
+    usedIds.add(candidate);
+    return candidate;
+  };
+
+  const toast = document.createElement("div");
+  toast.className = "copy-link-toast";
+  toast.setAttribute("role", "status");
+  toast.setAttribute("aria-live", "polite");
+  toast.textContent = "Посилання скопійовано";
+  document.body.append(toast);
+  let toastTimer;
+
+  const showToast = () => {
+    toast.classList.add("is-visible");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove("is-visible"), 1800);
+  };
+
+  const fallbackCopy = (text) => {
+    const input = document.createElement("textarea");
+    input.value = text;
+    input.setAttribute("readonly", "");
+    input.className = "clipboard-fallback";
+    document.body.append(input);
+    input.select();
+    const copied = document.execCommand("copy");
+    input.remove();
+    if (!copied) throw new Error("Copy command failed");
+  };
+
+  const copyText = async (text) => {
+    if (navigator.clipboard?.writeText && window.isSecureContext) {
+      await navigator.clipboard.writeText(text);
+      return;
+    }
+    fallbackCopy(text);
+  };
+
+  headings.forEach((heading) => {
+    const section = heading.closest("section[id]");
+    let targetId = heading.id;
+    if (!targetId && heading.tagName === "H2") targetId = section.id;
+    if (!targetId) {
+      targetId = uniqueId(`${section.id}-${slugify(heading.textContent)}`);
+      heading.id = targetId;
+    }
+
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "heading-link-button";
+    button.title = "Копіювати посилання на цей розділ";
+    button.setAttribute("aria-label", `Копіювати посилання на розділ «${heading.textContent.trim()}»`);
+    button.innerHTML = '<span aria-hidden="true">🔗</span>';
+    button.addEventListener("click", async () => {
+      const url = new URL(window.location.href);
+      url.hash = targetId;
+      try {
+        await copyText(url.href);
+        showToast();
+      } catch {
+        toast.textContent = "Не вдалося скопіювати посилання";
+        showToast();
+        setTimeout(() => { toast.textContent = "Посилання скопійовано"; }, 1900);
+      }
+    });
+    heading.append(button);
+  });
+
+  const initialTarget = window.location.hash ? document.getElementById(decodeURIComponent(window.location.hash.slice(1))) : null;
+  if (initialTarget) requestAnimationFrame(() => initialTarget.scrollIntoView());
+})();
+
+(() => {
   const triggers = [...document.querySelectorAll(".procedure-shot-button")];
   if (!triggers.length || typeof HTMLDialogElement === "undefined") return;
 
