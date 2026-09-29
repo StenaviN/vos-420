@@ -433,31 +433,31 @@ window.SEARCH_INDEX = {
       "topic": "Програмування Harris КХ",
       "section": "Радіостанції та мережі",
       "url": "08-harris-kh-programuvannia/index.html#stantsii-merezhi",
-      "text": "Радіостанції та мережі Для створення мережі скористайся кнопкою Create Network на панелі інструментів CPA та обери тип мережі. Довідка встановленої версії CPA не наводить окремого пункту головного меню для цієї команди. Створення радіостанцій Якщо це перша мережа плану: Обери тип RF-7800H-MP . Відкрий список біля New і вибери Create Multiple . Введи потрібну кількість станцій. Зніми виділення зі станцій натисканням на вільну область. Натисни Expand All , щоб відкрити параметри мережі. Додавання потрібної кількості RF-7800H-MP. Повторне використання станцій Під час створення наступної мережі натисни Existing і додай до неї вже створені радіостанції. Одна станція може входити до кількох мереж плану."
+      "text": "Радіостанції та мережі Create Create Network тип мережі Обери потрібний тип мережі: HF Fixed Frequency , ALE , 3G або HF Hopping . Створення радіостанцій Якщо це перша мережа плану: Обери тип RF-7800H-MP . Відкрий список біля New і вибери Create Multiple . Введи потрібну кількість станцій. Зніми виділення зі станцій натисканням на вільну область. Натисни Expand All , щоб відкрити параметри мережі. Додавання потрібної кількості RF-7800H-MP. Повторне використання станцій Під час створення наступної мережі натисни Existing і додай до неї вже створені радіостанції. Одна станція може входити до кількох мереж плану."
     },
     {
       "topic": "Програмування Harris КХ",
       "section": "Мережа FIX",
       "url": "08-harris-kh-programuvannia/index.html#fix",
-      "text": "Мережа FIX Create Network HF Fixed Frequency У правій панелі властивостей заповни: Name — назва мережі; Channel — канал, створений у Tools → HF Channels ; Crypto Algorithm — алгоритм шифрування; Key Name — створений ключ; Modem Preset — профіль модема; CT Voice і PT Voice — вокодери для захищеного та відкритого режимів. Основні параметри мережі HF Fixed Frequency."
+      "text": "Мережа FIX Create Create Network HF Fixed Frequency У правій панелі властивостей заповни: Name — назва мережі; Channel — канал, створений у Tools → HF Channels ; Crypto Algorithm — алгоритм шифрування; Key Name — створений ключ; Modem Preset — профіль модема; CT Voice і PT Voice — вокодери для захищеного та відкритого режимів. Основні параметри мережі HF Fixed Frequency."
     },
     {
       "topic": "Програмування Harris КХ",
       "section": "Мережа ALE",
       "url": "08-harris-kh-programuvannia/index.html#ale",
-      "text": "Мережа ALE Create Network ALE Додай створені станції через Existing , зніми виділення та натисни Expand All . У властивостях мережі заповни: Name — назва мережі; Channel Group — канальна група ALE; Crypto Algorithm і Key Name — алгоритм та ключ шифрування; Modem Preset — профіль модема; CT Voice і PT Voice — потрібні вокодери; Use Default self-address — Enabled . Канальна група, шифрування, модем, вокодери й адресація ALE."
+      "text": "Мережа ALE Create Create Network ALE Додай створені станції через Existing , зніми виділення та натисни Expand All . У властивостях мережі заповни: Name — назва мережі; Channel Group — канальна група ALE; Crypto Algorithm і Key Name — алгоритм та ключ шифрування; Modem Preset — профіль модема; CT Voice і PT Voice — потрібні вокодери; Use Default self-address — Enabled . Канальна група, шифрування, модем, вокодери й адресація ALE."
     },
     {
       "topic": "Програмування Harris КХ",
       "section": "Мережа 3G",
       "url": "08-harris-kh-programuvannia/index.html#three-g",
-      "text": "Мережа 3G Create Network 3G Додай радіостанції через Existing . Зніми виділення та натисни Expand All . Обери Crypto Algorithm і Key Name . Відкрий поле 3G Configuration кнопкою з трьома крапками. Шифрування та перехід до спільних параметрів мережі 3G. TOD Server і частотні плани У полі TOD Server обери головну радіостанцію, яка забезпечуватиме часову основу мережі. У розділі Channel Plans задай назву кожного плану в полі Plan Name . У полі Chan Group признач канальну групу 3G відповідному частотному плану. Вибір TOD Server і канальних груп частотних планів."
+      "text": "Мережа 3G Create Create Network 3G Додай радіостанції через Existing . Зніми виділення та натисни Expand All . Обери Crypto Algorithm і Key Name . Відкрий поле 3G Configuration кнопкою з трьома крапками. Шифрування та перехід до спільних параметрів мережі 3G. TOD Server і частотні плани У полі TOD Server обери головну радіостанцію, яка забезпечуватиме часову основу мережі. У розділі Channel Plans задай назву кожного плану в полі Plan Name . У полі Chan Group признач канальну групу 3G відповідному частотному плану. Вибір TOD Server і канальних груп частотних планів."
     },
     {
       "topic": "Програмування Harris КХ",
       "section": "Мережа HOP",
       "url": "08-harris-kh-programuvannia/index.html#hop",
-      "text": "Мережа HOP Create Network HF Hopping Додай станції через Existing , зніми виділення та натисни Expand All . Створення hopset У групі Global HF Hopping відкрий HF Hopsets кнопкою з трьома крапками. Для редагування наявного набору виділи його та натисни Modify . У полі Center Frequency задай центральну частоту. У полі Control (Auto Respond) Station обери головну станцію. Для створення інших наборів натисни Add і заповни ті самі основні поля. Вибір наявного hopset для редагування. Центральна частота hopset. Керувальна станція hopset. Властивості мережі Після створення hopset заповни Name , Hopset , Crypto Algorithm , Key Name , Modem Preset , CT Voice і PT Voice . Призначення hopset та інших параметрів мережі HOP."
+      "text": "Мережа HOP Create Create Network HF Hopping Додай станції через Existing , зніми виділення та натисни Expand All . Створення hopset У групі Global HF Hopping відкрий HF Hopsets кнопкою з трьома крапками. Для редагування наявного набору виділи його та натисни Modify . У полі Center Frequency задай центральну частоту. У полі Control (Auto Respond) Station обери головну станцію. Для створення інших наборів натисни Add і заповни ті самі основні поля. Вибір наявного hopset для редагування. Центральна частота hopset. Керувальна станція hopset. Властивості мережі Після створення hopset заповни Name , Hopset , Crypto Algorithm , Key Name , Modem Preset , CT Voice і PT Voice . Призначення hopset та інших параметрів мережі HOP."
     },
     {
       "topic": "Програмування Harris КХ",
@@ -469,7 +469,7 @@ window.SEARCH_INDEX = {
       "topic": "Програмування Harris КХ",
       "section": "Перевірка плану",
       "url": "08-harris-kh-programuvannia/index.html#perevirka",
-      "text": "Перевірка плану Після завершення налаштувань натисни Validate Plan на панелі інструментів CPA. Довідка встановленої версії описує цю дію саме як кнопку панелі, без окремого шляху через головне меню. Переглянь результати перевірки та виправ помилки до використання конфігурації. Команда перевірки завершеного плану."
+      "text": "Перевірка плану Actions Validate Plan Після завершення налаштувань виконай перевірку плану. Переглянь результати перевірки та виправ помилки до використання конфігурації. Validate Plan у вікні CPA."
     }
   ]
 };
