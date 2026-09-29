@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ТТХ HARRIS КХ RF-7800H-MP / MPR-9600-MP</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="../style.css?v=e2d8917d4b55">
+  <link rel="stylesheet" href="../style.css?v=4871a3016a15">
 </head>
 <body>
   <main class="page">
@@ -79,6 +79,11 @@
       <table><thead><tr><th>Режим</th><th>Максимальна різниця часу</th></tr></thead><tbody><tr><td>3G</td><td>7 хв</td></tr><tr><td>HOP</td><td>90 с</td></tr><tr><td>ALE</td><td>30 с</td></tr></tbody></table>
     </section>
 
+    <section id="fix" class="section">
+      <h2>FIX: робота на фіксованій частоті</h2>
+      <p>У режимі FIX радіостанція працює на заздалегідь налаштованій незмінній частоті. Для каналу задають частоту, вид модуляції, потужність, параметри шифрування, вокодер та інші необхідні налаштування.</p>
+    </section>
+
     <section id="ale" class="section">
       <h2>ALE</h2>
       <ul>
@@ -98,17 +103,19 @@
         <li>Для роботи потрібна синхронізація часу. Її отримують через GPS або вводять вручну.</li>
         <li>Різниця часу між станціями не повинна перевищувати 7 хвилин.</li>
       </ul>
-    </section>
-
-    <section id="ldv" class="section">
-      <h2>LDV</h2>
+      <h3 id="ldv">Голосове повідомлення LDV</h3>
       <p><strong>LDV</strong> - голосове повідомлення «останньої надії» для дуже низької якості каналу, коли за SNR приблизно від -3 до 0 дБ звичайний голос може не проходити. LDV передається тільки в режимі 3G.</p>
       <ul>
         <li>ARQ забезпечує передавання повідомлення без помилок.</li>
         <li>Прийняте повідомлення відтворюється одразу та записується для повторного прослуховування.</li>
-        <li>У пам'яті зберігається лише одне, останнє прийняте повідомлення.</li>
+        <li>У пам'яті зберігається до 10 отриманих повідомлень.</li>
         <li>Параметри LDV зазвичай залишають зі стандартними значеннями.</li>
       </ul>
+    </section>
+
+    <section id="three-g-plus" class="section">
+      <h2>3G+: одночасна робота з мережами 3G та ALE</h2>
+      <p>Режим 3G+ дає змогу одночасно контролювати мережі 3G та ALE і працювати з кореспондентом за правилами того режиму, в якому він перебуває. 3G+ доступний у RF-7800H-MP і не підтримується MPR-9600-MP.</p>
     </section>
 
     <section id="hop" class="section">
@@ -281,13 +288,13 @@
 
     <div class="topic-quiz-cta"><div><strong>Перевір себе</strong><span>Перевір знання за матеріалами цієї теми.</span></div><a class="topic-quiz-button" href="../quiz.html?topic=6">Почати вікторину <span aria-hidden="true">→</span></a></div>
   </main>
-  <script src="../asset-version.js?v=e2d8917d4b55"></script>
+  <script src="../asset-version.js?v=4871a3016a15"></script>
 
-  <script src="../search-index.js?v=e2d8917d4b55"></script>
-  <script src="../topic-search.js?v=e2d8917d4b55"></script>
+  <script src="../search-index.js?v=4871a3016a15"></script>
+  <script src="../topic-search.js?v=4871a3016a15"></script>
   <script>window.GLOSSARY_ROOT = "../";</script>
-  <script src="../glossary-data.js?v=e2d8917d4b55"></script>
-  <script src="../glossary-terms.js?v=e2d8917d4b55"></script>
-  <script src="../site-ui.js?v=e2d8917d4b55"></script>
+  <script src="../glossary-data.js?v=4871a3016a15"></script>
+  <script src="../glossary-terms.js?v=4871a3016a15"></script>
+  <script src="../site-ui.js?v=4871a3016a15"></script>
 </body>
 </html>
