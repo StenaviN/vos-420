@@ -415,7 +415,7 @@ window.SEARCH_INDEX = {
       "topic": "Програмування Harris КХ",
       "section": "Ключі шифрування",
       "url": "08-harris-kh-programuvannia/index.html#kliuchi",
-      "text": "Ключі шифрування Tools Key Management Key Rings Увімкни Enable Key Generation (Unrestricted Key Operation) . Натисни Generate . Задай кількість у полі Number of Key Rings . Введи спільний початок назви в полі Key Ring Name Prefix . Обери потрібний алгоритм у групі Key Types . Натисни Generate , перевір створені ключі та закрий вікно. Кількість, префікс і тип ключів визначає план зв'язку. Значення на скріншоті є прикладом, а не універсальними налаштуваннями. Поля кількості, префікса та типу ключів."
+      "text": "Ключі шифрування Tools Key Management Key Rings У вікні Key Manager обери Key Rings . Увімкни Enable Key Generation (Unrestricted Key Operation) . Натисни Generate . Задай кількість у полі Number of Key Rings . Введи спільний початок назви в полі Key Ring Name Prefix . Обери потрібний алгоритм у групі Key Types . Натисни Generate і перевір створені ключі. Закрий Key Manager кнопкою Close . Кількість, префікс і тип ключів визначає план зв'язку. Значення на скріншоті є прикладом, а не універсальними налаштуваннями. Відкриття менеджера ключів. Обери Tools → Key Management . Створення Key Rings. Виконай позначені дії 1–8 у наведеній послідовності."
     },
     {
       "topic": "Програмування Harris КХ",
