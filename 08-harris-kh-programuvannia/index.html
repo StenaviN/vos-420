@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Програмування Harris КХ</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="../style.css?v=328c2841ddde">
+  <link rel="stylesheet" href="../style.css?v=68f17ca2e220">
 </head>
 <body>
   <main class="page">
@@ -270,6 +270,10 @@
       <h3>Повідомлення про режим шифрування SMS</h3>
       <div class="note note-important"><strong>Можливе повідомлення:</strong> <code>Make sure your radio is in CT Mode or SMS will not work.</code></div>
       <p>Повідомлення з'являється, коли для станцій параметр <code>Station Cipher Mode</code> має значення <code>CT Only</code>.</p>
+      <figure class="procedure-shot">
+        <button class="procedure-shot-button" type="button" aria-label="Збільшити повідомлення про Station Cipher Mode"><img src="validation-sms-cipher-warning.png" alt="Повідомлення перевірки плану про Station Cipher Mode CT Only" loading="lazy"></button>
+        <figcaption>Повідомлення для станцій із параметром <code>Station Cipher Mode = CT Only</code>.</figcaption>
+      </figure>
       <p><strong>Рішення:</strong></p>
       <ol>
         <li>Обери всі радіостанції плану.</li>
@@ -278,18 +282,32 @@
         <li>Повторно виконай <code>Actions → Validate Plan</code>.</li>
       </ol>
       <div class="menu-path"><span>Station Configuration</span><span>3G</span><span>SMS</span><span>Station Cipher Mode</span><span>PT/CT</span></div>
-      <figure class="procedure-shot">
-        <button class="procedure-shot-button" type="button" aria-label="Збільшити повідомлення про Station Cipher Mode"><img src="validation-sms-cipher-warning.png" alt="Повідомлення перевірки плану про Station Cipher Mode CT Only" loading="lazy"></button>
-        <figcaption>Повідомлення для станцій із параметром <code>Station Cipher Mode = CT Only</code>.</figcaption>
-      </figure>
+      <div class="procedure-steps" aria-label="Послідовність зміни Station Cipher Mode">
+        <figure class="procedure-step">
+          <button class="procedure-shot-button" type="button" aria-label="Збільшити вибір усіх радіостанцій"><img src="sms-select-all-stations.png" alt="Усі радіостанції виділені у вікні Navigator" loading="lazy"></button>
+          <figcaption><strong>Виділення станцій.</strong> Обери всі радіостанції у вікні <code>Navigator</code>.</figcaption>
+        </figure>
+        <figure class="procedure-step">
+          <button class="procedure-shot-button" type="button" aria-label="Збільшити Station Cipher Mode до зміни"><img src="sms-cipher-before.png" alt="Station Cipher Mode має значення CT Only" loading="lazy"></button>
+          <figcaption><strong>До зміни.</strong> Для вибраних станцій встановлено <code>CT Only</code>.</figcaption>
+        </figure>
+        <figure class="procedure-step">
+          <button class="procedure-shot-button" type="button" aria-label="Збільшити варіанти Station Cipher Mode"><img src="sms-cipher-options.png" alt="Список значень CT Only і PT/CT для Station Cipher Mode" loading="lazy"></button>
+          <figcaption><strong>Вибір значення.</strong> Відкрий список і обери <code>PT/CT</code>.</figcaption>
+        </figure>
+        <figure class="procedure-step">
+          <button class="procedure-shot-button" type="button" aria-label="Збільшити Station Cipher Mode після зміни"><img src="sms-cipher-after.png" alt="Station Cipher Mode має значення PT/CT" loading="lazy"></button>
+          <figcaption><strong>Після зміни.</strong> Перевір значення <code>PT/CT</code> для всіх вибраних станцій.</figcaption>
+        </figure>
+      </div>
     </section>
   </main>
-  <script src="../asset-version.js?v=328c2841ddde"></script>
-  <script src="../search-index.js?v=328c2841ddde"></script>
-  <script src="../topic-search.js?v=328c2841ddde"></script>
+  <script src="../asset-version.js?v=68f17ca2e220"></script>
+  <script src="../search-index.js?v=68f17ca2e220"></script>
+  <script src="../topic-search.js?v=68f17ca2e220"></script>
   <script>window.GLOSSARY_ROOT = "../";</script>
-  <script src="../glossary-data.js?v=328c2841ddde"></script>
-  <script src="../glossary-terms.js?v=328c2841ddde"></script>
-  <script src="../site-ui.js?v=328c2841ddde"></script>
+  <script src="../glossary-data.js?v=68f17ca2e220"></script>
+  <script src="../glossary-terms.js?v=68f17ca2e220"></script>
+  <script src="../site-ui.js?v=68f17ca2e220"></script>
 </body>
 </html>
