@@ -409,7 +409,7 @@ window.SEARCH_INDEX = {
       "topic": "Програмування Harris КХ",
       "section": "Передналаштування CPA",
       "url": "08-harris-kh-programuvannia/index.html#perednalashtuvannia",
-      "text": "Передналаштування CPA Префікс назв радіостанцій Tools Application Options У лівій частині вікна обери RF-7800H-MP . У розділі General введи потрібне значення в полі Name Prefix . CPA використовуватиме цей префікс під час автоматичного формування назв нових радіостанцій. Відкриття параметрів. Обери Tools → Application Options . Префікс станцій. Обери RF-7800H-MP (1) і введи префікс у полі Name Prefix (2). Автоматичне створення TOD Mask Tools Application Options HF Hopping У полі Auto Generate TOD Mask встанови Enabled і підтвердь зміни кнопкою OK . Автоматичне формування TOD Mask для мереж HOP."
+      "text": "Передналаштування CPA Префікс назв радіостанцій Tools Application Options У лівій частині вікна обери RF-7800H-MP . У розділі General введи потрібне значення в полі Name Prefix . CPA використовуватиме цей префікс під час автоматичного формування назв нових радіостанцій. Відкриття параметрів. Обери Tools → Application Options . Префікс станцій. Обери RF-7800H-MP (1) і введи префікс у полі Name Prefix (2). Автоматичне створення TOD Mask Tools Application Options HF Hopping У полі Auto Generate TOD Mask встанови Enabled і підтвердь зміни кнопкою OK . Обери HF Hopping (1) і встанови Auto Generate TOD Mask = Enabled (2)."
     },
     {
       "topic": "Програмування Harris КХ",
