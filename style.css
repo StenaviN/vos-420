@@ -111,8 +111,8 @@ body {
 
 .copy-link-toast {
   position: fixed;
-  left: 50%;
-  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  top: 50%;
+  left: 12px;
   z-index: 120;
   max-width: calc(100% - 32px);
   padding: 10px 14px;
@@ -125,16 +125,29 @@ body {
   font-weight: 700;
   opacity: 0;
   pointer-events: none;
-  transform: translate(-50%, 12px);
+  transform: translate(6px, -50%);
   visibility: hidden;
   transition: opacity 160ms ease, transform 160ms ease, visibility 0s linear 160ms;
 }
 
 .copy-link-toast.is-visible {
   opacity: 1;
-  transform: translate(-50%, 0);
+  transform: translate(0, -50%);
   visibility: visible;
   transition-delay: 0s;
+}
+
+@media (max-width: 700px) {
+  .copy-link-toast {
+    top: auto;
+    left: 50%;
+    bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+    transform: translate(-50%, 12px);
+  }
+
+  .copy-link-toast.is-visible {
+    transform: translate(-50%, 0);
+  }
 }
 
 .clipboard-fallback {

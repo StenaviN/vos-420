@@ -64,8 +64,20 @@
   document.body.append(toast);
   let toastTimer;
 
-  const showToast = () => {
+  const showToast = (anchor) => {
     toast.classList.add("is-visible");
+    if (window.matchMedia("(min-width: 701px)").matches) {
+      const rect = anchor.getBoundingClientRect();
+      const toastWidth = toast.offsetWidth;
+      const toastHeight = toast.offsetHeight;
+      let left = rect.right + 8;
+      if (left + toastWidth > window.innerWidth - 12) left = rect.left - toastWidth - 8;
+      toast.style.left = `${Math.max(12, left)}px`;
+      toast.style.top = `${Math.min(window.innerHeight - toastHeight / 2 - 12, Math.max(toastHeight / 2 + 12, rect.top + rect.height / 2))}px`;
+    } else {
+      toast.style.removeProperty("left");
+      toast.style.removeProperty("top");
+    }
     clearTimeout(toastTimer);
     toastTimer = setTimeout(() => toast.classList.remove("is-visible"), 1800);
   };
@@ -110,10 +122,10 @@
       url.hash = targetId;
       try {
         await copyText(url.href);
-        showToast();
+        showToast(button);
       } catch {
         toast.textContent = "Не вдалося скопіювати посилання";
-        showToast();
+        showToast(button);
         setTimeout(() => { toast.textContent = "Посилання скопійовано"; }, 1900);
       }
     });
