@@ -1752,20 +1752,14 @@ code {
   }
 
   .menu-path {
-    align-items: stretch;
-    flex-direction: column;
-    gap: 18px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
   }
 
   .menu-path span {
-    width: 100%;
+    flex: 0 0 auto;
   }
 
-  .menu-path span:not(:last-child)::after {
-    top: calc(100% + 2px);
-    left: 50%;
-    transform: translateX(-50%) rotate(90deg);
-  }
 }
 
 @media (max-width: 340px) {
