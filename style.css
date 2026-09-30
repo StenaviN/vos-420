@@ -83,6 +83,7 @@ body {
 
 .heading-link-button {
   display: inline-flex;
+  flex: 0 0 30px;
   width: 30px;
   height: 30px;
   margin-left: 8px;
@@ -96,6 +97,16 @@ body {
   font: 400 17px/1 "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   vertical-align: 2px;
   cursor: pointer;
+}
+
+.has-heading-link {
+  display: flex;
+  align-items: flex-start;
+}
+
+.heading-label {
+  min-width: 0;
+  flex: 0 1 auto;
 }
 
 .heading-link-button:hover,
@@ -677,10 +688,11 @@ p {
 }
 
 .section-toggle {
+  flex: 0 0 34px;
   display: inline-grid;
   width: 34px;
   height: 34px;
-  margin: -3px 10px -6px 0;
+  margin: -3px 10px 0 0;
   padding: 0;
   place-items: center;
   border: 1px solid var(--line);

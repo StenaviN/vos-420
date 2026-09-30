@@ -129,7 +129,11 @@
         setTimeout(() => { toast.textContent = "Посилання скопійовано"; }, 1900);
       }
     });
-    heading.append(button);
+    const label = document.createElement("span");
+    label.className = "heading-label";
+    while (heading.firstChild) label.append(heading.firstChild);
+    heading.classList.add("has-heading-link");
+    heading.append(label, button);
   });
 
   const initialTarget = window.location.hash ? document.getElementById(decodeURIComponent(window.location.hash.slice(1))) : null;
