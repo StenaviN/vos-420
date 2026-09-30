@@ -46,13 +46,15 @@ const state = {
   questionStartedAt: null, settings: null, finished: false
 };
 let pendingSavedState = null;
+let autoAdvanceTimer = null;
 
 const $ = (selector) => document.querySelector(selector);
 const elements = {
   setupPanel: $("#setupPanel"), resumePanel: $("#resumePanel"), quizPanel: $("#quizPanel"),
   resultPanel: $("#resultPanel"), statsPanel: $("#statsPanel"), quizTitle: $("#quizTitle"),
   topicLabel: $("#topicLabel"), countSelect: $("#countSelect"), includeMastered: $("#includeMastered"),
-  prioritizeMistakes: $("#prioritizeMistakes"), eligibleHint: $("#eligibleHint"), startButton: $("#startButton"),
+  prioritizeMistakes: $("#prioritizeMistakes"), autoAdvanceCorrect: $("#autoAdvanceCorrect"),
+  eligibleHint: $("#eligibleHint"), startButton: $("#startButton"),
   resumeSummary: $("#resumeSummary"), resumeButton: $("#resumeButton"), newQuizButton: $("#newQuizButton"),
   questionTopic: $("#questionTopic"), questionText: $("#questionText"), answers: $("#answers"),
   feedback: $("#feedback"), feedbackTitle: $("#feedbackTitle"), feedbackText: $("#feedbackText"),
@@ -385,7 +387,9 @@ function showAnsweredQuestion() {
   });
   elements.feedbackTitle.textContent = selected.correct ? "Правильно" : "Неправильно";
   elements.feedback.classList.toggle("wrong", !selected.correct);
-  elements.feedbackText.textContent = item.explanation;
+  elements.feedbackText.textContent = selected.correct
+    ? item.explanation
+    : `Правильна відповідь: ${item.options[correctIndex].text}. ${item.explanation}`;
   elements.referenceLink.href = referenceUrl(item.reference, item);
   elements.feedback.hidden = false;
   elements.checkButton.hidden = true;
@@ -450,7 +454,12 @@ function checkAnswer() {
   showAnsweredQuestion();
   elements.scoreText.textContent = String(state.score);
   saveState();
-  elements.nextButton.focus();
+  if (selected.correct && state.settings.autoAdvanceCorrect) {
+    elements.nextButton.hidden = true;
+    autoAdvanceTimer = window.setTimeout(nextQuestion, 650);
+  } else {
+    elements.nextButton.focus();
+  }
 }
 
 function renderMistakes() {
@@ -523,12 +532,21 @@ function showResults() {
 }
 
 function nextQuestion() {
+  if (autoAdvanceTimer !== null) {
+    window.clearTimeout(autoAdvanceTimer);
+    autoAdvanceTimer = null;
+  }
   if (state.index === state.questions.length - 1) { showResults(); return; }
   state.index += 1; renderQuestion(); window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 function settingsFromForm() {
-  return { count: elements.countSelect.value, includeMastered: elements.includeMastered.checked, prioritizeMistakes: elements.prioritizeMistakes.checked };
+  return {
+    count: elements.countSelect.value,
+    includeMastered: elements.includeMastered.checked,
+    prioritizeMistakes: elements.prioritizeMistakes.checked,
+    autoAdvanceCorrect: elements.autoAdvanceCorrect.checked
+  };
 }
 
 function startQuiz(settings = settingsFromForm()) {
@@ -556,6 +574,8 @@ function showResumeChoice(saved) {
 
 function resumeQuiz() {
   if (!pendingSavedState) { showSetup(); return; }
+  pendingSavedState.settings ||= {};
+  pendingSavedState.settings.autoAdvanceCorrect = Boolean(pendingSavedState.settings.autoAdvanceCorrect);
   Object.assign(state, pendingSavedState, { timerStartedAt: null, questionStartedAt: null, finished: false });
   pendingSavedState = null; showOnly(elements.quizPanel); startTimer(); renderQuestion(true);
 }
@@ -676,6 +696,7 @@ elements.newQuizButton.addEventListener("click", () => { pendingSavedState = nul
 elements.countSelect.addEventListener("change", updateEligibility);
 elements.includeMastered.addEventListener("change", updateEligibility);
 elements.prioritizeMistakes.addEventListener("change", updateEligibility);
+elements.autoAdvanceCorrect.addEventListener("change", updateEligibility);
 elements.statsResetTopic.addEventListener("change", () => { elements.statsResetStatus.textContent = ""; updateResetControls(); });
 elements.clearTopicStats.addEventListener("click", clearSelectedTopicStats);
 elements.clearAllStats.addEventListener("click", clearAllStatistics);
@@ -683,6 +704,42 @@ document.querySelectorAll("[data-view]").forEach((button) => button.addEventList
 window.addEventListener("popstate", () => activateView(viewFromUrl()));
 document.addEventListener("visibilitychange", () => { if (document.hidden) { pauseTimer(); saveState(); } else startTimer(); });
 window.addEventListener("pagehide", () => { pauseTimer(); saveState(); });
+document.addEventListener("keydown", (event) => {
+  if (elements.quizPanel.hidden || event.altKey || event.ctrlKey || event.metaKey) return;
+  const target = event.target;
+  if (target instanceof HTMLInputElement || target instanceof HTMLSelectElement || target instanceof HTMLTextAreaElement || target?.isContentEditable) return;
+
+  if (event.key === "Enter") {
+    event.preventDefault();
+    if (state.answered && !elements.nextButton.hidden) {
+      nextQuestion();
+    } else if (!state.answered && state.selected !== null) {
+      checkAnswer();
+    }
+    return;
+  }
+
+  if (state.answered) return;
+  const answerButtons = [...elements.answers.querySelectorAll(".answer-button")];
+  if (!answerButtons.length) return;
+  const focusedIndex = answerButtons.indexOf(document.activeElement);
+
+  if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+    event.preventDefault();
+    const startIndex = focusedIndex >= 0 ? focusedIndex : state.selected;
+    const direction = event.key === "ArrowDown" ? 1 : -1;
+    const nextIndex = startIndex === null || startIndex < 0
+      ? (direction > 0 ? 0 : answerButtons.length - 1)
+      : (startIndex + direction + answerButtons.length) % answerButtons.length;
+    answerButtons[nextIndex].focus();
+    return;
+  }
+
+  if ((event.key === " " || event.code === "Space") && focusedIndex >= 0) {
+    event.preventDefault();
+    selectAnswer(focusedIndex);
+  }
+});
 setInterval(saveState, 5000);
 
 populateCounts();
