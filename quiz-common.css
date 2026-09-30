@@ -136,6 +136,10 @@
   gap: 12px;
 }
 
+.auto-advance-row {
+  grid-column: 2;
+}
+
 .field,
 .toggle-row {
   padding: 14px;
@@ -708,6 +712,10 @@
   .settings-grid,
   .stats-columns {
     grid-template-columns: 1fr;
+  }
+
+  .auto-advance-row {
+    grid-column: auto;
   }
 
   .stats-reset-section,
