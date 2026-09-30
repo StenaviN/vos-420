@@ -255,7 +255,8 @@
     <button type="button" data-action="expand" aria-keyshortcuts="Alt+Shift+ArrowDown"><span aria-hidden="true">＋</span> Розгорнути все</button>
     <button type="button" data-action="collapse" aria-keyshortcuts="Alt+Shift+ArrowUp"><span aria-hidden="true">−</span> Згорнути все</button>`;
   const searchPanel = topicMain.querySelector(":scope > .topic-search-panel");
-  (searchPanel || hero).after(toolbar);
+  const introQuiz = topicMain.querySelector(":scope > .topic-quiz-cta");
+  (introQuiz || searchPanel || hero).after(toolbar);
 
   const setAllCollapsed = (collapsed) => {
     sections.forEach((section) => setCollapsed(section, collapsed, { save: false }));

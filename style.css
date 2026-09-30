@@ -653,7 +653,7 @@ p {
 .section-collapse-toolbar {
   display: flex;
   gap: 8px;
-  justify-content: flex-end;
+  justify-content: flex-start;
   margin: 0 0 12px;
 }
 
