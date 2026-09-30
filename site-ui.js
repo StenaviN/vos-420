@@ -239,7 +239,12 @@
     const title = headingText(heading);
     controls.set(section.id, { button, content, title });
     button.addEventListener("click", () => setCollapsed(section, !section.classList.contains("is-collapsed")));
-    heading.append(button);
+    heading.classList.add("collapsible-heading");
+    heading.addEventListener("click", (event) => {
+      if (event.target.closest("button, a")) return;
+      setCollapsed(section, !section.classList.contains("is-collapsed"));
+    });
+    heading.prepend(button);
     setCollapsed(section, collapsedIds.has(section.id), { save: false });
   });
 

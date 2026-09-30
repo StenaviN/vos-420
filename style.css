@@ -28,7 +28,7 @@ body {
 
 .back-to-top {
   position: fixed;
-  right: calc(18px + env(safe-area-inset-right, 0px));
+  right: max(calc(34px + env(safe-area-inset-right, 0px)), calc((100vw - 1120px) / 2 + 18px));
   bottom: calc(18px + env(safe-area-inset-bottom, 0px));
   z-index: 100;
   display: inline-flex;
@@ -677,11 +677,10 @@ p {
 }
 
 .section-toggle {
-  float: right;
   display: inline-grid;
   width: 34px;
   height: 34px;
-  margin: -3px 0 0 10px;
+  margin: -3px 10px -6px 0;
   padding: 0;
   place-items: center;
   border: 1px solid var(--line);
@@ -690,6 +689,7 @@ p {
   color: var(--accent);
   font: 700 20px/1 "Segoe UI Symbol", sans-serif;
   cursor: pointer;
+  vertical-align: 2px;
 }
 
 .section-toggle:hover,
@@ -698,8 +698,20 @@ p {
   background: var(--soft);
 }
 
-.section.is-collapsed > h2 {
-  margin-bottom: 0;
+.section > .collapsible-heading {
+  margin: -18px -18px 16px;
+  padding: 14px 18px;
+  border-radius: var(--radius) var(--radius) 0 0;
+  cursor: pointer;
+}
+
+.section > .collapsible-heading:hover {
+  background: color-mix(in srgb, var(--soft) 58%, transparent);
+}
+
+.section.is-collapsed > .collapsible-heading {
+  margin-bottom: -18px;
+  border-radius: var(--radius);
 }
 
 .section-collapsible-content[hidden] {
@@ -1643,7 +1655,7 @@ code {
   }
 
   .back-to-top {
-    right: calc(12px + env(safe-area-inset-right, 0px));
+    right: calc(34px + env(safe-area-inset-right, 0px));
     bottom: calc(12px + env(safe-area-inset-bottom, 0px));
     width: 44px;
     height: 44px;
