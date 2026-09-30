@@ -732,6 +732,7 @@ document.addEventListener("keydown", (event) => {
       ? (direction > 0 ? 0 : answerButtons.length - 1)
       : (startIndex + direction + answerButtons.length) % answerButtons.length;
     answerButtons[nextIndex].focus();
+    selectAnswer(nextIndex);
     return;
   }
 
