@@ -1649,6 +1649,14 @@ code {
 }
 
 @media (max-width: 560px) {
+  main table:not(.phonetic-alphabet) {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
   .procedure-steps,
   .procedure-steps.two-up {
     grid-template-columns: 1fr;
