@@ -1045,6 +1045,10 @@ th {
   margin: 18px 0 22px;
 }
 
+.procedure-shot-narrow {
+  width: min(100%, 360px);
+}
+
 .procedure-shot-button {
   position: relative;
   display: block;
