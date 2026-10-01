@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Меню RF-7800H-MP</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../style.css?v=52399d39d12e">
+</head>
+<body>
+  <main class="page menu-reference-page">
+    <div class="topbar"><a href="../07-harris-kh-ekspluatatsiia/index.html">До експлуатації HARRIS КХ</a><a href="../index.html">До змісту</a></div>
+
+    <header class="hero">
+      <h1>Меню RF-7800H-MP</h1>
+      <p>Експериментальна карта меню передньої панелі для прошивки 2.x. Склад пунктів залежить від установлених опцій, активної форми сигналу та вибраного пресета.</p>
+    </header>
+
+    <div class="menu-reference-note">
+      <span><i class="menu-status-dot" aria-hidden="true"></i>Звичайний пункт меню</span>
+      <span><i class="menu-status-dot is-conditional" aria-hidden="true"></i>Умовний пункт</span>
+      <span>Натисни назву гілки, щоб розгорнути її.</span>
+    </div>
+
+    <section id="opt-menu" class="section menu-reference-section">
+      <h2><kbd class="menu-root-key">7 OPT</kbd> Меню параметрів</h2>
+      <p class="source">Пункти верхнього рівня відображаються за абеткою. Гілки ALE, 3G, HOP та інші параметри форми сигналу з'являються лише для відповідного пресета.</p>
+
+      <div class="menu-tree" aria-label="Структура меню 7 OPT">
+        <details class="is-conditional">
+          <summary><code>ALE</code><span>параметри ALE</span></summary>
+          <ul>
+            <li><code>LQA</code>: <code>EXCHANGE</code>, <code>SOUND</code>, <code>SCORES</code></li>
+            <li>Доступність пунктів залежить від активного ALE-пресета.</li>
+          </ul>
+        </details>
+
+        <details class="is-conditional">
+          <summary><code>3G</code><span>параметри 3G</span></summary>
+          <ul>
+            <li>Параметри викликів, синхронізації та роботи 3G.</li>
+            <li>Відображається для активного 3G-пресета.</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary><code>COUPLER OPTIONS</code><span>антенний узгоджувач</span></summary>
+          <ul>
+            <li>Параметри вбудованого або підключеного антенного узгоджувача.</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary><code>GPS OPTIONS</code><span>стан і параметри GPS</span></summary>
+          <ul>
+            <li>Перегляд стану GPS та доступних супутникових даних.</li>
+          </ul>
+        </details>
+
+        <details class="is-conditional">
+          <summary><code>HOP</code><span>параметри HOP</span></summary>
+          <ul>
+            <li>Синхронізація та службові параметри активного HOP-пресета.</li>
+            <li>Відображається лише в режимі HOP.</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary><code>LOCK</code><span>блокування органів керування</span></summary>
+          <ul>
+            <li><code>KEYPAD</code></li>
+            <li><code>SECURE</code></li>
+          </ul>
+        </details>
+
+        <details class="is-conditional">
+          <summary><code>LQA</code><span>оцінювання каналів</span></summary>
+          <ul>
+            <li><code>EXCHANGE</code> → адреса станції</li>
+            <li><code>SOUND</code> → <code>SOUNDING</code></li>
+            <li><code>SCORES</code> → <code>REVIEW</code> → <code>INDIVIDUAL ADDRESS</code></li>
+            <li><code>SCORES</code> → <code>ZEROIZE SCORES</code> → <code>ZEROIZE ALL SCORES</code> → <code>YES | NO</code></li>
+          </ul>
+        </details>
+
+        <details>
+          <summary><code>MESSAGING</code><span>текстові й голосові повідомлення</span></summary>
+          <ul>
+            <li><code>SMS</code>: створення, передавання, приймання та видалення повідомлень.</li>
+            <li><code>LDV</code>: перегляд і відтворення отриманих голосових повідомлень.</li>
+            <li>Доступні гілки залежать від активної форми сигналу.</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary><code>MISSION PLAN</code><span>план місії</span></summary>
+          <ul>
+            <li><code>ACTIVATE MISSION PLAN</code> → <code>MISSION PLAN FILE</code> → файл → <code>ACTIVATE PLAN</code> → <code>NO | YES</code></li>
+            <li><code>MISSION PLAN HISTORY</code></li>
+          </ul>
+        </details>
+
+        <details>
+          <summary><code>NETWORK OPTIONS</code><span>мережеві інструменти</span></summary>
+          <ul>
+            <li><code>SEND PING</code> → <code>HOST NAME | IP ADDRESS</code></li>
+            <li><code>INTERFACES</code> → <code>VIEW INTERFACE INFORMATION</code></li>
+            <li><code>VOIP CONFIG</code> → <code>VOIP GENERAL CONFIG</code></li>
+            <li><code>INTERCOM CONFIG</code> → режим, IP-адреса, порт</li>
+            <li><code>SIP CONFIG</code> → режим, автовідхилення, номер, підказки, сигнал виклику</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary><code>RADIO INFORMATION</code><span>стан радіостанції</span></summary>
+          <ul>
+            <li><code>SYSTEM CLOCK</code> → дата, час, <code>UTC OFFSET</code></li>
+            <li><code>BATTERY INFORMATION</code> → напруга і стан → ресурс <code>HUB</code></li>
+          </ul>
+        </details>
+
+        <details>
+          <summary><code>RADIO OPTIONS</code><span>оперативні параметри</span></summary>
+          <ul>
+            <li><code>RADIO SILENCE</code> → <code>OFF | ON</code></li>
+            <li><code>PRESET AUTOSAVE</code></li>
+            <li><code>SQUELCH LEVEL</code> → <code>HIGH | MED | LOW</code></li>
+            <li><code>BFO</code> → вибір зміщення частоти</li>
+            <li><code>RX NOISE BLANKING</code> → <code>OFF | ON</code></li>
+            <li><code>RF FAULTS PERSIST</code> → <code>ON | MOMENTARY</code></li>
+            <li><code>PA FAILSAFE OVR</code> → <code>DISABLED | ENABLED</code></li>
+            <li><code>REMOTE KDU</code> → <code>DISABLED | FALCON II/III KDU | SOFT KDU</code></li>
+          </ul>
+        </details>
+
+        <details>
+          <summary><code>SHORTCUT KEYS</code><span>швидкі клавіші</span></summary>
+          <ul>
+            <li>Призначення та перегляд дій, доступних через клавіші швидкого виклику.</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary><code>SYSTEM INFORMATION</code><span>службова інформація</span></summary>
+          <ul>
+            <li><code>SYSTEM SERIAL NUMBER</code></li>
+            <li><code>ELAPSED TIME</code>: <code>HOURS UP</code>, <code>HOURS TX</code>, <code>TIMES KEYED</code></li>
+            <li><code>PART NUMBER</code></li>
+            <li><code>TCXO TUNING</code></li>
+          </ul>
+        </details>
+
+        <details>
+          <summary><code>TEST OPTIONS</code><span>тестування</span></summary>
+          <ul>
+            <li><code>SELF TEST</code> → <code>RUN SELF TEST</code> → <code>NO | YES</code></li>
+            <li><code>LCD TEST</code></li>
+            <li><code>KEYPAD TEST</code></li>
+            <li>Додаткові модульні тести залежать від комплектації радіостанції.</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary><code>TX POWER OPTIONS</code><span>потужність передавача</span></summary>
+          <ul>
+            <li><code>TX POWER LEVEL</code> → <code>HIGH | MEDIUM | LOW | USER</code></li>
+          </ul>
+        </details>
+
+        <details>
+          <summary><code>VIEW KEY INFO</code><span>перегляд завантажених ключів</span></summary>
+          <ul>
+            <li>Вибір форми сигналу та перегляд доступної інформації про ключі.</li>
+          </ul>
+        </details>
+      </div>
+    </section>
+
+    <section id="pgm-menu" class="section menu-reference-section">
+      <h2><kbd class="menu-root-key">8 PGM</kbd> Меню програмування</h2>
+      <p class="source">Меню доступне в положеннях перемикача <code>PT</code> і <code>CT</code>. Після приблизно п'яти хвилин без натискання клавіш станція повертається до звичайної роботи.</p>
+
+      <div class="menu-tree" aria-label="Структура меню 8 PGM">
+        <details open>
+          <summary><code>RADIO CONFIG</code><span>загальні параметри станції</span></summary>
+          <div class="menu-tree-children">
+            <details>
+              <summary><code>CHANGE MAINTENANCE PASSWORD</code><span>пароль обслуговування</span></summary>
+              <ul><li>Зміна пароля, потрібного для захищених операцій технічного обслуговування.</li></ul>
+            </details>
+            <details>
+              <summary><code>GENERAL CONFIG</code><span>загальні налаштування</span></summary>
+              <ul>
+                <li><code>AUDIO CONFIG</code></li>
+                <li><code>AUTOSAVE CONFIG</code></li>
+                <li><code>BATTERY CONFIG</code> → модель батареї</li>
+                <li><code>CITADEL/AES CONFIG</code> → AKS, CAM, ключі</li>
+                <li><code>CT OVERRIDE CONFIG</code></li>
+                <li><code>DATA PORT CONFIG</code></li>
+                <li><code>EXTERNAL DEVICE</code></li>
+                <li><code>EXTERNAL KEYLINE</code></li>
+                <li><code>GPS CONFIG</code></li>
+                <li><code>MESSAGING CONFIG</code></li>
+                <li><code>NETWORK CONFIG</code></li>
+                <li><code>PORT CONFIG</code></li>
+                <li><code>SHORTCUT KEYS CONFIG</code></li>
+              </ul>
+            </details>
+            <details>
+              <summary><code>SYSTEM CLOCK</code><span>час і дата</span></summary>
+              <ul><li>Формат дати й часу, часовий пояс та параметри синхронізації.</li></ul>
+            </details>
+            <details>
+              <summary><code>MAINTENANCE</code><span>технічне обслуговування</span></summary>
+              <ul><li>Скидання HUB, заводські налаштування та інші захищені службові операції.</li></ul>
+            </details>
+          </div>
+        </details>
+
+        <details open>
+          <summary><code>SYSTEM PRESETS</code><span>системні пресети</span></summary>
+          <div class="menu-tree-children">
+            <details>
+              <summary><code>SYSTEM PRESET CONFIG</code><span>налаштування пресета</span></summary>
+              <ul>
+                <li><code>SYSTEM PRESET NUMBER</code></li>
+                <li><code>PRESET DESCRIPTION</code></li>
+                <li><code>PRESET WAVEFORM</code> → <code>HF | WBHF</code></li>
+                <li><code>GENERAL CONFIG</code> → назва, режим, канал, модем, шифрування, голос</li>
+              </ul>
+            </details>
+          </div>
+        </details>
+
+        <details open>
+          <summary><code>HF CONFIG</code><span>канали та режими КХ</span></summary>
+          <div class="menu-tree-children">
+            <details>
+              <summary><code>CHANNEL</code><span>канали</span></summary>
+              <ul>
+                <li><code>EDIT CHANNEL</code> → частоти RX/TX</li>
+                <li><code>MODULATION</code> → <code>USB | LSB | AME | CW</code></li>
+                <li><code>AGC SPEED</code></li>
+                <li><code>IF BANDWIDTH</code></li>
+                <li><code>RX ONLY</code></li>
+                <li><code>LIMIT MAX TX POWER</code></li>
+                <li><code>MAX BANDWIDTH</code> → <code>3–24 kHz</code></li>
+              </ul>
+            </details>
+            <details>
+              <summary><code>MODEM</code><span>пресети модемів</span></summary>
+              <ul>
+                <li><code>MODEM PRESET</code> → назва</li>
+                <li><code>ARQ PROTOCOL</code> → <code>NONE | 1052</code></li>
+                <li><code>MODEM TYPE</code> → <code>MIL 110B | WBHF | SERIAL</code></li>
+                <li><code>BANDWIDTH</code>, <code>DATA RATE</code>, <code>INTERLEAVE</code>, <code>PREAMBLE</code></li>
+              </ul>
+            </details>
+            <details>
+              <summary><code>ALE</code><span>адреси, групи каналів і параметри ALE</span></summary>
+              <ul><li>Канальні групи, власні, індивідуальні та мережеві адреси, конфігурація ALE.</li></ul>
+            </details>
+            <details>
+              <summary><code>HOP</code><span>хопсети й параметри HOP</span></summary>
+              <ul><li>Канали HOP, тип хопсета, ідентифікатор, TOD Mask та станція керування.</li></ul>
+            </details>
+          </div>
+        </details>
+
+        <details class="is-conditional">
+          <summary><code>VULOS CONFIG</code><span>опційна форма сигналу</span></summary>
+          <ul><li>Відображається, якщо відповідну форму сигналу встановлено й дозволено.</li></ul>
+        </details>
+
+        <details class="is-conditional">
+          <summary><code>WBHF CONFIG</code><span>широкосмугові режими</span></summary>
+          <ul><li>Параметри 3G, 3G+ та інших установлених широкосмугових можливостей.</li></ul>
+        </details>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <h2>Про цю карту</h2>
+      <p>Сторінка призначена для перевірки формату. Вона не входить до змісту, пошуку чи вікторини сайту.</p>
+      <p>Основне джерело: <cite>RF-7800H-MP Advanced Tactical HF Radio Operation Manual, Version 2.x Firmware, August 2020, Rev. C, publication 10515-0556-4200</cite>.</p>
+    </section>
+  </main>
+
+  <script src="../asset-version.js?v=52399d39d12e"></script>
+  <script>window.GLOSSARY_ROOT = "../";</script>
+  <script src="../glossary-data.js?v=52399d39d12e"></script>
+  <script src="../glossary-terms.js?v=52399d39d12e"></script>
+  <script src="../site-ui.js?v=52399d39d12e"></script>
+</body>
+</html>
