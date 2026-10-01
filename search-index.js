@@ -415,7 +415,7 @@ window.SEARCH_INDEX = {
       "topic": "8. Програмування HARRIS КХ RF-7800H-MP",
       "section": "Мережа FIX",
       "url": "08-harris-kh-programuvannia/index.html#fix",
-      "text": "Мережа FIX Create Create Network HF Fixed Frequency У правій панелі властивостей заповни: Name — назва мережі; Channel — канал, створений у Tools → HF Channels ; Crypto Algorithm — алгоритм шифрування; Key Name — створений ключ; Modem Preset — профіль модема; CT Voice і PT Voice — вокодери для захищеного та відкритого режимів. Основні параметри мережі HF Fixed Frequency."
+      "text": "Мережа FIX Create Create Network HF Fixed Frequency У правій панелі властивостей заповни: Name — назва мережі; Channel — канал, створений у Tools → HF Channels ; Crypto Algorithm — алгоритм шифрування; Key Ring Name — створене кільце ключів; Modem Preset — профіль модема; CT Voice і PT Voice — вокодери для захищеного та відкритого режимів. Основні параметри мережі HF Fixed Frequency."
     },
     {
       "topic": "8. Програмування HARRIS КХ RF-7800H-MP",
