@@ -433,7 +433,7 @@ window.SEARCH_INDEX = {
       "topic": "8. Програмування HARRIS КХ RF-7800H-MP",
       "section": "Мережа 3G",
       "url": "08-harris-kh-programuvannia/index.html#three-g",
-      "text": "Мережа 3G Create Create Network 3G Додай радіостанції через Existing . Зніми виділення та натисни Expand All . Обери Crypto Algorithm і Key Name . Відкрий поле 3G Configuration кнопкою з трьома крапками. Шифрування та перехід до спільних параметрів мережі 3G. TOD Server і частотні плани У полі TOD Server обери головну радіостанцію, яка забезпечуватиме часову основу мережі. У розділі Channel Plans задай назву кожного плану в полі Plan Name . У полі Chan Group признач канальну групу 3G відповідному частотному плану. Вибір TOD Server і канальних груп частотних планів."
+      "text": "Мережа 3G Create Create Network 3G Додай радіостанції через Existing . Зніми виділення та натисни Expand All . Обери Crypto Algorithm і Key Ring Name . Відкрий поле 3G Configuration кнопкою з трьома крапками. Шифрування та перехід до спільних параметрів мережі 3G. Конфігурація 3G У групі 3G Preset обери Modem Preset , CT Voice і PT Voice . У полі TOD Server обери головну радіостанцію, яка забезпечуватиме часову основу мережі. У розділі Channel Plans задай назву кожного плану в полі Plan Name . У полі Chan Group признач канальну групу 3G відповідному частотному плану. Познач прапорцем Active частотний план, який має бути активним. Профіль модема, вокодери, TOD Server і канальні групи частотних планів."
     },
     {
       "topic": "8. Програмування HARRIS КХ RF-7800H-MP",
