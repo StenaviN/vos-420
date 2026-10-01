@@ -1,3 +1,3 @@
 "use strict";
 
-window.ASSET_VERSION = "d39fc394f5a7";
+window.ASSET_VERSION = "2a46de7981c3";

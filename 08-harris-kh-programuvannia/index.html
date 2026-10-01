@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>8. Програмування HARRIS КХ RF-7800H-MP</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="../style.css?v=d39fc394f5a7">
+  <link rel="stylesheet" href="../style.css?v=2a46de7981c3">
 </head>
 <body>
   <main class="page">
@@ -210,33 +210,35 @@
       <h2>Мережа HOP</h2>
       <div class="menu-path"><span>Create</span><span>Create Network</span><span>HF Hopping</span></div>
       <p>Додай станції через <code>Existing</code>, зніми виділення та натисни <code>Expand All</code>.</p>
-      <h3>Створення hopset</h3>
+      <h3>Властивості мережі</h3>
+      <p>Заповни основні властивості мережі:</p>
+      <ul>
+        <li><code>Name</code> — назва мережі;</li>
+        <li><code>Hopset</code> — призначений набір частот;</li>
+        <li><code>Crypto Algorithm</code> — алгоритм шифрування;</li>
+        <li><code>Key Ring Name</code> — створене кільце ключів;</li>
+        <li><code>CT Voice</code> і <code>PT Voice</code> — вокодери для захищеного та відкритого режимів.</li>
+      </ul>
+      <figure class="procedure-shot procedure-shot-narrow">
+        <button class="procedure-shot-button" type="button" aria-label="Збільшити властивості HOP"><img src="hop-network-properties.png" alt="Основні властивості мережі HF Hopping" loading="lazy"></button>
+        <figcaption>Призначення hopset, шифрування, кільця ключів і вокодерів мережі HOP.</figcaption>
+      </figure>
+      <h3>Створення та модифікація hopset</h3>
       <ol>
         <li>У групі <code>Global HF Hopping</code> відкрий <code>HF Hopsets</code> кнопкою з трьома крапками.</li>
-        <li>Для редагування наявного набору виділи його та натисни <code>Modify</code>.</li>
+        <li>Натисни <code>Add</code>, щоб створити новий hopset, або виділи наявний і натисни <code>Modify</code>. Кнопка <code>Delete</code> видаляє вибраний hopset.</li>
+        <li>Заповни <code>Name</code>, <code>Number</code> і <code>Type</code>; перевір значення <code>TOD Mask</code> та <code>Hopset ID</code>.</li>
         <li>У полі <code>Center Frequency</code> задай центральну частоту.</li>
         <li>У полі <code>Control (Auto Respond) Station</code> обери головну станцію.</li>
-        <li>Для створення інших наборів натисни <code>Add</code> і заповни ті самі основні поля.</li>
+        <li>Підтвердь налаштування кнопкою <code>OK</code>.</li>
       </ol>
       <figure class="procedure-shot">
-        <button class="procedure-shot-button" type="button" aria-label="Збільшити список hopset"><img src="hopset-list.png" alt="Список HF Hopsets і кнопка Modify" loading="lazy"></button>
-        <figcaption>Вибір наявного hopset для редагування.</figcaption>
+        <button class="procedure-shot-button" type="button" aria-label="Збільшити список і команди керування hopset"><img src="hopset-list.png" alt="Список Hopsets і кнопки Add, Modify та Delete" loading="lazy"></button>
+        <figcaption>Кнопки <code>Add</code>, <code>Modify</code> і <code>Delete</code> для керування hopset.</figcaption>
       </figure>
-      <div class="procedure-shot-pair">
-        <figure class="procedure-shot">
-          <button class="procedure-shot-button" type="button" aria-label="Збільшити центральну частоту hopset"><img src="hopset-center-frequency.png" alt="Поле Center Frequency у параметрах hopset" loading="lazy"></button>
-          <figcaption>Центральна частота hopset.</figcaption>
-        </figure>
-        <figure class="procedure-shot">
-          <button class="procedure-shot-button" type="button" aria-label="Збільшити вибір керувальної станції"><img src="hopset-control-station.png" alt="Поле Control Station у параметрах hopset" loading="lazy"></button>
-          <figcaption>Керувальна станція hopset.</figcaption>
-        </figure>
-      </div>
-      <h3>Властивості мережі</h3>
-      <p>Після створення hopset заповни <code>Name</code>, <code>Hopset</code>, <code>Crypto Algorithm</code>, <code>Key Name</code>, <code>Modem Preset</code>, <code>CT Voice</code> і <code>PT Voice</code>.</p>
-      <figure class="procedure-shot">
-        <button class="procedure-shot-button" type="button" aria-label="Збільшити властивості HOP"><img src="hop-network-properties.png" alt="Основні властивості мережі HF Hopping" loading="lazy"></button>
-        <figcaption>Призначення hopset та інших параметрів мережі HOP.</figcaption>
+      <figure class="procedure-shot procedure-shot-narrow">
+        <button class="procedure-shot-button" type="button" aria-label="Збільшити параметри hopset"><img src="hopset-settings.png" alt="Основні параметри hopset, центральна частота й керувальна станція" loading="lazy"></button>
+        <figcaption>Основні параметри hopset, <code>Center Frequency</code> і <code>Control (Auto Respond) Station</code>.</figcaption>
       </figure>
     </section>
 
@@ -349,12 +351,12 @@
       <p><a href="../07-harris-kh-ekspluatatsiia/index.html#ip-adresa">Перегляд налаштування DIRECT USB та IP-адреси радіостанції</a></p>
     </section>
   </main>
-  <script src="../asset-version.js?v=d39fc394f5a7"></script>
-  <script src="../search-index.js?v=d39fc394f5a7"></script>
-  <script src="../topic-search.js?v=d39fc394f5a7"></script>
+  <script src="../asset-version.js?v=2a46de7981c3"></script>
+  <script src="../search-index.js?v=2a46de7981c3"></script>
+  <script src="../topic-search.js?v=2a46de7981c3"></script>
   <script>window.GLOSSARY_ROOT = "../";</script>
-  <script src="../glossary-data.js?v=d39fc394f5a7"></script>
-  <script src="../glossary-terms.js?v=d39fc394f5a7"></script>
-  <script src="../site-ui.js?v=d39fc394f5a7"></script>
+  <script src="../glossary-data.js?v=2a46de7981c3"></script>
+  <script src="../glossary-terms.js?v=2a46de7981c3"></script>
+  <script src="../site-ui.js?v=2a46de7981c3"></script>
 </body>
 </html>
