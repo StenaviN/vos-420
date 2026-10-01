@@ -437,12 +437,6 @@ window.SEARCH_INDEX = {
     },
     {
       "topic": "8. Програмування HARRIS КХ RF-7800H-MP",
-      "section": "Що призначають кожному режиму",
-      "url": "08-harris-kh-programuvannia/index.html#porivniannia",
-      "text": "Що призначають кожному режиму Режим Частотний ресурс Додаткове налаштування FIX Окремий канал FIX Модем, вокодери, алгоритм і ключ шифрування HOP Hopset Центральна частота та керувальна станція ALE Канальна група ALE Use Default self-address = Enabled 3G Канальна група в частотному плані TOD Server і параметри 3G Configuration"
-    },
-    {
-      "topic": "8. Програмування HARRIS КХ RF-7800H-MP",
       "section": "Перевірка плану",
       "url": "08-harris-kh-programuvannia/index.html#perevirka",
       "text": "Перевірка плану Actions Validate Plan Після завершення налаштувань виконай перевірку плану. Переглянь результати перевірки та виправ помилки до використання конфігурації. Команда Actions → Validate Plan , її кнопка на панелі та успішний результат перевірки. Повідомлення про режим шифрування SMS Можливе повідомлення: Make sure your radio is in CT Mode or SMS will not work. Повідомлення з'являється, коли для станцій параметр Station Cipher Mode має значення CT Only . Повідомлення для станцій із параметром Station Cipher Mode = CT Only . Рішення: Обери всі радіостанції плану. У панелі властивостей відкрий наведений шлях. Зміни Station Cipher Mode на PT/CT . Повторно виконай Actions → Validate Plan . Station Configuration 3G SMS Station Cipher Mode PT/CT Загальний вигляд: усі станції вибрані, повідомлення валідації відкриті, для Station Cipher Mode обирають PT/CT . Виділення станцій. Обери всі радіостанції у вікні Navigator . До зміни. Для вибраних станцій встановлено CT Only . Вибір значення. Відкрий список і обери PT/CT . Після зміни. Перевір значення PT/CT для всіх вибраних станцій."
