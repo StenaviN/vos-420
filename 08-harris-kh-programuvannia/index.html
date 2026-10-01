@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>8. Програмування HARRIS КХ RF-7800H-MP</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="../style.css?v=b5e47c56e79d">
+  <link rel="stylesheet" href="../style.css?v=756b937ef202">
 </head>
 <body>
   <main class="page">
@@ -89,17 +89,31 @@
       <h2>Канали та канальні групи</h2>
       <h3>Створення каналів</h3>
       <div class="menu-path"><span>Tools</span><span>HF Channels</span></div>
+      <div class="procedure-steps two-up" aria-label="Відкриття вікна та додавання каналів">
+        <figure class="procedure-step">
+          <button class="procedure-shot-button" type="button" aria-label="Збільшити шлях до HF Channels"><img src="hf-channels-menu.png" alt="Пункт HF Channels у меню Tools" loading="lazy"></button>
+          <figcaption><strong>Відкриття каналів.</strong> Обери <code>Tools → HF Channels</code>.</figcaption>
+        </figure>
+        <figure class="procedure-step">
+          <button class="procedure-shot-button" type="button" aria-label="Збільшити вибір типу та додавання каналу"><img src="channel-type-add.png" alt="Вибір Channel Type і кнопка Add у вікні Manage Channels" loading="lazy"></button>
+          <figcaption><strong>Тип і додавання.</strong> Обери <code>Channel Type</code> (1), потім натисни <code>Add</code> (2).</figcaption>
+        </figure>
+      </div>
       <ol>
-        <li>У полі <code>Channel Type</code> обери режим, для якого створюєш канали: <code>FIX</code>, <code>ALE</code> або <code>3G</code>.</li>
+        <li>У полі <code>Channel Type</code> обери режим, для якого створюєш канали: <code>FIX</code>, <code>ALE</code>, <code>3G</code> або <code>3G+</code>.</li>
         <li>Натисни <code>Add</code> для кожного потрібного каналу.</li>
         <li>Введи частоти приймання та передавання.</li>
         <li>Повтори операцію для інших потрібних режимів.</li>
       </ol>
       <div class="note note-important"><strong>Для каналів 3G:</strong> у полі <code>Max Bandwidth</code> обов'язково встанови <code>24 kHz</code>.</div>
+      <figure class="procedure-shot">
+        <button class="procedure-shot-button" type="button" aria-label="Збільшити налаштування Max Bandwidth для каналів 3G"><img src="channel-3g-max-bandwidth.png" alt="Значення 24 kHz у полі Max Bandwidth для каналів 3G" loading="lazy"></button>
+        <figcaption>Для каналів 3G встанови <code>Max Bandwidth = 24 kHz</code>.</figcaption>
+      </figure>
       <div class="note note-important"><strong>Для частот УКХ-діапазону понад 30 МГц:</strong> у полі <code>Modulation Type</code> встанови <code>FM</code>.</div>
       <figure class="procedure-shot">
-        <button class="procedure-shot-button" type="button" aria-label="Збільшити таблицю каналів"><img src="channel-frequencies-bandwidth.png" alt="Частоти каналів і Max Bandwidth у Manage Channels" loading="lazy"></button>
-        <figcaption>Частоти каналів і ширина смуги для 3G.</figcaption>
+        <button class="procedure-shot-button" type="button" aria-label="Збільшити налаштування FM для частоти УКХ-діапазону"><img src="channel-vhf-fm.png" alt="Частота понад 30 МГц і значення FM у полі Modulation Type" loading="lazy"></button>
+        <figcaption>Для частоти УКХ-діапазону понад 30 МГц встанови <code>Modulation Type = FM</code>.</figcaption>
       </figure>
 
       <h3>Створення канальних груп</h3>
@@ -325,12 +339,12 @@
       <p><a href="../07-harris-kh-ekspluatatsiia/index.html#ip-adresa">Перегляд налаштування DIRECT USB та IP-адреси радіостанції</a></p>
     </section>
   </main>
-  <script src="../asset-version.js?v=b5e47c56e79d"></script>
-  <script src="../search-index.js?v=b5e47c56e79d"></script>
-  <script src="../topic-search.js?v=b5e47c56e79d"></script>
+  <script src="../asset-version.js?v=756b937ef202"></script>
+  <script src="../search-index.js?v=756b937ef202"></script>
+  <script src="../topic-search.js?v=756b937ef202"></script>
   <script>window.GLOSSARY_ROOT = "../";</script>
-  <script src="../glossary-data.js?v=b5e47c56e79d"></script>
-  <script src="../glossary-terms.js?v=b5e47c56e79d"></script>
-  <script src="../site-ui.js?v=b5e47c56e79d"></script>
+  <script src="../glossary-data.js?v=756b937ef202"></script>
+  <script src="../glossary-terms.js?v=756b937ef202"></script>
+  <script src="../site-ui.js?v=756b937ef202"></script>
 </body>
 </html>
