@@ -403,7 +403,7 @@ window.SEARCH_INDEX = {
       "topic": "8. Програмування HARRIS КХ RF-7800H-MP",
       "section": "Профілі модемів",
       "url": "08-harris-kh-programuvannia/index.html#modemy",
-      "text": "Профілі модемів Tools HF Modem Presets Натисни Add . Задай назву профілю в полі Name . Обери модем у полі Type . Заповни параметри, доступні для обраного типу. Для профілю WBHF у презентації вказано Bandwidth 24 kHz і Data Rate 120000 bps , тобто 120 кбіт/с. Ширина смуги та швидкість даних профілю WBHF."
+      "text": "Профілі модемів Tools HF Modem Presets Обери Tools → HF Modem Presets . Натисни Add . Задай назву профілю в полі Name . Обери модем у полі Type . Заповни параметри, доступні для обраного типу. Для профілю WBHF вказати Bandwidth 24 kHz і Data Rate 120000 bps , тобто 120 кбіт/с. Для профілю WBHF встанови Bandwidth = 24 kHz і Data Rate = 120000 bps ."
     },
     {
       "topic": "8. Програмування HARRIS КХ RF-7800H-MP",
