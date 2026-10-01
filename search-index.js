@@ -427,7 +427,7 @@ window.SEARCH_INDEX = {
       "topic": "8. Програмування HARRIS КХ RF-7800H-MP",
       "section": "Мережа ALE",
       "url": "08-harris-kh-programuvannia/index.html#ale",
-      "text": "Мережа ALE Create Create Network ALE Додай створені станції через Existing , зніми виділення та натисни Expand All . У властивостях мережі заповни: Name — назва мережі; Channel Group — канальна група ALE; Crypto Algorithm і Key Name — алгоритм та ключ шифрування; Modem Preset — профіль модема; CT Voice і PT Voice — потрібні вокодери; Use Default self-address — Enabled . Канальна група, шифрування, модем, вокодери й адресація ALE."
+      "text": "Мережа ALE Create Create Network ALE Додай створені станції через Existing , зніми виділення та натисни Expand All . У властивостях мережі заповни: Name — назва мережі; Channel Group — канальна група ALE; Crypto Algorithm і Key Ring Name — алгоритм та кільце ключів шифрування; Modem Preset — профіль модема; CT Voice і PT Voice — потрібні вокодери; Use Default Self-Address — Enabled ; Link Protection — Disabled . Канальна група, шифрування, модем, вокодери, адресація ALE та захист каналу."
     },
     {
       "topic": "8. Програмування HARRIS КХ RF-7800H-MP",
