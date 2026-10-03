@@ -8,10 +8,20 @@ window.GLOSSARY_REVIEWED_TOPICS = [
   "05-harris-ukh",
   "06-harris-kh",
   "07-harris-kh-ekspluatatsiia",
-  "08-harris-kh-programuvannia"
+  "08-harris-kh-programuvannia",
+  "09-tooway"
 ];
 
 window.GLOSSARY_TERMS = [
+  { term: "DVB-S", full: "Digital Video Broadcasting — Satellite", uk: "цифрове супутникове мовлення", description: "У презентації TOOWAY так позначено технологію прямого каналу від центральної станції до абонентів.", topics: [9] },
+  { term: "MF-TDMA", full: "Multi-Frequency Time-Division Multiple Access", uk: "багаточастотний множинний доступ із часовим розділенням", description: "Технологія зворотного каналу TOOWAY: станції використовують різні несучі та часові інтервали; одна станція одночасно працює на одній несучій.", topics: [9] },
+  { term: "VoIP", full: "Voice over Internet Protocol", uk: "голос через IP-мережу", description: "Передавання голосового трафіку через IP-мережу; VoIP-шлюз підключає до неї аналогові телефонні апарати.", topics: [9] },
+  { term: "FXS", full: "Foreign Exchange Station", uk: "абонентський телефонний інтерфейс", description: "Порт VoIP-шлюзу для підключення аналогового телефонного апарата. У СТК-2 два шлюзи по два FXS-порти.", topics: [9] },
+  { term: "ARP", full: "Address Resolution Protocol", uk: "протокол визначення адрес", description: "Пов’язує IPv4-адреси з MAC-адресами у локальній мережі. У MikroTik таблицю IP → ARP використовують для визначення адрес підключених пристроїв.", topics: [9] },
+  { term: "DNS", full: "Domain Name System", uk: "система доменних імен", description: "Система зіставлення доменних імен з адресами; у показаних налаштуваннях TCP/IPv4 адресу DNS-сервера отримують автоматично.", topics: [9] },
+  { term: "SIP", full: "Session Initiation Protocol", uk: "протокол ініціювання сеансів", description: "Протокол установлення й керування сеансами IP-телефонії. У VoIP-шлюзі SIP User ID визначає ідентифікатор абонента.", topics: [9] },
+  { term: "КЗІ", full: "Криптографічний захист інформації", uk: "криптографічний захист інформації", description: "На схемі СТК-2 окрема апаратура КЗІ розміщена між маршрутизатором і VoIP-шлюзом закритої телефонної мережі.", topics: [9] },
+  { term: "СТК-2", full: "Супутниковий телекомунікаційний комплект", uk: "супутниковий телекомунікаційний комплект", description: "Автономний комплекс для телефонного зв’язку та передавання даних через супутниковий канал TOOWAY.", topics: [9] },
   { term: "3G", full: "Third Generation", uk: "третє покоління КХ-протоколів", description: "Автоматизований режим встановлення КХ-зв'язку за STANAG 4538.", topics: [6, 7, 8] },
   { term: "3G+", full: "Third Generation Plus", uk: "розширений режим третього покоління", description: "Одночасно контролює мережі 3G та ALE; доступний у RF-7800H-MP.", topics: [6, 7] },
   { term: "AES", full: "Advanced Encryption Standard", uk: "розширений стандарт шифрування", description: "Симетричний алгоритм шифрування; у матеріалах згадано ключі 128 і 256 біт.", topics: [4, 5, 6, 8] },

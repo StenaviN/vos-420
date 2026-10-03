@@ -16,7 +16,8 @@
     4: ["Тема 4", "04-pobudova-radiostantsii-antenny/index.html"],
     5: ["Harris УКХ", "05-harris-ukh/index.html"],
     6: ["Harris КХ", "06-harris-kh/index.html"],
-    7: ["Експлуатація HARRIS КХ", "07-harris-kh-ekspluatatsiia/index.html"]
+    7: ["Експлуатація HARRIS КХ", "07-harris-kh-ekspluatatsiia/index.html"],
+    9: ["TOOWAY", "09-tooway/index.html"]
   };
 
   function slug(term) {
