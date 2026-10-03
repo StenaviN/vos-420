@@ -1804,3 +1804,10 @@ code {
     break-inside: avoid;
   }
 }
+
+/* Shared table of contents for topic notes. */
+.topic-toc ul { columns: 2; column-gap: 30px; }
+.topic-toc li { break-inside: avoid; margin: 6px 0; }
+@media (max-width: 650px) {
+  .topic-toc ul { columns: 1; }
+}
