@@ -854,3 +854,13 @@
 .question-jump[aria-current] { outline: 3px solid #24687c; outline-offset: 2px; font-weight: bold; }
 .question-jump:focus-visible { outline: 3px solid #193b51; outline-offset: 2px; }
 .question-navigation-legend { font-size: .85rem; color: var(--muted); margin-bottom: 0; }
+
+.result-filters { display: flex; flex-wrap: wrap; gap: 12px 24px; margin: 16px 0; }
+.result-filters label { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+.result-filters input { width: 18px; height: 18px; }
+.result-question { scroll-margin-top: 24px; }
+.result-question.correct { border-left: 4px solid #2c7b49; }
+.result-question.incorrect { border-left: 4px solid #b44739; }
+.result-question.unanswered { border-left: 4px solid #8ca7ba; }
+.result-question:focus { outline: 2px solid #24687c; outline-offset: 3px; }
+a.question-jump { display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; text-decoration: none; }

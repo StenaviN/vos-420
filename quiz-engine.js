@@ -473,29 +473,66 @@ function checkAnswer() {
 
 function renderMistakes() {
   elements.mistakes.replaceChildren();
-  if (!state.mistakes.length) {
-    const note = document.createElement("p");
-    note.className = "note";
-    note.textContent = state.answers.length === state.questions.length
-      ? "Жодної помилки. Матеріал засвоєно відмінно."
-      : state.answers.length
-        ? "У перевірених відповідях помилок немає."
-        : "Немає перевірених відповідей для розбору.";
-    elements.mistakes.append(note);
-    return;
-  }
-  const heading = document.createElement("h3");
-  heading.textContent = "Розбір помилок";
-  elements.mistakes.append(heading);
-  state.mistakes.forEach((mistake, index) => {
-    const article = document.createElement("article"); article.className = "mistake-item";
-    const title = document.createElement("strong"); title.textContent = `${index + 1}. ${mistake.question}`;
-    const selected = document.createElement("p"); selected.className = "mistake-answer"; selected.textContent = `Твоя відповідь: ${mistake.selected}`;
-    const correct = document.createElement("p"); correct.className = "correct-answer"; correct.textContent = `Правильна відповідь: ${mistake.correct}`;
-    const explanation = document.createElement("p"); explanation.textContent = mistake.explanation;
-    const reference = document.createElement("a"); reference.className = "mistake-reference"; reference.href = referenceUrl(mistake.reference, mistake); reference.target = "_blank"; reference.rel = "noopener"; reference.textContent = "Переглянути відповідний фрагмент конспекту";
-    article.append(title, selected, correct, explanation, reference); elements.mistakes.append(article);
+  const navigation = $("#resultNavigation");
+  navigation.replaceChildren();
+  let visible = 0;
+  state.questions.forEach((item, index) => {
+    const answer = state.answers.find((entry) => entry.id === item.id);
+    const status = answer ? (answer.correct ? "correct" : "incorrect") : "unanswered";
+    if (status === "correct" && !$("#showCorrectResults").checked) return;
+    if (status === "unanswered" && !$("#showUnansweredResults").checked) return;
+    visible += 1;
+    const label = answer ? (answer.correct ? "Правильно" : "Неправильно") : "Без перевіреної відповіді";
+    const article = document.createElement("article");
+    article.className = `mistake-item result-question ${status}`;
+    article.id = `result-question-${index + 1}`;
+    article.tabIndex = -1;
+    const title = document.createElement("h3");
+    title.textContent = `${index + 1}. ${item.question}`;
+    const badge = document.createElement("p");
+    badge.textContent = `${answer ? (answer.correct ? "✓" : "×") : "○"} ${label}`;
+    article.append(title, badge);
+    // Unanswered questions must not reveal the solution or its explanation.
+    if (answer) {
+      const selected = document.createElement("p");
+      selected.textContent = `Твоя відповідь: ${item.options[answer.selected ?? item.selected].text}`;
+      article.append(selected);
+      if (!answer.correct) {
+        const correct = document.createElement("p");
+        correct.className = "correct-answer";
+        correct.textContent = `Правильна відповідь: ${item.options.find((option) => option.correct).text}`;
+        article.append(correct);
+      }
+      const explanation = document.createElement("p");
+      explanation.textContent = item.explanation;
+      const reference = document.createElement("a");
+      reference.className = "mistake-reference";
+      reference.href = referenceUrl(item.reference, item);
+      reference.target = "_blank";
+      reference.rel = "noopener";
+      reference.textContent = "Переглянути відповідний фрагмент конспекту";
+      article.append(explanation, reference);
+    }
+    elements.mistakes.append(article);
+    const link = document.createElement("a");
+    link.className = `question-jump ${status}`;
+    link.href = `#${article.id}`;
+    link.textContent = `${index + 1} ${answer ? (answer.correct ? "✓" : "×") : "○"}`;
+    link.setAttribute("aria-label", `Питання ${index + 1}: ${label}`);
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      article.focus({ preventScroll: true });
+      article.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+    navigation.append(link);
   });
+  $("#resultNavigationSummary").textContent = `Показано питань: ${visible} з ${state.questions.length}. Помилки показуються завжди.`;
+  if (!visible) {
+    const empty = document.createElement("p");
+    empty.className = "note";
+    empty.textContent = "За вибраними фільтрами немає питань. Увімкни показ правильних відповідей або питань без відповіді.";
+    elements.mistakes.append(empty);
+  }
 }
 
 function saveAttempt(percent) {
@@ -752,6 +789,8 @@ function populateCounts() {
   elements.countSelect.value = String(config.defaultSize);
 }
 
+$("#showCorrectResults").addEventListener("change", renderMistakes);
+$("#showUnansweredResults").addEventListener("change", renderMistakes);
 elements.finishButton.addEventListener("click", finishQuiz);
 elements.checkButton.addEventListener("click", checkAnswer);
 elements.nextButton.addEventListener("click", nextQuestion);
