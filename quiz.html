@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Вікторини ВОС-420</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="style.css?v=e11d37d2a17c">
-  <link rel="stylesheet" href="quiz-common.css?v=e11d37d2a17c">
+  <link rel="stylesheet" href="style.css?v=49b3ca2d0ff2">
+  <link rel="stylesheet" href="quiz-common.css?v=49b3ca2d0ff2">
 </head>
 <body>
   <main class="page quiz-page">
@@ -21,6 +21,7 @@
     <section id="setupPanel" class="setup-panel" hidden>
       <p class="question-topic">Нова спроба</p><h2>Налаштування вікторини</h2>
       <div class="settings-grid">
+        <label class="toggle-row"><input id="examMode" type="checkbox"><span><strong>Режим екзамена</strong><small>30 секунд на питання; відповіді можна змінювати до завершення, перевірка — наприкінці</small></span></label>
         <label class="field"><span>Кількість питань</span><select id="countSelect"></select></label>
         <label class="toggle-row"><input id="includeMastered" type="checkbox"><span><strong>Включати засвоєні питання</strong><small>Вимкни, щоб не повторювати стабільно правильні відповіді</small></span></label>
         <label class="toggle-row"><input id="prioritizeMistakes" type="checkbox" checked><span><strong>Частіше давати складні питання</strong><small>Питання з помилками отримають більшу ймовірність вибору</small></span></label>
@@ -30,7 +31,7 @@
     </section>
 
     <section id="resumePanel" class="resume-panel" hidden><p class="question-topic">Незавершена спроба</p><h2>Продовжити збережену вікторину?</h2><p id="resumeSummary"></p><div class="quiz-actions"><button id="resumeButton" class="primary-button" type="button">Продовжити</button><button id="newQuizButton" class="secondary-button" type="button">Нова спроба</button></div></section>
-    <section id="quizPanel" class="quiz-panel" hidden aria-live="polite"><nav class="question-navigation" aria-label="Перехід до питання"><h2>Перехід до питання</h2><p id="questionNavigationSummary"></p><div id="questionNavigation" class="question-navigation-grid"></div><p class="question-navigation-legend">✓ Правильно · × Неправильно · ○ Без перевіреної відповіді</p></nav><p id="questionTopic" class="question-topic"></p><h2 id="questionText"></h2><div id="answers" class="answers" role="radiogroup"></div><div id="feedback" class="feedback" hidden><p id="feedbackTitle" class="feedback-title"></p><p id="feedbackText"></p><a id="referenceLink" class="reference-link" href="#" target="_blank" rel="noopener">Відкрити фрагмент конспекту</a></div><div class="quiz-actions"><button id="checkButton" class="primary-button" type="button" disabled>Перевірити</button><button id="nextButton" class="primary-button" type="button" hidden>Наступне питання</button><button id="finishButton" class="secondary-button" type="button">Завершити</button></div></section>
+    <section id="quizPanel" class="quiz-panel" hidden aria-live="polite"><div id="examTimer" class="exam-timer" role="timer" hidden></div><nav class="question-navigation" aria-label="Перехід до питання"><h2>Перехід до питання</h2><p id="questionNavigationSummary"></p><div id="questionNavigation" class="question-navigation-grid"></div><p class="question-navigation-legend">✓ Правильно · × Неправильно · ○ Без перевіреної відповіді</p></nav><p id="questionTopic" class="question-topic"></p><h2 id="questionText"></h2><div id="answers" class="answers" role="radiogroup"></div><div id="feedback" class="feedback" hidden><p id="feedbackTitle" class="feedback-title"></p><p id="feedbackText"></p><a id="referenceLink" class="reference-link" href="#" target="_blank" rel="noopener">Відкрити фрагмент конспекту</a></div><div class="quiz-actions"><button id="checkButton" class="primary-button" type="button" disabled>Перевірити</button><button id="nextButton" class="primary-button" type="button" hidden>Наступне питання</button><button id="finishButton" class="secondary-button" type="button">Завершити</button></div></section>
     <section id="resultPanel" class="result-panel" hidden><p class="result-label">Результат</p><h2 id="resultTitle"></h2><p id="resultMessage"></p><div class="result-stats"><div><strong id="resultCorrectTotal">0/0</strong><span>правильно / усього</span></div><div><strong id="resultGrade">0/5</strong><span>оцінка</span></div><div><strong id="resultPercent">0%</strong><span>правильних</span></div><div><strong id="resultTime">0:00</strong><span>активний час</span></div></div><nav class="question-navigation" aria-label="Перехід до результатів питань"><h3>Перехід до питання</h3><div class="result-filters"><label><input id="showCorrectResults" type="checkbox" checked> Показувати правильні відповіді</label><label><input id="showUnansweredResults" type="checkbox" checked> Показувати питання без відповіді</label></div><p id="resultNavigationSummary" aria-live="polite"></p><div id="resultNavigation" class="question-navigation-grid"></div></nav><div id="mistakes" class="mistakes"></div><div class="result-actions"><button id="restartButton" class="primary-button" type="button">Нова спроба</button><button class="secondary-button" data-view="stats" type="button">Переглянути статистику</button><a class="secondary-button" id="resultNoteLink" href="index.html">До конспекту</a></div></section>
 
     <section id="statsPanel" class="stats-panel" hidden>
@@ -52,9 +53,9 @@
     </section>
     <noscript><p class="section exam">Для роботи вікторини потрібно дозволити JavaScript у браузері.</p></noscript>
   </main>
-  <script src="asset-version.js?v=e11d37d2a17c"></script>
+  <script src="asset-version.js?v=49b3ca2d0ff2"></script>
 
-  <script src="quiz-loader.js?v=e11d37d2a17c"></script>
-  <script src="site-ui.js?v=e11d37d2a17c"></script>
+  <script src="quiz-loader.js?v=49b3ca2d0ff2"></script>
+  <script src="site-ui.js?v=49b3ca2d0ff2"></script>
 </body>
 </html>

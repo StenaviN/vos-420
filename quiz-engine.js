@@ -50,6 +50,7 @@ let autoAdvanceTimer = null;
 
 const $ = (selector) => document.querySelector(selector);
 const elements = {
+  examMode: $("#examMode"), examTimer: $("#examTimer"),
   setupPanel: $("#setupPanel"), resumePanel: $("#resumePanel"), quizPanel: $("#quizPanel"),
   resultPanel: $("#resultPanel"), statsPanel: $("#statsPanel"), quizTitle: $("#quizTitle"),
   topicLabel: $("#topicLabel"), countSelect: $("#countSelect"), includeMastered: $("#includeMastered"),
@@ -292,8 +293,21 @@ function currentElapsed() {
   return state.activeElapsedMs + (state.timerStartedAt ? Date.now() - state.timerStartedAt : 0);
 }
 
+function examActive() { return Boolean(state.settings?.examMode && !state.finished); }
+function examAnsweredCount() { return state.questions.filter((item) => item.selected != null).length; }
+function updateExamTimer() {
+  elements.examTimer.hidden = !examActive();
+  if (!examActive()) return;
+  const limit = state.questions.length * 30000;
+  const remaining = Math.max(0, limit - currentElapsed());
+  const warning = remaining <= Math.min(60000, limit * 0.2);
+  elements.examTimer.classList.toggle("time-warning", warning);
+  elements.examTimer.textContent = `Залишилося: ${formatDuration(Math.ceil(remaining / 1000) * 1000)}${warning ? " — час спливає!" : ""}`;
+  if (!remaining) finishQuiz(true);
+}
+
 function startTimer() {
-  if (!state.timerStartedAt && !document.hidden && !elements.quizPanel.hidden) {
+  if (!state.finished && !state.timerStartedAt && !document.hidden && !elements.quizPanel.hidden) {
     state.timerStartedAt = Date.now();
     if (!state.questionStartedAt) state.questionStartedAt = Date.now();
   }
@@ -338,8 +352,8 @@ function bestAttempt() {
 function updateHeader() {
   const total = state.questions.length;
   elements.progressText.textContent = total ? `${state.index + 1} / ${total}` : "-";
-  elements.progressBar.style.width = total ? `${(state.answers.length / total) * 100}%` : "0";
-  elements.scoreText.textContent = String(state.score);
+  elements.progressBar.style.width = total ? `${((examActive() ? examAnsweredCount() : state.answers.length) / total) * 100}%` : "0";
+  elements.scoreText.textContent = examActive() ? "—" : String(state.score);
   const best = bestAttempt();
   elements.bestText.textContent = best === null ? "-" : `${best}%`;
 }
@@ -376,7 +390,8 @@ function activateView(view, updateUrl = false) {
 }
 
 function selectAnswer(index) {
-  if (state.answered) return;
+  if (state.finished || state.answered) return;
+  if (examActive() && currentElapsed() >= state.questions.length * 30000) { finishQuiz(true); return; }
   state.selected = index;
   state.questions[state.index].selected = index;
   elements.checkButton.disabled = false;
@@ -384,6 +399,7 @@ function selectAnswer(index) {
     button.classList.toggle("selected", buttonIndex === index);
     button.setAttribute("aria-checked", buttonIndex === index ? "true" : "false");
   });
+  if (examActive()) { renderNavigation(); updateHeader(); }
   saveState();
 }
 
@@ -420,7 +436,7 @@ function renderQuestion(restore = false) {
   elements.answers.replaceChildren();
   elements.feedback.hidden = true;
   elements.feedback.classList.remove("wrong");
-  elements.checkButton.hidden = false;
+  elements.checkButton.hidden = examActive();
   elements.checkButton.disabled = true;
   elements.nextButton.textContent = "Наступне питання";
   elements.nextButton.hidden = state.index === state.questions.length - 1;
@@ -440,6 +456,7 @@ function renderQuestion(restore = false) {
   else elements.checkButton.disabled = state.selected === null;
   updateHeader();
   renderNavigation();
+  updateExamTimer();
   saveState();
 }
 
@@ -459,7 +476,7 @@ function recordAnswer(item, correct) {
 }
 
 function checkAnswer() {
-  if (state.finished || state.selected === null || state.answered) return;
+  if (examActive() || state.finished || state.selected === null || state.answered) return;
   state.answered = true;
   const item = state.questions[state.index];
   const selected = item.options[state.selected];
@@ -626,15 +643,19 @@ function cancelAutoAdvance() {
 
 function renderNavigation() {
   elements.navigation.replaceChildren();
+  $(".question-navigation-legend").textContent = examActive()
+    ? "● Відповідь вибрано · ○ Без відповіді. Вибір можна змінити до завершення."
+    : "✓ Правильно · × Неправильно · ○ Без перевіреної відповіді";
   elements.navigationSummary.textContent = `Перевірено: ${state.answers.length} з ${state.questions.length}. Правильних: ${state.score}.`;
+  if (examActive()) elements.navigationSummary.textContent = `Відповідей вибрано: ${examAnsweredCount()} з ${state.questions.length}. Перевірка після завершення.`;
   state.questions.forEach((item, index) => {
     const answer = state.answers.find((entry) => entry.id === item.id);
-    const status = answer ? (answer.correct ? "correct" : "incorrect") : "unanswered";
-    const label = answer ? (answer.correct ? "правильно" : "неправильно") : "без перевіреної відповіді";
+    const status = examActive() && item.selected != null ? "selected-answer" : answer ? (answer.correct ? "correct" : "incorrect") : "unanswered";
+    const label = examActive() && item.selected != null ? "відповідь вибрано" : answer ? (answer.correct ? "правильно" : "неправильно") : "без перевіреної відповіді";
     const button = document.createElement("button");
     button.type = "button";
     button.className = `question-jump ${status}`;
-    button.textContent = `${index + 1} ${answer ? (answer.correct ? "✓" : "×") : "○"}`;
+    button.textContent = `${index + 1} ${examActive() && item.selected != null ? "●" : answer ? (answer.correct ? "✓" : "×") : "○"}`;
     button.setAttribute("aria-label", `Питання ${index + 1}: ${label}`);
     if (index === state.index) button.setAttribute("aria-current", "step");
     button.addEventListener("click", () => goToQuestion(index));
@@ -655,16 +676,33 @@ function nextQuestion() {
   goToQuestion(state.index + 1);
 }
 
-function finishQuiz() {
+function finishQuiz(timedOut = false) {
   if (state.finished) return;
   cancelAutoAdvance();
-  const unanswered = state.questions.filter((item) => !item.checked);
-  if (unanswered.length && !window.confirm(`Без перевіреної відповіді залишилося ${unanswered.length} з ${state.questions.length} питань. Вони не зарахуються в результат цієї спроби, але не додадуть помилок у статистику питань. Завершити вікторину?`)) return;
+  const exam = examActive();
+  const expired = exam && (timedOut === true || currentElapsed() >= state.questions.length * 30000);
+  const unanswered = state.questions.filter((item) => exam ? item.selected == null : !item.checked);
+  if (!expired && unanswered.length && !window.confirm(`Без відповіді залишилося ${unanswered.length} з ${state.questions.length} питань. Вони не зарахуються в результат цієї спроби, але не додадуть помилок у статистику питань. Завершити вікторину?`)) {
+    updateExamTimer(); return;
+  }
+  pauseTimer();
+  if (expired) state.activeElapsedMs = state.questions.length * 30000;
+  if (exam) {
+    state.questions.forEach((item) => {
+      if (item.selected == null || item.checked) return;
+      const correct = item.options[item.selected].correct;
+      item.checked = true;
+      state.answers.push({ id: item.id, correct, selected: item.selected });
+      if (correct) state.score += 1;
+      recordAnswer(item, correct);
+    });
+  }
   showResults();
 }
 
 function settingsFromForm() {
   return {
+    examMode: elements.examMode.checked,
     count: elements.countSelect.value,
     includeMastered: elements.includeMastered.checked,
     prioritizeMistakes: elements.prioritizeMistakes.checked,
@@ -689,7 +727,7 @@ function showSetup() {
 
 function showResumeChoice(saved) {
   pendingSavedState = saved;
-  const completed = saved.answers.length;
+  const completed = saved.settings?.examMode ? saved.questions.filter((item) => item.selected != null).length : saved.answers.length;
   elements.resumeSummary.textContent = `Збережено питання ${saved.index + 1} з ${saved.questions.length}. Правильних: ${saved.score}; опрацьовано: ${completed}; активний час: ${formatDuration(saved.activeElapsedMs || 0)}.`;
   showOnly(elements.resumePanel);
   elements.progressText.textContent = `${saved.index + 1} / ${saved.questions.length}`;
@@ -842,7 +880,7 @@ function populateCounts() {
 
 $("#showCorrectResults").addEventListener("change", renderMistakes);
 $("#showUnansweredResults").addEventListener("change", renderMistakes);
-elements.finishButton.addEventListener("click", finishQuiz);
+elements.finishButton.addEventListener("click", () => finishQuiz());
 elements.checkButton.addEventListener("click", checkAnswer);
 elements.nextButton.addEventListener("click", nextQuestion);
 elements.startButton.addEventListener("click", () => startQuiz());
@@ -853,6 +891,9 @@ elements.countSelect.addEventListener("change", updateEligibility);
 elements.includeMastered.addEventListener("change", updateEligibility);
 elements.prioritizeMistakes.addEventListener("change", updateEligibility);
 elements.autoAdvanceCorrect.addEventListener("change", updateEligibility);
+elements.examMode.addEventListener("change", () => {
+  elements.autoAdvanceCorrect.disabled = elements.examMode.checked;
+});
 elements.statsResetTopic.addEventListener("change", () => { elements.statsResetStatus.textContent = ""; updateResetControls(); });
 elements.clearTopicStats.addEventListener("click", clearSelectedTopicStats);
 elements.clearAllStats.addEventListener("click", clearAllStatistics);
@@ -868,7 +909,9 @@ document.addEventListener("keydown", (event) => {
 
   if (event.key === "Enter") {
     event.preventDefault();
-    if (state.answered && !elements.nextButton.hidden) {
+    if (examActive()) {
+      if (state.selected !== null && !elements.nextButton.hidden) nextQuestion();
+    } else if (state.answered && !elements.nextButton.hidden) {
       nextQuestion();
     } else if (!state.answered && state.selected !== null) {
       checkAnswer();
@@ -898,6 +941,7 @@ document.addEventListener("keydown", (event) => {
     selectAnswer(focusedIndex);
   }
 });
+setInterval(updateExamTimer, 250);
 setInterval(saveState, 5000);
 
 populateCounts();
