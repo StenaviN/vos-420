@@ -519,21 +519,37 @@ function renderMistakes() {
     const title = document.createElement("h3");
     title.textContent = `${index + 1}. ${item.question}`;
     const badge = document.createElement("p");
+    badge.className = "result-status";
     badge.textContent = `${answer ? (answer.correct ? "✓" : "×") : "○"} ${label}`;
     article.append(title, badge);
     // Unanswered questions must not reveal the solution or its explanation.
     if (answer) {
       const selected = document.createElement("p");
-      selected.textContent = `Твоя відповідь: ${item.options[answer.selected ?? item.selected].text}`;
+      selected.className = `result-answer ${answer.correct ? "answer-right" : "answer-wrong"}`;
+      const selectedLabel = document.createElement("span");
+      selectedLabel.className = "result-detail-label";
+      selectedLabel.textContent = "Твоя відповідь";
+      const selectedValue = document.createElement("strong");
+      selectedValue.textContent = item.options[answer.selected ?? item.selected].text;
+      selected.append(selectedLabel, selectedValue);
       article.append(selected);
       if (!answer.correct) {
         const correct = document.createElement("p");
-        correct.className = "correct-answer";
-        correct.textContent = `Правильна відповідь: ${item.options.find((option) => option.correct).text}`;
+        correct.className = "correct-answer result-answer answer-right";
+        const correctLabel = document.createElement("span");
+        correctLabel.className = "result-detail-label";
+        correctLabel.textContent = "Правильна відповідь";
+        const correctValue = document.createElement("strong");
+        correctValue.textContent = item.options.find((option) => option.correct).text;
+        correct.append(correctLabel, correctValue);
         article.append(correct);
       }
       const explanation = document.createElement("p");
-      explanation.textContent = item.explanation;
+      explanation.className = "result-explanation";
+      const explanationLabel = document.createElement("span");
+      explanationLabel.className = "result-detail-label";
+      explanationLabel.textContent = "Пояснення";
+      explanation.append(explanationLabel, document.createTextNode(item.explanation));
       article.append(explanation);
     }
     const reference = document.createElement("a");
@@ -541,7 +557,7 @@ function renderMistakes() {
     reference.href = referenceUrl(item.reference, item);
     reference.target = "_blank";
     reference.rel = "noopener";
-    reference.textContent = "Переглянути відповідний фрагмент конспекту";
+    reference.textContent = "Відкрити розділ конспекту →";
     article.append(reference);
     elements.mistakes.append(article);
     const link = document.createElement("button");
