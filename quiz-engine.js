@@ -474,7 +474,14 @@ function checkAnswer() {
 function renderMistakes() {
   elements.mistakes.replaceChildren();
   if (!state.mistakes.length) {
-    elements.mistakes.innerHTML = '<p class="note">Жодної помилки. Матеріал засвоєно відмінно.</p>';
+    const note = document.createElement("p");
+    note.className = "note";
+    note.textContent = state.answers.length === state.questions.length
+      ? "Жодної помилки. Матеріал засвоєно відмінно."
+      : state.answers.length
+        ? "У перевірених відповідях помилок немає."
+        : "Немає перевірених відповідей для розбору.";
+    elements.mistakes.append(note);
     return;
   }
   const heading = document.createElement("h3");
@@ -585,7 +592,6 @@ function finishQuiz() {
   cancelAutoAdvance();
   const unanswered = state.questions.filter((item) => !item.checked);
   if (unanswered.length && !window.confirm(`Без перевіреної відповіді залишилося ${unanswered.length} з ${state.questions.length} питань. Вони не зарахуються в результат цієї спроби, але не додадуть помилок у статистику питань. Завершити вікторину?`)) return;
-  unanswered.forEach((item) => state.mistakes.push({ question: item.question, selected: "Не надано перевіреної відповіді", correct: item.options.find((option) => option.correct).text, explanation: item.explanation, reference: item.reference, notePath: item.notePath }));
   showResults();
 }
 
