@@ -851,7 +851,7 @@ function renderStats() {
   });
 
   elements.questionStatsBody.replaceChildren();
-  config.questions.forEach((item) => {
+  config.questions.forEach((item, index) => {
     const topic = data.topics[item.sourceTopicId];
     const stat = topic && topic.questions[item.id] || { shown: 0, correct: 0, wrong: 0, streak: 0 };
     const total = stat.correct + stat.wrong;
@@ -860,13 +860,13 @@ function renderStats() {
     const statusClass = status === "Засвоєно" ? "mastered" : status === "Нове" ? "new" : "progress";
     const accuracy = total ? Math.round(stat.correct / total * 100) + "%" : "-";
     const statusSymbol = status === "Засвоєно" ? "✓" : status === "В роботі" ? "◐" : "○";
-    row.innerHTML = `<td class="topic-number"></td><td class="question-cell"></td><td class="metric-cell" aria-label="Спроб: ${stat.shown}"><span class="metric-glyph" aria-hidden="true">↻</span><span>${stat.shown}</span></td><td class="metric-cell" aria-label="Правильно: ${stat.correct}"><span class="metric-glyph" aria-hidden="true">✓</span><span>${stat.correct}</span></td><td class="metric-cell" aria-label="Помилки: ${stat.wrong}"><span class="metric-glyph" aria-hidden="true">×</span><span>${stat.wrong}</span></td><td class="metric-cell" aria-label="Точність: ${accuracy}"><span class="metric-glyph" aria-hidden="true">%</span><span>${accuracy}</span></td><td class="metric-cell status-cell" aria-label="Статус: ${status}"><span class="metric-glyph" aria-hidden="true">◉</span><span class="status status-${statusClass}"><span class="status-long">${status}</span><span class="status-short" aria-hidden="true">${statusSymbol}</span></span></td>`;
+    row.innerHTML = `<td class="question-number" aria-label="Питання ${index + 1}">${index + 1}</td><td class="topic-number"></td><td class="question-cell"></td><td class="metric-cell" aria-label="Спроб: ${stat.shown}"><span class="metric-glyph" aria-hidden="true">↻</span><span>${stat.shown}</span></td><td class="metric-cell" aria-label="Правильно: ${stat.correct}"><span class="metric-glyph" aria-hidden="true">✓</span><span>${stat.correct}</span></td><td class="metric-cell" aria-label="Помилки: ${stat.wrong}"><span class="metric-glyph" aria-hidden="true">×</span><span>${stat.wrong}</span></td><td class="metric-cell" aria-label="Точність: ${accuracy}"><span class="metric-glyph" aria-hidden="true">%</span><span>${accuracy}</span></td><td class="metric-cell status-cell" aria-label="Статус: ${status}"><span class="metric-glyph" aria-hidden="true">◉</span><span class="status status-${statusClass}"><span class="status-long">${status}</span><span class="status-short" aria-hidden="true">${statusSymbol}</span></span></td>`;
     const meta = window.QUIZ_META.topics.find((topicMeta) => topicMeta.id === item.sourceTopicId);
     const topicLink = document.createElement("a");
     topicLink.className = "stats-link"; topicLink.href = `${meta.path}/index.html`; topicLink.title = `${meta.shortLabel}: ${meta.name}`; topicLink.setAttribute("aria-label", `${meta.shortLabel}: ${meta.name}`); topicLink.textContent = meta.key;
     const questionLink = document.createElement("a");
     questionLink.className = "stats-link"; questionLink.href = referenceUrl(item.reference, item); questionLink.textContent = item.question;
-    row.children[0].replaceChildren(topicLink); row.children[1].replaceChildren(questionLink); elements.questionStatsBody.append(row);
+    row.children[1].replaceChildren(topicLink); row.children[2].replaceChildren(questionLink); elements.questionStatsBody.append(row);
   });
 
   elements.historyBody.replaceChildren();
