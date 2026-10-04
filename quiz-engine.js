@@ -9,37 +9,7 @@ const STATE_VERSION = 6;
 const ACTIVE_KEY = `vos420-${config.id}-active-v6`;
 const STATS_KEY = "vos420-quiz-statistics-v1";
 const DISTRACTOR_HISTORY_KEY = "vos420-distractor-history-v1";
-const CURATED_EXTRA_DISTRACTORS = {
-  "t3-10": ["Спочатку збільшується, потім зменшується", "Залежить лише від амплітуди", "Стає нескінченною"],
-  "t4-01": ["Джерело живлення, фідер і заземлення", "Модулятор, акумулятор і мікрофон", "Передавач, GPS і дисплей"],
-  "t4-21": ["Лише вихідну потужність", "Тільки дальність прямої видимості", "Тільки фізичні розміри антени"],
-  "t4-45": ["Здатність підвищувати потужність передавача", "Відношення опору антени до опору фідера", "Ширину смуги робочих частот"],
-  "t5-01": ["Для стратегічної ланки управління", "Для авіаційного диспетчерського зв'язку", "Для морської навігації"],
-  "t5-04": ["30-108 МГц", "30-88 МГц", "108-512 МГц"],
-  "t5-18": ["32 кбіт/с", "48 кбіт/с", "96 кбіт/с"],
-  "t5-33": ["Вона реєструється на новому вузлі лише після ручного перезапуску", "Вона залишається прив'язаною до попереднього вузла до втрати живлення", "Оператор має вручну обрати новий ретрансляторний вузол"],
-  "t5-48": ["До 1 м", "До 2 м", "До 10 м"],
-  "t5-49": ["10 Ом", "100 Ом", "300 Ом"],
-  "t5-50": ["Так, якщо передаються лише дані", "Так, якщо встановлено мінімальну потужність", "Так, якщо використовується коротка антена"],
-  "t5-52": ["Справність антенного узгоджувача", "Рівень прийнятого сигналу", "Частоту активної мережі"],
-  "t5-53": ["Утримувати ENT п'ять секунд", "Одночасно натиснути PTT і 1 SQL", "Тричі натиснути 7 APPS"],
-  "t5-54": ["Відновлює заводські частоти", "Блокує передню панель", "Запускає повний BIT"],
-  "t5-55": ["Тільки в ANW2C", "Тільки в Quicklook 1A", "У всіх мережах TNW"],
-  "t5-58": ["У двох MACA2-мережах", "У мережах ANW2C і TNW", "Лише між QL1A та STC"],
-  "t5-59": ["7 APPS > RADIO INFO", "1 SQL > GPS > TEST", "9 PGM > NETWORK > BIT"],
-  "t5-60": ["Щодня виконувати ZEROIZE", "Щодня змінювати антенний порт", "Щодня перепрограмовувати всі мережі"],
-  "t5-61": ["9,6 кбіт/с", "32 кбіт/с", "120 кбіт/с"],
-  "t5-76": ["25 см і 100 см", "30 см і 90 см", "60 см і 120 см"],
-  "t6-29": ["2,5 кГц", "10 кГц", "20 кГц"],
-  "t6-44": ["Citadel-128", "AES-64", "DES-56"],
-  "t6-45": ["USB", "RS-232", "Bluetooth"],
-  "t6-58": ["OFF", "CT", "AUTO"],
-  "t6-59": ["TEST COMPLETE", "SYSTEM OK", "BIT OK"],
-  "t6-60": ["0,1-0,9", "2,0-2,9", "3,0-3,9"],
-  "t6-61": ["FIX та 3G", "ALE та 3G+", "HOP та 3G"],
-  "t7-08": ["169.254.1.1", "192.168.78.1", "169.254.78.2"],
-  "t7-09": ["RF-7850M-HH", "Для RF-7800H-MP і MPR-9600-MP", "Для жодної з цих моделей"]
-};
+
 const state = {
   questions: [], index: 0, score: 0, selected: null, answered: false,
   mistakes: [], answers: [], activeElapsedMs: 0, timerStartedAt: null,
@@ -183,40 +153,6 @@ function normalizedOptionText(value) {
   return String(value).toLocaleLowerCase("uk-UA").replace(/[’'`]/g, "'").replace(/[^\p{L}\p{N}%+/-]+/gu, " ").trim();
 }
 
-function expandDistractorPools() {
-  const snapshots = config.questions.map((item) => ({
-    item,
-    correct: item.correct !== undefined ? item.correct : Array.isArray(item.options) ? item.options[item.answer] : undefined,
-    wrong: [
-      ...(Array.isArray(item.wrong)
-        ? item.wrong
-        : Array.isArray(item.options) ? item.options.filter((value, index) => index !== item.answer) : []),
-      ...(Array.isArray(item.extraWrong) ? item.extraWrong : [])
-    ]
-  }));
-
-  snapshots.forEach(({ item, correct: correctAnswer, wrong }) => {
-    if (correctAnswer === undefined) return;
-    item.correct = correctAnswer;
-    if (wrong.length >= 6) {
-      item.wrong = wrong.slice(0, 6);
-      return;
-    }
-    const correct = normalizedOptionText(correctAnswer);
-    const seen = new Set([correct, ...wrong.map(normalizedOptionText)]);
-    for (const text of CURATED_EXTRA_DISTRACTORS[item.id] || []) {
-      const normalized = normalizedOptionText(text);
-      if (!normalized || seen.has(normalized)) continue;
-      wrong.push(text);
-      seen.add(normalized);
-      if (wrong.length === 6) break;
-    }
-    // Use only distractors authored for this question. Borrowing from other
-    // questions can mix units or introduce answers from an unrelated context.
-    item.wrong = wrong;
-  });
-}
-
 function readDistractorHistory() {
   try { return JSON.parse(localStorage.getItem(DISTRACTOR_HISTORY_KEY)) || {}; }
   catch { return {}; }
@@ -239,7 +175,7 @@ function selectDistractors(item) {
   return selected;
 }
 
-expandDistractorPools();
+
 
 function normalizedQuestion(item) {
   if (item.correct !== undefined) {

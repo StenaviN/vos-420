@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>8. Програмування HARRIS КХ RF-7800H-MP</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="../style.css?v=459ed4ea7cfe">
+  <link rel="stylesheet" href="../style.css?v=c95a93c9822c">
 </head>
 <body>
   <main class="page">
@@ -50,7 +50,7 @@
 
     <section id="perednalashtuvannia" class="section">
       <h2>Передналаштування CPA</h2>
-      <h3>Префікс назв радіостанцій</h3>
+      <h3 id="perednalashtuvannia-prefiks-nazv-radiostantsiy" data-legacy-anchor="perednalashtuvannia-префікс-назв-радіостанцій">Префікс назв радіостанцій</h3>
       <div class="menu-path" aria-label="Шлях до параметрів застосунку"><span>Tools</span><span>Application Options</span></div>
       <ol>
         <li>У лівій частині вікна обери <code>RF-7800H-MP</code>.</li>
@@ -68,7 +68,7 @@
         </figure>
       </div>
 
-      <h3>Автоматичне створення TOD Mask</h3>
+      <h3 id="perednalashtuvannia-avtomatychne-stvorennya-tod-mask" data-legacy-anchor="perednalashtuvannia-автоматичне-створення-tod-mask">Автоматичне створення TOD Mask</h3>
       <div class="menu-path"><span>Tools</span><span>Application Options</span><span>HF Hopping</span></div>
       <p>У полі <code>Auto Generate TOD Mask</code> встанови <code>Enabled</code> і підтвердь зміни кнопкою <code>OK</code>.</p>
       <figure class="procedure-shot">
@@ -105,7 +105,7 @@
 
     <section id="kanaly" class="section">
       <h2>Канали та канальні групи</h2>
-      <h3>Створення каналів</h3>
+      <h3 id="kanaly-stvorennya-kanaliv" data-legacy-anchor="kanaly-створення-каналів">Створення каналів</h3>
       <div class="menu-path"><span>Tools</span><span>HF Channels</span></div>
       <figure class="procedure-shot procedure-shot-narrow">
         <button class="procedure-shot-button" type="button" aria-label="Збільшити шлях до HF Channels"><img src="hf-channels-menu.png" alt="Пункт HF Channels у меню Tools" loading="lazy"></button>
@@ -132,7 +132,7 @@
         <figcaption>Для частоти УКХ-діапазону понад 30 МГц встанови <code>Modulation Type = FM</code>.</figcaption>
       </figure>
 
-      <h3>Створення канальних груп</h3>
+      <h3 id="kanaly-stvorennya-kanalnykh-hrup" data-legacy-anchor="kanaly-створення-канальних-груп">Створення канальних груп</h3>
       <p>Канальні групи потрібні для ALE та 3G. Для FIX і HOP їх не використовують.</p>
       <ol>
         <li>У частині <code>Channel Groups</code> натисни <code>Add</code>.</li>
@@ -185,7 +185,7 @@
         <figcaption>Обери <code>Create → Create Network</code> і потрібний тип мережі.</figcaption>
       </figure>
       <p>Обери потрібний тип мережі: <code>HF Fixed Frequency</code>, <code>HF Hopping</code>, <code>ALE</code> або <code>3G</code>.</p>
-      <h3>Створення радіостанцій</h3>
+      <h3 id="stantsii-merezhi-stvorennya-radiostantsiy" data-legacy-anchor="stantsii-merezhi-створення-радіостанцій">Створення радіостанцій</h3>
       <p>Якщо це перша мережа плану:</p>
       <ol>
         <li>Обери тип <code>RF-7800H-MP</code>.</li>
@@ -198,7 +198,7 @@
         <button class="procedure-shot-button" type="button" aria-label="Збільшити меню створення нових станцій"><img src="create-new-stations-menu.png" alt="Команди створення однієї або кількох станцій RF-7800H-MP" loading="lazy"></button>
         <figcaption>У меню <code>New</code> обери створення однієї або кількох RF-7800H-MP.</figcaption>
       </figure>
-      <h3>Повторне використання станцій</h3>
+      <h3 id="stantsii-merezhi-povtorne-vykorystannya-stantsiy" data-legacy-anchor="stantsii-merezhi-повторне-використання-станцій">Повторне використання станцій</h3>
       <p>Під час створення наступної мережі натисни <code>Existing</code> і додай до неї вже створені радіостанції. Одна станція може входити до кількох мереж плану.</p>
       <figure class="procedure-shot">
         <button class="procedure-shot-button" type="button" aria-label="Збільшити додавання наявних станцій"><img src="add-existing-stations.png" alt="Вибір наявних RF-7800H-MP і кнопки Add та Add All" loading="lazy"></button>
@@ -228,7 +228,7 @@
       <h2>Мережа HOP</h2>
       <div class="menu-path"><span>Create</span><span>Create Network</span><span>HF Hopping</span></div>
       <p>Додай станції через <code>Existing</code>, зніми виділення та натисни <code>Expand All</code>.</p>
-      <h3>Властивості мережі</h3>
+      <h3 id="hop-vlastyvosti-merezhi" data-legacy-anchor="hop-властивості-мережі">Властивості мережі</h3>
       <p>Заповни основні властивості мережі:</p>
       <ul>
         <li><code>Name</code> — назва мережі;</li>
@@ -242,7 +242,7 @@
         <button class="procedure-shot-button" type="button" aria-label="Збільшити властивості HOP"><img src="hop-network-properties.png" alt="Основні властивості мережі HF Hopping" loading="lazy"></button>
         <figcaption>Призначення hopset, шифрування, кільця ключів, профілю модема й вокодерів мережі HOP.</figcaption>
       </figure>
-      <h3>Створення та модифікація hopset</h3>
+      <h3 id="hop-stvorennya-ta-modyfikatsiya-hopset" data-legacy-anchor="hop-створення-та-модифікація-hopset">Створення та модифікація hopset</h3>
       <ol>
         <li>У групі <code>Global HF Hopping</code> відкрий <code>HF Hopsets</code> кнопкою з трьома крапками.</li>
         <li>Натисни <code>Add</code>, щоб створити новий hopset, або виділи наявний і натисни <code>Modify</code>. Кнопка <code>Delete</code> видаляє вибраний hopset.</li>
@@ -293,7 +293,7 @@
         <button class="procedure-shot-button" type="button" aria-label="Збільшити властивості 3G"><img src="three-g-network-properties.png" alt="Властивості мережі 3G і поле 3G Configuration" loading="lazy"></button>
         <figcaption>Шифрування та перехід до спільних параметрів мережі 3G.</figcaption>
       </figure>
-      <h3>Конфігурація 3G</h3>
+      <h3 id="three-g-konfihuratsiya-3g" data-legacy-anchor="three-g-конфігурація-3g">Конфігурація 3G</h3>
       <ul>
         <li>У групі <code>3G Preset</code> обери <code>Modem Preset</code>, <code>CT Voice</code> і <code>PT Voice</code>.</li>
         <li>У полі <code>TOD Server</code> обери головну радіостанцію, яка забезпечуватиме часову основу мережі.</li>
@@ -316,7 +316,7 @@
         <button class="procedure-shot-button" type="button" aria-label="Збільшити меню та результат Validate Plan"><img src="validation-passed-actions-menu.png" alt="Меню Actions, кнопка Validate Plan і результат Validation Passed" loading="lazy"></button>
         <figcaption>Команда <code>Actions → Validate Plan</code>, її кнопка на панелі та успішний результат перевірки.</figcaption>
       </figure>
-      <h3>Повідомлення про режим шифрування SMS</h3>
+      <h3 id="perevirka-povidomlennya-pro-rezhym-shyfruvannya-sms" data-legacy-anchor="perevirka-повідомлення-про-режим-шифрування-sms">Повідомлення про режим шифрування SMS</h3>
       <div class="note note-important"><strong>Можливе повідомлення:</strong> <code>Make sure your radio is in CT Mode or SMS will not work.</code></div>
       <p>Повідомлення з'являється, коли для станцій параметр <code>Station Cipher Mode</code> має значення <code>CT Only</code>.</p>
       <figure class="procedure-shot">
@@ -358,7 +358,7 @@
     <section id="usb-programuvannia" class="section">
       <h2>Програмування радіостанції через USB-кабель</h2>
       <p><a href="../07-harris-kh-ekspluatatsiia/index.html#ip-adresa">Перегляд налаштування DIRECT USB та IP-адреси радіостанції</a></p>
-      <h3>Перехід до програмування в CPA</h3>
+      <h3 id="usb-programuvannia-perekhid-do-prohramuvannya-v-cpa" data-legacy-anchor="usb-programuvannia-перехід-до-програмування-в-cpa">Перехід до програмування в CPA</h3>
       <ol>
         <li>Після визначення IP-адреси радіостанції у панелі <strong>Navigator</strong> вибери потрібну станцію зі списку <strong>All Stations</strong>. На прикладі вибрано <strong>R1</strong> типу <strong>RF-7800H-MP</strong>.</li>
         <li>Відкрий меню <strong>Actions → Program…</strong>. З’явиться вікно <strong>Radio Programming</strong>.</li>
@@ -384,12 +384,12 @@
       </div>
     </section>
   </main>
-  <script src="../asset-version.js?v=459ed4ea7cfe"></script>
-  <script src="../search-index.js?v=459ed4ea7cfe"></script>
-  <script src="../topic-search.js?v=459ed4ea7cfe"></script>
+  <script src="../asset-version.js?v=c95a93c9822c"></script>
+  <script src="../search-index.js?v=c95a93c9822c"></script>
+  <script src="../topic-search.js?v=c95a93c9822c"></script>
   <script>window.GLOSSARY_ROOT = "../";</script>
-  <script src="../glossary-data.js?v=459ed4ea7cfe"></script>
-  <script src="../glossary-terms.js?v=459ed4ea7cfe"></script>
-  <script src="../site-ui.js?v=459ed4ea7cfe"></script>
+  <script src="../glossary-data.js?v=c95a93c9822c"></script>
+  <script src="../glossary-terms.js?v=c95a93c9822c"></script>
+  <script src="../site-ui.js?v=c95a93c9822c"></script>
 </body>
 </html>

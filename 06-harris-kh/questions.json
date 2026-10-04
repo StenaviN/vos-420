@@ -1,6 +1,4 @@
-"use strict";
-// Generated from questions.json by npm run build:quiz.
-window.QUIZ_CONFIG = {
+{
   "id": "topic6-harris-hf",
   "label": "ВОС-420 · HARRIS КХ",
   "title": "Вікторина HARRIS RF-7800H-MP / MPR-9600-MP",
@@ -869,4 +867,4 @@ window.QUIZ_CONFIG = {
       "reference": "#vokodery"
     }
   ]
-};
+}

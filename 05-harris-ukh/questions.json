@@ -1,6 +1,4 @@
-"use strict";
-// Generated from questions.json by npm run build:quiz.
-window.QUIZ_CONFIG = {
+{
   "id": "topic5-harris",
   "label": "ВОС-420 · HARRIS RF-7850M-HH",
   "title": "Розширена вікторина HARRIS",
@@ -1925,4 +1923,4 @@ window.QUIZ_CONFIG = {
       "reference": "#rezhymy"
     }
   ]
-};
+}

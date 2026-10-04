@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>5. ТТХ HARRIS УКХ RF-7850M-HH / RF-7800V-HH</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="../style.css?v=459ed4ea7cfe">
+  <link rel="stylesheet" href="../style.css?v=c95a93c9822c">
 </head>
 <body>
   <main class="page">
@@ -110,7 +110,7 @@
       <h2>Режими роботи</h2>
 <div class="note"><strong>Синхронізація за часом:</strong> для режимів QL3, QLW, TNW та ANW2C потрібен узгоджений час радіостанцій. Самоорганізація мережі ANW2C не скасовує цієї вимоги. У <a href="https://www.radiomanual.info/schemi/Surplus_NATO/AN-PRC-117G_Harris_user_2014.pdf" target="_blank" rel="noopener">довіднику Harris AN/PRC-117G, розділ ANW2/ANW2C Waveforms</a> вимогу синхронізації пояснено роботою TRANSEC. Це підтвердження принципу роботи ANW2/ANW2C на іншій моделі; числовий допуск часу для RF-7850M-HH тут не встановлюється.</div>
       <div class="note"><strong>Перелік для тесту:</strong> RF-7850M-HH підтримує FIX, QL1A, QL2, QL3, QLW, TNW, ANW2C і STC. У презентації CWR розглядається окремо як ретрансляторна мережева можливість, тому до цього переліку режимів у тестовому питанні її не додають.</div>
-      <h3>Порівняння доступних мереж</h3>
+      <h3 id="rezhymy-porivnyannya-dostupnykh-merezh" data-legacy-anchor="rezhymy-порівняння-доступних-мереж">Порівняння доступних мереж</h3>
       <div class="network-comparison-wrap">
       <table class="network-comparison">
         <thead>
@@ -332,7 +332,7 @@
 
     <section id="pidhotovka" class="section">
       <h2>Комплект і підготовка до роботи</h2>
-      <h3>Комплект</h3>
+      <h3 id="pidhotovka-komplekt" data-legacy-anchor="pidhotovka-комплект">Комплект</h3>
       <ul>
         <li>прийомопередавач;</li>
         <li>інструкція;</li>
@@ -345,7 +345,7 @@
         <li>кабелі 0,3 м і 1,2 м за варіантом комплектації.</li>
       </ul>
 
-      <h3>Зарядний пристрій</h3>
+      <h3 id="pidhotovka-zaryadnyy-prystriy" data-legacy-anchor="pidhotovka-зарядний-пристрій">Зарядний пристрій</h3>
       <ul>
         <li>розрахований на дві батареї;</li>
         <li>оранжевий індикатор (постійне світіння) — батарея заряджається;</li>
@@ -353,7 +353,7 @@
         <li>червоний індикатор (постійне світіння) — проблема з АКБ.</li>
       </ul>
 
-      <h3>Підготовка</h3>
+      <h3 id="pidhotovka-pidhotovka" data-legacy-anchor="pidhotovka-підготовка">Підготовка</h3>
       <ol>
         <li>Встановити органи керування у вихідне положення, перемикач - у положення OFF.</li>
         <li>Перевірити високочастотні роз'єми радіостанції та антени: без механічних пошкоджень, стружки чи сміття.</li>
@@ -363,7 +363,7 @@
         <li>Переконатися, що немає індикації несправності, а індикатор АКБ показує достатній заряд.</li>
       </ol>
 
-      <h3>Перед виходом у зв'язок</h3>
+      <h3 id="pidhotovka-pered-vykhodom-u-zv-yazok" data-legacy-anchor="pidhotovka-перед-виходом-у-зв-язок">Перед виходом у зв'язок</h3>
       <ul>
         <li>Радіостанція має бути заздалегідь запрограмована через CPA, передню панель або Web UI.</li>
         <li>Перевірити тип мережі, назву мережі, PT / CT, рівень потужності, Rx / Tx частоти або hopset, вокодер і швидкість.</li>
@@ -371,7 +371,7 @@
         <li>Для економії АКБ передавати лише за потреби й застосовувати найнижчу потужність, достатню для стійкого зв'язку.</li>
       </ul>
 
-      <h3>Зберігання</h3>
+      <h3 id="pidhotovka-zberihannya" data-legacy-anchor="pidhotovka-зберігання">Зберігання</h3>
       <p>Зберігати радіостанцію у захищеному місці. АКБ зберігати в чистому, сухому, вентильованому приміщенні за температури нижче +21 °C.</p>
     </section>
 
@@ -396,7 +396,7 @@
         </tbody>
       </table>
 
-      <h3>Клавіатура</h3>
+      <h3 id="orhany-keruvannia-klaviatura" data-legacy-anchor="orhany-keruvannia-клавіатура">Клавіатура</h3>
       <ul>
         <li>Екранні клавіші виконують функції згідно з підписами на дисплеї.</li>
         <li><kbd class="key-button">7 APPS</kbd> - прикладне меню, <kbd class="key-button">9 PGM</kbd> - меню програмування, <kbd class="key-button">1 SQL</kbd> - шумоподавлення, <kbd class="key-button">3 LT</kbd> - підсвітка.</li>
@@ -409,14 +409,14 @@
 
     <section id="praktychni-funktsii" class="section">
       <h2>Практичні функції</h2>
-      <h3>ZEROIZE</h3>
+      <h3 id="praktychni-funktsii-zeroize" data-legacy-anchor="praktychni-funktsii-zeroize">ZEROIZE</h3>
       <ul>
         <li>Викликається екранною клавішею ZERO або положенням перемикача Z.</li>
         <li>Екранна команда дозволяє вибрати ALL, CONFIG або FILESYSTEM і потребує підтвердження.</li>
         <li>Положення Z очищує всі запрограмовані змінні, включно з ключами шифрування та даними користувача. Це незворотна оперативна дія, а не звичайне вимкнення.</li>
       </ul>
 
-      <h3>Сканування каналів</h3>
+      <h3 id="praktychni-funktsii-skanuvannya-kanaliv" data-legacy-anchor="praktychni-funktsii-сканування-каналів">Сканування каналів</h3>
       <ul>
         <li>Працює лише для FIX; список може містити до 25 мереж.</li>
         <li>Недоступне у режимах ППРЧ і в мережах з Legacy MACA або MACA2.</li>
@@ -424,13 +424,13 @@
         <li>Режими сканування: inactive, manual, automatic; за Dual PTT доступний Dual PTT Scan.</li>
       </ul>
 
-      <h3>Hopset і Lockset</h3>
+      <h3 id="praktychni-funktsii-hopset-i-lockset" data-legacy-anchor="praktychni-funktsii-hopset-і-lockset">Hopset і Lockset</h3>
       <ul>
         <li><strong>Hopset</strong> - заздалегідь визначений набір частот, між якими радіостанція швидко перемикається під час передавання і приймання.</li>
         <li><strong>Lockset</strong> - діапазон або набір частот, заборонених для використання під час ППРЧ через місцеві обмеження чи оперативні причини.</li>
       </ul>
 
-      <h3>Black Repeater</h3>
+      <h3 id="praktychni-funktsii-black-repeater" data-legacy-anchor="praktychni-funktsii-black-repeater">Black Repeater</h3>
       <ul>
         <li>Окрема радіостанція може працювати як ретранслятор Black Repeater.</li>
         <li>Лише одна станція в мережі FF/LOS або QL може бути ретранслятором.</li>
@@ -439,7 +439,7 @@
         <li>Для налаштування: Advanced у Network Information, Retransmit = Enabled, Retransmit Mode = Simple або Advanced, Channel Access = None, Black Repeater = Enabled.</li>
       </ul>
 
-      <h3>Dual PTT</h3>
+      <h3 id="praktychni-funktsii-dual-ptt" data-legacy-anchor="praktychni-funktsii-dual-ptt">Dual PTT</h3>
       <p>Функція дає можливість працювати з двома мережами FIX через дві тангенти, якщо вимкнена MACA. На екзамені важливо прив'язати Dual PTT саме до режиму FIX і одночасної роботи у двох мережах.</p>
 
       <h3 id="time-date">Час і дата</h3>
@@ -474,14 +474,14 @@
       </ol>
       <p>Максимальна тривалість голосового повідомлення - <strong>60 секунд</strong>. Voice Mail є записаним повідомленням, яке передається як дані. Для тесту його пов'язують із режимами пакетної роботи з <strong>MACA, TDMA або ANW2</strong>, а не лише з голосовими QL2 і QL3.</p>
 
-      <h3>Індивідуальний виклик</h3>
+      <h3 id="praktychni-funktsii-indyvidualnyy-vyklyk" data-legacy-anchor="praktychni-funktsii-індивідуальний-виклик">Індивідуальний виклик</h3>
       <div class="menu-path"><span>0 ↻</span><span>NAVIGATION</span><span>CALL MENU (трубка)</span><span>RADIO CONTACT</span><span>контакт</span></div>
       <p>Після вибору контакту підтвердь виклик кнопкою <kbd class="key-button">ENT</kbd>.</p>
     </section>
 
     <section id="dostup-ta-obsluhovuvannia" class="section">
       <h2>Доступ, самотестування та обслуговування</h2>
-      <h3>Рівні користувача</h3>
+      <h3 id="dostup-ta-obsluhovuvannia-rivni-korystuvacha" data-legacy-anchor="dostup-ta-obsluhovuvannia-рівні-користувача">Рівні користувача</h3>
       <table>
         <thead>
           <tr><th>Рівень</th><th>Призначення</th></tr>
@@ -495,7 +495,7 @@
       </table>
       <p>Доступні екрани й меню залежать від рівня. Параметр KEEP LOGIN зберігає вхід після циклу живлення і потребує щонайменше рівня 2.</p>
 
-      <h3>BIT</h3>
+      <h3 id="dostup-ta-obsluhovuvannia-bit" data-legacy-anchor="dostup-ta-obsluhovuvannia-bit">BIT</h3>
       <div class="menu-path"><span>7 APPS</span><span>BUILT IN TEST</span><span>NON-INTERACTIVE</span><span>TEST STATUS</span><span>RESULTS</span></div>
       <ul>
         <li>Після завершення неінтерактивного тесту відкрий <code>RESULTS</code> для перегляду результатів.</li>
@@ -504,7 +504,7 @@
         <li>RUN ALL запускає всі неінтерактивні тести; результати показують кількість пройдених і невдалих перевірок.</li>
       </ul>
 
-      <h3>Профілактика і реакція на несправність</h3>
+      <h3 id="dostup-ta-obsluhovuvannia-profilaktyka-i-reaktsiya-na-nespravnist" data-legacy-anchor="dostup-ta-obsluhovuvannia-профілактика-і-реакція-на-несправність">Профілактика і реакція на несправність</h3>
       <ul>
         <li>Щодня під час експлуатації виконувати Self Test.</li>
         <li>Щотижня оглядати антену, роз'єми та захисні кришки; тримати обладнання чистим, сухим і без пилу.</li>
@@ -517,13 +517,13 @@
     <div class="topic-quiz-cta"><div><strong>Перевір себе</strong><span>Перевір знання за матеріалами цієї теми.</span></div><a class="topic-quiz-button" href="../quiz.html?topic=5">Почати вікторину <span aria-hidden="true">→</span></a></div>
 
   </main>
-  <script src="../asset-version.js?v=459ed4ea7cfe"></script>
+  <script src="../asset-version.js?v=c95a93c9822c"></script>
 
-  <script src="../search-index.js?v=459ed4ea7cfe"></script>
-  <script src="../topic-search.js?v=459ed4ea7cfe"></script>
+  <script src="../search-index.js?v=c95a93c9822c"></script>
+  <script src="../topic-search.js?v=c95a93c9822c"></script>
   <script>window.GLOSSARY_ROOT = "../";</script>
-  <script src="../glossary-data.js?v=459ed4ea7cfe"></script>
-  <script src="../glossary-terms.js?v=459ed4ea7cfe"></script>
-  <script src="../site-ui.js?v=459ed4ea7cfe"></script>
+  <script src="../glossary-data.js?v=c95a93c9822c"></script>
+  <script src="../glossary-terms.js?v=c95a93c9822c"></script>
+  <script src="../site-ui.js?v=c95a93c9822c"></script>
 </body>
 </html>

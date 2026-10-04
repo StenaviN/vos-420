@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>7. Експлуатація HARRIS КХ RF-7800H-MP / MPR-9600-MP</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="../style.css?v=459ed4ea7cfe">
+  <link rel="stylesheet" href="../style.css?v=c95a93c9822c">
 </head>
 <body>
   <main class="page">
@@ -32,7 +32,7 @@
 
     <section id="pered-robotoyu" class="section">
       <h2>Перед початком роботи</h2>
-      <h3>Підключення та ввімкнення</h3>
+      <h3 id="pered-robotoyu-pidklyuchennya-ta-vvimknennya" data-legacy-anchor="pered-robotoyu-підключення-та-ввімкнення">Підключення та ввімкнення</h3>
       <ol>
         <li>Підключи акумуляторну батарею <code>BB-2590/U Li-ion</code>.</li>
         <li>Підключи антену.</li>
@@ -43,15 +43,15 @@
       </ol>
       <p>Після завантаження повідомлення <code>DEFAULT PASSWORD DETECTED</code> означає, що код користувача не задано.</p>
       <p>Перед виходом в ефір перевір підключення антени, живлення та гарнітури. Режим, частоти, адреси й ключові параметри обох кореспондентів мають відповідати плану зв'язку.</p>
-      <h3>Перевірка потужності передавача</h3>
+      <h3 id="pered-robotoyu-perevirka-potuzhnosti-peredavacha" data-legacy-anchor="pered-robotoyu-перевірка-потужності-передавача">Перевірка потужності передавача</h3>
       <div class="menu-path"><span>7 OPT</span><span>RADIO</span><span>TX POWER</span><span>LOW | MED | HIGH</span></div>
       <p>Перевір установлений рівень вихідної потужності та обери потрібне значення відповідно до умов роботи.</p>
 
-      <h3>Перевірка внутрішнього антенного узгоджувача</h3>
+      <h3 id="pered-robotoyu-perevirka-vnutrishnoho-antennoho-uzhodzhuvacha" data-legacy-anchor="pered-robotoyu-перевірка-внутрішнього-антенного-узгоджувача">Перевірка внутрішнього антенного узгоджувача</h3>
       <div class="menu-path"><span>7 OPT</span><span>RADIO</span><span>INTERNAL COUPLER</span><span>ENABLE | BY PASSED</span></div>
       <p>Перед роботою обов'язково встанови <code>ENABLE</code>, щоб увімкнути внутрішній антенний узгоджувач. <code>BY PASSED</code> обходить його.</p>
 
-      <h3>Перевірка назви станції</h3>
+      <h3 id="pered-robotoyu-perevirka-nazvy-stantsiyi" data-legacy-anchor="pered-robotoyu-перевірка-назви-станції">Перевірка назви станції</h3>
       <div class="menu-path"><span>7 OPT</span><span>RADIO</span><span>RADIO NAME</span></div>
       <p>Перевір або введи ім'я станції, яке використовується в адресних режимах.</p>
 
@@ -109,7 +109,7 @@
         <li>Виконай синхронізацію часу одним із наведених способів.</li>
         <li>Після успішної синхронізації працюй голосом за допомогою <kbd class="key-button">PTT</kbd>.</li>
       </ol>
-      <h3>Передавання та запит синхронізації</h3>
+      <h3 id="hop-peredavannya-ta-zapyt-synkhronizatsiyi" data-legacy-anchor="hop-передавання-та-запит-синхронізації">Передавання та запит синхронізації</h3>
       <div class="menu-path"><span>1 CALL</span><span>BROADCAST | REQUEST</span></div>
       <p><strong>BROADCAST</strong> виконує головна радіостанція, щоб передати час підлеглим станціям.</p>
       <p><strong>REQUEST</strong> виконує підлегла станція, щоб запросити синхронізацію.</p>
@@ -140,14 +140,14 @@
       <div class="menu-path"><span>7 OPT</span><span>ALE</span><span>LQA</span><span>EXCHANGE | SOUND</span><span>ім'я адресата</span><span>ENT</span></div>
       <p><strong>Перегляд результатів</strong></p>
       <div class="menu-path"><span>7 OPT</span><span>ALE</span><span>SCORE</span><span>REVIEW</span><span>ім'я станції</span><span>ENT</span></div>
-      <h3>Виклик</h3>
+      <h3 id="ale-vyklyk" data-legacy-anchor="ale-виклик">Виклик</h3>
       <div class="menu-path"><span>1 CALL</span><span>AUTOMATIC | MANUAL</span><span>INDIVIDUAL | NET | GROUP</span><span>ім'я адресата</span><span>ENT</span></div>
       <ul>
         <li><strong>AUTOMATIC:</strong> станція використовує результати оцінювання каналів і автоматичний алгоритм виклику.</li>
         <li><strong>MANUAL:</strong> оператор самостійно обирає параметри виклику.</li>
         <li><strong>INDIVIDUAL | NET | GROUP:</strong> виклик окремої станції, мережі або групи.</li>
       </ul>
-      <h3>Завершення з'єднання</h3>
+      <h3 id="ale-zavershennya-z-yednannya" data-legacy-anchor="ale-завершення-з-єднання">Завершення з'єднання</h3>
       <div class="menu-path"><span>CLR</span><span>TERMINATE LINK?</span><span>YES</span><span>ENT</span></div>
       <p>Після завершення з'єднання станція повертається до сканування.</p>
       <h3 id="ale-povidomlennia">Текстові повідомлення</h3>
@@ -168,18 +168,18 @@
         <li>Кнопкою <kbd class="key-button">3 MODE</kbd> обери <code>3G</code>.</li>
         <li>Змінюй частотний план кнопками <kbd class="key-button">&lt;</kbd>, <kbd class="key-button">&gt;</kbd>, <kbd class="key-button">^</kbd>, <kbd class="key-button">v</kbd> та підтверджуй кнопкою <kbd class="key-button">ENT</kbd>.</li>
       </ol>
-      <h3>Синхронізація</h3>
+      <h3 id="three-g-synkhronizatsiya" data-legacy-anchor="three-g-синхронізація">Синхронізація</h3>
       <div class="menu-path"><span>1 CALL</span><span>BROADCAST SYNC | BROADCAST SYNC-ALL | SYNC REQUEST</span></div>
       <ul>
         <li><strong>BROADCAST SYNC:</strong> передавання синхронізації для поточного плану.</li>
         <li><strong>BROADCAST SYNC-ALL:</strong> передавання синхронізації для всіх налаштованих планів.</li>
         <li><strong>SYNC REQUEST:</strong> запит синхронізації підлеглою станцією.</li>
       </ul>
-      <h3>LQA в 3G</h3>
+      <h3 id="three-g-lqa-v-3g" data-legacy-anchor="three-g-lqa-в-3g">LQA в 3G</h3>
       <p><strong>Вимога:</strong> для проведення LQA в режимі 3G радіостанції повинні обов'язково перебувати в режимі сканування.</p>
       <div class="menu-path"><span>7 OPT</span><span>3G</span><span>LQA</span><span>EXCHANGE | SOUND</span><span>адресат</span><span>ENT</span></div>
       <div class="menu-path"><span>7 OPT</span><span>3G</span><span>SCORE</span><span>REVIEW</span><span>станція</span><span>ENT</span></div>
-      <h3>Встановлення з'єднання</h3>
+      <h3 id="three-g-vstanovlennya-z-yednannya" data-legacy-anchor="three-g-встановлення-з-єднання">Встановлення з'єднання</h3>
       <div class="menu-path"><span>1 CALL</span><span>MANUAL | AUTOMATIC | BEST</span><span>NET | STATION</span><span>ім'я мережі або станції</span><span>ENT</span></div>
       <p><strong>BEST</strong> використовує найкращий канал за наявними оцінками. З'єднання завершують так само, як в ALE: <code>CLR → TERMINATE LINK? → YES → ENT</code>.</p>
       <h3 id="ldv">Голосове повідомлення LDV</h3>
@@ -211,13 +211,13 @@
         <li>Змінюй частотний план кнопками <kbd class="key-button">&lt;</kbd>, <kbd class="key-button">&gt;</kbd>, <kbd class="key-button">^</kbd>, <kbd class="key-button">v</kbd> та підтверджуй кнопкою <kbd class="key-button">ENT</kbd>.</li>
         <li>Визнач, у якому режимі працює радіостанція кореспондента — <a href="#ale">ALE</a> або <a href="#three-g">3G</a>, — і застосуй правила відповідного розділу.</li>
       </ol>
-      <h3>До синхронізації 3G</h3>
+      <h3 id="three-g-plus-do-synkhronizatsiyi-3g" data-legacy-anchor="three-g-plus-до-синхронізації-3g">До синхронізації 3G</h3>
       <p>Виклики <strong>ALE</strong> уже доступні, але встановлювати з'єднання через <strong>3G</strong> ще не можна. У меню виклику доступні:</p>
       <dl class="term-list">
         <div><dt>ALE</dt><dd><code>AUTOMATIC | MANUAL</code></dd></div>
         <div><dt>3G</dt><dd><code>BROADCAST SYNC | BCAST SYNC-ALL</code> — команди передавання синхронізації.</dd></div>
       </dl>
-      <h3>Після синхронізації 3G</h3>
+      <h3 id="three-g-plus-pislya-synkhronizatsiyi-3g" data-legacy-anchor="three-g-plus-після-синхронізації-3g">Після синхронізації 3G</h3>
       <p>До команд <strong>ALE</strong> додаються виклики та службові дії <strong>3G</strong>:</p>
       <dl class="term-list">
         <div><dt>ALE</dt><dd><code>AUTOMATIC | MANUAL</code></dd></div>
@@ -228,13 +228,13 @@
 
     <div class="topic-quiz-cta"><div><strong>Перевір себе</strong><span>Перевір знання за матеріалами цієї теми.</span></div><a class="topic-quiz-button" href="../quiz.html?topic=7">Почати вікторину <span aria-hidden="true">→</span></a></div>
   </main>
-  <script src="../asset-version.js?v=459ed4ea7cfe"></script>
+  <script src="../asset-version.js?v=c95a93c9822c"></script>
 
-  <script src="../search-index.js?v=459ed4ea7cfe"></script>
-  <script src="../topic-search.js?v=459ed4ea7cfe"></script>
+  <script src="../search-index.js?v=c95a93c9822c"></script>
+  <script src="../topic-search.js?v=c95a93c9822c"></script>
   <script>window.GLOSSARY_ROOT = "../";</script>
-  <script src="../glossary-data.js?v=459ed4ea7cfe"></script>
-  <script src="../glossary-terms.js?v=459ed4ea7cfe"></script>
-  <script src="../site-ui.js?v=459ed4ea7cfe"></script>
+  <script src="../glossary-data.js?v=c95a93c9822c"></script>
+  <script src="../glossary-terms.js?v=c95a93c9822c"></script>
+  <script src="../site-ui.js?v=c95a93c9822c"></script>
 </body>
 </html>

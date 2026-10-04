@@ -114,6 +114,7 @@
   headings.forEach((heading) => {
     const section = heading.closest("section[id]");
     let targetId = heading.id;
+    if (targetId && heading.dataset.legacyAnchor) legacyIds.set(heading.dataset.legacyAnchor, targetId);
     if (!targetId && heading.tagName === "H2") targetId = section.id;
     if (!targetId) {
       const oldBase = `${section.id}-${legacySlug(heading.textContent)}`;

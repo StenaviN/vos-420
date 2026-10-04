@@ -42,7 +42,7 @@ function loadTopic(index) {
       id: item.id || `t${meta.key}-${String(questionIndex + 1).padStart(2, "0")}`,
       sourceTopicId: meta.id,
       sourceTopicLabel: meta.shortLabel,
-      notePath: `${meta.path}/index.html`,
+      notePath: item.notePath || `${meta.path}/index.html`,
       topic: isMixed ? `${meta.shortLabel} · ${item.topic}` : item.topic
     })));
     const first = loaded[0];
