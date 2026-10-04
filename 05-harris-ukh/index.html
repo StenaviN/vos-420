@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>5. ТТХ HARRIS УКХ RF-7850M-HH / RF-7800V-HH</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="../style.css?v=0a7d4febce93">
+  <link rel="stylesheet" href="../style.css?v=b127afd178d3">
 </head>
 <body>
   <main class="page">
@@ -108,6 +108,7 @@
 
     <section id="rezhymy" class="section">
       <h2>Режими роботи</h2>
+<div class="note"><strong>Синхронізація за часом:</strong> для режимів QL3, QLW, TNW та ANW2C потрібен узгоджений час радіостанцій. Самоорганізація мережі ANW2C не скасовує цієї вимоги. У <a href="https://www.radiomanual.info/schemi/Surplus_NATO/AN-PRC-117G_Harris_user_2014.pdf" target="_blank" rel="noopener">довіднику Harris AN/PRC-117G, розділ ANW2/ANW2C Waveforms</a> вимогу синхронізації пояснено роботою TRANSEC. Це підтвердження принципу роботи ANW2/ANW2C на іншій моделі; числовий допуск часу для RF-7850M-HH тут не встановлюється.</div>
       <div class="note"><strong>Перелік для тесту:</strong> RF-7850M-HH підтримує FIX, QL1A, QL2, QL3, QLW, TNW, ANW2C і STC. У презентації CWR розглядається окремо як ретрансляторна мережева можливість, тому до цього переліку режимів у тестовому питанні її не додають.</div>
       <h3>Порівняння доступних мереж</h3>
       <div class="network-comparison-wrap">
@@ -185,7 +186,7 @@
             <td data-label="Швидкість">3-1372 кбіт/с</td>
             <td data-label="Частоти">225,6-512 МГц</td>
             <td data-label="Крок сітки">5 кГц</td>
-            <td data-label="Особливості">Самоорганізована адаптивна мережа; до 30 радіостанцій у локальній мережі</td>
+            <td data-label="Особливості">Самоорганізована адаптивна мережа; до 30 радіостанцій у локальній мережі; потрібна синхронізація за часом</td>
           </tr>
           <tr>
             <td data-label="Режим"><strong>STC</strong></td>
@@ -347,9 +348,9 @@
       <h3>Зарядний пристрій</h3>
       <ul>
         <li>розрахований на дві батареї;</li>
-        <li>оранжевий індикатор - батарея заряджається;</li>
-        <li>зелений індикатор - батарея заряджена;</li>
-        <li>червоний індикатор - проблема з АКБ.</li>
+        <li>оранжевий індикатор (постійне світіння) — батарея заряджається;</li>
+        <li>зелений індикатор (постійне світіння) — батарея заряджена;</li>
+        <li>червоний індикатор (постійне світіння) — проблема з АКБ.</li>
       </ul>
 
       <h3>Підготовка</h3>
@@ -516,13 +517,13 @@
     <div class="topic-quiz-cta"><div><strong>Перевір себе</strong><span>Перевір знання за матеріалами цієї теми.</span></div><a class="topic-quiz-button" href="../quiz.html?topic=5">Почати вікторину <span aria-hidden="true">→</span></a></div>
 
   </main>
-  <script src="../asset-version.js?v=0a7d4febce93"></script>
+  <script src="../asset-version.js?v=b127afd178d3"></script>
 
-  <script src="../search-index.js?v=0a7d4febce93"></script>
-  <script src="../topic-search.js?v=0a7d4febce93"></script>
+  <script src="../search-index.js?v=b127afd178d3"></script>
+  <script src="../topic-search.js?v=b127afd178d3"></script>
   <script>window.GLOSSARY_ROOT = "../";</script>
-  <script src="../glossary-data.js?v=0a7d4febce93"></script>
-  <script src="../glossary-terms.js?v=0a7d4febce93"></script>
-  <script src="../site-ui.js?v=0a7d4febce93"></script>
+  <script src="../glossary-data.js?v=b127afd178d3"></script>
+  <script src="../glossary-terms.js?v=b127afd178d3"></script>
+  <script src="../site-ui.js?v=b127afd178d3"></script>
 </body>
 </html>
