@@ -844,3 +844,13 @@
     display: none;
   }
 }
+
+.question-navigation { margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--line); }
+.question-navigation h2 { font-size: 1.2rem; }
+.question-navigation-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+.question-jump { min-width: 48px; min-height: 44px; padding: 8px; border: 1px solid #8ca7ba; border-radius: 6px; background: white; color: #193b51; cursor: pointer; }
+.question-jump.correct { background: #e0f2e5; color: #185b32; }
+.question-jump.incorrect { background: #fae2df; color: #8a241b; }
+.question-jump[aria-current] { outline: 3px solid #24687c; outline-offset: 2px; font-weight: bold; }
+.question-jump:focus-visible { outline: 3px solid #193b51; outline-offset: 2px; }
+.question-navigation-legend { font-size: .85rem; color: var(--muted); margin-bottom: 0; }
