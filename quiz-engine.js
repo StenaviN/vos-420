@@ -131,20 +131,27 @@ function topicHasStats(topic) {
   ));
 }
 
+function hasSavedResults(data, topicId = null) {
+  return Object.entries(data.latestResults || {}).some(([key, result]) =>
+    !topicId || key === topicId || result.topicIds?.includes(topicId));
+}
+
 function updateResetControls(data = readStats()) {
   const topic = data.topics[elements.statsResetTopic.value];
-  elements.clearTopicStats.disabled = !topicHasStats(topic);
-  elements.clearAllStats.disabled = !data.mixedAttempts.length && !Object.values(data.topics).some(topicHasStats);
+  elements.clearTopicStats.disabled = !topicHasStats(topic) && !hasSavedResults(data, elements.statsResetTopic.value);
+  elements.clearAllStats.disabled = !data.mixedAttempts.length && !Object.values(data.topics).some(topicHasStats) && !hasSavedResults(data);
 }
 
 function clearSelectedTopicStats() {
   const meta = window.QUIZ_META.topics.find((item) => item.id === elements.statsResetTopic.value);
   if (!meta) return;
   const data = readStats();
-  if (!topicHasStats(data.topics[meta.id])) return;
-  if (!window.confirm(`Очистити всю статистику для «${meta.shortLabel}: ${meta.name}»? Цю дію неможливо скасувати.`)) return;
+  if (!topicHasStats(data.topics[meta.id]) && !hasSavedResults(data, meta.id)) return;
+  if (!window.confirm(`Очистити всю статистику для «${meta.shortLabel}: ${meta.name}» і збережені результати останніх спроб із цією темою? Цю дію неможливо скасувати.`)) return;
   delete data.topics[meta.id];
-  if (data.latestResults) delete data.latestResults[meta.id];
+  for (const [key, result] of Object.entries(data.latestResults || {})) {
+    if (key === meta.id || result.topicIds?.includes(meta.id)) delete data.latestResults[key];
+  }
   writeStats(data);
   renderStats();
   elements.statsResetStatus.textContent = `Статистику для «${meta.shortLabel}» очищено.`;
@@ -152,8 +159,8 @@ function clearSelectedTopicStats() {
 
 function clearAllStatistics() {
   const data = readStats();
-  if (!data.mixedAttempts.length && !Object.values(data.topics).some(topicHasStats)) return;
-  if (!window.confirm("Очистити статистику всіх тем і всю історію спроб? Цю дію неможливо скасувати.")) return;
+  if (!data.mixedAttempts.length && !Object.values(data.topics).some(topicHasStats) && !hasSavedResults(data)) return;
+  if (!window.confirm("Очистити статистику всіх тем, всю історію спроб і всі збережені результати? Цю дію неможливо скасувати.")) return;
   try { localStorage.removeItem(STATS_KEY); } catch { writeStats({ version: 1, topics: {}, mixedAttempts: [] }); }
   renderStats();
   elements.statsResetStatus.textContent = "Усю статистику очищено.";
