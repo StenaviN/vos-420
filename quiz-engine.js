@@ -144,6 +144,7 @@ function clearSelectedTopicStats() {
   if (!topicHasStats(data.topics[meta.id])) return;
   if (!window.confirm(`Очистити всю статистику для «${meta.shortLabel}: ${meta.name}»? Цю дію неможливо скасувати.`)) return;
   delete data.topics[meta.id];
+  if (data.latestResults) delete data.latestResults[meta.id];
   writeStats(data);
   renderStats();
   elements.statsResetStatus.textContent = `Статистику для «${meta.shortLabel}» очищено.`;
@@ -347,19 +348,22 @@ function showOnly(panel) {
 }
 
 function viewFromUrl() {
-  return new URLSearchParams(location.search).get("view") === "stats" ? "stats" : "quiz";
+  const view = new URLSearchParams(location.search).get("view");
+  return ["stats", "result"].includes(view) ? view : "quiz";
 }
 
 function updateViewUrl(view) {
   const url = new URL(location.href);
-  if (view === "stats") url.searchParams.set("view", "stats");
+  if (view === "stats" || view === "result") url.searchParams.set("view", view);
   else url.searchParams.delete("view");
   if (url.href !== location.href) history.pushState(null, "", url);
 }
 
 function activateView(view, updateUrl = false) {
+  if (view === "result") { openLatestResult(); return; }
   if (view === "stats") { cancelAutoAdvance(); pauseTimer(); renderStats(); showOnly(elements.statsPanel); }
   else if (state.questions.length && !state.finished && elements.quizPanel.hidden && elements.resultPanel.hidden) { showOnly(elements.quizPanel); startTimer(); }
+  else if (readSavedState()) showResumeChoice(readSavedState());
   else showSetup();
   if (updateUrl) updateViewUrl(view);
 }
@@ -505,14 +509,15 @@ function renderMistakes() {
       }
       const explanation = document.createElement("p");
       explanation.textContent = item.explanation;
-      const reference = document.createElement("a");
-      reference.className = "mistake-reference";
-      reference.href = referenceUrl(item.reference, item);
-      reference.target = "_blank";
-      reference.rel = "noopener";
-      reference.textContent = "Переглянути відповідний фрагмент конспекту";
-      article.append(explanation, reference);
+      article.append(explanation);
     }
+    const reference = document.createElement("a");
+    reference.className = "mistake-reference";
+    reference.href = referenceUrl(item.reference, item);
+    reference.target = "_blank";
+    reference.rel = "noopener";
+    reference.textContent = "Переглянути відповідний фрагмент конспекту";
+    article.append(reference);
     elements.mistakes.append(article);
     const link = document.createElement("a");
     link.className = `question-jump ${status}`;
@@ -559,18 +564,37 @@ function saveAttempt(percent) {
       if (topic.mixedSegments.length > 100) topic.mixedSegments = topic.mixedSegments.slice(-100);
     });
   }
+  data.latestResults ||= {};
+  data.latestResults[config.id] = {
+    version: 1, date, topicIds: [...config.topicIds],
+    questions: state.questions, answers: state.answers, mistakes: state.mistakes,
+    score: state.score, activeElapsedMs: state.activeElapsedMs, settings: state.settings,
+    index: state.index
+  };
   writeStats(data);
 }
 
-function showResults() {
-  if (state.finished) return;
+function openLatestResult() {
+  const saved = readStats().latestResults?.[config.id];
+  if (!saved || saved.version !== 1 || !saved.questions?.length) {
+    renderStats(); showOnly(elements.statsPanel); updateViewUrl("stats"); return;
+  }
+  cancelAutoAdvance(); pauseTimer(); saveState();
+  Object.assign(state, saved, { timerStartedAt: null, questionStartedAt: null, finished: true });
+  showResults(true);
+}
+
+function showResults(review = false) {
+  if (state.finished && !review) return;
   cancelAutoAdvance();
   pauseTimer();
   const total = state.questions.length;
   const percent = Math.round((state.score / total) * 100);
-  saveAttempt(percent);
+  if (!review) saveAttempt(percent);
   state.finished = true;
-  clearSavedState();
+  if (!review) clearSavedState();
+  updateViewUrl("result");
+  updateHeader();
   showOnly(elements.resultPanel);
   elements.progressBar.style.width = "100%";
   elements.bestText.textContent = `${bestAttempt()}%`;
@@ -642,6 +666,7 @@ function settingsFromForm() {
 }
 
 function startQuiz(settings = settingsFromForm()) {
+  updateViewUrl("quiz");
   cancelAutoAdvance();
   clearSavedState();
   state.settings = settings;
@@ -666,6 +691,7 @@ function showResumeChoice(saved) {
 }
 
 function resumeQuiz() {
+  updateViewUrl("quiz");
   if (!pendingSavedState) { showSetup(); return; }
   pendingSavedState.settings ||= {};
   pendingSavedState.settings.autoAdvanceCorrect = Boolean(pendingSavedState.settings.autoAdvanceCorrect);
@@ -721,7 +747,15 @@ function renderStats() {
   elements.trendChart.replaceChildren();
   const recent = selectedAttempts.slice(-10);
   if (!recent.length) elements.trendChart.innerHTML = '<p class="empty-state">Завершені спроби для цього зрізу ще не записані.</p>';
-  recent.forEach((attempt, index) => elements.trendChart.append(makeBar(`Спроба ${selectedAttempts.length - recent.length + index + 1}`, attempt.percent, `${attempt.percent}%`)));
+  const latest = data.latestResults?.[config.id];
+  recent.forEach((attempt, index) => {
+    const available = latest && latest.date === attempt.date;
+    const label = `Спроба ${selectedAttempts.length - recent.length + index + 1}${available ? " · переглянути" : ""}`;
+    const url = new URL(location.href); url.searchParams.set("view", "result");
+    const row = makeBar(label, attempt.percent, `${attempt.percent}%`, available ? url.href : null);
+    if (available) row.classList.add("latest-attempt");
+    elements.trendChart.append(row);
+  });
 
   elements.topicChart.replaceChildren();
   window.QUIZ_META.topics.forEach((meta) => {
@@ -854,6 +888,7 @@ populateStatsResetTopics();
 updateEligibility();
 const savedState = readSavedState();
 const initialStatsView = viewFromUrl() === "stats";
-if (initialStatsView) { renderStats(); showOnly(elements.statsPanel); }
+if (viewFromUrl() === "result") openLatestResult();
+else if (initialStatsView) { renderStats(); showOnly(elements.statsPanel); }
 else if (savedState) showResumeChoice(savedState);
 else showSetup();
