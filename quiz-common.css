@@ -867,3 +867,5 @@ a.question-jump { display: inline-flex; align-items: center; justify-content: ce
 
 .latest-attempt { background: #e8f3ee; border: 1px solid #75a994; border-radius: 8px; padding: 10px; }
 .latest-attempt .stats-link { font-weight: 700; }
+
+#historyBody .latest-attempt td { background: #e8f3ee; }

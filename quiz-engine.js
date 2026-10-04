@@ -803,6 +803,16 @@ function renderStats() {
   [...selectedAttempts].reverse().slice(0, 20).forEach((attempt) => {
     const row = document.createElement("tr");
     row.innerHTML = `<td>${new Date(attempt.date).toLocaleString("uk-UA")}</td><td>${attempt.format || "Тематична"}</td><td>${attempt.correct}/${attempt.total}</td><td>${gradeFor(attempt.correct, attempt.total)}/5</td><td>${attempt.percent}%</td><td>${formatDuration(attempt.timeMs)}</td>`;
+    if (latest && latest.date === attempt.date) {
+      row.classList.add("latest-attempt");
+      const link = document.createElement("a");
+      const url = new URL(location.href);
+      url.searchParams.set("view", "result");
+      link.href = url.href;
+      link.className = "stats-link";
+      link.textContent = `${new Date(attempt.date).toLocaleString("uk-UA")} · переглянути результат`;
+      row.firstElementChild.replaceChildren(link);
+    }
     elements.historyBody.append(row);
   });
   if (!selectedAttempts.length) elements.historyBody.innerHTML = '<tr><td colspan="6" class="empty-state">Історія поки порожня.</td></tr>';
