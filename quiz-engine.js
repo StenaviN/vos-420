@@ -632,6 +632,8 @@ function showResults(review = false) {
   else { elements.resultTitle.textContent = "Тему варто пройти ще раз"; elements.resultMessage.textContent = "Почни з екзаменаційного мінімуму та розбору помилок."; }
   const unanswered = state.questions.length - state.answers.length;
   if (unanswered) elements.resultMessage.textContent += ` Без перевіреної відповіді: ${unanswered}. Вони не зараховані в результат спроби, але не додають помилок у статистику питань.`;
+  $("#showCorrectResults").checked = false;
+  $("#showUnansweredResults").checked = false;
   renderMistakes();
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
