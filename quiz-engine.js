@@ -507,12 +507,13 @@ function renderMistakes() {
   state.questions.forEach((item, index) => {
     const answer = state.answers.find((entry) => entry.id === item.id);
     const status = answer ? (answer.correct ? "correct" : "incorrect") : "unanswered";
-    if (status === "correct" && !$("#showCorrectResults").checked) return;
-    if (status === "unanswered" && !$("#showUnansweredResults").checked) return;
-    visible += 1;
+    const filtered = (status === "correct" && !$("#showCorrectResults").checked)
+      || (status === "unanswered" && !$("#showUnansweredResults").checked);
+    if (!filtered) visible += 1;
     const label = answer ? (answer.correct ? "Правильно" : "Неправильно") : "Без перевіреної відповіді";
     const article = document.createElement("article");
     article.className = `mistake-item result-question ${status}`;
+    article.hidden = filtered;
     article.id = `result-question-${index + 1}`;
     article.tabIndex = -1;
     const title = document.createElement("h3");
@@ -543,13 +544,15 @@ function renderMistakes() {
     reference.textContent = "Переглянути відповідний фрагмент конспекту";
     article.append(reference);
     elements.mistakes.append(article);
-    const link = document.createElement("a");
+    const link = document.createElement("button");
+    link.type = "button";
+    link.disabled = filtered;
     link.className = `question-jump ${status}`;
-    link.href = `#${article.id}`;
     link.textContent = `${index + 1} ${answer ? (answer.correct ? "✓" : "×") : "○"}`;
     link.setAttribute("aria-label", `Питання ${index + 1}: ${label}`);
     link.addEventListener("click", (event) => {
       event.preventDefault();
+      article.style.scrollMarginTop = `${navigation.closest("nav").getBoundingClientRect().height + 24}px`;
       article.focus({ preventScroll: true });
       article.scrollIntoView({ behavior: "smooth", block: "start" });
     });

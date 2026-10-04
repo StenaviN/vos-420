@@ -886,3 +886,25 @@ a.question-jump { display: inline-flex; align-items: center; justify-content: ce
 .quiz-confirm-dialog h2 { margin: 0 0 16px; font-size: 1.4rem; }
 .quiz-confirm-dialog p { line-height: 1.6; margin: 0 0 22px; }
 .quiz-confirm-dialog .quiz-actions { justify-content: flex-end; }
+
+/* Result review: separate cards and a persistent navigation panel. */
+.result-navigation { position: sticky; top: 8px; z-index: 3; padding: 18px; background: #fff; border: 1px solid var(--line); border-radius: 10px; box-shadow: 0 4px 14px #193b5112; max-height: 48vh; overflow-y: auto; text-align: left; }
+.result-navigation h3 { margin: 0 0 12px; padding: 0; border: 0; }
+.result-navigation .result-filters { gap: 10px; margin: 12px 0; }
+.result-filters label { padding: 10px 14px; border: 1px solid var(--line); border-radius: 6px; background: #f7faf9; font-weight: 600; }
+.result-filters label:has(input:checked) { background: #e8f3ee; border-color: var(--accent); }
+.result-filters input { accent-color: var(--accent); flex-shrink: 0; }
+.result-navigation .question-navigation-legend { margin-top: 14px; }
+.result-navigation .question-jump:disabled { opacity: .45; cursor: not-allowed; border-style: dashed; }
+.result-panel .result-question { margin: 20px 0; padding: 20px 22px; border: 1px solid var(--line); border-left-width: 4px; border-radius: 8px; text-align: left; background: #fff; }
+.result-panel .result-question.correct { border-left-color: #2c7b49; }
+.result-panel .result-question.incorrect { border-left-color: #b44739; }
+.result-panel .result-question.unanswered { border-left-color: #8ca7ba; }
+.result-panel .result-question h3 { margin: 0 0 16px; padding: 0; border: 0; line-height: 1.5; }
+.result-panel .result-question p { margin: 10px 0; line-height: 1.6; }
+.result-panel .result-question .mistake-reference { display: inline-block; margin-top: 10px; }
+@media (max-width: 600px) {
+  .result-navigation { padding: 12px; }
+  .result-panel .result-question { padding: 16px; }
+  .result-filters label { width: 100%; box-sizing: border-box; }
+}
