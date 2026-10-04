@@ -676,15 +676,19 @@ function nextQuestion() {
   goToQuestion(state.index + 1);
 }
 
-function finishQuiz(timedOut = false) {
+function finishQuiz(timedOut = false, confirmed = false) {
   if (state.finished) return;
   cancelAutoAdvance();
   const exam = examActive();
   const expired = exam && (timedOut === true || currentElapsed() >= state.questions.length * 30000);
   const unanswered = state.questions.filter((item) => exam ? item.selected == null : !item.checked);
-  if (!expired && unanswered.length && !window.confirm(`Без відповіді залишилося ${unanswered.length} з ${state.questions.length} питань. Вони не зарахуються в результат цієї спроби, але не додадуть помилок у статистику питань. Завершити вікторину?`)) {
-    updateExamTimer(); return;
+  const dialog = $("#finishDialog");
+  if (!expired && unanswered.length && !confirmed) {
+    $("#finishDialogMessage").textContent = `Без відповіді залишилося ${unanswered.length} з ${state.questions.length} питань. Вони не зарахуються в результат цієї спроби, але не додадуть помилок у статистику питань.`;
+    if (!dialog.open) dialog.showModal();
+    return;
   }
+  if (dialog.open) dialog.close();
   pauseTimer();
   if (expired) state.activeElapsedMs = state.questions.length * 30000;
   if (exam) {
@@ -880,6 +884,8 @@ function populateCounts() {
 
 $("#showCorrectResults").addEventListener("change", renderMistakes);
 $("#showUnansweredResults").addEventListener("change", renderMistakes);
+$("#continueQuizButton").addEventListener("click", () => $("#finishDialog").close());
+$("#confirmFinishButton").addEventListener("click", () => finishQuiz(false, true));
 elements.finishButton.addEventListener("click", () => finishQuiz());
 elements.checkButton.addEventListener("click", checkAnswer);
 elements.nextButton.addEventListener("click", nextQuestion);
@@ -902,7 +908,7 @@ window.addEventListener("popstate", () => activateView(viewFromUrl()));
 document.addEventListener("visibilitychange", () => { if (document.hidden) { pauseTimer(); saveState(); } else startTimer(); });
 window.addEventListener("pagehide", () => { pauseTimer(); saveState(); });
 document.addEventListener("keydown", (event) => {
-  if (elements.quizPanel.hidden || event.altKey || event.ctrlKey || event.metaKey) return;
+  if ($("#finishDialog").open || elements.quizPanel.hidden || event.altKey || event.ctrlKey || event.metaKey) return;
   const target = event.target;
   if (target instanceof HTMLButtonElement && !target.classList.contains("answer-button")) return;
   if (target instanceof HTMLInputElement || target instanceof HTMLSelectElement || target instanceof HTMLTextAreaElement || target?.isContentEditable) return;

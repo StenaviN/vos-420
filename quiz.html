@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Вікторини ВОС-420</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="style.css?v=ee7f38a0e032">
-  <link rel="stylesheet" href="quiz-common.css?v=ee7f38a0e032">
+  <link rel="stylesheet" href="style.css?v=e3d248515c9b">
+  <link rel="stylesheet" href="quiz-common.css?v=e3d248515c9b">
 </head>
 <body>
   <main class="page quiz-page">
@@ -55,9 +55,14 @@
     </section>
     <noscript><p class="section exam">Для роботи вікторини потрібно дозволити JavaScript у браузері.</p></noscript>
   </main>
-  <script src="asset-version.js?v=ee7f38a0e032"></script>
+  <dialog id="finishDialog" class="quiz-confirm-dialog" aria-labelledby="finishDialogTitle" aria-describedby="finishDialogMessage">
+    <h2 id="finishDialogTitle">Завершити вікторину?</h2>
+    <p id="finishDialogMessage"></p>
+    <div class="quiz-actions"><button id="continueQuizButton" class="secondary-button" type="button" autofocus>Продовжити</button><button id="confirmFinishButton" class="primary-button" type="button">Завершити</button></div>
+  </dialog>
+  <script src="asset-version.js?v=e3d248515c9b"></script>
 
-  <script src="quiz-loader.js?v=ee7f38a0e032"></script>
-  <script src="site-ui.js?v=ee7f38a0e032"></script>
+  <script src="quiz-loader.js?v=e3d248515c9b"></script>
+  <script src="site-ui.js?v=e3d248515c9b"></script>
 </body>
 </html>

@@ -880,3 +880,9 @@ a.question-jump { display: inline-flex; align-items: center; justify-content: ce
 @media (max-width: 700px) {
   .settings-layout, .settings-options { grid-template-columns: 1fr; }
 }
+
+.quiz-confirm-dialog { width: min(480px, calc(100% - 32px)); box-sizing: border-box; padding: 26px; border: 1px solid var(--line); border-radius: 12px; color: var(--ink); background: #fff; box-shadow: 0 20px 70px #102e3c40; }
+.quiz-confirm-dialog::backdrop { background: #102e3c80; }
+.quiz-confirm-dialog h2 { margin: 0 0 16px; font-size: 1.4rem; }
+.quiz-confirm-dialog p { line-height: 1.6; margin: 0 0 22px; }
+.quiz-confirm-dialog .quiz-actions { justify-content: flex-end; }
