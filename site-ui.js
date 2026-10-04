@@ -42,11 +42,20 @@
   if (!headings.length) return;
 
   const usedIds = new Set([...document.querySelectorAll("[id]")].map((element) => element.id));
-  const slugify = (value) => value
+  const legacyIds = new Map();
+  const transliterate = (value) => value.replace(/[а-яіїєґёыэъь]/g, (letter) => ({
+    а: 'a', б: 'b', в: 'v', г: 'h', ґ: 'g', д: 'd', е: 'e', є: 'ye', ж: 'zh', з: 'z',
+    и: 'y', і: 'i', ї: 'yi', й: 'y', к: 'k', л: 'l', м: 'm', н: 'n', о: 'o', п: 'p',
+    р: 'r', с: 's', т: 't', у: 'u', ф: 'f', х: 'kh', ц: 'ts', ч: 'ch', ш: 'sh', щ: 'shch',
+    ь: '', ю: 'yu', я: 'ya', ё: 'yo', ы: 'y', э: 'e', ъ: ''
+  })[letter]);
+  const legacySlug = (value) => value
     .toLocaleLowerCase("uk")
     .normalize("NFC")
     .replace(/[^\p{L}\p{N}]+/gu, "-")
     .replace(/^-+|-+$/g, "") || "rozdil";
+
+  const slugify = (value) => transliterate(legacySlug(value)).replace(/[^a-z0-9-]+/g, "-").replace(/^-+|-+$/g, "") || "rozdil";
 
   const uniqueId = (base) => {
     let candidate = base;
@@ -107,7 +116,12 @@
     let targetId = heading.id;
     if (!targetId && heading.tagName === "H2") targetId = section.id;
     if (!targetId) {
+      const oldBase = `${section.id}-${legacySlug(heading.textContent)}`;
+      let oldId = oldBase;
+      let suffix = 2;
+      while (usedIds.has(oldId) || legacyIds.has(oldId)) oldId = `${oldBase}-${suffix++}`;
       targetId = uniqueId(`${section.id}-${slugify(heading.textContent)}`);
+      legacyIds.set(oldId, targetId);
       heading.id = targetId;
     }
 
@@ -135,6 +149,17 @@
     heading.classList.add("has-heading-link");
     heading.append(label, button);
   });
+
+  const migrateHash = () => {
+    const oldId = decodeURIComponent(location.hash.slice(1));
+    const targetId = legacyIds.get(oldId);
+    if (targetId && targetId !== oldId) {
+      history.replaceState(null, "", `${location.pathname}${location.search}#${targetId}`);
+      document.getElementById(targetId)?.scrollIntoView();
+    }
+  };
+  window.addEventListener("hashchange", migrateHash);
+  migrateHash();
 
   const initialTarget = window.location.hash ? document.getElementById(decodeURIComponent(window.location.hash.slice(1))) : null;
   if (initialTarget) requestAnimationFrame(() => initialTarget.scrollIntoView());

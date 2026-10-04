@@ -20,8 +20,19 @@
     9: ["TOOWAY", "09-tooway/index.html"]
   };
 
-  function slug(term) {
+  const transliterate = (value) => value.replace(/[а-яіїєґёыэъь]/g, (letter) => ({
+    а: 'a', б: 'b', в: 'v', г: 'h', ґ: 'g', д: 'd', е: 'e', є: 'ye', ж: 'zh', з: 'z',
+    и: 'y', і: 'i', ї: 'yi', й: 'y', к: 'k', л: 'l', м: 'm', н: 'n', о: 'o', п: 'p',
+    р: 'r', с: 's', т: 't', у: 'u', ф: 'f', х: 'kh', ц: 'ts', ч: 'ch', ш: 'sh', щ: 'shch',
+    ь: '', ю: 'yu', я: 'ya', ё: 'yo', ы: 'y', э: 'e', ъ: ''
+  })[letter]);
+
+  function legacySlug(term) {
     return term.toLocaleLowerCase("uk-UA").replace(/\+/g, "-plus").replace(/[^\p{L}\p{N}]+/gu, "-").replace(/^-|-$/g, "");
+  }
+
+  function slug(term) {
+    return transliterate(legacySlug(term)).replace(/[^a-z0-9-]+/g, "-").replace(/^-+|-+$/g, "") || "term";
   }
 
   function group(entry) {
@@ -44,7 +55,9 @@
 
   function idFromHash() {
     const hash = decodeURIComponent(window.location.hash.slice(1));
-    return embedded && hash.startsWith("glossary:") ? hash.slice("glossary:".length) : hash;
+    const id = embedded && hash.startsWith("glossary:") ? hash.slice("glossary:".length) : hash;
+    const entry = terms.find((item) => legacySlug(item.term) === id);
+    return entry ? slug(entry.term) : id;
   }
 
   function makeEntry(entry) {
@@ -101,7 +114,7 @@
     for (const [key, entries] of groups) {
       const section = document.createElement("section");
       section.className = "glossary-group";
-      section.id = `group-${slug(key)}`;
+      section.id = `group-${/[\u0400-\u04ff]/.test(key) ? "uk-" : ""}${slug(key)}`;
       const heading = document.createElement("h2");
       heading.className = "glossary-letter";
       heading.textContent = key;
