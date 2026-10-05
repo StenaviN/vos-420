@@ -42,10 +42,71 @@ $('editForm').onsubmit=async e=>{e.preventDefault();if(saving)return;try{const {
 $('deleteQuestion').onclick=async()=>{if(saving)return;if(!await confirmAction('Видалити питання?','Воно більше не потраплятиме у нові вікторини. Збережені результати минулих спроб залишаться.'))return;const topic=state.topics.find(t=>t.directory===editing.directory);await persist(topic.data.questions.filter(q=>q.id!==editing.id),topic);};
 $('cancelEdit').onclick=$('closeEdit').onclick=closeEditor;$('editor').oncancel=e=>{e.preventDefault();closeEditor();};window.addEventListener('beforeunload',e=>{if(saving||dirty()){e.preventDefault();e.returnValue='';}});
 $('addAnswer').onclick=()=>addAnswer();$('reference').oninput=referencePreview;
-function renderAnchors(){const note=state.notes.find(n=>n.path===$('noteSelect').value),query=$('anchorSearch').value.toLocaleLowerCase('uk');$('anchorList').replaceChildren();for(const h of note.headings){if(!`${h.title} ${h.id}`.toLocaleLowerCase('uk').includes(query))continue;const button=el('button',h.title,h.level===3?'subheading':'');button.type='button';button.setAttribute('aria-pressed',String(chosen?.path===note.path&&chosen?.id===h.id));button.onclick=()=>{chosen={path:note.path,id:h.id};$('notePreview').src='/'+note.path+'#'+h.id;$('anchorChosen').textContent=h.title;$('useAnchor').disabled=false;renderAnchors();};$('anchorList').append(button);}}
-$('chooseAnchor').onclick=()=>{chosen=null;$('useAnchor').disabled=true;$('anchorChosen').textContent='';$('anchorSearch').value='';$('notePreview').removeAttribute('src');let note=editing.directory+'/index.html';try{note=normalizeReference($('reference').value).notePath;}catch{}$('noteSelect').value=note;renderAnchors();$('picker').showModal();};
-$('noteSelect').onchange=()=>{chosen=null;$('useAnchor').disabled=true;$('anchorChosen').textContent='';$('notePreview').removeAttribute('src');renderAnchors();};$('anchorSearch').oninput=renderAnchors;$('closePicker').onclick=()=>$('picker').close();$('useAnchor').onclick=()=>{if(!chosen)return;$('reference').value=chosen.path+'#'+chosen.id;referencePreview();$('picker').close();};
+function renderAnchors(){const note=state.notes.find(n=>n.path===$('noteSelect').value),query=$('anchorSearch').value.toLocaleLowerCase('uk');$('anchorList').replaceChildren();for(const h of note.headings){if(!`${h.title} ${h.id}`.toLocaleLowerCase('uk').includes(query))continue;const button=el('button',h.title,h.level===3?'subheading':'');button.type='button';button.setAttribute('aria-pressed',String(chosen?.path===note.path&&chosen?.id===h.id));button.onclick=()=>{resetSelection();chosen={path:note.path,id:h.id};$('notePreview').src='/'+note.path+'#'+h.id;$('anchorChosen').textContent=h.title;$('useAnchor').disabled=false;renderAnchors();};$('anchorList').append(button);}}
+$('chooseAnchor').onclick=()=>{resetSelection();chosen=null;$('useAnchor').disabled=true;$('anchorChosen').textContent='';$('anchorSearch').value='';$('notePreview').removeAttribute('src');let note=editing.directory+'/index.html';try{note=normalizeReference($('reference').value).notePath;}catch{}$('noteSelect').value=note;renderAnchors();$('picker').showModal();};
+$('noteSelect').onchange=()=>{resetSelection();chosen=null;$('useAnchor').disabled=true;$('anchorChosen').textContent='';$('notePreview').removeAttribute('src');renderAnchors();};$('anchorSearch').oninput=renderAnchors;$('closePicker').onclick=()=>$('picker').close();$('useAnchor').onclick=()=>{if(!chosen)return;$('reference').value=chosen.path+'#'+chosen.id;referencePreview();$('picker').close();};
 $('topicFilter').onchange=render;$('search').oninput=render;$('create').onclick=()=>openEditor(state.topics.find(t=>t.directory===$('topicFilter').value)||state.topics[0]);
 try{if(!['127.0.0.1','localhost','[::1]'].includes(location.hostname))throw Error('Редактор працює лише локально. Запустіть npm run quiz:admin у каталозі проєкту.');state=await api('/api/state');options($('topicFilter'),[['','Усі теми'],...state.topics.map(t=>[t.directory,t.data.label])]);options($('editTopic'),state.topics.map(t=>[t.directory,t.data.label]));options($('noteSelect'),state.notes.map(n=>[n.path,n.title]));$('workspace').hidden=false;render();status('Локальний доступ активний. Зміни зберігаються тільки після натискання «Зберегти».');}catch{status('Редактор недоступний. У каталозі проєкту запустіть npm run quiz:admin та відкрийте адресу, яку покаже термінал.',true);}
 
-$('notePreview').addEventListener('load', () => { if (!chosen) return; const frame = $('notePreview').contentWindow; frame.dispatchEvent(new Event('hashchange')); frame.document.getElementById(chosen.id)?.scrollIntoView({block:'start'}); });
+$('notePreview').addEventListener('load', () => { if (!chosen) return; const frame = $('notePreview').contentWindow; frame.dispatchEvent(new Event('hashchange')); frame.document.getElementById(chosen.id)?.scrollIntoView({block:'start'}); frame.document.addEventListener('selectionchange', captureSelection); frame.document.addEventListener('mouseup', captureSelection); });
+
+let selectedExcerpt = '';
+function resetSelection(message = 'Виділіть мишкою текст у вибраному розділі, щоб використати його як пояснення.') {
+  selectedExcerpt = '';
+  $('useSelection').disabled = true;
+  $('selectedExcerpt').hidden = true;
+  $('selectedExcerpt').textContent = '';
+  $('selectionHint').textContent = message;
+}
+function captureSelection() {
+  if (!chosen) return;
+  const frame = $('notePreview').contentWindow;
+  if (frame.location.pathname !== '/' + chosen.path) return resetSelection();
+  const selection = frame.getSelection();
+  if (!selection?.rangeCount || selection.isCollapsed) return resetSelection();
+  const target = frame.document.getElementById(chosen.id);
+  if (!target) return resetSelection();
+  const scope = frame.document.createRange();
+  scope.selectNodeContents(target);
+  if (/^H[1-6]$/.test(target.tagName)) {
+    scope.setStartBefore(target);
+    const section = target.closest('section') || target.parentElement;
+    const next = [...section.querySelectorAll('h1,h2,h3,h4,h5,h6')].find(h =>
+      (target.compareDocumentPosition(h) & 4) && Number(h.tagName[1]) <= Number(target.tagName[1]));
+    if (next) scope.setEndBefore(next); else scope.setEnd(section, section.childNodes.length);
+  }
+  const range = selection.getRangeAt(0);
+  if (range.compareBoundaryPoints(0, scope) < 0 || range.compareBoundaryPoints(2, scope) > 0) {
+    return resetSelection('Виділіть текст у вибраному розділі. Для іншого фрагмента спочатку оберіть відповідний розділ ліворуч.');
+  }
+  const text = selection.toString().replace(/\r\n/g, '\n').trim();
+  if (!text) return resetSelection();
+  selectedExcerpt = text;
+  $('selectedExcerpt').textContent = text;
+  $('selectedExcerpt').hidden = false;
+  $('selectionHint').textContent = `Виділено символів: ${text.length}. Текст і посилання на цей розділ буде перенесено у форму; збереження — кнопкою «Зберегти».`;
+  $('useSelection').disabled = false;
+}
+function excerptMode() {
+  return new Promise(resolve => {
+    const finish = mode => { $('excerptAction').close(); resolve(mode); };
+    $('excerptCancel').onclick = () => finish(null);
+    $('excerptReplace').onclick = () => finish('replace');
+    $('excerptAppend').onclick = () => finish('append');
+    $('excerptAction').oncancel = e => { e.preventDefault(); finish(null); };
+    $('excerptAction').showModal();
+  });
+}
+$('useSelection').addEventListener('mousedown', e => e.preventDefault());
+$('useSelection').onclick = async () => {
+  if (!selectedExcerpt || !chosen) return;
+  const text = selectedExcerpt, reference = chosen.path + '#' + chosen.id;
+  const previous = $('explanation').value;
+  const mode = previous.trim() ? await excerptMode() : 'replace';
+  if (!mode) return;
+  $('explanation').value = mode === 'append' ? previous.trimEnd() + '\n\n' + text : text;
+  $('reference').value = reference;
+  referencePreview();
+  $('picker').close();
+  $('explanation').focus();
+};
