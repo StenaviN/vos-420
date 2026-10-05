@@ -7,7 +7,8 @@
 .led-orange { --led-color: #ff941f; }
 .led-yellow { --led-color: #ffe047; }
 .led-blue { --led-color: #419aff; }
-.led-off > span { background: #64727b; box-shadow: none; opacity: .35; }
+.led-off { background: transparent; border-color: #a8b5bc; }
+.led-off > span { background: transparent; box-shadow: none; }
 .led-blink > span { animation: mototrbo-blink 1.6s step-end infinite; }
 .led-double > span { animation: mototrbo-double 2.4s step-end infinite; }
 .led-alternate > span { background: linear-gradient(90deg, #f34d4d 50%, #29b85b 50%); animation: mototrbo-alternate 2s step-end infinite; }
