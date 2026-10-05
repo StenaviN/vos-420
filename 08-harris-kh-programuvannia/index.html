@@ -1,395 +1,967 @@
 <!doctype html>
 <html lang="uk">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>8. Програмування HARRIS КХ RF-7800H-MP</title>
-  <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="../style.css?v=cac2c39847d8">
-</head>
-<body>
-  <main class="page">
-    <div class="topbar"><a href="../index.html">До змісту</a><a href="../glossary.html">Глосарій</a></div>
-
-    <header class="hero">
-      <h1>8. Програмування HARRIS КХ RF-7800H-MP</h1>
-      <p>Створення конфігурації RF-7800H-MP у CPA: передналаштування, ключі, канали, модеми, мережі FIX, HOP, ALE і 3G та перевірка готового плану.</p>
-    </header>
-
-    <nav class="section topic-toc" aria-label="Зміст конспекту">
-      <h2>Зміст</h2>
-      <ul>
-        <li><a href="#poslidovnist">Послідовність роботи</a></li>
-        <li><a href="#perednalashtuvannia">Передналаштування CPA</a></li>
-        <li><a href="#kliuchi">Ключі шифрування</a></li>
-        <li><a href="#kanaly">Канали та канальні групи</a></li>
-        <li><a href="#modemy">Профілі модемів</a></li>
-        <li><a href="#stantsii-merezhi">Радіостанції та мережі</a></li>
-        <li><a href="#fix">Мережа FIX</a></li>
-        <li><a href="#hop">Мережа HOP</a></li>
-        <li><a href="#ale">Мережа ALE</a></li>
-        <li><a href="#three-g">Мережа 3G</a></li>
-        <li><a href="#perevirka">Перевірка плану</a></li>
-        <li><a href="#usb-programuvannia">Програмування радіостанції через USB-кабель</a></li>
-      </ul>
-    </nav>
-
-    <section id="poslidovnist" class="section">
-      <h2>Послідовність роботи</h2>
-      <ol>
-        <li>Виконати передналаштування CPA.</li>
-        <li>Створити ключі шифрування.</li>
-        <li>Створити канали та канальні групи.</li>
-        <li>Створити потрібні профілі модемів.</li>
-        <li>Додати радіостанції й мережі до плану.</li>
-        <li>Заповнити параметри мереж FIX, HOP, ALE і 3G.</li>
-        <li>Перевірити план командою <code>Validate Plan</code>.</li>
-      </ol>
-      <div class="note"><strong>Принцип:</strong> спочатку створюють спільні ресурси плану, а потім призначають їх конкретним мережам. Ключ, канал, канальна група, модем або hopset мають уже існувати, щоб їх можна було вибрати у властивостях мережі.</div>
-    </section>
-
-    <section id="perednalashtuvannia" class="section">
-      <h2>Передналаштування CPA</h2>
-      <h3 id="perednalashtuvannia-prefiks-nazv-radiostantsiy" data-legacy-anchor="perednalashtuvannia-префікс-назв-радіостанцій">Префікс назв радіостанцій</h3>
-      <div class="menu-path" aria-label="Шлях до параметрів застосунку"><span>Tools</span><span>Application Options</span></div>
-      <ol>
-        <li>У лівій частині вікна обери <code>RF-7800H-MP</code>.</li>
-        <li>У розділі <code>General</code> введи потрібне значення в полі <code>Name Prefix</code>.</li>
-      </ol>
-      <p>CPA використовуватиме цей префікс під час автоматичного формування назв нових радіостанцій.</p>
-      <div class="procedure-steps two-up" aria-label="Налаштування префікса назв радіостанцій">
-        <figure class="procedure-step">
-          <button class="procedure-shot-button" type="button" aria-label="Збільшити шлях до Application Options"><img src="name-prefix-application-options-menu.png" alt="Пункт Application Options у меню Tools" loading="lazy"></button>
-          <figcaption><strong>Відкриття параметрів.</strong> Обери <code>Tools → Application Options</code>.</figcaption>
-        </figure>
-        <figure class="procedure-step">
-          <button class="procedure-shot-button" type="button" aria-label="Збільшити налаштування Name Prefix"><img src="name-prefix-rf-7800h-mp.png" alt="Вибір RF-7800H-MP і налаштування поля Name Prefix" loading="lazy"></button>
-          <figcaption><strong>Префікс станцій.</strong> Обери <code>RF-7800H-MP</code> (1) і введи префікс у полі <code>Name Prefix</code> (2).</figcaption>
-        </figure>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>8. Програмування HARRIS КХ RF-7800H-MP</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="../style.css?v=0b5515a61641" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a href="../index.html">До змісту</a><a href="../glossary.html">Глосарій</a>
       </div>
 
-      <h3 id="perednalashtuvannia-avtomatychne-stvorennya-tod-mask" data-legacy-anchor="perednalashtuvannia-автоматичне-створення-tod-mask">Автоматичне створення TOD Mask</h3>
-      <div class="menu-path"><span>Tools</span><span>Application Options</span><span>HF Hopping</span></div>
-      <p>У полі <code>Auto Generate TOD Mask</code> встанови <code>Enabled</code> і підтвердь зміни кнопкою <code>OK</code>.</p>
-      <figure class="procedure-shot">
-        <button class="procedure-shot-button" type="button" aria-label="Збільшити налаштування TOD Mask"><img src="hop-tod-mask-enabled.png" alt="Вибір HF Hopping і ввімкнення Auto Generate TOD Mask" loading="lazy"></button>
-        <figcaption>Обери <code>HF Hopping</code> (1) і встанови <code>Auto Generate TOD Mask = Enabled</code> (2).</figcaption>
-      </figure>
-    </section>
+      <header class="hero">
+        <h1>8. Програмування HARRIS КХ RF-7800H-MP</h1>
+        <p>
+          Створення конфігурації RF-7800H-MP у CPA: передналаштування, ключі, канали, модеми, мережі
+          FIX, HOP, ALE і 3G та перевірка готового плану.
+        </p>
+      </header>
 
-    <section id="kliuchi" class="section">
-      <h2>Ключі шифрування</h2>
-      <div class="menu-path"><span>Tools</span><span>Key Management</span><span>Key Rings</span></div>
-      <ol>
-        <li>У вікні <code>Key Manager</code> обери <code>Key Rings</code>.</li>
-        <li>Увімкни <code>Enable Key Generation (Unrestricted Key Operation)</code>.</li>
-        <li>Натисни <code>Generate</code>.</li>
-        <li>Задай кількість у полі <code>Number of Key Rings</code>.</li>
-        <li>Введи спільний початок назви в полі <code>Key Ring Name Prefix</code>.</li>
-        <li>Обери потрібний алгоритм у групі <code>Key Types</code>.</li>
-        <li>Натисни <code>Generate</code> і перевір створені ключі.</li>
-        <li>Закрий <code>Key Manager</code> кнопкою <code>Close</code>.</li>
-      </ol>
-      <div class="note">Кількість, префікс і тип ключів визначає план зв'язку. Значення на скріншоті є прикладом, а не універсальними налаштуваннями.</div>
-      <div class="procedure-steps two-up" aria-label="Створення ключів шифрування">
-        <figure class="procedure-step">
-          <button class="procedure-shot-button" type="button" aria-label="Збільшити шлях до Key Management"><img src="key-management-menu.png" alt="Пункт Key Management у меню Tools" loading="lazy"></button>
-          <figcaption><strong>Відкриття менеджера ключів.</strong> Обери <code>Tools → Key Management</code>.</figcaption>
-        </figure>
-        <figure class="procedure-step">
-          <button class="procedure-shot-button" type="button" aria-label="Збільшити послідовність створення Key Rings"><img src="key-ring-generation-steps.png" alt="Вісім позначених кроків створення Key Rings у CPA" loading="lazy"></button>
-          <figcaption><strong>Створення Key Rings.</strong> Виконай позначені дії 1–8 у наведеній послідовності.</figcaption>
-        </figure>
-      </div>
-    </section>
+      <nav class="section topic-toc" aria-label="Зміст конспекту">
+        <h2>Зміст</h2>
+        <ul>
+          <li><a href="#poslidovnist">Послідовність роботи</a></li>
+          <li><a href="#perednalashtuvannia">Передналаштування CPA</a></li>
+          <li><a href="#kliuchi">Ключі шифрування</a></li>
+          <li><a href="#kanaly">Канали та канальні групи</a></li>
+          <li><a href="#modemy">Профілі модемів</a></li>
+          <li><a href="#stantsii-merezhi">Радіостанції та мережі</a></li>
+          <li><a href="#fix">Мережа FIX</a></li>
+          <li><a href="#hop">Мережа HOP</a></li>
+          <li><a href="#ale">Мережа ALE</a></li>
+          <li><a href="#three-g">Мережа 3G</a></li>
+          <li><a href="#perevirka">Перевірка плану</a></li>
+          <li><a href="#usb-programuvannia">Програмування радіостанції через USB-кабель</a></li>
+        </ul>
+      </nav>
 
-    <section id="kanaly" class="section">
-      <h2>Канали та канальні групи</h2>
-      <h3 id="kanaly-stvorennya-kanaliv" data-legacy-anchor="kanaly-створення-каналів">Створення каналів</h3>
-      <div class="menu-path"><span>Tools</span><span>HF Channels</span></div>
-      <figure class="procedure-shot procedure-shot-narrow">
-        <button class="procedure-shot-button" type="button" aria-label="Збільшити шлях до HF Channels"><img src="hf-channels-menu.png" alt="Пункт HF Channels у меню Tools" loading="lazy"></button>
-        <figcaption><strong>Відкриття каналів.</strong> Обери <code>Tools → HF Channels</code>.</figcaption>
-      </figure>
-      <ol>
-        <li>У полі <code>Channel Type</code> обери режим, для якого створюєш канали: <code>FIX</code>, <code>ALE</code>, <code>3G</code> або <code>3G+</code>.</li>
-        <li>Натисни <code>Add</code> для кожного потрібного каналу.</li>
-        <li>Введи частоти приймання та передавання.</li>
-        <li>Повтори операцію для інших потрібних режимів.</li>
-      </ol>
-      <figure class="procedure-shot">
-        <button class="procedure-shot-button" type="button" aria-label="Збільшити вибір типу та додавання каналу"><img src="channel-type-add.png" alt="Вибір Channel Type і кнопка Add у вікні Manage Channels" loading="lazy"></button>
-        <figcaption>Обери <code>Channel Type</code> (1), потім натисни <code>Add</code> (2).</figcaption>
-      </figure>
-      <div class="note note-important"><strong>Для каналів 3G:</strong> у полі <code>Max Bandwidth</code> обов'язково встанови <code>24 kHz</code>.</div>
-      <figure class="procedure-shot">
-        <button class="procedure-shot-button" type="button" aria-label="Збільшити налаштування Max Bandwidth для каналів 3G"><img src="channel-3g-max-bandwidth.png" alt="Значення 24 kHz у полі Max Bandwidth для каналів 3G" loading="lazy"></button>
-        <figcaption>Для каналів 3G встанови <code>Max Bandwidth = 24 kHz</code>.</figcaption>
-      </figure>
-      <div class="note note-important"><strong>Для частот УКХ-діапазону понад 30 МГц:</strong> у полі <code>Modulation Type</code> встанови <code>FM</code>.</div>
-      <figure class="procedure-shot">
-        <button class="procedure-shot-button" type="button" aria-label="Збільшити налаштування FM для частоти УКХ-діапазону"><img src="channel-vhf-fm.png" alt="Частота понад 30 МГц і значення FM у полі Modulation Type" loading="lazy"></button>
-        <figcaption>Для частоти УКХ-діапазону понад 30 МГц встанови <code>Modulation Type = FM</code>.</figcaption>
-      </figure>
+      <section id="poslidovnist" class="section">
+        <h2>Послідовність роботи</h2>
+        <ol>
+          <li>Виконати передналаштування CPA.</li>
+          <li>Створити ключі шифрування.</li>
+          <li>Створити канали та канальні групи.</li>
+          <li>Створити потрібні профілі модемів.</li>
+          <li>Додати радіостанції й мережі до плану.</li>
+          <li>Заповнити параметри мереж FIX, HOP, ALE і 3G.</li>
+          <li>Перевірити план командою <code>Validate Plan</code>.</li>
+        </ol>
+        <div class="note">
+          <strong>Принцип:</strong> спочатку створюють спільні ресурси плану, а потім призначають їх
+          конкретним мережам. Ключ, канал, канальна група, модем або hopset мають уже існувати, щоб
+          їх можна було вибрати у властивостях мережі.
+        </div>
+      </section>
 
-      <h3 id="kanaly-stvorennya-kanalnykh-hrup" data-legacy-anchor="kanaly-створення-канальних-груп">Створення канальних груп</h3>
-      <p>Канальні групи потрібні для ALE та 3G. Для FIX і HOP їх не використовують.</p>
-      <ol>
-        <li>У частині <code>Channel Groups</code> натисни <code>Add</code>.</li>
-        <li>Задай назву групи та обери її режим у полі <code>Mode</code>.</li>
-        <li>Виділи канал у таблиці каналів і потрібну групу.</li>
-        <li>Додай канал кнопкою <code>Add</code> праворуч або перетягни його до списку <code>Member Channel</code>.</li>
-        <li>Натисни <code>OK</code> після заповнення груп.</li>
-      </ol>
-      <figure class="procedure-shot">
-        <button class="procedure-shot-button" type="button" aria-label="Збільшити створення та налаштування канальної групи"><img src="channel-groups.png" alt="Кнопка Add, назва та режим канальної групи у вікні Manage Channels" loading="lazy"></button>
-        <figcaption>Натисни <code>Add</code> (1), задай назву групи (2) та обери її <code>Mode</code> (3).</figcaption>
-      </figure>
-      <div class="procedure-shot-pair">
+      <section id="perednalashtuvannia" class="section">
+        <h2>Передналаштування CPA</h2>
+        <h3
+          id="perednalashtuvannia-prefiks-nazv-radiostantsiy"
+          data-legacy-anchor="perednalashtuvannia-префікс-назв-радіостанцій"
+        >
+          Префікс назв радіостанцій
+        </h3>
+        <div class="menu-path" aria-label="Шлях до параметрів застосунку">
+          <span>Tools</span><span>Application Options</span>
+        </div>
+        <ol>
+          <li>У лівій частині вікна обери <code>RF-7800H-MP</code>.</li>
+          <li>
+            У розділі <code>General</code> введи потрібне значення в полі <code>Name Prefix</code>.
+          </li>
+        </ol>
+        <p>
+          CPA використовуватиме цей префікс під час автоматичного формування назв нових
+          радіостанцій.
+        </p>
+        <div class="procedure-steps two-up" aria-label="Налаштування префікса назв радіостанцій">
+          <figure class="procedure-step">
+            <button
+              class="procedure-shot-button"
+              type="button"
+              aria-label="Збільшити шлях до Application Options"
+            >
+              <img
+                src="name-prefix-application-options-menu.png"
+                alt="Пункт Application Options у меню Tools"
+                loading="lazy"
+              />
+            </button>
+            <figcaption>
+              <strong>Відкриття параметрів.</strong> Обери <code>Tools → Application Options</code>.
+            </figcaption>
+          </figure>
+          <figure class="procedure-step">
+            <button
+              class="procedure-shot-button"
+              type="button"
+              aria-label="Збільшити налаштування Name Prefix"
+            >
+              <img
+                src="name-prefix-rf-7800h-mp.png"
+                alt="Вибір RF-7800H-MP і налаштування поля Name Prefix"
+                loading="lazy"
+              />
+            </button>
+            <figcaption>
+              <strong>Префікс станцій.</strong> Обери <code>RF-7800H-MP</code> (1) і введи префікс у
+              полі <code>Name Prefix</code> (2).
+            </figcaption>
+          </figure>
+        </div>
+
+        <h3
+          id="perednalashtuvannia-avtomatychne-stvorennya-tod-mask"
+          data-legacy-anchor="perednalashtuvannia-автоматичне-створення-tod-mask"
+        >
+          Автоматичне створення TOD Mask
+        </h3>
+        <div class="menu-path">
+          <span>Tools</span><span>Application Options</span><span>HF Hopping</span>
+        </div>
+        <p>
+          У полі <code>Auto Generate TOD Mask</code> встанови <code>Enabled</code> і підтвердь зміни
+          кнопкою <code>OK</code>.
+        </p>
         <figure class="procedure-shot">
-          <button class="procedure-shot-button" type="button" aria-label="Збільшити вибір групи й каналів та їх додавання"><img src="channel-membership-source.png" alt="Вибір канальної групи, каналів і кнопки Add" loading="lazy"></button>
-          <figcaption>Обери канальну групу (1), виділи потрібні канали (2) та натисни <code>Add</code> (3).</figcaption>
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити налаштування TOD Mask"
+          >
+            <img
+              src="hop-tod-mask-enabled.png"
+              alt="Вибір HF Hopping і ввімкнення Auto Generate TOD Mask"
+              loading="lazy"
+            />
+          </button>
+          <figcaption>
+            Обери <code>HF Hopping</code> (1) і встанови
+            <code>Auto Generate TOD Mask = Enabled</code> (2).
+          </figcaption>
         </figure>
+      </section>
+
+      <section id="kliuchi" class="section">
+        <h2>Ключі шифрування</h2>
+        <div class="menu-path">
+          <span>Tools</span><span>Key Management</span><span>Key Rings</span>
+        </div>
+        <ol>
+          <li>У вікні <code>Key Manager</code> обери <code>Key Rings</code>.</li>
+          <li>Увімкни <code>Enable Key Generation (Unrestricted Key Operation)</code>.</li>
+          <li>Натисни <code>Generate</code>.</li>
+          <li>Задай кількість у полі <code>Number of Key Rings</code>.</li>
+          <li>Введи спільний початок назви в полі <code>Key Ring Name Prefix</code>.</li>
+          <li>Обери потрібний алгоритм у групі <code>Key Types</code>.</li>
+          <li>Натисни <code>Generate</code> і перевір створені ключі.</li>
+          <li>Закрий <code>Key Manager</code> кнопкою <code>Close</code>.</li>
+        </ol>
+        <div class="note">
+          Кількість, префікс і тип ключів визначає план зв'язку. Значення на скріншоті є прикладом,
+          а не універсальними налаштуваннями.
+        </div>
+        <div class="procedure-steps two-up" aria-label="Створення ключів шифрування">
+          <figure class="procedure-step">
+            <button
+              class="procedure-shot-button"
+              type="button"
+              aria-label="Збільшити шлях до Key Management"
+            >
+              <img
+                src="key-management-menu.png"
+                alt="Пункт Key Management у меню Tools"
+                loading="lazy"
+              />
+            </button>
+            <figcaption>
+              <strong>Відкриття менеджера ключів.</strong> Обери
+              <code>Tools → Key Management</code>.
+            </figcaption>
+          </figure>
+          <figure class="procedure-step">
+            <button
+              class="procedure-shot-button"
+              type="button"
+              aria-label="Збільшити послідовність створення Key Rings"
+            >
+              <img
+                src="key-ring-generation-steps.png"
+                alt="Вісім позначених кроків створення Key Rings у CPA"
+                loading="lazy"
+              />
+            </button>
+            <figcaption>
+              <strong>Створення Key Rings.</strong> Виконай позначені дії 1–8 у наведеній
+              послідовності.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="kanaly" class="section">
+        <h2>Канали та канальні групи</h2>
+        <h3 id="kanaly-stvorennya-kanaliv" data-legacy-anchor="kanaly-створення-каналів">
+          Створення каналів
+        </h3>
+        <div class="menu-path"><span>Tools</span><span>HF Channels</span></div>
+        <figure class="procedure-shot procedure-shot-narrow">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити шлях до HF Channels"
+          >
+            <img src="hf-channels-menu.png" alt="Пункт HF Channels у меню Tools" loading="lazy" />
+          </button>
+          <figcaption>
+            <strong>Відкриття каналів.</strong> Обери <code>Tools → HF Channels</code>.
+          </figcaption>
+        </figure>
+        <ol>
+          <li>
+            У полі <code>Channel Type</code> обери режим, для якого створюєш канали:
+            <code>FIX</code>, <code>ALE</code>, <code>3G</code> або <code>3G+</code>.
+          </li>
+          <li>Натисни <code>Add</code> для кожного потрібного каналу.</li>
+          <li>Введи частоти приймання та передавання.</li>
+          <li>Повтори операцію для інших потрібних режимів.</li>
+        </ol>
         <figure class="procedure-shot">
-          <button class="procedure-shot-button" type="button" aria-label="Збільшити список каналів групи"><img src="channel-membership-target.png" alt="Додані канали у списку Member Channel вибраної групи" loading="lazy"></button>
-          <figcaption>Додані канали з'являються у <code>Member Channel</code> відповідної групи.</figcaption>
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити вибір типу та додавання каналу"
+          >
+            <img
+              src="channel-type-add.png"
+              alt="Вибір Channel Type і кнопка Add у вікні Manage Channels"
+              loading="lazy"
+            />
+          </button>
+          <figcaption>
+            Обери <code>Channel Type</code> (1), потім натисни <code>Add</code> (2).
+          </figcaption>
         </figure>
-      </div>
-    </section>
-
-    <section id="modemy" class="section">
-      <h2>Профілі модемів</h2>
-      <div class="menu-path"><span>Tools</span><span>HF Modem Presets</span></div>
-      <figure class="procedure-shot procedure-shot-narrow">
-        <button class="procedure-shot-button" type="button" aria-label="Збільшити шлях до HF Modem Presets"><img src="hf-modem-presets-menu.png" alt="Пункт HF Modem Presets у меню Tools" loading="lazy"></button>
-        <figcaption>Обери <code>Tools → HF Modem Presets</code>.</figcaption>
-      </figure>
-      <ol>
-        <li>Натисни <code>Add</code>.</li>
-        <li>Задай назву профілю в полі <code>Name</code>.</li>
-        <li>Обери модем у полі <code>Type</code>.</li>
-        <li>Заповни параметри, доступні для обраного типу.</li>
-      </ol>
-      <p>Для профілю <strong>WBHF</strong> вказати <code>Bandwidth 24 kHz</code> і <code>Data Rate 120000 bps</code>, тобто 120 кбіт/с.</p>
-      <figure class="procedure-shot">
-        <button class="procedure-shot-button" type="button" aria-label="Збільшити профіль WBHF"><img src="wbhf-modem-preset.png" alt="Параметри профілю модема WBHF" loading="lazy"></button>
-        <figcaption>Для профілю <code>WBHF</code> встанови <code>Bandwidth = 24 kHz</code> і <code>Data Rate = 120000 bps</code>.</figcaption>
-      </figure>
-    </section>
-
-    <section id="stantsii-merezhi" class="section">
-      <h2>Радіостанції та мережі</h2>
-      <div class="menu-path"><span>Create</span><span>Create Network</span><span>тип мережі</span></div>
-      <figure class="procedure-shot procedure-shot-narrow">
-        <button class="procedure-shot-button" type="button" aria-label="Збільшити вибір типу мережі"><img src="create-network-menu.png" alt="Типи мереж 3G, ALE, HF Fixed Frequency і HF Hopping у меню Create Network" loading="lazy"></button>
-        <figcaption>Обери <code>Create → Create Network</code> і потрібний тип мережі.</figcaption>
-      </figure>
-      <p>Обери потрібний тип мережі: <code>HF Fixed Frequency</code>, <code>HF Hopping</code>, <code>ALE</code> або <code>3G</code>.</p>
-      <h3 id="stantsii-merezhi-stvorennya-radiostantsiy" data-legacy-anchor="stantsii-merezhi-створення-радіостанцій">Створення радіостанцій</h3>
-      <p>Якщо це перша мережа плану:</p>
-      <ol>
-        <li>Обери тип <code>RF-7800H-MP</code>.</li>
-        <li>Відкрий список біля <code>New</code> і вибери <code>Create single RF-7800H-MP</code> або <code>Create multiple RF-7800H-MPs</code>.</li>
-        <li>Для створення кількох станцій введи потрібну кількість.</li>
-        <li>Зніми виділення зі станцій натисканням на вільну область.</li>
-        <li>Натисни <code>Expand All</code>, щоб відкрити параметри мережі.</li>
-      </ol>
-      <figure class="procedure-shot procedure-shot-narrow">
-        <button class="procedure-shot-button" type="button" aria-label="Збільшити меню створення нових станцій"><img src="create-new-stations-menu.png" alt="Команди створення однієї або кількох станцій RF-7800H-MP" loading="lazy"></button>
-        <figcaption>У меню <code>New</code> обери створення однієї або кількох RF-7800H-MP.</figcaption>
-      </figure>
-      <h3 id="stantsii-merezhi-povtorne-vykorystannya-stantsiy" data-legacy-anchor="stantsii-merezhi-повторне-використання-станцій">Повторне використання станцій</h3>
-      <p>Під час створення наступної мережі натисни <code>Existing</code> і додай до неї вже створені радіостанції. Одна станція може входити до кількох мереж плану.</p>
-      <figure class="procedure-shot">
-        <button class="procedure-shot-button" type="button" aria-label="Збільшити додавання наявних станцій"><img src="add-existing-stations.png" alt="Вибір наявних RF-7800H-MP і кнопки Add та Add All" loading="lazy"></button>
-        <figcaption>Обери потрібні станції й натисни <code>Add</code> або додай усі кнопкою <code>Add All</code>.</figcaption>
-      </figure>
-    </section>
-
-    <section id="fix" class="section">
-      <h2>Мережа FIX</h2>
-      <div class="menu-path"><span>Create</span><span>Create Network</span><span>HF Fixed Frequency</span></div>
-      <p>У правій панелі властивостей заповни:</p>
-      <ul>
-        <li><code>Name</code> — назва мережі;</li>
-        <li><code>Channel</code> — канал, створений у <code>Tools → HF Channels</code>;</li>
-        <li><code>Crypto Algorithm</code> — алгоритм шифрування;</li>
-        <li><code>Key Ring Name</code> — створене кільце ключів;</li>
-        <li><code>Modem Preset</code> — профіль модема;</li>
-        <li><code>CT Voice</code> і <code>PT Voice</code> — вокодери для захищеного та відкритого режимів.</li>
-      </ul>
-      <figure class="procedure-shot procedure-shot-narrow">
-        <button class="procedure-shot-button" type="button" aria-label="Збільшити властивості FIX"><img src="fix-network-properties.png" alt="Основні властивості мережі HF Fixed Frequency" loading="lazy"></button>
-        <figcaption>Основні параметри мережі HF Fixed Frequency.</figcaption>
-      </figure>
-    </section>
-
-    <section id="hop" class="section">
-      <h2>Мережа HOP</h2>
-      <div class="menu-path"><span>Create</span><span>Create Network</span><span>HF Hopping</span></div>
-      <p>Додай станції через <code>Existing</code>, зніми виділення та натисни <code>Expand All</code>.</p>
-      <h3 id="hop-vlastyvosti-merezhi" data-legacy-anchor="hop-властивості-мережі">Властивості мережі</h3>
-      <p>Заповни основні властивості мережі:</p>
-      <ul>
-        <li><code>Name</code> — назва мережі;</li>
-        <li><code>Hopset</code> — призначений набір частот;</li>
-        <li><code>Crypto Algorithm</code> — алгоритм шифрування;</li>
-        <li><code>Key Ring Name</code> — створене кільце ключів;</li>
-        <li><code>Modem Preset</code> — профіль модема;</li>
-        <li><code>CT Voice</code> і <code>PT Voice</code> — вокодери для захищеного та відкритого режимів.</li>
-      </ul>
-      <figure class="procedure-shot procedure-shot-narrow">
-        <button class="procedure-shot-button" type="button" aria-label="Збільшити властивості HOP"><img src="hop-network-properties.png" alt="Основні властивості мережі HF Hopping" loading="lazy"></button>
-        <figcaption>Призначення hopset, шифрування, кільця ключів, профілю модема й вокодерів мережі HOP.</figcaption>
-      </figure>
-      <h3 id="hop-stvorennya-ta-modyfikatsiya-hopset" data-legacy-anchor="hop-створення-та-модифікація-hopset">Створення та модифікація hopset</h3>
-      <ol>
-        <li>У групі <code>Global HF Hopping</code> відкрий <code>HF Hopsets</code> кнопкою з трьома крапками.</li>
-        <li>Натисни <code>Add</code>, щоб створити новий hopset, або виділи наявний і натисни <code>Modify</code>. Кнопка <code>Delete</code> видаляє вибраний hopset.</li>
-        <li>Заповни <code>Name</code>, <code>Number</code> і <code>Type</code>; перевір значення <code>TOD Mask</code> та <code>Hopset ID</code>.</li>
-        <li>У полі <code>Center Frequency</code> задай центральну частоту.</li>
-        <li>У полі <code>Control (Auto Respond) Station</code> обери головну станцію.</li>
-        <li>Підтвердь налаштування кнопкою <code>OK</code>.</li>
-      </ol>
-      <figure class="procedure-shot">
-        <button class="procedure-shot-button" type="button" aria-label="Збільшити список і команди керування hopset"><img src="hopset-list.png" alt="Список Hopsets і кнопки Add, Modify та Delete" loading="lazy"></button>
-        <figcaption>Кнопки <code>Add</code>, <code>Modify</code> і <code>Delete</code> для керування hopset.</figcaption>
-      </figure>
-      <figure class="procedure-shot procedure-shot-narrow">
-        <button class="procedure-shot-button" type="button" aria-label="Збільшити параметри hopset"><img src="hopset-settings.png" alt="Основні параметри hopset, центральна частота й керувальна станція" loading="lazy"></button>
-        <figcaption>Основні параметри hopset, <code>Center Frequency</code> і <code>Control (Auto Respond) Station</code>.</figcaption>
-      </figure>
-    </section>
-
-    <section id="ale" class="section">
-      <h2>Мережа ALE</h2>
-      <div class="menu-path"><span>Create</span><span>Create Network</span><span>ALE</span></div>
-      <p>Додай створені станції через <code>Existing</code>, зніми виділення та натисни <code>Expand All</code>. У властивостях мережі заповни:</p>
-      <ul>
-        <li><code>Name</code> — назва мережі;</li>
-        <li><code>Channel Group</code> — канальна група ALE;</li>
-        <li><code>Crypto Algorithm</code> і <code>Key Ring Name</code> — алгоритм та кільце ключів шифрування;</li>
-        <li><code>Modem Preset</code> — профіль модема;</li>
-        <li><code>CT Voice</code> і <code>PT Voice</code> — потрібні вокодери;</li>
-        <li><code>Use Default Self-Address</code> — <code>Enabled</code>;</li>
-        <li><code>Link Protection</code> — <code>Disabled</code>.</li>
-      </ul>
-      <figure class="procedure-shot procedure-shot-narrow">
-        <button class="procedure-shot-button" type="button" aria-label="Збільшити властивості ALE"><img src="ale-network-properties.png" alt="Основні властивості мережі ALE" loading="lazy"></button>
-        <figcaption>Канальна група, шифрування, модем, вокодери, адресація ALE та захист каналу.</figcaption>
-      </figure>
-    </section>
-
-    <section id="three-g" class="section">
-      <h2>Мережа 3G</h2>
-      <div class="menu-path"><span>Create</span><span>Create Network</span><span>3G</span></div>
-      <ol>
-        <li>Додай радіостанції через <code>Existing</code>.</li>
-        <li>Зніми виділення та натисни <code>Expand All</code>.</li>
-        <li>Обери <code>Crypto Algorithm</code> і <code>Key Ring Name</code>.</li>
-        <li>Відкрий поле <code>3G Configuration</code> кнопкою з трьома крапками.</li>
-      </ol>
-      <figure class="procedure-shot procedure-shot-narrow">
-        <button class="procedure-shot-button" type="button" aria-label="Збільшити властивості 3G"><img src="three-g-network-properties.png" alt="Властивості мережі 3G і поле 3G Configuration" loading="lazy"></button>
-        <figcaption>Шифрування та перехід до спільних параметрів мережі 3G.</figcaption>
-      </figure>
-      <h3 id="three-g-konfihuratsiya-3g" data-legacy-anchor="three-g-конфігурація-3g">Конфігурація 3G</h3>
-      <ul>
-        <li>У групі <code>3G Preset</code> обери <code>Modem Preset</code>, <code>CT Voice</code> і <code>PT Voice</code>.</li>
-        <li>У полі <code>TOD Server</code> обери головну радіостанцію, яка забезпечуватиме часову основу мережі.</li>
-        <li>У розділі <code>Channel Plans</code> задай назву кожного плану в полі <code>Plan Name</code>.</li>
-        <li>У полі <code>Chan Group</code> признач канальну групу 3G відповідному частотному плану.</li>
-        <li>Познач прапорцем <code>Active</code> частотний план, який має бути активним.</li>
-      </ul>
-      <figure class="procedure-shot">
-        <button class="procedure-shot-button" type="button" aria-label="Збільшити конфігурацію 3G"><img src="three-g-configuration.png" alt="TOD Server і Channel Plans у конфігурації 3G" loading="lazy"></button>
-        <figcaption>Профіль модема, вокодери, <code>TOD Server</code> і канальні групи частотних планів.</figcaption>
-      </figure>
-    </section>
-
-    <section id="perevirka" class="section">
-      <h2>Перевірка плану</h2>
-      <div class="menu-path"><span>Actions</span><span>Validate Plan</span></div>
-      <p>Після завершення налаштувань виконай перевірку плану.</p>
-      <p>Переглянь результати перевірки та виправ помилки до використання конфігурації.</p>
-      <figure class="procedure-shot">
-        <button class="procedure-shot-button" type="button" aria-label="Збільшити меню та результат Validate Plan"><img src="validation-passed-actions-menu.png" alt="Меню Actions, кнопка Validate Plan і результат Validation Passed" loading="lazy"></button>
-        <figcaption>Команда <code>Actions → Validate Plan</code>, її кнопка на панелі та успішний результат перевірки.</figcaption>
-      </figure>
-      <h3 id="perevirka-povidomlennya-pro-rezhym-shyfruvannya-sms" data-legacy-anchor="perevirka-повідомлення-про-режим-шифрування-sms">Повідомлення про режим шифрування SMS</h3>
-      <div class="note note-important"><strong>Можливе повідомлення:</strong> <code>Make sure your radio is in CT Mode or SMS will not work.</code></div>
-      <p>Повідомлення з'являється, коли для станцій параметр <code>Station Cipher Mode</code> має значення <code>CT Only</code>.</p>
-      <figure class="procedure-shot">
-        <button class="procedure-shot-button" type="button" aria-label="Збільшити повідомлення про Station Cipher Mode"><img src="validation-sms-messages.png" alt="П'ять повідомлень перевірки плану про Station Cipher Mode CT Only" loading="lazy"></button>
-        <figcaption>Повідомлення для станцій із параметром <code>Station Cipher Mode = CT Only</code>.</figcaption>
-      </figure>
-      <p><strong>Рішення:</strong></p>
-      <ol>
-        <li>Обери всі радіостанції плану.</li>
-        <li>У панелі властивостей відкрий наведений шлях.</li>
-        <li>Зміни <code>Station Cipher Mode</code> на <code>PT/CT</code>.</li>
-        <li>Повторно виконай <code>Actions → Validate Plan</code>.</li>
-      </ol>
-      <div class="menu-path"><span>Station Configuration</span><span>3G</span><span>SMS</span><span>Station Cipher Mode</span><span>PT/CT</span></div>
-      <figure class="procedure-shot">
-        <button class="procedure-shot-button" type="button" aria-label="Збільшити загальний вигляд налаштування Station Cipher Mode"><img src="sms-cipher-overview.png" alt="Усі станції вибрані, повідомлення валідації відкриті, у властивостях обирають PT/CT" loading="lazy"></button>
-        <figcaption>Загальний вигляд: усі станції вибрані, повідомлення валідації відкриті, для <code>Station Cipher Mode</code> обирають <code>PT/CT</code>.</figcaption>
-      </figure>
-      <div class="procedure-steps" aria-label="Послідовність зміни Station Cipher Mode">
-        <figure class="procedure-step">
-          <button class="procedure-shot-button" type="button" aria-label="Збільшити вибір усіх радіостанцій"><img src="sms-select-all-stations.png" alt="Усі радіостанції виділені у вікні Navigator" loading="lazy"></button>
-          <figcaption><strong>Виділення станцій.</strong> Обери всі радіостанції у вікні <code>Navigator</code>.</figcaption>
+        <div class="note note-important">
+          <strong>Для каналів 3G:</strong> у полі <code>Max Bandwidth</code> обов'язково встанови
+          <code>24 kHz</code>.
+        </div>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити налаштування Max Bandwidth для каналів 3G"
+          >
+            <img
+              src="channel-3g-max-bandwidth.png"
+              alt="Значення 24 kHz у полі Max Bandwidth для каналів 3G"
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Для каналів 3G встанови <code>Max Bandwidth = 24 kHz</code>.</figcaption>
         </figure>
-        <figure class="procedure-step">
-          <button class="procedure-shot-button" type="button" aria-label="Збільшити Station Cipher Mode до зміни"><img src="sms-cipher-before.png" alt="Station Cipher Mode має значення CT Only" loading="lazy"></button>
-          <figcaption><strong>До зміни.</strong> Для вибраних станцій встановлено <code>CT Only</code>.</figcaption>
+        <div class="note note-important">
+          <strong>Для частот УКХ-діапазону понад 30 МГц:</strong> у полі
+          <code>Modulation Type</code> встанови <code>FM</code>.
+        </div>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити налаштування FM для частоти УКХ-діапазону"
+          >
+            <img
+              src="channel-vhf-fm.png"
+              alt="Частота понад 30 МГц і значення FM у полі Modulation Type"
+              loading="lazy"
+            />
+          </button>
+          <figcaption>
+            Для частоти УКХ-діапазону понад 30 МГц встанови <code>Modulation Type = FM</code>.
+          </figcaption>
         </figure>
-        <figure class="procedure-step">
-          <button class="procedure-shot-button" type="button" aria-label="Збільшити варіанти Station Cipher Mode"><img src="sms-cipher-options.png" alt="Список значень CT Only і PT/CT для Station Cipher Mode" loading="lazy"></button>
-          <figcaption><strong>Вибір значення.</strong> Відкрий список і обери <code>PT/CT</code>.</figcaption>
-        </figure>
-        <figure class="procedure-step">
-          <button class="procedure-shot-button" type="button" aria-label="Збільшити Station Cipher Mode після зміни"><img src="sms-cipher-after.png" alt="Station Cipher Mode має значення PT/CT" loading="lazy"></button>
-          <figcaption><strong>Після зміни.</strong> Перевір значення <code>PT/CT</code> для всіх вибраних станцій.</figcaption>
-        </figure>
-      </div>
-    </section>
 
-    <section id="usb-programuvannia" class="section">
-      <h2>Програмування радіостанції через USB-кабель</h2>
-      <p><a href="../07-harris-kh-ekspluatatsiia/index.html#ip-adresa">Перегляд налаштування DIRECT USB та IP-адреси радіостанції</a></p>
-      <h3 id="usb-programuvannia-perekhid-do-prohramuvannya-v-cpa" data-legacy-anchor="usb-programuvannia-перехід-до-програмування-в-cpa">Перехід до програмування в CPA</h3>
-      <ol>
-        <li>Після визначення IP-адреси радіостанції у панелі <strong>Navigator</strong> вибери потрібну станцію зі списку <strong>All Stations</strong>. На прикладі вибрано <strong>R1</strong> типу <strong>RF-7800H-MP</strong>.</li>
-        <li>Відкрий меню <strong>Actions → Program…</strong>. З’явиться вікно <strong>Radio Programming</strong>.</li>
-        <li>Перевір <strong>Station Name</strong> і <strong>Radio Type</strong>: вони мають відповідати станції, яку програмуєш.</li>
-        <li>У блоці <strong>Connection Type</strong> вибери <strong>Ethernet</strong>, а в полі <strong>Radio IP Address</strong> введи IP-адресу, визначену на радіостанції. Для підключення через DIRECT USB у цьому вікні використовується саме Ethernet.</li>
-        <li>Перевір параметри запису в <strong>Programming Options</strong>. На прикладі позначено <strong>Program Radio Fill</strong> і <strong>Program Keys</strong>; <strong>Program CAM</strong> недоступний. Прапорець <strong>Set Radio TOD w/ System TOD</strong> на знімку вимкнений.</li>
-        <li>Натисни <strong>Program</strong>, щоб розпочати програмування вибраної радіостанції.</li>
-      </ol>
-      <p class="table-note">Адреса <code>169.254.79.1</code> на знімку — приклад. У полі Radio IP Address потрібно вказати фактичну IP-адресу своєї радіостанції.</p>
-      <div class="procedure-steps two-up">
-        <figure class="procedure-step">
-          <button class="procedure-shot-button" type="button" aria-label="Збільшити вибір станції в Navigator"><img src="usb-select-station.png" alt="Navigator: у списку All Stations вибрано R1 типу RF-7800H-MP" loading="lazy"></button>
-          <figcaption><strong>Вибір станції.</strong> Познач потрібну радіостанцію в Navigator.</figcaption>
+        <h3
+          id="kanaly-stvorennya-kanalnykh-hrup"
+          data-legacy-anchor="kanaly-створення-канальних-груп"
+        >
+          Створення канальних груп
+        </h3>
+        <p>Канальні групи потрібні для ALE та 3G. Для FIX і HOP їх не використовують.</p>
+        <ol>
+          <li>У частині <code>Channel Groups</code> натисни <code>Add</code>.</li>
+          <li>Задай назву групи та обери її режим у полі <code>Mode</code>.</li>
+          <li>Виділи канал у таблиці каналів і потрібну групу.</li>
+          <li>
+            Додай канал кнопкою <code>Add</code> праворуч або перетягни його до списку
+            <code>Member Channel</code>.
+          </li>
+          <li>Натисни <code>OK</code> після заповнення груп.</li>
+        </ol>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити створення та налаштування канальної групи"
+          >
+            <img
+              src="channel-groups.png"
+              alt="Кнопка Add, назва та режим канальної групи у вікні Manage Channels"
+              loading="lazy"
+            />
+          </button>
+          <figcaption>
+            Натисни <code>Add</code> (1), задай назву групи (2) та обери її <code>Mode</code> (3).
+          </figcaption>
         </figure>
-        <figure class="procedure-step">
-          <button class="procedure-shot-button" type="button" aria-label="Збільшити меню Actions — Program"><img src="usb-actions-program.png" alt="У меню Actions вибрано команду Program…" loading="lazy"></button>
-          <figcaption><strong>Відкриття програмування.</strong> Вибери Actions → Program…</figcaption>
+        <div class="procedure-shot-pair">
+          <figure class="procedure-shot">
+            <button
+              class="procedure-shot-button"
+              type="button"
+              aria-label="Збільшити вибір групи й каналів та їх додавання"
+            >
+              <img
+                src="channel-membership-source.png"
+                alt="Вибір канальної групи, каналів і кнопки Add"
+                loading="lazy"
+              />
+            </button>
+            <figcaption>
+              Обери канальну групу (1), виділи потрібні канали (2) та натисни <code>Add</code> (3).
+            </figcaption>
+          </figure>
+          <figure class="procedure-shot">
+            <button
+              class="procedure-shot-button"
+              type="button"
+              aria-label="Збільшити список каналів групи"
+            >
+              <img
+                src="channel-membership-target.png"
+                alt="Додані канали у списку Member Channel вибраної групи"
+                loading="lazy"
+              />
+            </button>
+            <figcaption>
+              Додані канали з'являються у <code>Member Channel</code> відповідної групи.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="modemy" class="section">
+        <h2>Профілі модемів</h2>
+        <div class="menu-path"><span>Tools</span><span>HF Modem Presets</span></div>
+        <figure class="procedure-shot procedure-shot-narrow">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити шлях до HF Modem Presets"
+          >
+            <img
+              src="hf-modem-presets-menu.png"
+              alt="Пункт HF Modem Presets у меню Tools"
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Обери <code>Tools → HF Modem Presets</code>.</figcaption>
         </figure>
-        <figure class="procedure-step">
-          <button class="procedure-shot-button" type="button" aria-label="Збільшити вікно Radio Programming"><img src="usb-radio-programming.png" alt="Radio Programming: Ethernet, поле Radio IP Address та кнопка Program" loading="lazy"></button>
-          <figcaption><strong>Запуск запису.</strong> Вкажи IP-адресу станції, перевір параметри та натисни Program.</figcaption>
+        <ol>
+          <li>Натисни <code>Add</code>.</li>
+          <li>Задай назву профілю в полі <code>Name</code>.</li>
+          <li>Обери модем у полі <code>Type</code>.</li>
+          <li>Заповни параметри, доступні для обраного типу.</li>
+        </ol>
+        <p>
+          Для профілю <strong>WBHF</strong> вказати <code>Bandwidth 24 kHz</code> і
+          <code>Data Rate 120000 bps</code>, тобто 120 кбіт/с.
+        </p>
+        <figure class="procedure-shot">
+          <button class="procedure-shot-button" type="button" aria-label="Збільшити профіль WBHF">
+            <img src="wbhf-modem-preset.png" alt="Параметри профілю модема WBHF" loading="lazy" />
+          </button>
+          <figcaption>
+            Для профілю <code>WBHF</code> встанови <code>Bandwidth = 24 kHz</code> і
+            <code>Data Rate = 120000 bps</code>.
+          </figcaption>
         </figure>
-      </div>
-    </section>
-  </main>
-  <script src="../asset-version.js?v=cac2c39847d8"></script>
-  <script src="../search-index.js?v=cac2c39847d8"></script>
-  <script src="../topic-search.js?v=cac2c39847d8"></script>
-  <script>window.GLOSSARY_ROOT = "../";</script>
-  <script src="../glossary-data.js?v=cac2c39847d8"></script>
-  <script src="../glossary-terms.js?v=cac2c39847d8"></script>
-  <script src="../site-ui.js?v=cac2c39847d8"></script>
-</body>
+      </section>
+
+      <section id="stantsii-merezhi" class="section">
+        <h2>Радіостанції та мережі</h2>
+        <div class="menu-path">
+          <span>Create</span><span>Create Network</span><span>тип мережі</span>
+        </div>
+        <figure class="procedure-shot procedure-shot-narrow">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити вибір типу мережі"
+          >
+            <img
+              src="create-network-menu.png"
+              alt="Типи мереж 3G, ALE, HF Fixed Frequency і HF Hopping у меню Create Network"
+              loading="lazy"
+            />
+          </button>
+          <figcaption>
+            Обери <code>Create → Create Network</code> і потрібний тип мережі.
+          </figcaption>
+        </figure>
+        <p>
+          Обери потрібний тип мережі: <code>HF Fixed Frequency</code>, <code>HF Hopping</code>,
+          <code>ALE</code> або <code>3G</code>.
+        </p>
+        <h3
+          id="stantsii-merezhi-stvorennya-radiostantsiy"
+          data-legacy-anchor="stantsii-merezhi-створення-радіостанцій"
+        >
+          Створення радіостанцій
+        </h3>
+        <p>Якщо це перша мережа плану:</p>
+        <ol>
+          <li>Обери тип <code>RF-7800H-MP</code>.</li>
+          <li>
+            Відкрий список біля <code>New</code> і вибери <code>Create single RF-7800H-MP</code> або
+            <code>Create multiple RF-7800H-MPs</code>.
+          </li>
+          <li>Для створення кількох станцій введи потрібну кількість.</li>
+          <li>Зніми виділення зі станцій натисканням на вільну область.</li>
+          <li>Натисни <code>Expand All</code>, щоб відкрити параметри мережі.</li>
+        </ol>
+        <figure class="procedure-shot procedure-shot-narrow">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити меню створення нових станцій"
+          >
+            <img
+              src="create-new-stations-menu.png"
+              alt="Команди створення однієї або кількох станцій RF-7800H-MP"
+              loading="lazy"
+            />
+          </button>
+          <figcaption>
+            У меню <code>New</code> обери створення однієї або кількох RF-7800H-MP.
+          </figcaption>
+        </figure>
+        <h3
+          id="stantsii-merezhi-povtorne-vykorystannya-stantsiy"
+          data-legacy-anchor="stantsii-merezhi-повторне-використання-станцій"
+        >
+          Повторне використання станцій
+        </h3>
+        <p>
+          Під час створення наступної мережі натисни <code>Existing</code> і додай до неї вже
+          створені радіостанції. Одна станція може входити до кількох мереж плану.
+        </p>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити додавання наявних станцій"
+          >
+            <img
+              src="add-existing-stations.png"
+              alt="Вибір наявних RF-7800H-MP і кнопки Add та Add All"
+              loading="lazy"
+            />
+          </button>
+          <figcaption>
+            Обери потрібні станції й натисни <code>Add</code> або додай усі кнопкою
+            <code>Add All</code>.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="fix" class="section">
+        <h2>Мережа FIX</h2>
+        <div class="menu-path">
+          <span>Create</span><span>Create Network</span><span>HF Fixed Frequency</span>
+        </div>
+        <p>У правій панелі властивостей заповни:</p>
+        <ul>
+          <li><code>Name</code> — назва мережі;</li>
+          <li><code>Channel</code> — канал, створений у <code>Tools → HF Channels</code>;</li>
+          <li><code>Crypto Algorithm</code> — алгоритм шифрування;</li>
+          <li><code>Key Ring Name</code> — створене кільце ключів;</li>
+          <li><code>Modem Preset</code> — профіль модема;</li>
+          <li>
+            <code>CT Voice</code> і <code>PT Voice</code> — вокодери для захищеного та відкритого
+            режимів.
+          </li>
+        </ul>
+        <figure class="procedure-shot procedure-shot-narrow">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити властивості FIX"
+          >
+            <img
+              src="fix-network-properties.png"
+              alt="Основні властивості мережі HF Fixed Frequency"
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Основні параметри мережі HF Fixed Frequency.</figcaption>
+        </figure>
+      </section>
+
+      <section id="hop" class="section">
+        <h2>Мережа HOP</h2>
+        <div class="menu-path">
+          <span>Create</span><span>Create Network</span><span>HF Hopping</span>
+        </div>
+        <p>
+          Додай станції через <code>Existing</code>, зніми виділення та натисни
+          <code>Expand All</code>.
+        </p>
+        <h3 id="hop-vlastyvosti-merezhi" data-legacy-anchor="hop-властивості-мережі">
+          Властивості мережі
+        </h3>
+        <p>Заповни основні властивості мережі:</p>
+        <ul>
+          <li><code>Name</code> — назва мережі;</li>
+          <li><code>Hopset</code> — призначений набір частот;</li>
+          <li><code>Crypto Algorithm</code> — алгоритм шифрування;</li>
+          <li><code>Key Ring Name</code> — створене кільце ключів;</li>
+          <li><code>Modem Preset</code> — профіль модема;</li>
+          <li>
+            <code>CT Voice</code> і <code>PT Voice</code> — вокодери для захищеного та відкритого
+            режимів.
+          </li>
+        </ul>
+        <figure class="procedure-shot procedure-shot-narrow">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити властивості HOP"
+          >
+            <img
+              src="hop-network-properties.png"
+              alt="Основні властивості мережі HF Hopping"
+              loading="lazy"
+            />
+          </button>
+          <figcaption>
+            Призначення hopset, шифрування, кільця ключів, профілю модема й вокодерів мережі HOP.
+          </figcaption>
+        </figure>
+        <h3
+          id="hop-stvorennya-ta-modyfikatsiya-hopset"
+          data-legacy-anchor="hop-створення-та-модифікація-hopset"
+        >
+          Створення та модифікація hopset
+        </h3>
+        <ol>
+          <li>
+            У групі <code>Global HF Hopping</code> відкрий <code>HF Hopsets</code> кнопкою з трьома
+            крапками.
+          </li>
+          <li>
+            Натисни <code>Add</code>, щоб створити новий hopset, або виділи наявний і натисни
+            <code>Modify</code>. Кнопка <code>Delete</code> видаляє вибраний hopset.
+          </li>
+          <li>
+            Заповни <code>Name</code>, <code>Number</code> і <code>Type</code>; перевір значення
+            <code>TOD Mask</code> та <code>Hopset ID</code>.
+          </li>
+          <li>У полі <code>Center Frequency</code> задай центральну частоту.</li>
+          <li>У полі <code>Control (Auto Respond) Station</code> обери головну станцію.</li>
+          <li>Підтвердь налаштування кнопкою <code>OK</code>.</li>
+        </ol>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити список і команди керування hopset"
+          >
+            <img
+              src="hopset-list.png"
+              alt="Список Hopsets і кнопки Add, Modify та Delete"
+              loading="lazy"
+            />
+          </button>
+          <figcaption>
+            Кнопки <code>Add</code>, <code>Modify</code> і <code>Delete</code> для керування hopset.
+          </figcaption>
+        </figure>
+        <figure class="procedure-shot procedure-shot-narrow">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити параметри hopset"
+          >
+            <img
+              src="hopset-settings.png"
+              alt="Основні параметри hopset, центральна частота й керувальна станція"
+              loading="lazy"
+            />
+          </button>
+          <figcaption>
+            Основні параметри hopset, <code>Center Frequency</code> і
+            <code>Control (Auto Respond) Station</code>.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="ale" class="section">
+        <h2>Мережа ALE</h2>
+        <div class="menu-path"><span>Create</span><span>Create Network</span><span>ALE</span></div>
+        <p>
+          Додай створені станції через <code>Existing</code>, зніми виділення та натисни
+          <code>Expand All</code>. У властивостях мережі заповни:
+        </p>
+        <ul>
+          <li><code>Name</code> — назва мережі;</li>
+          <li><code>Channel Group</code> — канальна група ALE;</li>
+          <li>
+            <code>Crypto Algorithm</code> і <code>Key Ring Name</code> — алгоритм та кільце ключів
+            шифрування;
+          </li>
+          <li><code>Modem Preset</code> — профіль модема;</li>
+          <li><code>CT Voice</code> і <code>PT Voice</code> — потрібні вокодери;</li>
+          <li><code>Use Default Self-Address</code> — <code>Enabled</code>;</li>
+          <li><code>Link Protection</code> — <code>Disabled</code>.</li>
+        </ul>
+        <figure class="procedure-shot procedure-shot-narrow">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити властивості ALE"
+          >
+            <img
+              src="ale-network-properties.png"
+              alt="Основні властивості мережі ALE"
+              loading="lazy"
+            />
+          </button>
+          <figcaption>
+            Канальна група, шифрування, модем, вокодери, адресація ALE та захист каналу.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="three-g" class="section">
+        <h2>Мережа 3G</h2>
+        <div class="menu-path"><span>Create</span><span>Create Network</span><span>3G</span></div>
+        <ol>
+          <li>Додай радіостанції через <code>Existing</code>.</li>
+          <li>Зніми виділення та натисни <code>Expand All</code>.</li>
+          <li>Обери <code>Crypto Algorithm</code> і <code>Key Ring Name</code>.</li>
+          <li>Відкрий поле <code>3G Configuration</code> кнопкою з трьома крапками.</li>
+        </ol>
+        <figure class="procedure-shot procedure-shot-narrow">
+          <button class="procedure-shot-button" type="button" aria-label="Збільшити властивості 3G">
+            <img
+              src="three-g-network-properties.png"
+              alt="Властивості мережі 3G і поле 3G Configuration"
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Шифрування та перехід до спільних параметрів мережі 3G.</figcaption>
+        </figure>
+        <h3 id="three-g-konfihuratsiya-3g" data-legacy-anchor="three-g-конфігурація-3g">
+          Конфігурація 3G
+        </h3>
+        <ul>
+          <li>
+            У групі <code>3G Preset</code> обери <code>Modem Preset</code>, <code>CT Voice</code> і
+            <code>PT Voice</code>.
+          </li>
+          <li>
+            У полі <code>TOD Server</code> обери головну радіостанцію, яка забезпечуватиме часову
+            основу мережі.
+          </li>
+          <li>
+            У розділі <code>Channel Plans</code> задай назву кожного плану в полі
+            <code>Plan Name</code>.
+          </li>
+          <li>
+            У полі <code>Chan Group</code> признач канальну групу 3G відповідному частотному плану.
+          </li>
+          <li>Познач прапорцем <code>Active</code> частотний план, який має бути активним.</li>
+        </ul>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити конфігурацію 3G"
+          >
+            <img
+              src="three-g-configuration.png"
+              alt="TOD Server і Channel Plans у конфігурації 3G"
+              loading="lazy"
+            />
+          </button>
+          <figcaption>
+            Профіль модема, вокодери, <code>TOD Server</code> і канальні групи частотних планів.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="perevirka" class="section">
+        <h2>Перевірка плану</h2>
+        <div class="menu-path"><span>Actions</span><span>Validate Plan</span></div>
+        <p>Після завершення налаштувань виконай перевірку плану.</p>
+        <p>Переглянь результати перевірки та виправ помилки до використання конфігурації.</p>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити меню та результат Validate Plan"
+          >
+            <img
+              src="validation-passed-actions-menu.png"
+              alt="Меню Actions, кнопка Validate Plan і результат Validation Passed"
+              loading="lazy"
+            />
+          </button>
+          <figcaption>
+            Команда <code>Actions → Validate Plan</code>, її кнопка на панелі та успішний результат
+            перевірки.
+          </figcaption>
+        </figure>
+        <h3
+          id="perevirka-povidomlennya-pro-rezhym-shyfruvannya-sms"
+          data-legacy-anchor="perevirka-повідомлення-про-режим-шифрування-sms"
+        >
+          Повідомлення про режим шифрування SMS
+        </h3>
+        <div class="note note-important">
+          <strong>Можливе повідомлення:</strong>
+          <code>Make sure your radio is in CT Mode or SMS will not work.</code>
+        </div>
+        <p>
+          Повідомлення з'являється, коли для станцій параметр <code>Station Cipher Mode</code> має
+          значення <code>CT Only</code>.
+        </p>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити повідомлення про Station Cipher Mode"
+          >
+            <img
+              src="validation-sms-messages.png"
+              alt="П'ять повідомлень перевірки плану про Station Cipher Mode CT Only"
+              loading="lazy"
+            />
+          </button>
+          <figcaption>
+            Повідомлення для станцій із параметром <code>Station Cipher Mode = CT Only</code>.
+          </figcaption>
+        </figure>
+        <p><strong>Рішення:</strong></p>
+        <ol>
+          <li>Обери всі радіостанції плану.</li>
+          <li>У панелі властивостей відкрий наведений шлях.</li>
+          <li>Зміни <code>Station Cipher Mode</code> на <code>PT/CT</code>.</li>
+          <li>Повторно виконай <code>Actions → Validate Plan</code>.</li>
+        </ol>
+        <div class="menu-path">
+          <span>Station Configuration</span><span>3G</span><span>SMS</span
+          ><span>Station Cipher Mode</span><span>PT/CT</span>
+        </div>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити загальний вигляд налаштування Station Cipher Mode"
+          >
+            <img
+              src="sms-cipher-overview.png"
+              alt="Усі станції вибрані, повідомлення валідації відкриті, у властивостях обирають PT/CT"
+              loading="lazy"
+            />
+          </button>
+          <figcaption>
+            Загальний вигляд: усі станції вибрані, повідомлення валідації відкриті, для
+            <code>Station Cipher Mode</code> обирають <code>PT/CT</code>.
+          </figcaption>
+        </figure>
+        <div class="procedure-steps" aria-label="Послідовність зміни Station Cipher Mode">
+          <figure class="procedure-step">
+            <button
+              class="procedure-shot-button"
+              type="button"
+              aria-label="Збільшити вибір усіх радіостанцій"
+            >
+              <img
+                src="sms-select-all-stations.png"
+                alt="Усі радіостанції виділені у вікні Navigator"
+                loading="lazy"
+              />
+            </button>
+            <figcaption>
+              <strong>Виділення станцій.</strong> Обери всі радіостанції у вікні
+              <code>Navigator</code>.
+            </figcaption>
+          </figure>
+          <figure class="procedure-step">
+            <button
+              class="procedure-shot-button"
+              type="button"
+              aria-label="Збільшити Station Cipher Mode до зміни"
+            >
+              <img
+                src="sms-cipher-before.png"
+                alt="Station Cipher Mode має значення CT Only"
+                loading="lazy"
+              />
+            </button>
+            <figcaption>
+              <strong>До зміни.</strong> Для вибраних станцій встановлено <code>CT Only</code>.
+            </figcaption>
+          </figure>
+          <figure class="procedure-step">
+            <button
+              class="procedure-shot-button"
+              type="button"
+              aria-label="Збільшити варіанти Station Cipher Mode"
+            >
+              <img
+                src="sms-cipher-options.png"
+                alt="Список значень CT Only і PT/CT для Station Cipher Mode"
+                loading="lazy"
+              />
+            </button>
+            <figcaption>
+              <strong>Вибір значення.</strong> Відкрий список і обери <code>PT/CT</code>.
+            </figcaption>
+          </figure>
+          <figure class="procedure-step">
+            <button
+              class="procedure-shot-button"
+              type="button"
+              aria-label="Збільшити Station Cipher Mode після зміни"
+            >
+              <img
+                src="sms-cipher-after.png"
+                alt="Station Cipher Mode має значення PT/CT"
+                loading="lazy"
+              />
+            </button>
+            <figcaption>
+              <strong>Після зміни.</strong> Перевір значення <code>PT/CT</code> для всіх вибраних
+              станцій.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="usb-programuvannia" class="section">
+        <h2>Програмування радіостанції через USB-кабель</h2>
+        <p>
+          <a href="../07-harris-kh-ekspluatatsiia/index.html#ip-adresa"
+            >Перегляд налаштування DIRECT USB та IP-адреси радіостанції</a
+          >
+        </p>
+        <h3
+          id="usb-programuvannia-perekhid-do-prohramuvannya-v-cpa"
+          data-legacy-anchor="usb-programuvannia-перехід-до-програмування-в-cpa"
+        >
+          Перехід до програмування в CPA
+        </h3>
+        <ol>
+          <li>
+            Після визначення IP-адреси радіостанції у панелі <strong>Navigator</strong> вибери
+            потрібну станцію зі списку <strong>All Stations</strong>. На прикладі вибрано
+            <strong>R1</strong> типу <strong>RF-7800H-MP</strong>.
+          </li>
+          <li>
+            Відкрий меню <strong>Actions → Program…</strong>. З’явиться вікно
+            <strong>Radio Programming</strong>.
+          </li>
+          <li>
+            Перевір <strong>Station Name</strong> і <strong>Radio Type</strong>: вони мають
+            відповідати станції, яку програмуєш.
+          </li>
+          <li>
+            У блоці <strong>Connection Type</strong> вибери <strong>Ethernet</strong>, а в полі
+            <strong>Radio IP Address</strong> введи IP-адресу, визначену на радіостанції. Для
+            підключення через DIRECT USB у цьому вікні використовується саме Ethernet.
+          </li>
+          <li>
+            Перевір параметри запису в <strong>Programming Options</strong>. На прикладі позначено
+            <strong>Program Radio Fill</strong> і <strong>Program Keys</strong>;
+            <strong>Program CAM</strong> недоступний. Прапорець
+            <strong>Set Radio TOD w/ System TOD</strong> на знімку вимкнений.
+          </li>
+          <li>
+            Натисни <strong>Program</strong>, щоб розпочати програмування вибраної радіостанції.
+          </li>
+        </ol>
+        <p class="table-note">
+          Адреса <code>169.254.79.1</code> на знімку — приклад. У полі Radio IP Address потрібно
+          вказати фактичну IP-адресу своєї радіостанції.
+        </p>
+        <div class="procedure-steps two-up">
+          <figure class="procedure-step">
+            <button
+              class="procedure-shot-button"
+              type="button"
+              aria-label="Збільшити вибір станції в Navigator"
+            >
+              <img
+                src="usb-select-station.png"
+                alt="Navigator: у списку All Stations вибрано R1 типу RF-7800H-MP"
+                loading="lazy"
+              />
+            </button>
+            <figcaption>
+              <strong>Вибір станції.</strong> Познач потрібну радіостанцію в Navigator.
+            </figcaption>
+          </figure>
+          <figure class="procedure-step">
+            <button
+              class="procedure-shot-button"
+              type="button"
+              aria-label="Збільшити меню Actions — Program"
+            >
+              <img
+                src="usb-actions-program.png"
+                alt="У меню Actions вибрано команду Program…"
+                loading="lazy"
+              />
+            </button>
+            <figcaption>
+              <strong>Відкриття програмування.</strong> Вибери Actions → Program…
+            </figcaption>
+          </figure>
+          <figure class="procedure-step">
+            <button
+              class="procedure-shot-button"
+              type="button"
+              aria-label="Збільшити вікно Radio Programming"
+            >
+              <img
+                src="usb-radio-programming.png"
+                alt="Radio Programming: Ethernet, поле Radio IP Address та кнопка Program"
+                loading="lazy"
+              />
+            </button>
+            <figcaption>
+              <strong>Запуск запису.</strong> Вкажи IP-адресу станції, перевір параметри та натисни
+              Program.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+    </main>
+    <script src="../asset-version.js?v=0b5515a61641"></script>
+    <script src="../search-index.js?v=0b5515a61641"></script>
+    <script src="../topic-search.js?v=0b5515a61641"></script>
+    <script>
+      window.GLOSSARY_ROOT = "../";
+    </script>
+    <script src="../glossary-data.js?v=0b5515a61641"></script>
+    <script src="../glossary-terms.js?v=0b5515a61641"></script>
+    <script src="../site-ui.js?v=0b5515a61641"></script>
+  </body>
 </html>

@@ -1,44 +1,246 @@
-.mototrbo-table { min-width: 0; max-width: 100%; overflow-x: auto; margin: 18px 0; overscroll-behavior-inline: contain; -webkit-overflow-scrolling: touch; }
+.mototrbo-table {
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: auto;
+  margin: 18px 0;
+  overscroll-behavior-inline: contain;
+  -webkit-overflow-scrolling: touch;
+}
 /* Keep one scroll container: the shared mobile rule makes tables scroll too. */
-main .mototrbo-table table { display: table; min-width: 420px; max-width: none; overflow: visible; }
-.mototrbo-indicator { display: flex; align-items: center; gap: 12px; }
-.mototrbo-led { --led-color: #29b85b; display: inline-flex; flex: 0 0 22px; width: 22px; height: 22px; padding: 3px; box-sizing: border-box; border: 1px solid #a8b5bc; border-radius: 50%; background: transparent; }
-.mototrbo-led > span { width: 100%; height: 100%; border-radius: 50%; background: var(--led-color); box-shadow: 0 0 5px var(--led-color); }
-.led-red { --led-color: #f34d4d; }
-.led-orange { --led-color: #ff941f; }
-.led-yellow { --led-color: #ffe047; }
-.led-blue { --led-color: #419aff; }
-.led-off { background: transparent; border-color: #a8b5bc; }
-.led-off > span { background: transparent; box-shadow: none; }
-.led-blink > span { animation: mototrbo-blink 1.6s step-end infinite; }
-.led-double > span { animation: mototrbo-double 2.4s step-end infinite; }
-.led-alternate > span { background: linear-gradient(90deg, #f34d4d 50%, #29b85b 50%); animation: mototrbo-alternate 2s step-end infinite; }
-.mototrbo-led-control { display: flex; align-items: center; gap: 9px; width: fit-content; padding: 9px 12px; border: 1px solid #ccd9d5; border-radius: 7px; background: #f3f7f5; cursor: pointer; font-size: .9rem; }
-.mototrbo-led-control input { accent-color: #286c59; width: 18px; height: 18px; }
-.mototrbo-table:has(.mototrbo-led-control input:checked) .mototrbo-led > span { animation: none; }
-@keyframes mototrbo-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-@keyframes mototrbo-double { 0%, 30%, 100% { opacity: 1; } 15%, 45% { opacity: 0; } }
-@keyframes mototrbo-alternate { 0%, 100% { background: #f34d4d; box-shadow: 0 0 5px #f34d4d; } 50% { background: #29b85b; box-shadow: 0 0 5px #29b85b; } }
-@media (prefers-reduced-motion: reduce) { .mototrbo-led > span { animation: none; } .mototrbo-led-control { display: none; } }
-@media print { .mototrbo-led > span { animation: none; } .mototrbo-led-control { display: none; } }
-.mototrbo-difference > td { background: #fff6df; }
-.mototrbo-difference > td:first-child { border-left: 4px solid #a16b0a; }
-.mototrbo-difference > td:not(:first-child) { font-weight: 700; }
-.mototrbo-difference-label { display: inline-block; padding: 2px 8px; border: 1px solid #d9b875; border-radius: 5px; background: #fff6df; color: #704800; font-size: .75rem; font-weight: 600; line-height: 1.5; }
-.mototrbo-difference td .mototrbo-difference-label { display: table; margin-top: 6px; }
-.mototrbo-difference-legend { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; color: var(--muted); font-size: .9rem; }
-.topic-figure { margin: 24px 0; }
-.topic-figure .procedure-shot-button { display: block; width: 100%; }
-.topic-figure img { display: block; max-width: 100%; max-height: 650px; width: auto; height: auto; margin: auto; object-fit: contain; }
-.topic-figure figcaption { margin-top: 10px; color: var(--muted); font-size: .9rem; }
-.lybid-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin: 24px 0; }
-.lybid-gallery .topic-figure { margin: 0; }
-.lybid-gallery .procedure-shot-button { height: 360px; }
-.lybid-gallery img { max-height: 100%; max-width: 100%; }
-.lybid-gallery .lybid-panel { grid-column: 1 / -1; }
-.lybid-gallery .lybid-panel .procedure-shot-button { height: auto; }
-@media (max-width: 700px) { .lybid-gallery { grid-template-columns: minmax(0, 1fr); } .lybid-gallery .procedure-shot-button { height: auto; } .lybid-gallery img { max-height: 480px; } }
-.mototrbo-controls { display: grid; grid-template-columns: minmax(180px, 1fr) minmax(0, 1.6fr); gap: 24px; align-items: start; }
-.mototrbo-controls .mototrbo-table table { min-width: 0; }
-.mototrbo-formula { padding: 18px; background: #edf5f2; border-radius: 8px; font-size: 1.2rem; text-align: center; }
-@media (max-width: 700px) { .mototrbo-controls { grid-template-columns: minmax(0, 1fr); } .mototrbo-controls img { max-height: 480px; } }
+main .mototrbo-table table {
+  display: table;
+  min-width: 420px;
+  max-width: none;
+  overflow: visible;
+}
+.mototrbo-indicator {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.mototrbo-led {
+  --led-color: #29b85b;
+  display: inline-flex;
+  flex: 0 0 22px;
+  width: 22px;
+  height: 22px;
+  padding: 3px;
+  box-sizing: border-box;
+  border: 1px solid #a8b5bc;
+  border-radius: 50%;
+  background: transparent;
+}
+.mototrbo-led > span {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--led-color);
+  box-shadow: 0 0 5px var(--led-color);
+}
+.led-red {
+  --led-color: #f34d4d;
+}
+.led-orange {
+  --led-color: #ff941f;
+}
+.led-yellow {
+  --led-color: #ffe047;
+}
+.led-blue {
+  --led-color: #419aff;
+}
+.led-off {
+  background: transparent;
+  border-color: #a8b5bc;
+}
+.led-off > span {
+  background: transparent;
+  box-shadow: none;
+}
+.led-blink > span {
+  animation: mototrbo-blink 1.6s step-end infinite;
+}
+.led-double > span {
+  animation: mototrbo-double 2.4s step-end infinite;
+}
+.led-alternate > span {
+  background: linear-gradient(90deg, #f34d4d 50%, #29b85b 50%);
+  animation: mototrbo-alternate 2s step-end infinite;
+}
+.mototrbo-led-control {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: fit-content;
+  padding: 9px 12px;
+  border: 1px solid #ccd9d5;
+  border-radius: 7px;
+  background: #f3f7f5;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+.mototrbo-led-control input {
+  accent-color: #286c59;
+  width: 18px;
+  height: 18px;
+}
+.mototrbo-table:has(.mototrbo-led-control input:checked) .mototrbo-led > span {
+  animation: none;
+}
+@keyframes mototrbo-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+@keyframes mototrbo-double {
+  0%,
+  30%,
+  100% {
+    opacity: 1;
+  }
+  15%,
+  45% {
+    opacity: 0;
+  }
+}
+@keyframes mototrbo-alternate {
+  0%,
+  100% {
+    background: #f34d4d;
+    box-shadow: 0 0 5px #f34d4d;
+  }
+  50% {
+    background: #29b85b;
+    box-shadow: 0 0 5px #29b85b;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mototrbo-led > span {
+    animation: none;
+  }
+  .mototrbo-led-control {
+    display: none;
+  }
+}
+@media print {
+  .mototrbo-led > span {
+    animation: none;
+  }
+  .mototrbo-led-control {
+    display: none;
+  }
+}
+.mototrbo-difference > td {
+  background: #fff6df;
+}
+.mototrbo-difference > td:first-child {
+  border-left: 4px solid #a16b0a;
+}
+.mototrbo-difference > td:not(:first-child) {
+  font-weight: 700;
+}
+.mototrbo-difference-label {
+  display: inline-block;
+  padding: 2px 8px;
+  border: 1px solid #d9b875;
+  border-radius: 5px;
+  background: #fff6df;
+  color: #704800;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.mototrbo-difference td .mototrbo-difference-label {
+  display: table;
+  margin-top: 6px;
+}
+.mototrbo-difference-legend {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.topic-figure {
+  margin: 24px 0;
+}
+.topic-figure .procedure-shot-button {
+  display: block;
+  width: 100%;
+}
+.topic-figure img {
+  display: block;
+  max-width: 100%;
+  max-height: 650px;
+  width: auto;
+  height: auto;
+  margin: auto;
+  object-fit: contain;
+}
+.topic-figure figcaption {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.lybid-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin: 24px 0;
+}
+.lybid-gallery .topic-figure {
+  margin: 0;
+}
+.lybid-gallery .procedure-shot-button {
+  height: 360px;
+}
+.lybid-gallery img {
+  max-height: 100%;
+  max-width: 100%;
+}
+.lybid-gallery .lybid-panel {
+  grid-column: 1 / -1;
+}
+.lybid-gallery .lybid-panel .procedure-shot-button {
+  height: auto;
+}
+@media (max-width: 700px) {
+  .lybid-gallery {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .lybid-gallery .procedure-shot-button {
+    height: auto;
+  }
+  .lybid-gallery img {
+    max-height: 480px;
+  }
+}
+.mototrbo-controls {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) minmax(0, 1.6fr);
+  gap: 24px;
+  align-items: start;
+}
+.mototrbo-controls .mototrbo-table table {
+  min-width: 0;
+}
+.mototrbo-formula {
+  padding: 18px;
+  background: #edf5f2;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  text-align: center;
+}
+@media (max-width: 700px) {
+  .mototrbo-controls {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .mototrbo-controls img {
+    max-height: 480px;
+  }
+}

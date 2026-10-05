@@ -1,106 +1,1994 @@
 <!doctype html>
-<html lang="uk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>10. MOTOTRBO</title><link rel="icon" href="data:,"><link rel="stylesheet" href="../style.css?v=cac2c39847d8"><link rel="stylesheet" href="mototrbo.css?v=cac2c39847d8"></head>
-<body><main class="page"><nav class="topbar"><a href="../index.html">До змісту</a><a href="../glossary.html">Глосарій</a><a href="../quiz.html?topic=10">Вікторина з MOTOTRBO</a></nav>
-<header class="hero"><h1>10. MOTOTRBO</h1><p>Портативні й автомобільні радіостанції, комплекти «Либідь», ретранслятори: характеристики, органи керування, індикація, види викликів та дальність зв’язку.</p><div><span class="tag">DP4400 / DP4800</span><span class="tag">DM4600</span><span class="tag">SLR5500 / DR3000</span></div></header>
-<div class="topic-quiz-cta"><div><strong>Перевір себе</strong><span>Перевір знання за матеріалами цієї теми.</span></div><a class="topic-quiz-button" href="../quiz.html?topic=10">Почати вікторину <span aria-hidden="true">→</span></a></div>
-<nav class="section topic-toc" aria-label="Зміст конспекту"><h2>Зміст</h2><ul><li><a href="#purpose">Призначення та діапазони</a></li><li><a href="#propagation">Поширення радіохвиль і дальність прямої видимості</a></li><li><a href="#portable-specifications">Портативні DP4400 і DP4800: характеристики</a></li><li><a href="#portable-controls">Органи керування DP4800</a></li><li><a href="#portable-kit">Комплект портативної радіостанції</a></li><li><a href="#privacy">Технічне маскування мови</a></li><li><a href="#ras-key">Ключ RAS: обмеження доступу до системи</a></li><li><a href="#portable-indicators">Світлодіодна індикація портативної радіостанції</a></li><li><a href="#charging">Заряджання та індикатор WPLN4226A</a></li><li><a href="#mobile-specifications">Автомобільна DM4600: характеристики</a></li><li><a href="#mobile-controls">DM4600: органи керування та індикація</a></li><li><a href="#mobile-kit">Комплект автомобільної радіостанції</a></li><li><a href="#lybid-k1a">Комплект «Либідь К-1А»</a></li><li><a href="#calls">Виклики та додаткові можливості</a></li><li><a href="#repeater-principle">Принцип роботи ретранслятора</a></li><li><a href="#roaming">Роумінг IP Site Connect</a></li><li><a href="#slr5500">SLR5500 у комплекті «Либідь К-2РТД»</a></li><li><a href="#dr3000">DR3000: панелі та індикація</a></li><li><a href="#battalion-kit">Склад батальйонного комплекту</a></li><li><a href="#lybid-k2rtd-kit">Склад комплекту «Либідь К-2РТД»</a></li><li><a href="#directional-antenna">Антена направлена — директорна (АНД)</a></li><li><a href="#duplexer">Дуплексер</a></li><li><a href="#antenna-splitter">Антенний розподільник (сплітер)</a></li><li><a href="#antenna-masts">Розміщення антенно-щоглових пристроїв</a></li><li><a href="#reliable-operation">Умови надійної роботи</a></li><li><a href="#range">Орієнтовна дальність зі штатними антенами</a></li></ul></nav>
-<section class="section" id="purpose"><h2>Призначення та діапазони</h2>
-<p><strong>MOTOTRBO</strong> забезпечує радіозв’язок між абонентами на обмеженій території, технічне маскування мови та індивідуальні, групові й загальні виклики. Радіостанції можуть працювати безпосередньо між собою або через ретранслятор.</p>
-<p>До розглянутих засобів належать портативні <strong>DP4400 / DP4800</strong> і їхні версії E, автомобільна <strong>DM4600 / DM4600E</strong>, комплект <strong>«Либідь К-1А»</strong> та ретрансляційний комплект <strong>«Либідь К-2РТД»</strong> із SLR5500 або DR3000.</p><div class="mototrbo-table" tabindex="0" role="region" aria-label="Таблиця з горизонтальним прокручуванням"><table><thead><tr><th scope="col">Виконання</th><th scope="col">Робочі частоти</th><th scope="col">Застосування в навчальному матеріалі</th></tr></thead><tbody><tr><td>VHF</td><td>136–174 МГц</td><td>Комплекти для ЗСУ</td></tr><tr><td>UHF</td><td>403–527 МГц</td><td>Комплекти для НГУ</td></tr></tbody></table></div><p class="table-note">Це діапазони різних виконань обладнання, а не два діапазони одночасної роботи кожної радіостанції.</p>
-</section>
-<section class="section" id="propagation"><h2>Поширення радіохвиль і дальність прямої видимості</h2>
-<p>Для КХ (<strong>HF, 3–30 МГц</strong>) розглянуто зв’язок просторовою хвилею через іоносферу за межами прямої видимості, з орієнтовними відстанями 100–10 000 км. Для <strong>VHF, 30–300 МГц</strong>, і <strong>UHF, 300–3000 МГц</strong> у матеріалі акцентовано зв’язок у межах прямої видимості; наведений орієнтир — близько 40 км.</p>
-<p>Дальність залежить від висоти й типу антен, рельєфу, перешкод і потужності. Хвилі нижчих частот краще огинають перешкоди.</p>
-<h3 id="radio-horizon">Розрахунок геометричної прямої видимості</h3>
-<p class="mototrbo-formula"><strong>d = 3,57 × (√h₁ + √h₂)</strong></p>
-<p><strong>d</strong> — відстань у кілометрах; <strong>h₁</strong> і <strong>h₂</strong> — висоти антен у метрах. Якщо обидві антени розташовані на висоті 16 м: <strong>d = 3,57 × (4 + 4) = 28,56 км</strong>.</p>
-<div class="note">Наведені в матеріалі правила «1 Вт ≈ 1 км» і «підняття антени на 1 м додає 1–3 км» — лише грубі навчальні орієнтири. Це не універсальні лінійні залежності та не гарантія дальності. Розрахунок прямої видимості також не враховує всі умови реального радіоканалу.</div>
-</section>
-<section class="section" id="portable-specifications"><h2>Портативні DP4400 і DP4800: характеристики</h2>
-<p class="mototrbo-difference-legend"><span class="mototrbo-difference-label">Відмінність</span> Підсвічено параметри, значення яких різняться між моделями.</p>
-<div class="mototrbo-table" tabindex="0" role="region" aria-label="Таблиця з горизонтальним прокручуванням"><table><thead><tr><th scope="col">Параметр</th><th scope="col">DP4400 / DP4400E</th><th scope="col">DP4800 / DP4800E</th></tr></thead><tbody><tr class="mototrbo-difference"><td>Канали та зони<span class="mototrbo-difference-label">Відмінність</span></td><td>32 канали; 2 зони по 16</td><td>1000 каналів; 250 зон</td></tr><tr><td>Частоти</td><td>VHF 136–174 МГц; UHF 403–527 МГц</td><td>VHF 136–174 МГц; UHF 403–527 МГц</td></tr><tr><td>Робоча напруга</td><td>7,5 В</td><td>7,5 В</td></tr><tr><td>Потужність VHF: висока / низька</td><td>5 / 1 Вт</td><td>5 / 1 Вт</td></tr><tr><td>Потужність UHF: висока / низька</td><td>4 / 1 Вт</td><td>4 / 1 Вт</td></tr><tr><td>Вокодер</td><td>AMBE+2</td><td>AMBE+2</td></tr><tr><td>Робоча температура</td><td>−30…+60 °C</td><td>−30…+60 °C</td></tr><tr><td>Захист від пилу та вологи</td><td>IP57 (IP68 для версії E у таблиці)</td><td>IP57 (IP68 для версії E у таблиці)</td></tr><tr><td>Антени</td><td>Helikal та λ/4</td><td>Helikal та λ/4</td></tr><tr><td>Опір антени</td><td>50 Ом</td><td>50 Ом</td></tr><tr class="mototrbo-difference"><td>Програмовані кнопки<span class="mototrbo-difference-label">Відмінність</span></td><td>4</td><td>6</td></tr></tbody></table></div>
-<h3 id="portable-runtime">Час роботи від акумулятора</h3><p>Час наведено для циклу <strong>5/5/90</strong>: 5 % передавання, 5 % приймання і 90 % очікування.</p><div class="mototrbo-table" tabindex="0" role="region" aria-label="Таблиця з горизонтальним прокручуванням"><table><thead><tr><th scope="col">Акумулятор</th><th scope="col">DP4400: аналог / цифра</th><th scope="col">DP4800: аналог / цифра</th></tr></thead><tbody><tr class="mototrbo-difference"><td>NiMH, 1400 мА·год<span class="mototrbo-difference-label">Відмінність</span></td><td>7 / 10,2 год</td><td>6,7 / 9,8 год</td></tr><tr class="mototrbo-difference"><td>Li-ion, 2250 мА·год<span class="mototrbo-difference-label">Відмінність</span></td><td>11,5 / 17 год</td><td>11 / 16 год</td></tr></tbody></table></div><p class="table-note">За іншої частки передавання та інших умов експлуатації фактичний час роботи змінюється.</p>
-</section>
-<section class="section" id="portable-controls"><h2>Органи керування DP4800</h2>
-<div class="mototrbo-controls"><figure class="topic-figure "><button class="procedure-shot-button" type="button" aria-label="Збільшити: Органи керування DP4800: номери відповідають таблиці."><img src="dp4800-controls.png" alt="Органи керування DP4800: номери відповідають таблиці." loading="lazy"></button><figcaption>Органи керування DP4800: номери відповідають таблиці.</figcaption></figure><div class="mototrbo-table" tabindex="0" role="region" aria-label="Таблиця з горизонтальним прокручуванням"><table><thead><tr><th scope="col">№</th><th scope="col">Елемент</th></tr></thead><tbody><tr><td>1</td><td>Перемикач каналів</td></tr><tr><td>2</td><td>Регулятор гучності та вимикач живлення</td></tr><tr><td>3</td><td>Світлодіодний індикатор</td></tr><tr><td>4</td><td>Бічна кнопка 1</td></tr><tr><td>5</td><td>Тангента PTT</td></tr><tr><td>6</td><td>Бічна кнопка 2</td></tr><tr><td>7</td><td>Бічна кнопка 3</td></tr><tr><td>8</td><td>Передня кнопка P1</td></tr><tr><td>9</td><td>Меню / OK</td></tr><tr><td>10</td><td>Чотирипозиційна навігаційна кнопка</td></tr><tr><td>11</td><td>Клавіатура</td></tr><tr><td>12</td><td>Назад / головний екран</td></tr><tr><td>13</td><td>Передня кнопка P2</td></tr><tr><td>14</td><td>Дисплей</td></tr><tr><td>15</td><td>Мікрофон</td></tr><tr><td>16</td><td>Гучномовець</td></tr><tr><td>17</td><td>Роз’єм аксесуарів</td></tr><tr><td>18</td><td>Аварійна кнопка</td></tr><tr><td>19</td><td>Антена</td></tr></tbody></table></div></div>
-</section>
-<section class="section" id="portable-kit"><h2>Комплект портативної радіостанції</h2>
-<div class="mototrbo-table" tabindex="0" role="region" aria-label="Таблиця з горизонтальним прокручуванням"><table><thead><tr><th scope="col">Складник</th><th scope="col">Кількість / виконання</th></tr></thead><tbody><tr><td>DP4400 або DP4800</td><td>1 комплект</td></tr><tr><td>Акумулятори NiMH або Li-ion</td><td>2 шт.</td></tr><tr><td>Зарядний пристрій</td><td>1 шт.</td></tr><tr><td>Антена Helikal</td><td>1 шт.</td></tr><tr><td>Антена λ/4</td><td>1 шт., у комплекті для ЗСУ</td></tr><tr><td>Ларингофонна гарнітура з прозорим звуководом</td><td>1 шт.</td></tr><tr><td>Кліпса</td><td>1 шт.</td></tr><tr><td>Ремінець із карабіном</td><td>1 шт.</td></tr><tr><td>Формуляр</td><td>1 шт.</td></tr></tbody></table></div>
-</section>
-<section class="section" id="privacy"><h2>Технічне маскування мови</h2>
-<div class="mototrbo-table" tabindex="0" role="region" aria-label="Таблиця з горизонтальним прокручуванням"><table><thead><tr><th scope="col">Режим</th><th scope="col">Опис</th></tr></thead><tbody><tr><td>Базова конфіденційність</td><td>Один спільний ключ на радіостанцію; 255 комбінацій. У навчальному матеріалі позначено «16 біт».</td></tr><tr><td>Покращена конфіденційність ARC4</td><td>40-бітний ключ: до 10 шістнадцяткових символів — цифри 0–9 та літери A–F.</td></tr><tr><td>AES-256</td><td>Програмне встановлення за наявності відповідної придбаної ліцензії.</td></tr><tr><td>Аналогові канали</td><td>Коди TPL або DPL.</td></tr></tbody></table></div><p>У матеріалі зазначена можливість записати до <strong>32 ключів шифрування</strong> в радіостанцію.</p><p class="table-note">Тип конфіденційності та доступність опцій залежать від конкретного виконання й ліцензій.</p><div class="note">TPL/DPL керують вибірковим відкриванням шумоподавлювача в аналоговому каналі; вони не є шифруванням мовлення. <a href="https://www.motorolasolutions.com/content/dam/msi/docs/business/_documents/user_guides/static_files/pm1200_mobile_radio_user_guide.pdf">Пояснення Private Line у посібнику Motorola</a>.</div>
-</section>
-<section class="section" id="ras-key"><h2>Ключ RAS: обмеження доступу до системи</h2>
-<p><strong>Ключ RAS</strong> призначений для обмеження доступу до системи: за ним ретранслятор ідентифікує «свої» радіостанції. Використовується на каналах, які працюють <strong>через ретранслятор</strong>.</p>
-<h3 id="ras-key-format">Формат ключа</h3>
-<p>Довжина — <strong>від 6 до 24 символів</strong>. Дозволено використовувати:</p>
-<ul><li>цифри;</li><li>літери у верхньому та нижньому регістрі;</li><li>спеціальні символи: <code>#</code>, <code>$</code>, <code>-</code>, <code>_</code>.</li></ul>
-</section>
-<section class="section" id="portable-indicators"><h2>Світлодіодна індикація портативної радіостанції</h2>
-<div class="mototrbo-table" tabindex="0" role="region" aria-label="Таблиця з горизонтальним прокручуванням"><label class="mototrbo-led-control"><input type="checkbox"> Зупинити анімацію</label><p class="table-note">Блимання показано умовно, без відтворення точних часових інтервалів пристрою.</p><table><thead><tr><th scope="col">Колір і режим</th><th scope="col">Значення</th></tr></thead><tbody><tr><td><span class="mototrbo-indicator"><span class="mototrbo-led led-green led-steady" aria-hidden="true"><span></span></span><span>Зелений, постійно</span></span></td><td>Увімкнення або передавання; під час перевірки батареї — високий рівень заряду.</td></tr><tr><td><span class="mototrbo-indicator"><span class="mototrbo-led led-green led-blink" aria-hidden="true"><span></span></span><span>Зелений, блимає</span></span></td><td>Приймання незашифрованого сигналу або програмування через радіоканал OTAP.</td></tr><tr><td><span class="mototrbo-indicator"><span class="mototrbo-led led-green led-double" aria-hidden="true"><span></span></span><span>Зелений, подвійне блимання</span></span></td><td>Приймання зашифрованого сигналу.</td></tr><tr><td><span class="mototrbo-indicator"><span class="mototrbo-led led-orange led-steady" aria-hidden="true"><span></span></span><span>Помаранчевий, постійно</span></span></td><td>Під час перевірки батареї — середній рівень заряду.</td></tr><tr><td><span class="mototrbo-indicator"><span class="mototrbo-led led-orange led-blink" aria-hidden="true"><span></span></span><span>Помаранчевий, блимає</span></span></td><td>Сканування.</td></tr><tr><td><span class="mototrbo-indicator"><span class="mototrbo-led led-red led-blink" aria-hidden="true"><span></span></span><span>Червоний, блимає</span></span></td><td>Передавання з низьким зарядом батареї, приймання аварійного сигналу або помилка самотестування.</td></tr></tbody></table></div>
-</section>
-<section class="section" id="charging"><h2>Заряджання та індикатор WPLN4226A</h2>
-<p><strong>Перед заряджанням вимкнути радіостанцію або зняти з неї акумулятор.</strong> Колір індикатора зарядного пристрою потрібно трактувати окремо від індикатора самої радіостанції.</p><div class="mototrbo-table" tabindex="0" role="region" aria-label="Таблиця з горизонтальним прокручуванням"><label class="mototrbo-led-control"><input type="checkbox"> Зупинити анімацію</label><p class="table-note">Блимання показано умовно, без відтворення точних часових інтервалів пристрою.</p><table><thead><tr><th scope="col">Індикація зарядного пристрою</th><th scope="col">Стан</th></tr></thead><tbody><tr><td><span class="mototrbo-indicator"><span class="mototrbo-led led-red led-steady" aria-hidden="true"><span></span></span><span>Червоний, постійно</span></span></td><td>Акумулятор заряджається.</td></tr><tr><td><span class="mototrbo-indicator"><span class="mototrbo-led led-red led-blink" aria-hidden="true"><span></span></span><span>Червоний, блимає</span></span></td><td>Заряджання не відбувається: можливі несправність батареї або порушення контакту.</td></tr><tr><td><span class="mototrbo-indicator"><span class="mototrbo-led led-green led-blink" aria-hidden="true"><span></span></span><span>Зелений, блимає</span></span></td><td>Близько 90 % заряду.</td></tr><tr><td><span class="mototrbo-indicator"><span class="mototrbo-led led-green led-steady" aria-hidden="true"><span></span></span><span>Зелений, постійно</span></span></td><td>100 % заряду; заряджання завершене, пристрій у режимі очікування.</td></tr><tr><td><span class="mototrbo-indicator"><span class="mototrbo-led led-yellow led-blink" aria-hidden="true"><span></span></span><span>Жовтий, блимає</span></span></td><td>Температура батареї непридатна для заряджання або напруга нижча за поріг швидкого заряджання.</td></tr><tr><td><span class="mototrbo-indicator"><span class="mototrbo-led led-yellow led-steady" aria-hidden="true"><span></span></span><span>Жовтий, постійно</span></span></td><td>Ініціалізація / відновлення батареї; може тривати до 12 годин.</td></tr><tr><td><span class="mototrbo-indicator"><span class="mototrbo-led led-alternate led-alternate" aria-hidden="true"><span></span></span><span>Почергово червоний і зелений</span></span></td><td>Батарея повністю заряджена, але можливе наближення кінця її ресурсу.</td></tr></tbody></table></div>
-</section>
-<section class="section" id="mobile-specifications"><h2>Автомобільна DM4600: характеристики</h2>
-<div class="mototrbo-table" tabindex="0" role="region" aria-label="Таблиця з горизонтальним прокручуванням"><table><thead><tr><th scope="col">Параметр</th><th scope="col">DM4600 / DM4600E</th></tr></thead><tbody><tr><td>Частоти</td><td>VHF 136–174 МГц; UHF 403–527 МГц</td></tr><tr><td>Кількість каналів</td><td>1000</td></tr><tr><td>Робоча напруга</td><td>13,5 В</td></tr><tr><td>Потужність VHF: висока / низька</td><td>54* / 25 Вт</td></tr><tr><td>Потужність UHF: висока / низька</td><td>40 / 25 Вт</td></tr><tr><td>Вокодер</td><td>AMBE+2</td></tr><tr><td>Робоча температура</td><td>−30…+60 °C</td></tr><tr><td>Захист</td><td>IP54</td></tr><tr><td>Антена</td><td>Штирова на магнітній основі</td></tr><tr><td>Опір антени</td><td>50 Ом</td></tr><tr><td>Програмовані кнопки</td><td>7</td></tr><tr><td>Маса</td><td>1,8 кг</td></tr></tbody></table></div><p class="table-note">* У навчальній таблиці для високої потужності VHF вказано саме 54 Вт. Водночас <a href="https://www.motorolasolutions.com/en_xu/products/mototrbo/dm4000-series-mobile-radios/dm4600-dm4601.html">Motorola для DM4600 / DM4601</a> вказує 25–45 Вт для потужнішого VHF-виконання. Ймовірно, у презентації переставлено цифри; для конкретної радіостанції слід керуватися її паспортом.</p>
-</section>
-<section class="section" id="mobile-controls"><h2>DM4600: органи керування та індикація</h2>
-<figure class="topic-figure "><button class="procedure-shot-button" type="button" aria-label="Збільшити: Органи керування DM4600: номери відповідають таблиці."><img src="dm4600-controls.png" alt="Органи керування DM4600: номери відповідають таблиці." loading="lazy"></button><figcaption>Органи керування DM4600: номери відповідають таблиці.</figcaption></figure><div class="mototrbo-table" tabindex="0" role="region" aria-label="Таблиця з горизонтальним прокручуванням"><table><thead><tr><th scope="col">№</th><th scope="col">Елемент</th></tr></thead><tbody><tr><td>1</td><td>Кнопка ввімкнення / вимкнення</td></tr><tr><td>2</td><td>Регулятор гучності / перемикання каналів</td></tr><tr><td>3</td><td>Дисплей</td></tr><tr><td>4</td><td>OK / меню</td></tr><tr><td>5</td><td>Кнопки вгору / вниз</td></tr><tr><td>6</td><td>Гучномовець</td></tr><tr><td>7</td><td>Назад / головний екран</td></tr><tr><td>8</td><td>Програмовані кнопки</td></tr><tr><td>9</td><td>Роз’єм аксесуарів</td></tr><tr><td>10</td><td>Світлодіодні індикатори</td></tr></tbody></table></div><h3 id="mobile-indicators">Світлодіодні сигнали DM4600</h3><div class="mototrbo-table" tabindex="0" role="region" aria-label="Таблиця з горизонтальним прокручуванням"><label class="mototrbo-led-control"><input type="checkbox"> Зупинити анімацію</label><p class="table-note">Блимання показано умовно, без відтворення точних часових інтервалів пристрою.</p><table><thead><tr><th scope="col">Колір і режим</th><th scope="col">Значення</th></tr></thead><tbody><tr><td><span class="mototrbo-indicator"><span class="mototrbo-led led-red led-blink" aria-hidden="true"><span></span></span><span>Червоний, блимає</span></span></td><td>Приймання аварійного сигналу або помилка самотестування.</td></tr><tr><td><span class="mototrbo-indicator"><span class="mototrbo-led led-green led-steady" aria-hidden="true"><span></span></span><span>Зелений, постійно</span></span></td><td>Увімкнення або передавання.</td></tr><tr><td><span class="mototrbo-indicator"><span class="mototrbo-led led-green led-blink" aria-hidden="true"><span></span></span><span>Зелений, блимає</span></span></td><td>Приймання незашифрованого виклику чи даних.</td></tr><tr><td><span class="mototrbo-indicator"><span class="mototrbo-led led-green led-double" aria-hidden="true"><span></span></span><span>Зелений, подвійне блимання</span></span></td><td>Приймання зашифрованого виклику чи даних.</td></tr><tr><td><span class="mototrbo-indicator"><span class="mototrbo-led led-yellow led-steady" aria-hidden="true"><span></span></span><span>Жовтий, постійно</span></span></td><td>Моніторинг звичайного каналу.</td></tr><tr><td><span class="mototrbo-indicator"><span class="mototrbo-led led-yellow led-blink" aria-hidden="true"><span></span></span><span>Жовтий, блимає</span></span></td><td>Сповіщення про виклик.</td></tr><tr><td><span class="mototrbo-indicator"><span class="mototrbo-led led-yellow led-double" aria-hidden="true"><span></span></span><span>Жовтий, подвійне блимання</span></span></td><td>Пошук сайту під час автоматичного роумінгу, сповіщення про груповий виклик без відповіді або блокування радіостанції.</td></tr></tbody></table></div>
-</section>
-<section class="section" id="mobile-kit"><h2>Комплект автомобільної радіостанції</h2>
-<div class="mototrbo-table" tabindex="0" role="region" aria-label="Таблиця з горизонтальним прокручуванням"><table><thead><tr><th scope="col">Складник</th><th scope="col">Кількість / виконання</th></tr></thead><tbody><tr><td>Приймач-передавач</td><td>1 комплект</td></tr><tr><td>Мікрофон із клавіатурою</td><td>1 шт.</td></tr><tr><td>Штирова антена 35 см на магнітній основі з противагою</td><td>1 комплект</td></tr><tr><td>Радіочастотний кабель</td><td>1 шт., 4 м</td></tr><tr><td>Кабель живлення із запобіжниками</td><td>1 шт.</td></tr><tr><td>Імпульсний перетворювач напруги ІПН 24-12/20А</td><td>1 шт.</td></tr><tr><td>Кронштейн кріплення</td><td>1 шт.</td></tr><tr><td>З’єднувальні кабелі</td><td>1 комплект</td></tr></tbody></table></div>
-</section>
-<section class="section" id="lybid-k1a"><h2>Комплект «Либідь К-1А»</h2>
-<p><strong>«Либідь К-1А»</strong> — спеціальне виконання на базі DM4600 для зв’язку між базовими й рухомими абонентами зі збільшеною дальністю. Передбачено переносний, автомобільний і стаціонарний варіанти застосування, а також два одночасні цифрові з’єднання на одній частоті.</p><p>Ранцеве виконання захищає обладнання від впливу довкілля; захист від інтенсивних електромагнітних полів у матеріалі виключено.</p><div class="lybid-gallery"><figure class="topic-figure"><button class="procedure-shot-button" type="button" aria-label="Збільшити: «Либідь К-1А» у зібраному вигляді."><img src="lybid-k1a-assembled.svg" alt="«Либідь К-1А» у зібраному вигляді." loading="lazy"></button><figcaption>«Либідь К-1А» у зібраному вигляді.</figcaption></figure><figure class="topic-figure"><button class="procedure-shot-button" type="button" aria-label="Збільшити: Комплект зі знятим акумуляторним блоком."><img src="lybid-k1a-battery-removed.svg" alt="Комплект зі знятим акумуляторним блоком." loading="lazy"></button><figcaption>Комплект зі знятим акумуляторним блоком.</figcaption></figure></div><h3 id="lybid-k1a-accessories">Оснащення комплекту</h3><ul><li>Зарядний пристрій від мережі 220 В та адаптер.</li><li>Антена λ/4 для встановлення безпосередньо на комплект, J-антена й антена спрямованої дії.</li><li>Ларингофонна гарнітура з тангентою або телефонна трубка.</li><li>Два антенні кабелі по 20 м і запасний акумулятор.</li><li>Кабель зовнішнього живлення 12–24 В.</li><li>Пристрій «Либідь ПК» для підключення телефонного апарата ТА-57.</li></ul><div class="lybid-gallery"><figure class="topic-figure"><button class="procedure-shot-button" type="button" aria-label="Збільшити: Гарнітура та телефонна трубка."><img src="lybid-k1a-headset.svg" alt="Гарнітура та телефонна трубка." loading="lazy"></button><figcaption>Гарнітура та телефонна трубка.</figcaption></figure><figure class="topic-figure"><button class="procedure-shot-button" type="button" aria-label="Збільшити: Антенні кабелі комплекту."><img src="lybid-k1a-cables.svg" alt="Антенні кабелі комплекту." loading="lazy"></button><figcaption>Антенні кабелі комплекту.</figcaption></figure></div><div class="lybid-gallery"><figure class="topic-figure"><button class="procedure-shot-button" type="button" aria-label="Збільшити: Антена спрямованої дії."><img src="lybid-k1a-directional-antenna.svg" alt="Антена спрямованої дії." loading="lazy"></button><figcaption>Антена спрямованої дії.</figcaption></figure><figure class="topic-figure"><button class="procedure-shot-button" type="button" aria-label="Збільшити: Запасний акумулятор."><img src="lybid-k1a-spare-battery.svg" alt="Запасний акумулятор." loading="lazy"></button><figcaption>Запасний акумулятор.</figcaption></figure></div><div class="lybid-gallery"><figure class="topic-figure"><button class="procedure-shot-button" type="button" aria-label="Збільшити: Кабель зовнішнього живлення 12–24 В."><img src="lybid-k1a-power-cable.svg" alt="Кабель зовнішнього живлення 12–24 В." loading="lazy"></button><figcaption>Кабель зовнішнього живлення 12–24 В.</figcaption></figure><figure class="topic-figure"><button class="procedure-shot-button" type="button" aria-label="Збільшити: Пристрій «Либідь ПК» для ТА-57."><img src="lybid-k1a-ta57-adapter.svg" alt="Пристрій «Либідь ПК» для ТА-57." loading="lazy"></button><figcaption>Пристрій «Либідь ПК» для ТА-57.</figcaption></figure><figure class="topic-figure lybid-panel"><button class="procedure-shot-button" type="button" aria-label="Збільшити: Панель підключень і керування «Либідь К-1А»."><img src="lybid-k1a-panel.svg" alt="Панель підключень і керування «Либідь К-1А»." loading="lazy"></button><figcaption>Панель підключень і керування «Либідь К-1А».</figcaption></figure></div>
-</section>
-<section class="section" id="calls"><h2>Виклики та додаткові можливості</h2>
-<div class="mototrbo-table" tabindex="0" role="region" aria-label="Таблиця з горизонтальним прокручуванням"><table><thead><tr><th scope="col">Вид виклику</th><th scope="col">Кому надходить</th><th scope="col">Особливість</th></tr></thead><tbody><tr><td>Індивідуальний</td><td>Одному вибраному абоненту</td><td>Зв’язок «один — одному».</td></tr><tr><td>Груповий</td><td>Абонентам вибраної групи</td><td>Зв’язок «один — багатьом»; у матеріалі наведено час встановлення менш як 300 мс.</td></tr><tr><td>Загальний</td><td>Усім радіостанціям поточного каналу</td><td>Для важливих оголошень; відповідь на загальний виклик не передбачена.</td></tr></tbody></table></div><div class="note">Індивідуальна адресація визначає одержувача виклику. Її не слід ототожнювати з криптографічним захистом: конфіденційність залежить від налаштованого режиму маскування або шифрування.</div><h3 id="additional-functions">Функції DP4800 і DM4600</h3><ul><li>Індивідуальний виклик зі списку контактів.</li><li>Індивідуальний виклик зі сповіщенням.</li><li>Перевірка доступності радіостанції.</li><li>Дистанційне прослуховування.</li><li>Блокування та розблокування радіостанції.</li><li>Приймання та надсилання SMS.</li></ul>
-</section>
-<section class="section" id="repeater-principle"><h2>Принцип роботи ретранслятора</h2>
-<p><strong>Ретранслятор</strong> розширює зону зв’язку завдяки більшій потужності й ефективнішій антенній системі порівняно з абонентською радіостанцією. Він приймає сигнал на частоті <strong>f₁</strong> і передає його на <strong>f₂</strong>.</p><figure class="topic-figure "><button class="procedure-shot-button" type="button" aria-label="Збільшити: Обмін між абонентами через ретранслятор: різні частоти приймання та передавання."><img src="repeater-principle.png" alt="Обмін між абонентами через ретранслятор: різні частоти приймання та передавання." loading="lazy"></button><figcaption>Обмін між абонентами через ретранслятор: різні частоти приймання та передавання.</figcaption></figure>
-</section>
-<section class="section" id="roaming"><h2>Роумінг IP Site Connect</h2>
-<p><strong>Роумінг</strong> — перемикання радіостанції з поточного «домашнього» ретранслятора на інший у тій самій системі <strong>IP Site Connect</strong>, який забезпечує кращий рівень сигналу. Це потрібно, зокрема, коли абонент віддаляється від поточного ретранслятора й рівень його сигналу знижується.</p>
-<p>Роумінг може бути <strong>автоматичним або ручним</strong>. В обох випадках ретранслятори через задані проміжки часу передають спеціальний сигнал — <strong>«маяк»</strong>.</p>
-<h3 id="automatic-roaming">Автоматичний роумінг</h3>
-<ol><li>Рівень сигналу «домашнього» ретранслятора падає нижче встановленого порога <strong>RSSI</strong>.</li><li>Радіостанція починає пошук за <strong>списком роумінгу</strong>.</li><li>Ретранслятор із найсильнішим сигналом серед знайдених у списку стає новим «домашнім» вузлом.</li></ol>
-<h3 id="manual-roaming">Ручний вибір ретранслятора</h3>
-<p>За потреби користувач може самостійно вибрати ретранслятор, перемкнувши радіостанцію на відповідний <strong>фіксований канал</strong>.</p>
-<h3 id="roaming-rssi">RSSI та поріг пошуку</h3>
-<p><strong>RSSI</strong> (<span lang="en">Received Signal Strength Indication</span>) — показник рівня прийнятого сигналу. У роумінгу його порівнюють із налаштованим порогом: падіння нижче цього порога запускає пошук іншого ретранслятора.</p>
-</section>
-<section class="section" id="slr5500"><h2>SLR5500 у комплекті «Либідь К-2РТД»</h2>
-<figure class="topic-figure "><button class="procedure-shot-button" type="button" aria-label="Збільшити: Комплект «Либідь К-2РТД» із ретранслятором SLR5500."><img src="lybid-k2rtd-slr5500.png" alt="Комплект «Либідь К-2РТД» із ретранслятором SLR5500." loading="lazy"></button><figcaption>Комплект «Либідь К-2РТД» із ретранслятором SLR5500.</figcaption></figure><div class="mototrbo-table" tabindex="0" role="region" aria-label="Таблиця з горизонтальним прокручуванням"><table><thead><tr><th scope="col">Параметр</th><th scope="col">Значення в навчальній таблиці</th></tr></thead><tbody><tr><td>Робочі частоти</td><td>136–174 МГц</td></tr><tr><td>Рознос сусідніх каналів</td><td>12,5 кГц</td></tr><tr><td>Програмовані канали</td><td>64</td></tr><tr><td>Активні канали</td><td>1</td></tr><tr><td>Таймслоти</td><td>2</td></tr><tr><td>Максимальна потужність несучої передавача</td><td>50 Вт (у таблиці — «не менше»)</td></tr><tr><td>Живлення змінним струмом</td><td>85–264 В</td></tr><tr><td>Живлення постійним струмом</td><td>12 В</td></tr><tr><td>Захист</td><td>IP54*</td></tr><tr><td>Робоча температура</td><td>−30…+60 °C</td></tr></tbody></table></div><p class="table-note">* IP54 наведено у навчальній таблиці в контексті комплекту. Окремо ступінь захисту самого ретранслятора й зовнішнього корпусу тут не розмежовано; перед експлуатацією слід звірити паспорт відповідного виробу.</p><h3 id="slr5500-front">Передня панель SLR5500</h3><figure class="topic-figure "><button class="procedure-shot-button" type="button" aria-label="Збільшити: Передня панель SLR5500."><img src="slr5500-front.jpeg" alt="Передня панель SLR5500." loading="lazy"></button><figcaption>Передня панель SLR5500.</figcaption></figure><div class="mototrbo-table" tabindex="0" role="region" aria-label="Таблиця з горизонтальним прокручуванням"><table><thead><tr><th scope="col">Позначення / елемент</th><th scope="col">Призначення</th></tr></thead><tbody><tr><td>Status</td><td>Стан ретранслятора</td></tr><tr><td>Tx A / Rx A</td><td>Передавання / приймання в таймслоті 1</td></tr><tr><td>Tx B / Rx B</td><td>Передавання / приймання в таймслоті 2</td></tr><tr><td>Ethernet</td><td>Індикатор мережевого з’єднання</td></tr><tr><td>Reference</td><td>Індикатор опорного сигналу</td></tr><tr><td>Роз’єм програмування</td><td>Підключення кабелю програмування</td></tr></tbody></table></div><h3 id="slr5500-rear">Задня панель SLR5500</h3><figure class="topic-figure "><button class="procedure-shot-button" type="button" aria-label="Збільшити: Роз’єми задньої панелі SLR5500."><img src="slr5500-rear.png" alt="Роз’єми задньої панелі SLR5500." loading="lazy"></button><figcaption>Роз’єми задньої панелі SLR5500.</figcaption></figure><div class="mototrbo-table" tabindex="0" role="region" aria-label="Таблиця з горизонтальним прокручуванням"><table><thead><tr><th scope="col">Роз’єм / елемент</th><th scope="col">Призначення</th></tr></thead><tbody><tr><td>C14 (IEC 60320) та вимикач</td><td>Живлення від мережі змінного струму</td></tr><tr><td>Molex 42818-0212</td><td>Вхід постійного струму та вихід заряджання</td></tr><tr><td>Дві позиції, залежні від конфігурації</td><td>Призначення визначається встановленою конфігурацією</td></tr><tr><td>USB Type-A</td><td>USB-підключення</td></tr><tr><td>Ethernet 2 та Ethernet 1</td><td>Два мережеві роз’єми RJ45</td></tr><tr><td>AUX, DB25</td><td>Допоміжний роз’єм</td></tr><tr><td>RX, BNC</td><td>Приймальна антена</td></tr><tr><td>REF, BNC</td><td>Опорний сигнал</td></tr><tr><td>Гвинт TORX T30</td><td>Заземлення</td></tr><tr><td>TX, N-type</td><td>Передавальна антена</td></tr></tbody></table></div>
-</section>
-<section class="section" id="dr3000"><h2>DR3000: панелі та індикація</h2>
-<figure class="topic-figure "><button class="procedure-shot-button" type="button" aria-label="Збільшити: Ретранслятор DR3000 у складі «Либідь К-2РТД»."><img src="lybid-k2rtd-dr3000.png" alt="Ретранслятор DR3000 у складі «Либідь К-2РТД»." loading="lazy"></button><figcaption>Ретранслятор DR3000 у складі «Либідь К-2РТД».</figcaption></figure><figure class="topic-figure "><button class="procedure-shot-button" type="button" aria-label="Збільшити: Задня частина DR3000 та підключення в комплекті."><img src="dr3000-rear.jpeg" alt="Задня частина DR3000 та підключення в комплекті." loading="lazy"></button><figcaption>Задня частина DR3000 та підключення в комплекті.</figcaption></figure><div class="mototrbo-table" tabindex="0" role="region" aria-label="Таблиця з горизонтальним прокручуванням"><label class="mototrbo-led-control"><input type="checkbox"> Зупинити анімацію</label><p class="table-note">Блимання показано умовно, без відтворення точних часових інтервалів пристрою.</p><table><thead><tr><th scope="col">Індикатор</th><th scope="col">Колір / стан</th><th scope="col">Значення</th></tr></thead><tbody><tr><td>Power</td><td><span class="mototrbo-indicator"><span class="mototrbo-led led-green led-steady" aria-hidden="true"><span></span></span><span>Зелений, постійно</span></span></td><td>Живлення від мережі змінного струму</td></tr><tr><td>Power</td><td><span class="mototrbo-indicator"><span class="mototrbo-led led-red led-steady" aria-hidden="true"><span></span></span><span>Червоний, постійно</span></span></td><td>Живлення від резервного акумулятора</td></tr><tr><td>Power</td><td><span class="mototrbo-indicator"><span class="mototrbo-led led-off led-steady" aria-hidden="true"><span></span></span><span>Не світиться</span></span></td><td>Ретранслятор вимкнений</td></tr><tr><td>Disabled</td><td><span class="mototrbo-indicator"><span class="mototrbo-led led-red led-steady" aria-hidden="true"><span></span></span><span>Червоний, постійно</span></span></td><td>Ретранслятор заблокований</td></tr><tr><td>Disabled</td><td><span class="mototrbo-indicator"><span class="mototrbo-led led-red led-blink" aria-hidden="true"><span></span></span><span>Червоний, блимає</span></span></td><td>Самотестування</td></tr><tr><td>Disabled</td><td><span class="mototrbo-indicator"><span class="mototrbo-led led-off led-steady" aria-hidden="true"><span></span></span><span>Не світиться</span></span></td><td>Нормальна робота</td></tr><tr><td>Digital</td><td><span class="mototrbo-indicator"><span class="mototrbo-led led-blue led-steady" aria-hidden="true"><span></span></span><span>Синій, постійно</span></span></td><td>Цифровий режим</td></tr><tr><td>Analog</td><td><span class="mototrbo-indicator"><span class="mototrbo-led led-yellow led-steady" aria-hidden="true"><span></span></span><span>Жовтий, постійно</span></span></td><td>Аналоговий режим</td></tr><tr><td>Tx A</td><td><span class="mototrbo-indicator"><span class="mototrbo-led led-green led-steady" aria-hidden="true"><span></span></span><span>Зелений</span></span></td><td>Передавання в таймслоті A або в аналоговому режимі</td></tr><tr><td>Rx A</td><td><span class="mototrbo-indicator"><span class="mototrbo-led led-yellow led-steady" aria-hidden="true"><span></span></span><span>Жовтий</span></span></td><td>Приймання в таймслоті A або в аналоговому режимі</td></tr><tr><td>Tx B</td><td><span class="mototrbo-indicator"><span class="mototrbo-led led-green led-steady" aria-hidden="true"><span></span></span><span>Зелений</span></span></td><td>Передавання в таймслоті B</td></tr><tr><td>Rx B</td><td><span class="mototrbo-indicator"><span class="mototrbo-led led-yellow led-steady" aria-hidden="true"><span></span></span><span>Жовтий</span></span></td><td>Приймання в таймслоті B</td></tr></tbody></table></div>
-</section>
-<section class="section" id="battalion-kit"><h2>Склад батальйонного комплекту</h2>
-<div class="mototrbo-table" tabindex="0" role="region" aria-label="Склад батальйонного комплекту"><table><thead><tr><th scope="col">Обладнання</th><th scope="col">Кількість</th></tr></thead><tbody>
-<tr><td>Виріб <a href="#lybid-k2rtd-kit">«Либідь К-2РТД»</a> із ретранслятором DR3000 або SLR5500</td><td>1 комплект</td></tr>
-<tr><td>Автомобільна радіостанція <a href="#mobile-specifications">DM4600</a></td><td>2 комплекти</td></tr>
-<tr><td>Портативна радіостанція <a href="#portable-specifications">DP4800</a></td><td>10 комплектів</td></tr>
-<tr><td>Портативна радіостанція <a href="#portable-specifications">DP4400</a></td><td>40 комплектів</td></tr>
-<tr><td>Флеш-накопичувач із програмним забезпеченням</td><td>2 шт.</td></tr>
-<tr><td>Нетбук для програмування з ліцензійною операційною системою Windows</td><td>1 комплект</td></tr>
-<tr><td>Кабелі для програмування</td><td>3 шт. — по одному на кожен вид</td></tr>
-</tbody></table></div>
-</section>
-<section class="section" id="lybid-k2rtd-kit"><h2>Склад комплекту «Либідь К-2РТД»</h2>
-<div class="mototrbo-table" tabindex="0" role="region" aria-label="Таблиця з горизонтальним прокручуванням"><table><thead><tr><th scope="col">Складник</th><th scope="col">Кількість / характеристика</th></tr></thead><tbody><tr><td>SLR5500 або DR3000</td><td>1 комплект</td></tr><tr><td>Дуплексер</td><td>3 шт.; додатково ще 3 шт. — за наведеним переліком комплектації*</td></tr><tr><td>Радіочастотні фідери, 50 Ом</td><td>2 шт. по 30 (40) м</td></tr><tr><td>Штирова антена</td><td>1 комплект</td></tr><tr><td>Антена спрямованої дії</td><td>2 комплекти</td></tr><tr><td>Узгоджувальний трансформатор (сплітер)</td><td>1 комплект</td></tr><tr><td>ІПН 24-12/20А</td><td>1 шт.</td></tr><tr><td>Кабель до акумулятора</td><td>1 шт.</td></tr><tr><td>Акумулятор</td><td>12 В, 20 А·год</td></tr><tr><td>Пристрої грозозахисту</td><td>2 шт.</td></tr><tr><td>Програматор</td><td>1 шт.</td></tr></tbody></table></div><p class="table-note">* Кількість дуплексерів відтворено з переліку. Схему їх застосування та розподіл між основним і додатковим оснащенням матеріал не пояснює.</p>
-</section>
-<section class="section" id="directional-antenna"><h2>Антена направлена — директорна (АНД)</h2><p><strong>АНД</strong> призначена для радіозв’язку з віддаленим кореспондентом, координати якого відомі. Ширина діаграми спрямованості за азимутом — <strong>не більш як 60°</strong>.</p><figure class="topic-figure"><button class="procedure-shot-button" type="button" aria-label="Збільшити: Директорна антена, встановлена на щоглі."><img src="directional-antenna.jpeg" alt="Директорна антена, встановлена на щоглі." loading="lazy"></button><figcaption>Директорна антена, встановлена на щоглі.</figcaption></figure><h3 id="directional-antenna-parts">Елементи антени</h3><p>На схемі показано антену в зібраному вигляді. Виноски позначають траверсу, кріплення до щогли, рефлектор, вібратор та директор. Окремо підписано кабель вібратора.</p><figure class="topic-figure"><button class="procedure-shot-button" type="button" aria-label="Збільшити: Схема зібраної АНД із підписами елементів."><img src="directional-antenna-parts.svg" alt="Схема зібраної АНД: зліва направо на траверсі розміщені рефлектор, петлеподібний вібратор та директор. Кріплення до щогли — ліворуч на траверсі." loading="lazy"></button><figcaption>Зібрана директорна антена з виносками до кожного елемента. Схема без масштабу.</figcaption></figure></section>
-<section class="section" id="duplexer"><h2>Дуплексер</h2><p><strong>Дуплексер</strong> — частотно-розподільчий фільтр, який дозволяє використовувати <strong>одну антену для приймання та передавання</strong>.</p><p>У навчальному матеріалі наведено назву <strong>Motorola HFD8189</strong>.</p><figure class="topic-figure"><button class="procedure-shot-button" type="button" aria-label="Збільшити: Дуплексер із роз’ємами LO, ANT і HI."><img src="duplexer.png" alt="Дуплексер із роз’ємами LO, ANT і HI." loading="lazy"></button><figcaption>Дуплексер із роз’ємами LO, ANT і HI.</figcaption></figure><p class="table-note">На етикетці наведеного фото читається <strong>HFD8190A</strong>, що відрізняється від назви HFD8189 у тексті матеріалу. Фото збережено без зміни маркування.</p><p>Варіант з окремими антенами для приймання та передавання показано в <a href="#mast-without-duplexer">схемі роботи без дуплексера</a>.</p></section>
-<section class="section" id="antenna-splitter"><h2>Антенний розподільник (сплітер)</h2><p><strong>Сплітер</strong> призначений для підключення кількох приймально-передавальних антен до одного ретранслятора зі збереженням фазових співвідношень сигналу й узгодженого опору.</p><p>Його застосовують для збільшення дальності зв’язку в окремому секторі. У матеріалі наведено комбінацію <strong>однієї секторної антени та другої антени з круговою діаграмою спрямованості</strong>.</p><figure class="topic-figure"><button class="procedure-shot-button" type="button" aria-label="Збільшити: Антенний розподільник — сплітер."><img src="antenna-splitter.jpeg" alt="Антенний розподільник — сплітер." loading="lazy"></button><figcaption>Антенний розподільник — сплітер.</figcaption></figure><p>Окремий приклад розміщення двох спрямованих антен через сплітер наведено в <a href="#mast-with-splitter">схемі на одній щоглі</a>.</p></section>
-<section class="section" id="antenna-masts"><h2>Розміщення антенно-щоглових пристроїв</h2><h3 id="mast-with-splitter">Робота через сплітер</h3><p>У наведеній схемі дві спрямовані антени розміщено на одній щоглі та під’єднано через сплітер. Верхня спрямована на віддаленого кореспондента, нижня — на ближнього. Вертикальний рознос антен на схемі становить <strong>1,5–2,0 м</strong>.</p><figure class="topic-figure"><button class="procedure-shot-button" type="button" aria-label="Збільшити: Розміщення антен на одній щоглі під час роботи через сплітер."><img src="mast-with-splitter.png" alt="Розміщення антен на одній щоглі під час роботи через сплітер." loading="lazy"></button><figcaption>Розміщення антен на одній щоглі під час роботи через сплітер.</figcaption></figure><h3 id="mast-without-duplexer">Робота без дуплексера</h3><p>Приймальна й передавальна антени встановлені на окремих щоглах і підключені до відповідних роз’ємів ретранслятора: <strong>Rx</strong> — приймання, <strong>Tx</strong> — передавання.</p><ul><li>Відстань між щоглами на схемі — <strong>30–40 м</strong>.</li><li>Приймальна антена розташована вище за передавальну.</li><li>Позначені варіанти вертикального розносу — <strong>1,8 м, 3,6 м або 5,4 м</strong>.</li></ul><figure class="topic-figure"><button class="procedure-shot-button" type="button" aria-label="Збільшити: Окремі приймальна та передавальна антени під час роботи без дуплексера."><img src="mast-without-duplexer.png" alt="Окремі приймальна та передавальна антени під час роботи без дуплексера." loading="lazy"></button><figcaption>Окремі приймальна та передавальна антени під час роботи без дуплексера.</figcaption></figure></section>
-<section class="section" id="reliable-operation"><h2>Умови надійної роботи</h2>
-<p>Для надійної та тривалої роботи комплексу необхідно:</p>
-<ul><li><strong>Забезпечувати стабільність напруг живлення.</strong></li><li><strong>Дотримуватися порядку комутації</strong> пристроїв, які входять до складу радіостанції.</li></ul>
-<div class="note note-important"><p><strong>Не допускається підключати зовнішні пристрої до радіостанції під час її роботи.</strong></p><p><strong>Заборонено використовувати радіостанцію без підключеної антени.</strong></p></div>
-</section>
-<section class="section" id="range"><h2>Орієнтовна дальність зі штатними антенами</h2>
-<div class="mototrbo-table" tabindex="0" role="region" aria-label="Таблиця з горизонтальним прокручуванням"><table><thead><tr><th scope="col">Пара радіозасобів</th><th scope="col">Дальність</th></tr></thead><tbody><tr><td>Автомобільна радіостанція ↔ ретранслятор</td><td>40 км</td></tr><tr><td>Автомобільна ↔ автомобільна</td><td>20 км</td></tr><tr><td>Автомобільна ↔ портативна</td><td>10 км</td></tr><tr><td>Портативна ↔ ретранслятор</td><td>15 км</td></tr><tr><td>Портативна ↔ портативна</td><td>7 км</td></tr></tbody></table></div><p><strong>Умови цих оцінок:</strong> середньопересічена місцевість, максимально допустима висота антен і максимальна потужність передавачів. Це орієнтири для зазначених умов, а не гарантовані відстані в будь-якому місці.</p>
-</section>
-<div class="topic-quiz-cta"><div><strong>Перевір себе</strong><span>Перевір знання за матеріалами цієї теми.</span></div><a class="topic-quiz-button" href="../quiz.html?topic=10">Почати вікторину <span aria-hidden="true">→</span></a></div>
-</main><script src="../asset-version.js?v=cac2c39847d8"></script><script src="../search-index.js?v=cac2c39847d8"></script><script src="../topic-search.js?v=cac2c39847d8"></script><script>window.GLOSSARY_ROOT = "../";</script><script src="../glossary-data.js?v=cac2c39847d8"></script><script src="../glossary-terms.js?v=cac2c39847d8"></script><script src="../site-ui.js?v=cac2c39847d8"></script></body></html>
+<html lang="uk">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>10. MOTOTRBO</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="../style.css?v=0b5515a61641" />
+    <link rel="stylesheet" href="mototrbo.css?v=0b5515a61641" />
+  </head>
+  <body>
+    <main class="page">
+      <nav class="topbar">
+        <a href="../index.html">До змісту</a><a href="../glossary.html">Глосарій</a
+        ><a href="../quiz.html?topic=10">Вікторина з MOTOTRBO</a>
+      </nav>
+      <header class="hero">
+        <h1>10. MOTOTRBO</h1>
+        <p>
+          Портативні й автомобільні радіостанції, комплекти «Либідь», ретранслятори: характеристики,
+          органи керування, індикація, види викликів та дальність зв’язку.
+        </p>
+        <div>
+          <span class="tag">DP4400 / DP4800</span><span class="tag">DM4600</span
+          ><span class="tag">SLR5500 / DR3000</span>
+        </div>
+      </header>
+      <div class="topic-quiz-cta">
+        <div>
+          <strong>Перевір себе</strong><span>Перевір знання за матеріалами цієї теми.</span>
+        </div>
+        <a class="topic-quiz-button" href="../quiz.html?topic=10"
+          >Почати вікторину <span aria-hidden="true">→</span></a
+        >
+      </div>
+      <nav class="section topic-toc" aria-label="Зміст конспекту">
+        <h2>Зміст</h2>
+        <ul>
+          <li><a href="#purpose">Призначення та діапазони</a></li>
+          <li><a href="#propagation">Поширення радіохвиль і дальність прямої видимості</a></li>
+          <li><a href="#portable-specifications">Портативні DP4400 і DP4800: характеристики</a></li>
+          <li><a href="#portable-controls">Органи керування DP4800</a></li>
+          <li><a href="#portable-kit">Комплект портативної радіостанції</a></li>
+          <li><a href="#privacy">Технічне маскування мови</a></li>
+          <li><a href="#ras-key">Ключ RAS: обмеження доступу до системи</a></li>
+          <li>
+            <a href="#portable-indicators">Світлодіодна індикація портативної радіостанції</a>
+          </li>
+          <li><a href="#charging">Заряджання та індикатор WPLN4226A</a></li>
+          <li><a href="#mobile-specifications">Автомобільна DM4600: характеристики</a></li>
+          <li><a href="#mobile-controls">DM4600: органи керування та індикація</a></li>
+          <li><a href="#mobile-kit">Комплект автомобільної радіостанції</a></li>
+          <li><a href="#lybid-k1a">Комплект «Либідь К-1А»</a></li>
+          <li><a href="#calls">Виклики та додаткові можливості</a></li>
+          <li><a href="#repeater-principle">Принцип роботи ретранслятора</a></li>
+          <li><a href="#roaming">Роумінг IP Site Connect</a></li>
+          <li><a href="#slr5500">SLR5500 у комплекті «Либідь К-2РТД»</a></li>
+          <li><a href="#dr3000">DR3000: панелі та індикація</a></li>
+          <li><a href="#battalion-kit">Склад батальйонного комплекту</a></li>
+          <li><a href="#lybid-k2rtd-kit">Склад комплекту «Либідь К-2РТД»</a></li>
+          <li><a href="#directional-antenna">Антена направлена — директорна (АНД)</a></li>
+          <li><a href="#duplexer">Дуплексер</a></li>
+          <li><a href="#antenna-splitter">Антенний розподільник (сплітер)</a></li>
+          <li><a href="#antenna-masts">Розміщення антенно-щоглових пристроїв</a></li>
+          <li><a href="#reliable-operation">Умови надійної роботи</a></li>
+          <li><a href="#range">Орієнтовна дальність зі штатними антенами</a></li>
+        </ul>
+      </nav>
+      <section class="section" id="purpose">
+        <h2>Призначення та діапазони</h2>
+        <p>
+          <strong>MOTOTRBO</strong> забезпечує радіозв’язок між абонентами на обмеженій території,
+          технічне маскування мови та індивідуальні, групові й загальні виклики. Радіостанції можуть
+          працювати безпосередньо між собою або через ретранслятор.
+        </p>
+        <p>
+          До розглянутих засобів належать портативні <strong>DP4400 / DP4800</strong> і їхні версії
+          E, автомобільна <strong>DM4600 / DM4600E</strong>, комплект
+          <strong>«Либідь К-1А»</strong> та ретрансляційний комплект
+          <strong>«Либідь К-2РТД»</strong> із SLR5500 або DR3000.
+        </p>
+        <div
+          class="mototrbo-table"
+          tabindex="0"
+          role="region"
+          aria-label="Таблиця з горизонтальним прокручуванням"
+        >
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Виконання</th>
+                <th scope="col">Робочі частоти</th>
+                <th scope="col">Застосування в навчальному матеріалі</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>VHF</td>
+                <td>136–174 МГц</td>
+                <td>Комплекти для ЗСУ</td>
+              </tr>
+              <tr>
+                <td>UHF</td>
+                <td>403–527 МГц</td>
+                <td>Комплекти для НГУ</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-note">
+          Це діапазони різних виконань обладнання, а не два діапазони одночасної роботи кожної
+          радіостанції.
+        </p>
+      </section>
+      <section class="section" id="propagation">
+        <h2>Поширення радіохвиль і дальність прямої видимості</h2>
+        <p>
+          Для КХ (<strong>HF, 3–30 МГц</strong>) розглянуто зв’язок просторовою хвилею через
+          іоносферу за межами прямої видимості, з орієнтовними відстанями 100–10 000 км. Для
+          <strong>VHF, 30–300 МГц</strong>, і <strong>UHF, 300–3000 МГц</strong> у матеріалі
+          акцентовано зв’язок у межах прямої видимості; наведений орієнтир — близько 40 км.
+        </p>
+        <p>
+          Дальність залежить від висоти й типу антен, рельєфу, перешкод і потужності. Хвилі нижчих
+          частот краще огинають перешкоди.
+        </p>
+        <h3 id="radio-horizon">Розрахунок геометричної прямої видимості</h3>
+        <p class="mototrbo-formula"><strong>d = 3,57 × (√h₁ + √h₂)</strong></p>
+        <p>
+          <strong>d</strong> — відстань у кілометрах; <strong>h₁</strong> і <strong>h₂</strong> —
+          висоти антен у метрах. Якщо обидві антени розташовані на висоті 16 м:
+          <strong>d = 3,57 × (4 + 4) = 28,56 км</strong>.
+        </p>
+        <div class="note">
+          Наведені в матеріалі правила «1 Вт ≈ 1 км» і «підняття антени на 1 м додає 1–3 км» — лише
+          грубі навчальні орієнтири. Це не універсальні лінійні залежності та не гарантія дальності.
+          Розрахунок прямої видимості також не враховує всі умови реального радіоканалу.
+        </div>
+      </section>
+      <section class="section" id="portable-specifications">
+        <h2>Портативні DP4400 і DP4800: характеристики</h2>
+        <p class="mototrbo-difference-legend">
+          <span class="mototrbo-difference-label">Відмінність</span> Підсвічено параметри, значення
+          яких різняться між моделями.
+        </p>
+        <div
+          class="mototrbo-table"
+          tabindex="0"
+          role="region"
+          aria-label="Таблиця з горизонтальним прокручуванням"
+        >
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Параметр</th>
+                <th scope="col">DP4400 / DP4400E</th>
+                <th scope="col">DP4800 / DP4800E</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="mototrbo-difference">
+                <td>Канали та зони<span class="mototrbo-difference-label">Відмінність</span></td>
+                <td>32 канали; 2 зони по 16</td>
+                <td>1000 каналів; 250 зон</td>
+              </tr>
+              <tr>
+                <td>Частоти</td>
+                <td>VHF 136–174 МГц; UHF 403–527 МГц</td>
+                <td>VHF 136–174 МГц; UHF 403–527 МГц</td>
+              </tr>
+              <tr>
+                <td>Робоча напруга</td>
+                <td>7,5 В</td>
+                <td>7,5 В</td>
+              </tr>
+              <tr>
+                <td>Потужність VHF: висока / низька</td>
+                <td>5 / 1 Вт</td>
+                <td>5 / 1 Вт</td>
+              </tr>
+              <tr>
+                <td>Потужність UHF: висока / низька</td>
+                <td>4 / 1 Вт</td>
+                <td>4 / 1 Вт</td>
+              </tr>
+              <tr>
+                <td>Вокодер</td>
+                <td>AMBE+2</td>
+                <td>AMBE+2</td>
+              </tr>
+              <tr>
+                <td>Робоча температура</td>
+                <td>−30…+60 °C</td>
+                <td>−30…+60 °C</td>
+              </tr>
+              <tr>
+                <td>Захист від пилу та вологи</td>
+                <td>IP57 (IP68 для версії E у таблиці)</td>
+                <td>IP57 (IP68 для версії E у таблиці)</td>
+              </tr>
+              <tr>
+                <td>Антени</td>
+                <td>Helikal та λ/4</td>
+                <td>Helikal та λ/4</td>
+              </tr>
+              <tr>
+                <td>Опір антени</td>
+                <td>50 Ом</td>
+                <td>50 Ом</td>
+              </tr>
+              <tr class="mototrbo-difference">
+                <td>
+                  Програмовані кнопки<span class="mototrbo-difference-label">Відмінність</span>
+                </td>
+                <td>4</td>
+                <td>6</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3 id="portable-runtime">Час роботи від акумулятора</h3>
+        <p>
+          Час наведено для циклу <strong>5/5/90</strong>: 5 % передавання, 5 % приймання і 90 %
+          очікування.
+        </p>
+        <div
+          class="mototrbo-table"
+          tabindex="0"
+          role="region"
+          aria-label="Таблиця з горизонтальним прокручуванням"
+        >
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Акумулятор</th>
+                <th scope="col">DP4400: аналог / цифра</th>
+                <th scope="col">DP4800: аналог / цифра</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="mototrbo-difference">
+                <td>NiMH, 1400 мА·год<span class="mototrbo-difference-label">Відмінність</span></td>
+                <td>7 / 10,2 год</td>
+                <td>6,7 / 9,8 год</td>
+              </tr>
+              <tr class="mototrbo-difference">
+                <td>
+                  Li-ion, 2250 мА·год<span class="mototrbo-difference-label">Відмінність</span>
+                </td>
+                <td>11,5 / 17 год</td>
+                <td>11 / 16 год</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-note">
+          За іншої частки передавання та інших умов експлуатації фактичний час роботи змінюється.
+        </p>
+      </section>
+      <section class="section" id="portable-controls">
+        <h2>Органи керування DP4800</h2>
+        <div class="mototrbo-controls">
+          <figure class="topic-figure">
+            <button
+              class="procedure-shot-button"
+              type="button"
+              aria-label="Збільшити: Органи керування DP4800: номери відповідають таблиці."
+            >
+              <img
+                src="dp4800-controls.png"
+                alt="Органи керування DP4800: номери відповідають таблиці."
+                loading="lazy"
+              />
+            </button>
+            <figcaption>Органи керування DP4800: номери відповідають таблиці.</figcaption>
+          </figure>
+          <div
+            class="mototrbo-table"
+            tabindex="0"
+            role="region"
+            aria-label="Таблиця з горизонтальним прокручуванням"
+          >
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">№</th>
+                  <th scope="col">Елемент</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Перемикач каналів</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Регулятор гучності та вимикач живлення</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Світлодіодний індикатор</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>Бічна кнопка 1</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>Тангента PTT</td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>Бічна кнопка 2</td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td>Бічна кнопка 3</td>
+                </tr>
+                <tr>
+                  <td>8</td>
+                  <td>Передня кнопка P1</td>
+                </tr>
+                <tr>
+                  <td>9</td>
+                  <td>Меню / OK</td>
+                </tr>
+                <tr>
+                  <td>10</td>
+                  <td>Чотирипозиційна навігаційна кнопка</td>
+                </tr>
+                <tr>
+                  <td>11</td>
+                  <td>Клавіатура</td>
+                </tr>
+                <tr>
+                  <td>12</td>
+                  <td>Назад / головний екран</td>
+                </tr>
+                <tr>
+                  <td>13</td>
+                  <td>Передня кнопка P2</td>
+                </tr>
+                <tr>
+                  <td>14</td>
+                  <td>Дисплей</td>
+                </tr>
+                <tr>
+                  <td>15</td>
+                  <td>Мікрофон</td>
+                </tr>
+                <tr>
+                  <td>16</td>
+                  <td>Гучномовець</td>
+                </tr>
+                <tr>
+                  <td>17</td>
+                  <td>Роз’єм аксесуарів</td>
+                </tr>
+                <tr>
+                  <td>18</td>
+                  <td>Аварійна кнопка</td>
+                </tr>
+                <tr>
+                  <td>19</td>
+                  <td>Антена</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <section class="section" id="portable-kit">
+        <h2>Комплект портативної радіостанції</h2>
+        <div
+          class="mototrbo-table"
+          tabindex="0"
+          role="region"
+          aria-label="Таблиця з горизонтальним прокручуванням"
+        >
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Складник</th>
+                <th scope="col">Кількість / виконання</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>DP4400 або DP4800</td>
+                <td>1 комплект</td>
+              </tr>
+              <tr>
+                <td>Акумулятори NiMH або Li-ion</td>
+                <td>2 шт.</td>
+              </tr>
+              <tr>
+                <td>Зарядний пристрій</td>
+                <td>1 шт.</td>
+              </tr>
+              <tr>
+                <td>Антена Helikal</td>
+                <td>1 шт.</td>
+              </tr>
+              <tr>
+                <td>Антена λ/4</td>
+                <td>1 шт., у комплекті для ЗСУ</td>
+              </tr>
+              <tr>
+                <td>Ларингофонна гарнітура з прозорим звуководом</td>
+                <td>1 шт.</td>
+              </tr>
+              <tr>
+                <td>Кліпса</td>
+                <td>1 шт.</td>
+              </tr>
+              <tr>
+                <td>Ремінець із карабіном</td>
+                <td>1 шт.</td>
+              </tr>
+              <tr>
+                <td>Формуляр</td>
+                <td>1 шт.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <section class="section" id="privacy">
+        <h2>Технічне маскування мови</h2>
+        <div
+          class="mototrbo-table"
+          tabindex="0"
+          role="region"
+          aria-label="Таблиця з горизонтальним прокручуванням"
+        >
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Режим</th>
+                <th scope="col">Опис</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Базова конфіденційність</td>
+                <td>
+                  Один спільний ключ на радіостанцію; 255 комбінацій. У навчальному матеріалі
+                  позначено «16 біт».
+                </td>
+              </tr>
+              <tr>
+                <td>Покращена конфіденційність ARC4</td>
+                <td>40-бітний ключ: до 10 шістнадцяткових символів — цифри 0–9 та літери A–F.</td>
+              </tr>
+              <tr>
+                <td>AES-256</td>
+                <td>Програмне встановлення за наявності відповідної придбаної ліцензії.</td>
+              </tr>
+              <tr>
+                <td>Аналогові канали</td>
+                <td>Коди TPL або DPL.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          У матеріалі зазначена можливість записати до <strong>32 ключів шифрування</strong> в
+          радіостанцію.
+        </p>
+        <p class="table-note">
+          Тип конфіденційності та доступність опцій залежать від конкретного виконання й ліцензій.
+        </p>
+        <div class="note">
+          TPL/DPL керують вибірковим відкриванням шумоподавлювача в аналоговому каналі; вони не є
+          шифруванням мовлення.
+          <a
+            href="https://www.motorolasolutions.com/content/dam/msi/docs/business/_documents/user_guides/static_files/pm1200_mobile_radio_user_guide.pdf"
+            >Пояснення Private Line у посібнику Motorola</a
+          >.
+        </div>
+      </section>
+      <section class="section" id="ras-key">
+        <h2>Ключ RAS: обмеження доступу до системи</h2>
+        <p>
+          <strong>Ключ RAS</strong> призначений для обмеження доступу до системи: за ним
+          ретранслятор ідентифікує «свої» радіостанції. Використовується на каналах, які працюють
+          <strong>через ретранслятор</strong>.
+        </p>
+        <h3 id="ras-key-format">Формат ключа</h3>
+        <p>Довжина — <strong>від 6 до 24 символів</strong>. Дозволено використовувати:</p>
+        <ul>
+          <li>цифри;</li>
+          <li>літери у верхньому та нижньому регістрі;</li>
+          <li>
+            спеціальні символи: <code>#</code>, <code>$</code>, <code>-</code>, <code>_</code>.
+          </li>
+        </ul>
+      </section>
+      <section class="section" id="portable-indicators">
+        <h2>Світлодіодна індикація портативної радіостанції</h2>
+        <div
+          class="mototrbo-table"
+          tabindex="0"
+          role="region"
+          aria-label="Таблиця з горизонтальним прокручуванням"
+        >
+          <label class="mototrbo-led-control"><input type="checkbox" /> Зупинити анімацію</label>
+          <p class="table-note">
+            Блимання показано умовно, без відтворення точних часових інтервалів пристрою.
+          </p>
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Колір і режим</th>
+                <th scope="col">Значення</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <span class="mototrbo-indicator"
+                    ><span class="mototrbo-led led-green led-steady" aria-hidden="true"
+                      ><span></span></span
+                    ><span>Зелений, постійно</span></span
+                  >
+                </td>
+                <td>
+                  Увімкнення або передавання; під час перевірки батареї — високий рівень заряду.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="mototrbo-indicator"
+                    ><span class="mototrbo-led led-green led-blink" aria-hidden="true"
+                      ><span></span></span
+                    ><span>Зелений, блимає</span></span
+                  >
+                </td>
+                <td>Приймання незашифрованого сигналу або програмування через радіоканал OTAP.</td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="mototrbo-indicator"
+                    ><span class="mototrbo-led led-green led-double" aria-hidden="true"
+                      ><span></span></span
+                    ><span>Зелений, подвійне блимання</span></span
+                  >
+                </td>
+                <td>Приймання зашифрованого сигналу.</td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="mototrbo-indicator"
+                    ><span class="mototrbo-led led-orange led-steady" aria-hidden="true"
+                      ><span></span></span
+                    ><span>Помаранчевий, постійно</span></span
+                  >
+                </td>
+                <td>Під час перевірки батареї — середній рівень заряду.</td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="mototrbo-indicator"
+                    ><span class="mototrbo-led led-orange led-blink" aria-hidden="true"
+                      ><span></span></span
+                    ><span>Помаранчевий, блимає</span></span
+                  >
+                </td>
+                <td>Сканування.</td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="mototrbo-indicator"
+                    ><span class="mototrbo-led led-red led-blink" aria-hidden="true"
+                      ><span></span></span
+                    ><span>Червоний, блимає</span></span
+                  >
+                </td>
+                <td>
+                  Передавання з низьким зарядом батареї, приймання аварійного сигналу або помилка
+                  самотестування.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <section class="section" id="charging">
+        <h2>Заряджання та індикатор WPLN4226A</h2>
+        <p>
+          <strong>Перед заряджанням вимкнути радіостанцію або зняти з неї акумулятор.</strong> Колір
+          індикатора зарядного пристрою потрібно трактувати окремо від індикатора самої
+          радіостанції.
+        </p>
+        <div
+          class="mototrbo-table"
+          tabindex="0"
+          role="region"
+          aria-label="Таблиця з горизонтальним прокручуванням"
+        >
+          <label class="mototrbo-led-control"><input type="checkbox" /> Зупинити анімацію</label>
+          <p class="table-note">
+            Блимання показано умовно, без відтворення точних часових інтервалів пристрою.
+          </p>
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Індикація зарядного пристрою</th>
+                <th scope="col">Стан</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <span class="mototrbo-indicator"
+                    ><span class="mototrbo-led led-red led-steady" aria-hidden="true"
+                      ><span></span></span
+                    ><span>Червоний, постійно</span></span
+                  >
+                </td>
+                <td>Акумулятор заряджається.</td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="mototrbo-indicator"
+                    ><span class="mototrbo-led led-red led-blink" aria-hidden="true"
+                      ><span></span></span
+                    ><span>Червоний, блимає</span></span
+                  >
+                </td>
+                <td>
+                  Заряджання не відбувається: можливі несправність батареї або порушення контакту.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="mototrbo-indicator"
+                    ><span class="mototrbo-led led-green led-blink" aria-hidden="true"
+                      ><span></span></span
+                    ><span>Зелений, блимає</span></span
+                  >
+                </td>
+                <td>Близько 90 % заряду.</td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="mototrbo-indicator"
+                    ><span class="mototrbo-led led-green led-steady" aria-hidden="true"
+                      ><span></span></span
+                    ><span>Зелений, постійно</span></span
+                  >
+                </td>
+                <td>100 % заряду; заряджання завершене, пристрій у режимі очікування.</td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="mototrbo-indicator"
+                    ><span class="mototrbo-led led-yellow led-blink" aria-hidden="true"
+                      ><span></span></span
+                    ><span>Жовтий, блимає</span></span
+                  >
+                </td>
+                <td>
+                  Температура батареї непридатна для заряджання або напруга нижча за поріг швидкого
+                  заряджання.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="mototrbo-indicator"
+                    ><span class="mototrbo-led led-yellow led-steady" aria-hidden="true"
+                      ><span></span></span
+                    ><span>Жовтий, постійно</span></span
+                  >
+                </td>
+                <td>Ініціалізація / відновлення батареї; може тривати до 12 годин.</td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="mototrbo-indicator"
+                    ><span class="mototrbo-led led-alternate led-alternate" aria-hidden="true"
+                      ><span></span></span
+                    ><span>Почергово червоний і зелений</span></span
+                  >
+                </td>
+                <td>Батарея повністю заряджена, але можливе наближення кінця її ресурсу.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <section class="section" id="mobile-specifications">
+        <h2>Автомобільна DM4600: характеристики</h2>
+        <div
+          class="mototrbo-table"
+          tabindex="0"
+          role="region"
+          aria-label="Таблиця з горизонтальним прокручуванням"
+        >
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Параметр</th>
+                <th scope="col">DM4600 / DM4600E</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Частоти</td>
+                <td>VHF 136–174 МГц; UHF 403–527 МГц</td>
+              </tr>
+              <tr>
+                <td>Кількість каналів</td>
+                <td>1000</td>
+              </tr>
+              <tr>
+                <td>Робоча напруга</td>
+                <td>13,5 В</td>
+              </tr>
+              <tr>
+                <td>Потужність VHF: висока / низька</td>
+                <td>54* / 25 Вт</td>
+              </tr>
+              <tr>
+                <td>Потужність UHF: висока / низька</td>
+                <td>40 / 25 Вт</td>
+              </tr>
+              <tr>
+                <td>Вокодер</td>
+                <td>AMBE+2</td>
+              </tr>
+              <tr>
+                <td>Робоча температура</td>
+                <td>−30…+60 °C</td>
+              </tr>
+              <tr>
+                <td>Захист</td>
+                <td>IP54</td>
+              </tr>
+              <tr>
+                <td>Антена</td>
+                <td>Штирова на магнітній основі</td>
+              </tr>
+              <tr>
+                <td>Опір антени</td>
+                <td>50 Ом</td>
+              </tr>
+              <tr>
+                <td>Програмовані кнопки</td>
+                <td>7</td>
+              </tr>
+              <tr>
+                <td>Маса</td>
+                <td>1,8 кг</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-note">
+          * У навчальній таблиці для високої потужності VHF вказано саме 54 Вт. Водночас
+          <a
+            href="https://www.motorolasolutions.com/en_xu/products/mototrbo/dm4000-series-mobile-radios/dm4600-dm4601.html"
+            >Motorola для DM4600 / DM4601</a
+          >
+          вказує 25–45 Вт для потужнішого VHF-виконання. Ймовірно, у презентації переставлено цифри;
+          для конкретної радіостанції слід керуватися її паспортом.
+        </p>
+      </section>
+      <section class="section" id="mobile-controls">
+        <h2>DM4600: органи керування та індикація</h2>
+        <figure class="topic-figure">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Органи керування DM4600: номери відповідають таблиці."
+          >
+            <img
+              src="dm4600-controls.png"
+              alt="Органи керування DM4600: номери відповідають таблиці."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Органи керування DM4600: номери відповідають таблиці.</figcaption>
+        </figure>
+        <div
+          class="mototrbo-table"
+          tabindex="0"
+          role="region"
+          aria-label="Таблиця з горизонтальним прокручуванням"
+        >
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">№</th>
+                <th scope="col">Елемент</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Кнопка ввімкнення / вимкнення</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Регулятор гучності / перемикання каналів</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Дисплей</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>OK / меню</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>Кнопки вгору / вниз</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>Гучномовець</td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td>Назад / головний екран</td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <td>Програмовані кнопки</td>
+              </tr>
+              <tr>
+                <td>9</td>
+                <td>Роз’єм аксесуарів</td>
+              </tr>
+              <tr>
+                <td>10</td>
+                <td>Світлодіодні індикатори</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3 id="mobile-indicators">Світлодіодні сигнали DM4600</h3>
+        <div
+          class="mototrbo-table"
+          tabindex="0"
+          role="region"
+          aria-label="Таблиця з горизонтальним прокручуванням"
+        >
+          <label class="mototrbo-led-control"><input type="checkbox" /> Зупинити анімацію</label>
+          <p class="table-note">
+            Блимання показано умовно, без відтворення точних часових інтервалів пристрою.
+          </p>
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Колір і режим</th>
+                <th scope="col">Значення</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <span class="mototrbo-indicator"
+                    ><span class="mototrbo-led led-red led-blink" aria-hidden="true"
+                      ><span></span></span
+                    ><span>Червоний, блимає</span></span
+                  >
+                </td>
+                <td>Приймання аварійного сигналу або помилка самотестування.</td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="mototrbo-indicator"
+                    ><span class="mototrbo-led led-green led-steady" aria-hidden="true"
+                      ><span></span></span
+                    ><span>Зелений, постійно</span></span
+                  >
+                </td>
+                <td>Увімкнення або передавання.</td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="mototrbo-indicator"
+                    ><span class="mototrbo-led led-green led-blink" aria-hidden="true"
+                      ><span></span></span
+                    ><span>Зелений, блимає</span></span
+                  >
+                </td>
+                <td>Приймання незашифрованого виклику чи даних.</td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="mototrbo-indicator"
+                    ><span class="mototrbo-led led-green led-double" aria-hidden="true"
+                      ><span></span></span
+                    ><span>Зелений, подвійне блимання</span></span
+                  >
+                </td>
+                <td>Приймання зашифрованого виклику чи даних.</td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="mototrbo-indicator"
+                    ><span class="mototrbo-led led-yellow led-steady" aria-hidden="true"
+                      ><span></span></span
+                    ><span>Жовтий, постійно</span></span
+                  >
+                </td>
+                <td>Моніторинг звичайного каналу.</td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="mototrbo-indicator"
+                    ><span class="mototrbo-led led-yellow led-blink" aria-hidden="true"
+                      ><span></span></span
+                    ><span>Жовтий, блимає</span></span
+                  >
+                </td>
+                <td>Сповіщення про виклик.</td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="mototrbo-indicator"
+                    ><span class="mototrbo-led led-yellow led-double" aria-hidden="true"
+                      ><span></span></span
+                    ><span>Жовтий, подвійне блимання</span></span
+                  >
+                </td>
+                <td>
+                  Пошук сайту під час автоматичного роумінгу, сповіщення про груповий виклик без
+                  відповіді або блокування радіостанції.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <section class="section" id="mobile-kit">
+        <h2>Комплект автомобільної радіостанції</h2>
+        <div
+          class="mototrbo-table"
+          tabindex="0"
+          role="region"
+          aria-label="Таблиця з горизонтальним прокручуванням"
+        >
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Складник</th>
+                <th scope="col">Кількість / виконання</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Приймач-передавач</td>
+                <td>1 комплект</td>
+              </tr>
+              <tr>
+                <td>Мікрофон із клавіатурою</td>
+                <td>1 шт.</td>
+              </tr>
+              <tr>
+                <td>Штирова антена 35 см на магнітній основі з противагою</td>
+                <td>1 комплект</td>
+              </tr>
+              <tr>
+                <td>Радіочастотний кабель</td>
+                <td>1 шт., 4 м</td>
+              </tr>
+              <tr>
+                <td>Кабель живлення із запобіжниками</td>
+                <td>1 шт.</td>
+              </tr>
+              <tr>
+                <td>Імпульсний перетворювач напруги ІПН 24-12/20А</td>
+                <td>1 шт.</td>
+              </tr>
+              <tr>
+                <td>Кронштейн кріплення</td>
+                <td>1 шт.</td>
+              </tr>
+              <tr>
+                <td>З’єднувальні кабелі</td>
+                <td>1 комплект</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <section class="section" id="lybid-k1a">
+        <h2>Комплект «Либідь К-1А»</h2>
+        <p>
+          <strong>«Либідь К-1А»</strong> — спеціальне виконання на базі DM4600 для зв’язку між
+          базовими й рухомими абонентами зі збільшеною дальністю. Передбачено переносний,
+          автомобільний і стаціонарний варіанти застосування, а також два одночасні цифрові
+          з’єднання на одній частоті.
+        </p>
+        <p>
+          Ранцеве виконання захищає обладнання від впливу довкілля; захист від інтенсивних
+          електромагнітних полів у матеріалі виключено.
+        </p>
+        <div class="lybid-gallery">
+          <figure class="topic-figure">
+            <button
+              class="procedure-shot-button"
+              type="button"
+              aria-label="Збільшити: «Либідь К-1А» у зібраному вигляді."
+            >
+              <img
+                src="lybid-k1a-assembled.svg"
+                alt="«Либідь К-1А» у зібраному вигляді."
+                loading="lazy"
+              />
+            </button>
+            <figcaption>«Либідь К-1А» у зібраному вигляді.</figcaption>
+          </figure>
+          <figure class="topic-figure">
+            <button
+              class="procedure-shot-button"
+              type="button"
+              aria-label="Збільшити: Комплект зі знятим акумуляторним блоком."
+            >
+              <img
+                src="lybid-k1a-battery-removed.svg"
+                alt="Комплект зі знятим акумуляторним блоком."
+                loading="lazy"
+              />
+            </button>
+            <figcaption>Комплект зі знятим акумуляторним блоком.</figcaption>
+          </figure>
+        </div>
+        <h3 id="lybid-k1a-accessories">Оснащення комплекту</h3>
+        <ul>
+          <li>Зарядний пристрій від мережі 220 В та адаптер.</li>
+          <li>
+            Антена λ/4 для встановлення безпосередньо на комплект, J-антена й антена спрямованої
+            дії.
+          </li>
+          <li>Ларингофонна гарнітура з тангентою або телефонна трубка.</li>
+          <li>Два антенні кабелі по 20 м і запасний акумулятор.</li>
+          <li>Кабель зовнішнього живлення 12–24 В.</li>
+          <li>Пристрій «Либідь ПК» для підключення телефонного апарата ТА-57.</li>
+        </ul>
+        <div class="lybid-gallery">
+          <figure class="topic-figure">
+            <button
+              class="procedure-shot-button"
+              type="button"
+              aria-label="Збільшити: Гарнітура та телефонна трубка."
+            >
+              <img
+                src="lybid-k1a-headset.svg"
+                alt="Гарнітура та телефонна трубка."
+                loading="lazy"
+              />
+            </button>
+            <figcaption>Гарнітура та телефонна трубка.</figcaption>
+          </figure>
+          <figure class="topic-figure">
+            <button
+              class="procedure-shot-button"
+              type="button"
+              aria-label="Збільшити: Антенні кабелі комплекту."
+            >
+              <img src="lybid-k1a-cables.svg" alt="Антенні кабелі комплекту." loading="lazy" />
+            </button>
+            <figcaption>Антенні кабелі комплекту.</figcaption>
+          </figure>
+        </div>
+        <div class="lybid-gallery">
+          <figure class="topic-figure">
+            <button
+              class="procedure-shot-button"
+              type="button"
+              aria-label="Збільшити: Антена спрямованої дії."
+            >
+              <img
+                src="lybid-k1a-directional-antenna.svg"
+                alt="Антена спрямованої дії."
+                loading="lazy"
+              />
+            </button>
+            <figcaption>Антена спрямованої дії.</figcaption>
+          </figure>
+          <figure class="topic-figure">
+            <button
+              class="procedure-shot-button"
+              type="button"
+              aria-label="Збільшити: Запасний акумулятор."
+            >
+              <img src="lybid-k1a-spare-battery.svg" alt="Запасний акумулятор." loading="lazy" />
+            </button>
+            <figcaption>Запасний акумулятор.</figcaption>
+          </figure>
+        </div>
+        <div class="lybid-gallery">
+          <figure class="topic-figure">
+            <button
+              class="procedure-shot-button"
+              type="button"
+              aria-label="Збільшити: Кабель зовнішнього живлення 12–24 В."
+            >
+              <img
+                src="lybid-k1a-power-cable.svg"
+                alt="Кабель зовнішнього живлення 12–24 В."
+                loading="lazy"
+              />
+            </button>
+            <figcaption>Кабель зовнішнього живлення 12–24 В.</figcaption>
+          </figure>
+          <figure class="topic-figure">
+            <button
+              class="procedure-shot-button"
+              type="button"
+              aria-label="Збільшити: Пристрій «Либідь ПК» для ТА-57."
+            >
+              <img
+                src="lybid-k1a-ta57-adapter.svg"
+                alt="Пристрій «Либідь ПК» для ТА-57."
+                loading="lazy"
+              />
+            </button>
+            <figcaption>Пристрій «Либідь ПК» для ТА-57.</figcaption>
+          </figure>
+          <figure class="topic-figure lybid-panel">
+            <button
+              class="procedure-shot-button"
+              type="button"
+              aria-label="Збільшити: Панель підключень і керування «Либідь К-1А»."
+            >
+              <img
+                src="lybid-k1a-panel.svg"
+                alt="Панель підключень і керування «Либідь К-1А»."
+                loading="lazy"
+              />
+            </button>
+            <figcaption>Панель підключень і керування «Либідь К-1А».</figcaption>
+          </figure>
+        </div>
+      </section>
+      <section class="section" id="calls">
+        <h2>Виклики та додаткові можливості</h2>
+        <div
+          class="mototrbo-table"
+          tabindex="0"
+          role="region"
+          aria-label="Таблиця з горизонтальним прокручуванням"
+        >
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Вид виклику</th>
+                <th scope="col">Кому надходить</th>
+                <th scope="col">Особливість</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Індивідуальний</td>
+                <td>Одному вибраному абоненту</td>
+                <td>Зв’язок «один — одному».</td>
+              </tr>
+              <tr>
+                <td>Груповий</td>
+                <td>Абонентам вибраної групи</td>
+                <td>
+                  Зв’язок «один — багатьом»; у матеріалі наведено час встановлення менш як 300 мс.
+                </td>
+              </tr>
+              <tr>
+                <td>Загальний</td>
+                <td>Усім радіостанціям поточного каналу</td>
+                <td>Для важливих оголошень; відповідь на загальний виклик не передбачена.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note">
+          Індивідуальна адресація визначає одержувача виклику. Її не слід ототожнювати з
+          криптографічним захистом: конфіденційність залежить від налаштованого режиму маскування
+          або шифрування.
+        </div>
+        <h3 id="additional-functions">Функції DP4800 і DM4600</h3>
+        <ul>
+          <li>Індивідуальний виклик зі списку контактів.</li>
+          <li>Індивідуальний виклик зі сповіщенням.</li>
+          <li>Перевірка доступності радіостанції.</li>
+          <li>Дистанційне прослуховування.</li>
+          <li>Блокування та розблокування радіостанції.</li>
+          <li>Приймання та надсилання SMS.</li>
+        </ul>
+      </section>
+      <section class="section" id="repeater-principle">
+        <h2>Принцип роботи ретранслятора</h2>
+        <p>
+          <strong>Ретранслятор</strong> розширює зону зв’язку завдяки більшій потужності й
+          ефективнішій антенній системі порівняно з абонентською радіостанцією. Він приймає сигнал
+          на частоті <strong>f₁</strong> і передає його на <strong>f₂</strong>.
+        </p>
+        <figure class="topic-figure">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Обмін між абонентами через ретранслятор: різні частоти приймання та передавання."
+          >
+            <img
+              src="repeater-principle.png"
+              alt="Обмін між абонентами через ретранслятор: різні частоти приймання та передавання."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>
+            Обмін між абонентами через ретранслятор: різні частоти приймання та передавання.
+          </figcaption>
+        </figure>
+      </section>
+      <section class="section" id="roaming">
+        <h2>Роумінг IP Site Connect</h2>
+        <p>
+          <strong>Роумінг</strong> — перемикання радіостанції з поточного «домашнього» ретранслятора
+          на інший у тій самій системі <strong>IP Site Connect</strong>, який забезпечує кращий
+          рівень сигналу. Це потрібно, зокрема, коли абонент віддаляється від поточного
+          ретранслятора й рівень його сигналу знижується.
+        </p>
+        <p>
+          Роумінг може бути <strong>автоматичним або ручним</strong>. В обох випадках ретранслятори
+          через задані проміжки часу передають спеціальний сигнал — <strong>«маяк»</strong>.
+        </p>
+        <h3 id="automatic-roaming">Автоматичний роумінг</h3>
+        <ol>
+          <li>
+            Рівень сигналу «домашнього» ретранслятора падає нижче встановленого порога
+            <strong>RSSI</strong>.
+          </li>
+          <li>Радіостанція починає пошук за <strong>списком роумінгу</strong>.</li>
+          <li>
+            Ретранслятор із найсильнішим сигналом серед знайдених у списку стає новим «домашнім»
+            вузлом.
+          </li>
+        </ol>
+        <h3 id="manual-roaming">Ручний вибір ретранслятора</h3>
+        <p>
+          За потреби користувач може самостійно вибрати ретранслятор, перемкнувши радіостанцію на
+          відповідний <strong>фіксований канал</strong>.
+        </p>
+        <h3 id="roaming-rssi">RSSI та поріг пошуку</h3>
+        <p>
+          <strong>RSSI</strong> (<span lang="en">Received Signal Strength Indication</span>) —
+          показник рівня прийнятого сигналу. У роумінгу його порівнюють із налаштованим порогом:
+          падіння нижче цього порога запускає пошук іншого ретранслятора.
+        </p>
+      </section>
+      <section class="section" id="slr5500">
+        <h2>SLR5500 у комплекті «Либідь К-2РТД»</h2>
+        <figure class="topic-figure">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Комплект «Либідь К-2РТД» із ретранслятором SLR5500."
+          >
+            <img
+              src="lybid-k2rtd-slr5500.png"
+              alt="Комплект «Либідь К-2РТД» із ретранслятором SLR5500."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Комплект «Либідь К-2РТД» із ретранслятором SLR5500.</figcaption>
+        </figure>
+        <div
+          class="mototrbo-table"
+          tabindex="0"
+          role="region"
+          aria-label="Таблиця з горизонтальним прокручуванням"
+        >
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Параметр</th>
+                <th scope="col">Значення в навчальній таблиці</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Робочі частоти</td>
+                <td>136–174 МГц</td>
+              </tr>
+              <tr>
+                <td>Рознос сусідніх каналів</td>
+                <td>12,5 кГц</td>
+              </tr>
+              <tr>
+                <td>Програмовані канали</td>
+                <td>64</td>
+              </tr>
+              <tr>
+                <td>Активні канали</td>
+                <td>1</td>
+              </tr>
+              <tr>
+                <td>Таймслоти</td>
+                <td>2</td>
+              </tr>
+              <tr>
+                <td>Максимальна потужність несучої передавача</td>
+                <td>50 Вт (у таблиці — «не менше»)</td>
+              </tr>
+              <tr>
+                <td>Живлення змінним струмом</td>
+                <td>85–264 В</td>
+              </tr>
+              <tr>
+                <td>Живлення постійним струмом</td>
+                <td>12 В</td>
+              </tr>
+              <tr>
+                <td>Захист</td>
+                <td>IP54*</td>
+              </tr>
+              <tr>
+                <td>Робоча температура</td>
+                <td>−30…+60 °C</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-note">
+          * IP54 наведено у навчальній таблиці в контексті комплекту. Окремо ступінь захисту самого
+          ретранслятора й зовнішнього корпусу тут не розмежовано; перед експлуатацією слід звірити
+          паспорт відповідного виробу.
+        </p>
+        <h3 id="slr5500-front">Передня панель SLR5500</h3>
+        <figure class="topic-figure">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Передня панель SLR5500."
+          >
+            <img src="slr5500-front.jpeg" alt="Передня панель SLR5500." loading="lazy" />
+          </button>
+          <figcaption>Передня панель SLR5500.</figcaption>
+        </figure>
+        <div
+          class="mototrbo-table"
+          tabindex="0"
+          role="region"
+          aria-label="Таблиця з горизонтальним прокручуванням"
+        >
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Позначення / елемент</th>
+                <th scope="col">Призначення</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Status</td>
+                <td>Стан ретранслятора</td>
+              </tr>
+              <tr>
+                <td>Tx A / Rx A</td>
+                <td>Передавання / приймання в таймслоті 1</td>
+              </tr>
+              <tr>
+                <td>Tx B / Rx B</td>
+                <td>Передавання / приймання в таймслоті 2</td>
+              </tr>
+              <tr>
+                <td>Ethernet</td>
+                <td>Індикатор мережевого з’єднання</td>
+              </tr>
+              <tr>
+                <td>Reference</td>
+                <td>Індикатор опорного сигналу</td>
+              </tr>
+              <tr>
+                <td>Роз’єм програмування</td>
+                <td>Підключення кабелю програмування</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3 id="slr5500-rear">Задня панель SLR5500</h3>
+        <figure class="topic-figure">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Роз’єми задньої панелі SLR5500."
+          >
+            <img src="slr5500-rear.png" alt="Роз’єми задньої панелі SLR5500." loading="lazy" />
+          </button>
+          <figcaption>Роз’єми задньої панелі SLR5500.</figcaption>
+        </figure>
+        <div
+          class="mototrbo-table"
+          tabindex="0"
+          role="region"
+          aria-label="Таблиця з горизонтальним прокручуванням"
+        >
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Роз’єм / елемент</th>
+                <th scope="col">Призначення</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>C14 (IEC 60320) та вимикач</td>
+                <td>Живлення від мережі змінного струму</td>
+              </tr>
+              <tr>
+                <td>Molex 42818-0212</td>
+                <td>Вхід постійного струму та вихід заряджання</td>
+              </tr>
+              <tr>
+                <td>Дві позиції, залежні від конфігурації</td>
+                <td>Призначення визначається встановленою конфігурацією</td>
+              </tr>
+              <tr>
+                <td>USB Type-A</td>
+                <td>USB-підключення</td>
+              </tr>
+              <tr>
+                <td>Ethernet 2 та Ethernet 1</td>
+                <td>Два мережеві роз’єми RJ45</td>
+              </tr>
+              <tr>
+                <td>AUX, DB25</td>
+                <td>Допоміжний роз’єм</td>
+              </tr>
+              <tr>
+                <td>RX, BNC</td>
+                <td>Приймальна антена</td>
+              </tr>
+              <tr>
+                <td>REF, BNC</td>
+                <td>Опорний сигнал</td>
+              </tr>
+              <tr>
+                <td>Гвинт TORX T30</td>
+                <td>Заземлення</td>
+              </tr>
+              <tr>
+                <td>TX, N-type</td>
+                <td>Передавальна антена</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <section class="section" id="dr3000">
+        <h2>DR3000: панелі та індикація</h2>
+        <figure class="topic-figure">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Ретранслятор DR3000 у складі «Либідь К-2РТД»."
+          >
+            <img
+              src="lybid-k2rtd-dr3000.png"
+              alt="Ретранслятор DR3000 у складі «Либідь К-2РТД»."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Ретранслятор DR3000 у складі «Либідь К-2РТД».</figcaption>
+        </figure>
+        <figure class="topic-figure">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Задня частина DR3000 та підключення в комплекті."
+          >
+            <img
+              src="dr3000-rear.jpeg"
+              alt="Задня частина DR3000 та підключення в комплекті."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Задня частина DR3000 та підключення в комплекті.</figcaption>
+        </figure>
+        <div
+          class="mototrbo-table"
+          tabindex="0"
+          role="region"
+          aria-label="Таблиця з горизонтальним прокручуванням"
+        >
+          <label class="mototrbo-led-control"><input type="checkbox" /> Зупинити анімацію</label>
+          <p class="table-note">
+            Блимання показано умовно, без відтворення точних часових інтервалів пристрою.
+          </p>
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Індикатор</th>
+                <th scope="col">Колір / стан</th>
+                <th scope="col">Значення</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Power</td>
+                <td>
+                  <span class="mototrbo-indicator"
+                    ><span class="mototrbo-led led-green led-steady" aria-hidden="true"
+                      ><span></span></span
+                    ><span>Зелений, постійно</span></span
+                  >
+                </td>
+                <td>Живлення від мережі змінного струму</td>
+              </tr>
+              <tr>
+                <td>Power</td>
+                <td>
+                  <span class="mototrbo-indicator"
+                    ><span class="mototrbo-led led-red led-steady" aria-hidden="true"
+                      ><span></span></span
+                    ><span>Червоний, постійно</span></span
+                  >
+                </td>
+                <td>Живлення від резервного акумулятора</td>
+              </tr>
+              <tr>
+                <td>Power</td>
+                <td>
+                  <span class="mototrbo-indicator"
+                    ><span class="mototrbo-led led-off led-steady" aria-hidden="true"
+                      ><span></span></span
+                    ><span>Не світиться</span></span
+                  >
+                </td>
+                <td>Ретранслятор вимкнений</td>
+              </tr>
+              <tr>
+                <td>Disabled</td>
+                <td>
+                  <span class="mototrbo-indicator"
+                    ><span class="mototrbo-led led-red led-steady" aria-hidden="true"
+                      ><span></span></span
+                    ><span>Червоний, постійно</span></span
+                  >
+                </td>
+                <td>Ретранслятор заблокований</td>
+              </tr>
+              <tr>
+                <td>Disabled</td>
+                <td>
+                  <span class="mototrbo-indicator"
+                    ><span class="mototrbo-led led-red led-blink" aria-hidden="true"
+                      ><span></span></span
+                    ><span>Червоний, блимає</span></span
+                  >
+                </td>
+                <td>Самотестування</td>
+              </tr>
+              <tr>
+                <td>Disabled</td>
+                <td>
+                  <span class="mototrbo-indicator"
+                    ><span class="mototrbo-led led-off led-steady" aria-hidden="true"
+                      ><span></span></span
+                    ><span>Не світиться</span></span
+                  >
+                </td>
+                <td>Нормальна робота</td>
+              </tr>
+              <tr>
+                <td>Digital</td>
+                <td>
+                  <span class="mototrbo-indicator"
+                    ><span class="mototrbo-led led-blue led-steady" aria-hidden="true"
+                      ><span></span></span
+                    ><span>Синій, постійно</span></span
+                  >
+                </td>
+                <td>Цифровий режим</td>
+              </tr>
+              <tr>
+                <td>Analog</td>
+                <td>
+                  <span class="mototrbo-indicator"
+                    ><span class="mototrbo-led led-yellow led-steady" aria-hidden="true"
+                      ><span></span></span
+                    ><span>Жовтий, постійно</span></span
+                  >
+                </td>
+                <td>Аналоговий режим</td>
+              </tr>
+              <tr>
+                <td>Tx A</td>
+                <td>
+                  <span class="mototrbo-indicator"
+                    ><span class="mototrbo-led led-green led-steady" aria-hidden="true"
+                      ><span></span></span
+                    ><span>Зелений</span></span
+                  >
+                </td>
+                <td>Передавання в таймслоті A або в аналоговому режимі</td>
+              </tr>
+              <tr>
+                <td>Rx A</td>
+                <td>
+                  <span class="mototrbo-indicator"
+                    ><span class="mototrbo-led led-yellow led-steady" aria-hidden="true"
+                      ><span></span></span
+                    ><span>Жовтий</span></span
+                  >
+                </td>
+                <td>Приймання в таймслоті A або в аналоговому режимі</td>
+              </tr>
+              <tr>
+                <td>Tx B</td>
+                <td>
+                  <span class="mototrbo-indicator"
+                    ><span class="mototrbo-led led-green led-steady" aria-hidden="true"
+                      ><span></span></span
+                    ><span>Зелений</span></span
+                  >
+                </td>
+                <td>Передавання в таймслоті B</td>
+              </tr>
+              <tr>
+                <td>Rx B</td>
+                <td>
+                  <span class="mototrbo-indicator"
+                    ><span class="mototrbo-led led-yellow led-steady" aria-hidden="true"
+                      ><span></span></span
+                    ><span>Жовтий</span></span
+                  >
+                </td>
+                <td>Приймання в таймслоті B</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <section class="section" id="battalion-kit">
+        <h2>Склад батальйонного комплекту</h2>
+        <div
+          class="mototrbo-table"
+          tabindex="0"
+          role="region"
+          aria-label="Склад батальйонного комплекту"
+        >
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Обладнання</th>
+                <th scope="col">Кількість</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  Виріб <a href="#lybid-k2rtd-kit">«Либідь К-2РТД»</a> із ретранслятором DR3000 або
+                  SLR5500
+                </td>
+                <td>1 комплект</td>
+              </tr>
+              <tr>
+                <td>Автомобільна радіостанція <a href="#mobile-specifications">DM4600</a></td>
+                <td>2 комплекти</td>
+              </tr>
+              <tr>
+                <td>Портативна радіостанція <a href="#portable-specifications">DP4800</a></td>
+                <td>10 комплектів</td>
+              </tr>
+              <tr>
+                <td>Портативна радіостанція <a href="#portable-specifications">DP4400</a></td>
+                <td>40 комплектів</td>
+              </tr>
+              <tr>
+                <td>Флеш-накопичувач із програмним забезпеченням</td>
+                <td>2 шт.</td>
+              </tr>
+              <tr>
+                <td>Нетбук для програмування з ліцензійною операційною системою Windows</td>
+                <td>1 комплект</td>
+              </tr>
+              <tr>
+                <td>Кабелі для програмування</td>
+                <td>3 шт. — по одному на кожен вид</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <section class="section" id="lybid-k2rtd-kit">
+        <h2>Склад комплекту «Либідь К-2РТД»</h2>
+        <div
+          class="mototrbo-table"
+          tabindex="0"
+          role="region"
+          aria-label="Таблиця з горизонтальним прокручуванням"
+        >
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Складник</th>
+                <th scope="col">Кількість / характеристика</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>SLR5500 або DR3000</td>
+                <td>1 комплект</td>
+              </tr>
+              <tr>
+                <td>Дуплексер</td>
+                <td>3 шт.; додатково ще 3 шт. — за наведеним переліком комплектації*</td>
+              </tr>
+              <tr>
+                <td>Радіочастотні фідери, 50 Ом</td>
+                <td>2 шт. по 30 (40) м</td>
+              </tr>
+              <tr>
+                <td>Штирова антена</td>
+                <td>1 комплект</td>
+              </tr>
+              <tr>
+                <td>Антена спрямованої дії</td>
+                <td>2 комплекти</td>
+              </tr>
+              <tr>
+                <td>Узгоджувальний трансформатор (сплітер)</td>
+                <td>1 комплект</td>
+              </tr>
+              <tr>
+                <td>ІПН 24-12/20А</td>
+                <td>1 шт.</td>
+              </tr>
+              <tr>
+                <td>Кабель до акумулятора</td>
+                <td>1 шт.</td>
+              </tr>
+              <tr>
+                <td>Акумулятор</td>
+                <td>12 В, 20 А·год</td>
+              </tr>
+              <tr>
+                <td>Пристрої грозозахисту</td>
+                <td>2 шт.</td>
+              </tr>
+              <tr>
+                <td>Програматор</td>
+                <td>1 шт.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-note">
+          * Кількість дуплексерів відтворено з переліку. Схему їх застосування та розподіл між
+          основним і додатковим оснащенням матеріал не пояснює.
+        </p>
+      </section>
+      <section class="section" id="directional-antenna">
+        <h2>Антена направлена — директорна (АНД)</h2>
+        <p>
+          <strong>АНД</strong> призначена для радіозв’язку з віддаленим кореспондентом, координати
+          якого відомі. Ширина діаграми спрямованості за азимутом —
+          <strong>не більш як 60°</strong>.
+        </p>
+        <figure class="topic-figure">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Директорна антена, встановлена на щоглі."
+          >
+            <img
+              src="directional-antenna.jpeg"
+              alt="Директорна антена, встановлена на щоглі."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Директорна антена, встановлена на щоглі.</figcaption>
+        </figure>
+        <h3 id="directional-antenna-parts">Елементи антени</h3>
+        <p>
+          На схемі показано антену в зібраному вигляді. Виноски позначають траверсу, кріплення до
+          щогли, рефлектор, вібратор та директор. Окремо підписано кабель вібратора.
+        </p>
+        <figure class="topic-figure">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Схема зібраної АНД із підписами елементів."
+          >
+            <img
+              src="directional-antenna-parts.svg"
+              alt="Схема зібраної АНД: зліва направо на траверсі розміщені рефлектор, петлеподібний вібратор та директор. Кріплення до щогли — ліворуч на траверсі."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>
+            Зібрана директорна антена з виносками до кожного елемента. Схема без масштабу.
+          </figcaption>
+        </figure>
+      </section>
+      <section class="section" id="duplexer">
+        <h2>Дуплексер</h2>
+        <p>
+          <strong>Дуплексер</strong> — частотно-розподільчий фільтр, який дозволяє використовувати
+          <strong>одну антену для приймання та передавання</strong>.
+        </p>
+        <p>У навчальному матеріалі наведено назву <strong>Motorola HFD8189</strong>.</p>
+        <figure class="topic-figure">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Дуплексер із роз’ємами LO, ANT і HI."
+          >
+            <img src="duplexer.png" alt="Дуплексер із роз’ємами LO, ANT і HI." loading="lazy" />
+          </button>
+          <figcaption>Дуплексер із роз’ємами LO, ANT і HI.</figcaption>
+        </figure>
+        <p class="table-note">
+          На етикетці наведеного фото читається <strong>HFD8190A</strong>, що відрізняється від
+          назви HFD8189 у тексті матеріалу. Фото збережено без зміни маркування.
+        </p>
+        <p>
+          Варіант з окремими антенами для приймання та передавання показано в
+          <a href="#mast-without-duplexer">схемі роботи без дуплексера</a>.
+        </p>
+      </section>
+      <section class="section" id="antenna-splitter">
+        <h2>Антенний розподільник (сплітер)</h2>
+        <p>
+          <strong>Сплітер</strong> призначений для підключення кількох приймально-передавальних
+          антен до одного ретранслятора зі збереженням фазових співвідношень сигналу й узгодженого
+          опору.
+        </p>
+        <p>
+          Його застосовують для збільшення дальності зв’язку в окремому секторі. У матеріалі
+          наведено комбінацію
+          <strong
+            >однієї секторної антени та другої антени з круговою діаграмою спрямованості</strong
+          >.
+        </p>
+        <figure class="topic-figure">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Антенний розподільник — сплітер."
+          >
+            <img
+              src="antenna-splitter.jpeg"
+              alt="Антенний розподільник — сплітер."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Антенний розподільник — сплітер.</figcaption>
+        </figure>
+        <p>
+          Окремий приклад розміщення двох спрямованих антен через сплітер наведено в
+          <a href="#mast-with-splitter">схемі на одній щоглі</a>.
+        </p>
+      </section>
+      <section class="section" id="antenna-masts">
+        <h2>Розміщення антенно-щоглових пристроїв</h2>
+        <h3 id="mast-with-splitter">Робота через сплітер</h3>
+        <p>
+          У наведеній схемі дві спрямовані антени розміщено на одній щоглі та під’єднано через
+          сплітер. Верхня спрямована на віддаленого кореспондента, нижня — на ближнього.
+          Вертикальний рознос антен на схемі становить <strong>1,5–2,0 м</strong>.
+        </p>
+        <figure class="topic-figure">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Розміщення антен на одній щоглі під час роботи через сплітер."
+          >
+            <img
+              src="mast-with-splitter.png"
+              alt="Розміщення антен на одній щоглі під час роботи через сплітер."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Розміщення антен на одній щоглі під час роботи через сплітер.</figcaption>
+        </figure>
+        <h3 id="mast-without-duplexer">Робота без дуплексера</h3>
+        <p>
+          Приймальна й передавальна антени встановлені на окремих щоглах і підключені до відповідних
+          роз’ємів ретранслятора: <strong>Rx</strong> — приймання, <strong>Tx</strong> —
+          передавання.
+        </p>
+        <ul>
+          <li>Відстань між щоглами на схемі — <strong>30–40 м</strong>.</li>
+          <li>Приймальна антена розташована вище за передавальну.</li>
+          <li>
+            Позначені варіанти вертикального розносу — <strong>1,8 м, 3,6 м або 5,4 м</strong>.
+          </li>
+        </ul>
+        <figure class="topic-figure">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Окремі приймальна та передавальна антени під час роботи без дуплексера."
+          >
+            <img
+              src="mast-without-duplexer.png"
+              alt="Окремі приймальна та передавальна антени під час роботи без дуплексера."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>
+            Окремі приймальна та передавальна антени під час роботи без дуплексера.
+          </figcaption>
+        </figure>
+      </section>
+      <section class="section" id="reliable-operation">
+        <h2>Умови надійної роботи</h2>
+        <p>Для надійної та тривалої роботи комплексу необхідно:</p>
+        <ul>
+          <li><strong>Забезпечувати стабільність напруг живлення.</strong></li>
+          <li>
+            <strong>Дотримуватися порядку комутації</strong> пристроїв, які входять до складу
+            радіостанції.
+          </li>
+        </ul>
+        <div class="note note-important">
+          <p>
+            <strong
+              >Не допускається підключати зовнішні пристрої до радіостанції під час її
+              роботи.</strong
+            >
+          </p>
+          <p><strong>Заборонено використовувати радіостанцію без підключеної антени.</strong></p>
+        </div>
+      </section>
+      <section class="section" id="range">
+        <h2>Орієнтовна дальність зі штатними антенами</h2>
+        <div
+          class="mototrbo-table"
+          tabindex="0"
+          role="region"
+          aria-label="Таблиця з горизонтальним прокручуванням"
+        >
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Пара радіозасобів</th>
+                <th scope="col">Дальність</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Автомобільна радіостанція ↔ ретранслятор</td>
+                <td>40 км</td>
+              </tr>
+              <tr>
+                <td>Автомобільна ↔ автомобільна</td>
+                <td>20 км</td>
+              </tr>
+              <tr>
+                <td>Автомобільна ↔ портативна</td>
+                <td>10 км</td>
+              </tr>
+              <tr>
+                <td>Портативна ↔ ретранслятор</td>
+                <td>15 км</td>
+              </tr>
+              <tr>
+                <td>Портативна ↔ портативна</td>
+                <td>7 км</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          <strong>Умови цих оцінок:</strong> середньопересічена місцевість, максимально допустима
+          висота антен і максимальна потужність передавачів. Це орієнтири для зазначених умов, а не
+          гарантовані відстані в будь-якому місці.
+        </p>
+      </section>
+      <div class="topic-quiz-cta">
+        <div>
+          <strong>Перевір себе</strong><span>Перевір знання за матеріалами цієї теми.</span>
+        </div>
+        <a class="topic-quiz-button" href="../quiz.html?topic=10"
+          >Почати вікторину <span aria-hidden="true">→</span></a
+        >
+      </div>
+    </main>
+    <script src="../asset-version.js?v=0b5515a61641"></script>
+    <script src="../search-index.js?v=0b5515a61641"></script>
+    <script src="../topic-search.js?v=0b5515a61641"></script>
+    <script>
+      window.GLOSSARY_ROOT = "../";
+    </script>
+    <script src="../glossary-data.js?v=0b5515a61641"></script>
+    <script src="../glossary-terms.js?v=0b5515a61641"></script>
+    <script src="../site-ui.js?v=0b5515a61641"></script>
+  </body>
+</html>

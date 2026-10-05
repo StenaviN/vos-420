@@ -14,6 +14,7 @@
 *.m2ts
 
 # Local tooling and incomplete downloads
+node_modules/
 .codex-remote-attachments/
 .codex-docx-render/
 .playwright-cli/

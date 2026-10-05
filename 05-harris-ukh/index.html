@@ -1,529 +1,991 @@
 <!doctype html>
 <html lang="uk">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>5. ТТХ HARRIS УКХ RF-7850M-HH / RF-7800V-HH</title>
-  <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="../style.css?v=cac2c39847d8">
-</head>
-<body>
-  <main class="page">
-    <div class="topbar">
-      <a href="../index.html">До змісту</a>
-      <a href="../glossary.html">Глосарій</a>
-    </div>
-
-    <header class="hero">
-      <h1>5. ТТХ HARRIS УКХ RF-7850M-HH / RF-7800V-HH</h1>
-      <p>Тема присвячена призначенню, тактико-технічним характеристикам, режимам роботи й базовим діям із портативною УКХ радіостанцією HARRIS у телефонному режимі та режимі передачі даних. Посібник виробника додатково уточнює безпеку, щоденну експлуатацію та обслуговування саме RF-7850M-HH.</p>
-    </header>
-
-    <div class="topic-quiz-cta"><div><strong>Перевір себе</strong><span>Перевір знання за матеріалами цієї теми.</span></div><a class="topic-quiz-button" href="../quiz.html?topic=5">Почати вікторину <span aria-hidden="true">→</span></a></div>
-
-    <nav class="section topic-toc" aria-label="Зміст конспекту">
-      <h2>Зміст</h2>
-      <ul>
-        <li><a href="#pryznachennia">Призначення і можливості</a></li>
-        <li><a href="#moduliatsii">Модуляції та сигнали</a></li>
-        <li><a href="#vokodery">Вокодери</a></li>
-        <li><a href="#rezhymy">Режими роботи</a></li>
-        <li><a href="#modeli">Порівняння RF-7850M-HH і RF-7800V-HH</a></li>
-        <li><a href="#chyslovi-kharakterystyky">Числові характеристики</a></li>
-        <li><a href="#potuzhnist">Потужність передавача</a></li>
-        <li><a href="#bezpeka">Безпека експлуатації</a></li>
-        <li><a href="#pidhotovka">Комплект і підготовка до роботи</a></li>
-        <li><a href="#orhany-keruvannia">Органи керування</a></li>
-        <li><a href="#praktychni-funktsii">Практичні функції</a></li>
-        <li><a href="#dostup-ta-obsluhovuvannia">Доступ, самотестування та обслуговування</a></li>
-      </ul>
-    </nav>
-
-    <section id="pryznachennia" class="section">
-      <h2>Призначення і можливості</h2>
-      <p>Портативна радіостанція RF-7850M-HH / RF-7800V-HH забезпечує радіозв'язок в УКХ діапазоні для тактичної ланки управління. Вона підтримує голос і дані, відкриту та захищену роботу, аналогові й цифрові сигнали, фіксовані частоти та режими псевдовипадкового перестроювання робочої частоти.</p>
-      <p>Вбудований GPS використовується для визначення позиції та синхронізації режимів QL3, QLW і TNW.</p>
-      <p>До сімейства також належать возимі варіанти RF-7850M-V501 / V511 і RF-7800V-V501 / V511. У радіостанцію можна запрограмувати 25 мереж, з яких 13 доступні безпосередньо перемикачем.</p>
-      <p><strong>MACA2</strong> запобігає колізіям під час багатостанційного обміну даними: перед передаванням пакета станція запитує готовність адресата, отримує підтвердження, а інші станції тимчасово звільняють канал. Голос і дані можуть використовувати один канал, але надто довге утримання <kbd class="key-button">PTT</kbd> може спричинити втрату даних.</p>
-      <p><strong>Варіанти MACA:</strong> Classic використовують із версіями прошивки нижче 4.7, Advanced - із версією 4.7 і вище.</p>
-
-      <div class="model-gallery" aria-label="Моделі портативних УКХ радіостанцій HARRIS">
-        <figure class="topic-figure">
-          <img src="rf-7850m-hh.png" alt="Портативна радіостанція HARRIS RF-7850M-HH у роботі">
-          <figcaption><strong>RF-7850M-HH</strong> - широкодіапазонна портативна радіостанція 30-512 МГц.</figcaption>
-        </figure>
-        <figure class="topic-figure">
-          <img src="rf-7800v-hh.png" alt="Портативна УКХ радіостанція HARRIS RF-7800V-HH">
-          <figcaption><strong>RF-7800V-HH</strong> - портативна УКХ радіостанція 30-108 МГц.</figcaption>
-        </figure>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>5. ТТХ HARRIS УКХ RF-7850M-HH / RF-7800V-HH</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="../style.css?v=0b5515a61641" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a href="../index.html">До змісту</a>
+        <a href="../glossary.html">Глосарій</a>
       </div>
-      <div>
-        <span class="tag">УКХ</span>
-        <span class="tag">голос</span>
-        <span class="tag">дані</span>
-        <span class="tag">ППРЧ</span>
-        <span class="tag">GPS</span>
-        <span class="tag">AES / CITADEL</span>
+
+      <header class="hero">
+        <h1>5. ТТХ HARRIS УКХ RF-7850M-HH / RF-7800V-HH</h1>
+        <p>
+          Тема присвячена призначенню, тактико-технічним характеристикам, режимам роботи й базовим
+          діям із портативною УКХ радіостанцією HARRIS у телефонному режимі та режимі передачі
+          даних. Посібник виробника додатково уточнює безпеку, щоденну експлуатацію та
+          обслуговування саме RF-7850M-HH.
+        </p>
+      </header>
+
+      <div class="topic-quiz-cta">
+        <div>
+          <strong>Перевір себе</strong><span>Перевір знання за матеріалами цієї теми.</span>
+        </div>
+        <a class="topic-quiz-button" href="../quiz.html?topic=5"
+          >Почати вікторину <span aria-hidden="true">→</span></a
+        >
       </div>
-    </section>
 
-    <section id="moduliatsii" class="section">
-      <h2>Модуляції та сигнали</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Позначення</th>
-            <th>Тип роботи</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>AM</td>
-            <td>Аналогові сигнали; для RF-7850M-HH від 108,025 до 512 МГц</td>
-          </tr>
-          <tr>
-            <td>FM</td>
-            <td>Аналогові сигнали</td>
-          </tr>
-          <tr>
-            <td>ASK</td>
-            <td>Цифрові сигнали; для RF-7850M-HH від 108,025 до 512 МГц</td>
-          </tr>
-          <tr>
-            <td>FSK</td>
-            <td>Цифрові сигнали</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
+      <nav class="section topic-toc" aria-label="Зміст конспекту">
+        <h2>Зміст</h2>
+        <ul>
+          <li><a href="#pryznachennia">Призначення і можливості</a></li>
+          <li><a href="#moduliatsii">Модуляції та сигнали</a></li>
+          <li><a href="#vokodery">Вокодери</a></li>
+          <li><a href="#rezhymy">Режими роботи</a></li>
+          <li><a href="#modeli">Порівняння RF-7850M-HH і RF-7800V-HH</a></li>
+          <li><a href="#chyslovi-kharakterystyky">Числові характеристики</a></li>
+          <li><a href="#potuzhnist">Потужність передавача</a></li>
+          <li><a href="#bezpeka">Безпека експлуатації</a></li>
+          <li><a href="#pidhotovka">Комплект і підготовка до роботи</a></li>
+          <li><a href="#orhany-keruvannia">Органи керування</a></li>
+          <li><a href="#praktychni-funktsii">Практичні функції</a></li>
+          <li><a href="#dostup-ta-obsluhovuvannia">Доступ, самотестування та обслуговування</a></li>
+        </ul>
+      </nav>
 
-    <section id="vokodery" class="section">
-      <h2>Вокодери</h2>
-      <p><strong>Вокодер</strong> перетворює голос на цифровий потік і назад. У навчальному матеріалі для обох моделей наведено два типи:</p>
-      <dl class="term-list">
-        <div><dt>MELP</dt><dd>Цифрова телефонія зі швидкістю 2400 біт/с.</dd></div>
-        <div><dt>CVSD</dt><dd>Цифрова телефонія зі швидкістю 16000 біт/с.</dd></div>
-      </dl>
-    </section>
+      <section id="pryznachennia" class="section">
+        <h2>Призначення і можливості</h2>
+        <p>
+          Портативна радіостанція RF-7850M-HH / RF-7800V-HH забезпечує радіозв'язок в УКХ діапазоні
+          для тактичної ланки управління. Вона підтримує голос і дані, відкриту та захищену роботу,
+          аналогові й цифрові сигнали, фіксовані частоти та режими псевдовипадкового перестроювання
+          робочої частоти.
+        </p>
+        <p>
+          Вбудований GPS використовується для визначення позиції та синхронізації режимів QL3, QLW і
+          TNW.
+        </p>
+        <p>
+          До сімейства також належать возимі варіанти RF-7850M-V501 / V511 і RF-7800V-V501 / V511. У
+          радіостанцію можна запрограмувати 25 мереж, з яких 13 доступні безпосередньо перемикачем.
+        </p>
+        <p>
+          <strong>MACA2</strong> запобігає колізіям під час багатостанційного обміну даними: перед
+          передаванням пакета станція запитує готовність адресата, отримує підтвердження, а інші
+          станції тимчасово звільняють канал. Голос і дані можуть використовувати один канал, але
+          надто довге утримання <kbd class="key-button">PTT</kbd> може спричинити втрату даних.
+        </p>
+        <p>
+          <strong>Варіанти MACA:</strong> Classic використовують із версіями прошивки нижче 4.7,
+          Advanced - із версією 4.7 і вище.
+        </p>
 
-    <section id="rezhymy" class="section">
-      <h2>Режими роботи</h2>
-<div class="note"><strong>Синхронізація за часом:</strong> для режимів QL3, QLW, TNW та ANW2C потрібен узгоджений час радіостанцій. Самоорганізація мережі ANW2C не скасовує цієї вимоги. У <a href="https://www.radiomanual.info/schemi/Surplus_NATO/AN-PRC-117G_Harris_user_2014.pdf" target="_blank" rel="noopener">довіднику Harris AN/PRC-117G, розділ ANW2/ANW2C Waveforms</a> вимогу синхронізації пояснено роботою TRANSEC. Це підтвердження принципу роботи ANW2/ANW2C на іншій моделі; числовий допуск часу для RF-7850M-HH тут не встановлюється.</div>
-      <div class="note"><strong>Перелік для тесту:</strong> RF-7850M-HH підтримує FIX, QL1A, QL2, QL3, QLW, TNW, ANW2C і STC. У презентації CWR розглядається окремо як ретрансляторна мережева можливість, тому до цього переліку режимів у тестовому питанні її не додають.</div>
-      <h3 id="rezhymy-porivnyannya-dostupnykh-merezh" data-legacy-anchor="rezhymy-порівняння-доступних-мереж">Порівняння доступних мереж</h3>
-      <div class="network-comparison-wrap">
-      <table class="network-comparison">
-        <thead>
-          <tr>
-            <th>Режим</th>
-            <th>Доступ / трафік</th>
-            <th>Канал</th>
-            <th>Швидкість даних</th>
-            <th>Частоти</th>
-            <th>Крок сітки</th>
-            <th>Синхронізація та особливості</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td data-label="Режим"><strong>FIX</strong></td>
-            <td data-label="Доступ / трафік">MACA; голос і дані</td>
-            <td data-label="Канал">25 / 75 кГц</td>
-            <td data-label="Швидкість">64 / 192 кбіт/с</td>
-            <td data-label="Частоти">RF-7850M: 30-512 МГц<br>RF-7800V: 30-108 МГц</td>
-            <td data-label="Крок сітки">1 Гц через CPA<br>10 Гц вручну</td>
-            <td data-label="Особливості">Dual PTT у двох FIX-мережах, коли MACA вимкнено</td>
-          </tr>
-          <tr>
-            <td data-label="Режим"><strong>QL1A</strong></td>
-            <td data-label="Доступ / трафік">MACA; голос і дані</td>
-            <td data-label="Канал">25 кГц</td>
-            <td data-label="Швидкість">16 кбіт/с</td>
-            <td data-label="Частоти">RF-7850M: 30-511,975 МГц<br>RF-7800V: 30-107,075 МГц</td>
-            <td data-label="Крок сітки">25 кГц</td>
-            <td data-label="Особливості">ППРЧ понад 100 разів/с; сумісність зі старішими Harris</td>
-          </tr>
-          <tr>
-            <td data-label="Режим"><strong>QL2</strong></td>
-            <td data-label="Доступ / трафік">Тільки голос</td>
-            <td data-label="Канал">-</td>
-            <td data-label="Швидкість">-</td>
-            <td data-label="Частоти">RF-7850M: 30-511,975 МГц<br>RF-7800V: 30-107,075 МГц</td>
-            <td data-label="Крок сітки">25 кГц</td>
-            <td data-label="Особливості">ППРЧ понад 300 разів/с</td>
-          </tr>
-          <tr>
-            <td data-label="Режим"><strong>QL3</strong></td>
-            <td data-label="Доступ / трафік">Тільки голос</td>
-            <td data-label="Канал">-</td>
-            <td data-label="Швидкість">-</td>
-            <td data-label="Частоти">RF-7850M: 30-511,975 МГц<br>RF-7800V: 30-107,075 МГц</td>
-            <td data-label="Крок сітки">25 кГц</td>
-            <td data-label="Особливості">TOD +/- 1 хв або GPS; SLOW / MED / FAST, FCS та AUTO</td>
-          </tr>
-          <tr>
-            <td data-label="Режим"><strong>QLW</strong></td>
-            <td data-label="Доступ / трафік">MACA2; голос і дані</td>
-            <td data-label="Канал">75 кГц</td>
-            <td data-label="Швидкість">64 кбіт/с</td>
-            <td data-label="Частоти">RF-7850M: 30-511,975 МГц<br>RF-7800V: 30-107,075 МГц</td>
-            <td data-label="Крок сітки">25 кГц</td>
-            <td data-label="Особливості">TOD +/- 1 хв або GPS; ППРЧ понад 100 разів/с</td>
-          </tr>
-          <tr>
-            <td data-label="Режим"><strong>TNW</strong></td>
-            <td data-label="Доступ / трафік">TDMA; голос+дані, дані або VR-TNW</td>
-            <td data-label="Канал">25 / 75 кГц</td>
-            <td data-label="Швидкість">2,4 кбіт/с GPS<br>14 кбіт/с IP</td>
-            <td data-label="Частоти">RF-7850M: 30-511,975 МГц<br>RF-7800V: 30-107,075 МГц</td>
-            <td data-label="Крок сітки">25 кГц</td>
-            <td data-label="Особливості">TOD +/- 1,5 хв або GPS; автоматичний Time Master; репітер Black / Red</td>
-          </tr>
-          <tr>
-            <td data-label="Режим"><strong>ANW2C</strong></td>
-            <td data-label="Доступ / трафік">ANW2 / TDMA; голос і дані</td>
-            <td data-label="Канал">1,2 МГц</td>
-            <td data-label="Швидкість">3-1372 кбіт/с</td>
-            <td data-label="Частоти">225,6-512 МГц</td>
-            <td data-label="Крок сітки">5 кГц</td>
-            <td data-label="Особливості">Самоорганізована адаптивна мережа; до 30 радіостанцій у локальній мережі; потрібна синхронізація за часом</td>
-          </tr>
-          <tr>
-            <td data-label="Режим"><strong>STC</strong></td>
-            <td data-label="Доступ / трафік">Супутниковий TDMA</td>
-            <td data-label="Канал">25 або 5 кГц</td>
-            <td data-label="Швидкість">Залежить від конфігурації</td>
-            <td data-label="Частоти">Rx 243-270 МГц<br>Tx 291-318,3 МГц</td>
-            <td data-label="Крок сітки">-</td>
-            <td data-label="Особливості">Фіксовані частоти; військовий супутник виконує роль ретранслятора</td>
-          </tr>
-          <tr>
-            <td data-label="Режим"><strong>CWR</strong></td>
-            <td data-label="Доступ / трафік">FIX + MACA2; PTT та IP-дані</td>
-            <td data-label="Канал">За базовою FIX-мережею</td>
-            <td data-label="Швидкість">За базовою FIX-мережею</td>
-            <td data-label="Частоти">За конфігурацією мережі</td>
-            <td data-label="Крок сітки">За базовою FIX-мережею</td>
-            <td data-label="Особливості">Ретрансляторні вузли з IP-магістраллю; автоматична реєстрація абонентської радіостанції на доступному вузлі під час руху</td>
-          </tr>
-        </tbody>
-      </table>
-      <p class="table-note"><strong>Ретранслятор TNW:</strong> доступні режими <strong>Black</strong> і <strong>Red</strong>. У Black радіостанція може перебувати в неконтрольованому місці, а ключові дані видалені. У Red станцію контролює користувач.</p>
+        <div class="model-gallery" aria-label="Моделі портативних УКХ радіостанцій HARRIS">
+          <figure class="topic-figure">
+            <img src="rf-7850m-hh.png" alt="Портативна радіостанція HARRIS RF-7850M-HH у роботі" />
+            <figcaption>
+              <strong>RF-7850M-HH</strong> - широкодіапазонна портативна радіостанція 30-512 МГц.
+            </figcaption>
+          </figure>
+          <figure class="topic-figure">
+            <img src="rf-7800v-hh.png" alt="Портативна УКХ радіостанція HARRIS RF-7800V-HH" />
+            <figcaption>
+              <strong>RF-7800V-HH</strong> - портативна УКХ радіостанція 30-108 МГц.
+            </figcaption>
+          </figure>
+        </div>
+        <div>
+          <span class="tag">УКХ</span>
+          <span class="tag">голос</span>
+          <span class="tag">дані</span>
+          <span class="tag">ППРЧ</span>
+          <span class="tag">GPS</span>
+          <span class="tag">AES / CITADEL</span>
+        </div>
+      </section>
+
+      <section id="moduliatsii" class="section">
+        <h2>Модуляції та сигнали</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Позначення</th>
+              <th>Тип роботи</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>AM</td>
+              <td>Аналогові сигнали; для RF-7850M-HH від 108,025 до 512 МГц</td>
+            </tr>
+            <tr>
+              <td>FM</td>
+              <td>Аналогові сигнали</td>
+            </tr>
+            <tr>
+              <td>ASK</td>
+              <td>Цифрові сигнали; для RF-7850M-HH від 108,025 до 512 МГц</td>
+            </tr>
+            <tr>
+              <td>FSK</td>
+              <td>Цифрові сигнали</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="vokodery" class="section">
+        <h2>Вокодери</h2>
+        <p>
+          <strong>Вокодер</strong> перетворює голос на цифровий потік і назад. У навчальному
+          матеріалі для обох моделей наведено два типи:
+        </p>
+        <dl class="term-list">
+          <div>
+            <dt>MELP</dt>
+            <dd>Цифрова телефонія зі швидкістю 2400 біт/с.</dd>
+          </div>
+          <div>
+            <dt>CVSD</dt>
+            <dd>Цифрова телефонія зі швидкістю 16000 біт/с.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section id="rezhymy" class="section">
+        <h2>Режими роботи</h2>
+        <div class="note">
+          <strong>Синхронізація за часом:</strong> для режимів QL3, QLW, TNW та ANW2C потрібен
+          узгоджений час радіостанцій. Самоорганізація мережі ANW2C не скасовує цієї вимоги. У
+          <a
+            href="https://www.radiomanual.info/schemi/Surplus_NATO/AN-PRC-117G_Harris_user_2014.pdf"
+            target="_blank"
+            rel="noopener"
+            >довіднику Harris AN/PRC-117G, розділ ANW2/ANW2C Waveforms</a
+          >
+          вимогу синхронізації пояснено роботою TRANSEC. Це підтвердження принципу роботи ANW2/ANW2C
+          на іншій моделі; числовий допуск часу для RF-7850M-HH тут не встановлюється.
+        </div>
+        <div class="note">
+          <strong>Перелік для тесту:</strong> RF-7850M-HH підтримує FIX, QL1A, QL2, QL3, QLW, TNW,
+          ANW2C і STC. У презентації CWR розглядається окремо як ретрансляторна мережева можливість,
+          тому до цього переліку режимів у тестовому питанні її не додають.
+        </div>
+        <h3
+          id="rezhymy-porivnyannya-dostupnykh-merezh"
+          data-legacy-anchor="rezhymy-порівняння-доступних-мереж"
+        >
+          Порівняння доступних мереж
+        </h3>
+        <div class="network-comparison-wrap">
+          <table class="network-comparison">
+            <thead>
+              <tr>
+                <th>Режим</th>
+                <th>Доступ / трафік</th>
+                <th>Канал</th>
+                <th>Швидкість даних</th>
+                <th>Частоти</th>
+                <th>Крок сітки</th>
+                <th>Синхронізація та особливості</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="Режим"><strong>FIX</strong></td>
+                <td data-label="Доступ / трафік">MACA; голос і дані</td>
+                <td data-label="Канал">25 / 75 кГц</td>
+                <td data-label="Швидкість">64 / 192 кбіт/с</td>
+                <td data-label="Частоти">RF-7850M: 30-512 МГц<br />RF-7800V: 30-108 МГц</td>
+                <td data-label="Крок сітки">1 Гц через CPA<br />10 Гц вручну</td>
+                <td data-label="Особливості">Dual PTT у двох FIX-мережах, коли MACA вимкнено</td>
+              </tr>
+              <tr>
+                <td data-label="Режим"><strong>QL1A</strong></td>
+                <td data-label="Доступ / трафік">MACA; голос і дані</td>
+                <td data-label="Канал">25 кГц</td>
+                <td data-label="Швидкість">16 кбіт/с</td>
+                <td data-label="Частоти">RF-7850M: 30-511,975 МГц<br />RF-7800V: 30-107,075 МГц</td>
+                <td data-label="Крок сітки">25 кГц</td>
+                <td data-label="Особливості">
+                  ППРЧ понад 100 разів/с; сумісність зі старішими Harris
+                </td>
+              </tr>
+              <tr>
+                <td data-label="Режим"><strong>QL2</strong></td>
+                <td data-label="Доступ / трафік">Тільки голос</td>
+                <td data-label="Канал">-</td>
+                <td data-label="Швидкість">-</td>
+                <td data-label="Частоти">RF-7850M: 30-511,975 МГц<br />RF-7800V: 30-107,075 МГц</td>
+                <td data-label="Крок сітки">25 кГц</td>
+                <td data-label="Особливості">ППРЧ понад 300 разів/с</td>
+              </tr>
+              <tr>
+                <td data-label="Режим"><strong>QL3</strong></td>
+                <td data-label="Доступ / трафік">Тільки голос</td>
+                <td data-label="Канал">-</td>
+                <td data-label="Швидкість">-</td>
+                <td data-label="Частоти">RF-7850M: 30-511,975 МГц<br />RF-7800V: 30-107,075 МГц</td>
+                <td data-label="Крок сітки">25 кГц</td>
+                <td data-label="Особливості">
+                  TOD +/- 1 хв або GPS; SLOW / MED / FAST, FCS та AUTO
+                </td>
+              </tr>
+              <tr>
+                <td data-label="Режим"><strong>QLW</strong></td>
+                <td data-label="Доступ / трафік">MACA2; голос і дані</td>
+                <td data-label="Канал">75 кГц</td>
+                <td data-label="Швидкість">64 кбіт/с</td>
+                <td data-label="Частоти">RF-7850M: 30-511,975 МГц<br />RF-7800V: 30-107,075 МГц</td>
+                <td data-label="Крок сітки">25 кГц</td>
+                <td data-label="Особливості">TOD +/- 1 хв або GPS; ППРЧ понад 100 разів/с</td>
+              </tr>
+              <tr>
+                <td data-label="Режим"><strong>TNW</strong></td>
+                <td data-label="Доступ / трафік">TDMA; голос+дані, дані або VR-TNW</td>
+                <td data-label="Канал">25 / 75 кГц</td>
+                <td data-label="Швидкість">2,4 кбіт/с GPS<br />14 кбіт/с IP</td>
+                <td data-label="Частоти">RF-7850M: 30-511,975 МГц<br />RF-7800V: 30-107,075 МГц</td>
+                <td data-label="Крок сітки">25 кГц</td>
+                <td data-label="Особливості">
+                  TOD +/- 1,5 хв або GPS; автоматичний Time Master; репітер Black / Red
+                </td>
+              </tr>
+              <tr>
+                <td data-label="Режим"><strong>ANW2C</strong></td>
+                <td data-label="Доступ / трафік">ANW2 / TDMA; голос і дані</td>
+                <td data-label="Канал">1,2 МГц</td>
+                <td data-label="Швидкість">3-1372 кбіт/с</td>
+                <td data-label="Частоти">225,6-512 МГц</td>
+                <td data-label="Крок сітки">5 кГц</td>
+                <td data-label="Особливості">
+                  Самоорганізована адаптивна мережа; до 30 радіостанцій у локальній мережі; потрібна
+                  синхронізація за часом
+                </td>
+              </tr>
+              <tr>
+                <td data-label="Режим"><strong>STC</strong></td>
+                <td data-label="Доступ / трафік">Супутниковий TDMA</td>
+                <td data-label="Канал">25 або 5 кГц</td>
+                <td data-label="Швидкість">Залежить від конфігурації</td>
+                <td data-label="Частоти">Rx 243-270 МГц<br />Tx 291-318,3 МГц</td>
+                <td data-label="Крок сітки">-</td>
+                <td data-label="Особливості">
+                  Фіксовані частоти; військовий супутник виконує роль ретранслятора
+                </td>
+              </tr>
+              <tr>
+                <td data-label="Режим"><strong>CWR</strong></td>
+                <td data-label="Доступ / трафік">FIX + MACA2; PTT та IP-дані</td>
+                <td data-label="Канал">За базовою FIX-мережею</td>
+                <td data-label="Швидкість">За базовою FIX-мережею</td>
+                <td data-label="Частоти">За конфігурацією мережі</td>
+                <td data-label="Крок сітки">За базовою FIX-мережею</td>
+                <td data-label="Особливості">
+                  Ретрансляторні вузли з IP-магістраллю; автоматична реєстрація абонентської
+                  радіостанції на доступному вузлі під час руху
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="table-note">
+            <strong>Ретранслятор TNW:</strong> доступні режими <strong>Black</strong> і
+            <strong>Red</strong>. У Black радіостанція може перебувати в неконтрольованому місці, а
+            ключові дані видалені. У Red станцію контролює користувач.
+          </p>
+        </div>
+        <p class="table-note">
+          <strong>Термінологія CWR:</strong> <em>stage</em> - ретрансляторний вузол або точка
+          доступу до IP-магістралі, а <em>outstation</em> - абонентська радіостанція. Коли абонент
+          переходить у зону покриття іншого вузла, радіостанція автоматично реєструється на
+          доступному новому вузлі, зберігаючи доступ до мережі.
+        </p>
+      </section>
+
+      <section id="modeli" class="section">
+        <h2>Порівняння RF-7850M-HH і RF-7800V-HH</h2>
+        <p>
+          <strong>Головна відмінність:</strong> RF-7850M-HH працює до 512 МГц, тому підтримує
+          високочастотні можливості ANW2C, STC, AM і ASK. RF-7800V-HH обмежена діапазоном до 108
+          МГц. Базові мережі, вокодери та органи керування в них спільні.
+        </p>
+        <div class="comparison-key" aria-label="Позначення в таблиці">
+          <span class="key-shared">Спільне</span>
+          <span class="key-exclusive">Лише RF-7850M-HH</span>
+          <span class="key-missing">Недоступне</span>
+        </div>
+        <table class="responsive-table model-comparison">
+          <thead>
+            <tr>
+              <th>Можливість</th>
+              <th>RF-7850M-HH</th>
+              <th>RF-7800V-HH</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="key-difference">
+              <td data-label="Можливість">Робочий діапазон</td>
+              <td data-label="RF-7850M-HH">
+                <strong>30-512 МГц</strong
+                ><span class="availability exclusive">Ширший діапазон</span>
+              </td>
+              <td data-label="RF-7800V-HH"><strong>30-108 МГц</strong></td>
+            </tr>
+            <tr>
+              <td data-label="Можливість">Режими та мережі</td>
+              <td data-label="RF-7850M-HH">
+                FIX, QL1A, QL2, QL3, QLW, TNW, CWR<span class="availability exclusive"
+                  >Додатково: ANW2C, STC</span
+                >
+              </td>
+              <td data-label="RF-7800V-HH">
+                FIX, QL1A, QL2, QL3, QLW, TNW, CWR<span class="availability missing"
+                  >ANW2C і STC недоступні</span
+                >
+              </td>
+            </tr>
+            <tr>
+              <td data-label="Можливість">Модуляції</td>
+              <td data-label="RF-7850M-HH">
+                FM, FSK<span class="availability exclusive">AM і ASK: 108,025-512 МГц</span>
+              </td>
+              <td data-label="RF-7800V-HH">
+                FM, FSK<span class="availability missing">AM і ASK недоступні</span>
+              </td>
+            </tr>
+            <tr>
+              <td data-label="Можливість">Вокодери</td>
+              <td data-label="RF-7850M-HH">
+                MELP 2400 біт/с, CVSD 16000 біт/с<span class="availability shared">Однаково</span>
+              </td>
+              <td data-label="RF-7800V-HH">
+                MELP 2400 біт/с, CVSD 16000 біт/с<span class="availability shared">Однаково</span>
+              </td>
+            </tr>
+            <tr>
+              <td data-label="Можливість">QL і TNW</td>
+              <td data-label="RF-7850M-HH">30-511,975 МГц</td>
+              <td data-label="RF-7800V-HH">30-107,075 МГц</td>
+            </tr>
+            <tr>
+              <td data-label="Можливість">ANW2C</td>
+              <td data-label="RF-7850M-HH">
+                225,6-512 МГц; MANET, до 1372 кбіт/с<span class="availability exclusive"
+                  >Лише RF-7850M-HH</span
+                >
+              </td>
+              <td data-label="RF-7800V-HH">
+                <span class="availability missing">Недоступний</span>
+              </td>
+            </tr>
+            <tr>
+              <td data-label="Можливість">STC</td>
+              <td data-label="RF-7850M-HH">
+                Rx 243-270 МГц; Tx 291-318,3 МГц<span class="availability exclusive"
+                  >Лише RF-7850M-HH</span
+                >
+              </td>
+              <td data-label="RF-7800V-HH">
+                <span class="availability missing">Недоступний</span>
+              </td>
+            </tr>
+            <tr>
+              <td data-label="Можливість">Інші спільні можливості</td>
+              <td data-label="RF-7850M-HH">
+                25 мереж, 13 положень перемикача, GPS, CITADEL/AES, CWR
+              </td>
+              <td data-label="RF-7800V-HH">
+                25 мереж, 13 положень перемикача, GPS, CITADEL/AES, CWR
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="chyslovi-kharakterystyky" class="section">
+        <h2>Числові характеристики</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Параметр</th>
+              <th>Значення</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Робочий діапазон RF-7850M-HH</td>
+              <td>30-512 МГц</td>
+            </tr>
+            <tr>
+              <td>Кількість програмованих мереж</td>
+              <td>25</td>
+            </tr>
+            <tr>
+              <td>Вибір перемикачем</td>
+              <td>13 мереж</td>
+            </tr>
+            <tr>
+              <td>MELP</td>
+              <td>2400 біт/с</td>
+            </tr>
+            <tr>
+              <td>CVSD</td>
+              <td>16000 біт/с</td>
+            </tr>
+            <tr>
+              <td>Шифрування</td>
+              <td>CITADEL, AES 128/256 біт</td>
+            </tr>
+            <tr>
+              <td>Живлення</td>
+              <td>Li-ion батарея 10,8 В, 4,8 / 5,8 / 6,8 А/год</td>
+            </tr>
+            <tr>
+              <td>Середній час роботи АКБ</td>
+              <td>
+                Близько 18 год за циклу 10% TX / 10% RX / 80% очікування при +20 °C; при -20 °C
+                скорочується приблизно на 20-25%
+              </td>
+            </tr>
+            <tr>
+              <td>Температура без батареї</td>
+              <td>-30 °C до +60 °C</td>
+            </tr>
+            <tr>
+              <td>Температура з батареєю</td>
+              <td>-20 °C до +60 °C</td>
+            </tr>
+            <tr>
+              <td>Занурення у воду</td>
+              <td>До 5 м</td>
+            </tr>
+            <tr>
+              <td>Вологість</td>
+              <td>До 95%</td>
+            </tr>
+            <tr>
+              <td>Антенний порт</td>
+              <td>50 Ом, роз'єм TNC</td>
+            </tr>
+            <tr>
+              <td>Стабільність частоти</td>
+              <td>+/- 1 ppm</td>
+            </tr>
+            <tr>
+              <td>Вага без батареї</td>
+              <td>680 г</td>
+            </tr>
+            <tr>
+              <td>Вага з батареєю</td>
+              <td>
+                1,09 кг за Operation Manual Rev. L; у навчальній презентації вказано 910 г. На
+                екзамені орієнтуватися на формулювання викладача.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          <strong>Примітка щодо температури:</strong> таблиця специфікацій посібника для
+          радіостанції загалом наводить -30...+60 °C, а навчальна презентація окремо вказує для
+          комплекту з батареєю -20...+60 °C.
+        </p>
+      </section>
+
+      <section id="potuzhnist" class="section">
+        <h2>Потужність передавача</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Режим</th>
+              <th>Потужність</th>
+              <th>Примітка</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>LOW</td>
+              <td>1 Вт або 0,25 Вт</td>
+              <td>1 Вт у мережах з MACA2; 0,25 Вт у мережах без MACA2.</td>
+            </tr>
+            <tr>
+              <td>MEDIUM</td>
+              <td>2 Вт</td>
+              <td>Середня потужність.</td>
+            </tr>
+            <tr>
+              <td>HIGH</td>
+              <td>5 Вт</td>
+              <td>Висока потужність.</td>
+            </tr>
+            <tr>
+              <td>HIGH+</td>
+              <td>10 Вт</td>
+              <td>Надвисока потужність, короткочасне використання.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="bezpeka" class="section exam">
+        <h2>Безпека експлуатації</h2>
+        <ul>
+          <li>
+            Не торкатися антени під час передачі. Радіостанція може випромінювати і без натискання
+            <kbd class="key-button">PTT</kbd> під час передавання даних або IP-з'єднання.
+          </li>
+          <li>
+            Не розбирати, не стискати, не замикати, не змінювати полярність і не нагрівати Li-ion
+            АКБ понад 71 °C. Використовувати лише схвалені зарядні пристрої.
+          </li>
+          <li>
+            Пошкоджену батарею, особливо після контакту з водою, негайно вивести з експлуатації. Не
+            сушити АКБ нагріванням.
+          </li>
+          <li>
+            Тривала передача та недостатнє охолодження можуть сильно нагріти корпус. Дати
+            радіостанції охолонути; повідомлення про перегрів можуть автоматично знизити потужність
+            або заборонити передачу.
+          </li>
+          <li>
+            Перед використанням гарнітури встановити безпечний рівень гучності. Не працювати поблизу
+            пального, боєприпасів або ліній електропередач без дотримання встановлених безпечних
+            відстаней.
+          </li>
+          <li>
+            Li-ion АКБ тримати окремо від свинцево-кислотних батарей та інструментів, забруднених
+            кислотою.
+          </li>
+        </ul>
+      </section>
+
+      <section id="pidhotovka" class="section">
+        <h2>Комплект і підготовка до роботи</h2>
+        <h3 id="pidhotovka-komplekt" data-legacy-anchor="pidhotovka-комплект">Комплект</h3>
+        <ul>
+          <li>прийомопередавач;</li>
+          <li>інструкція;</li>
+          <li>АКБ;</li>
+          <li>програмне забезпечення;</li>
+          <li>GPS-антена;</li>
+          <li>коротка стрічкова антена 30 см або довга стрічкова антена 120 см;</li>
+          <li>виносна штирьова антена;</li>
+          <li>заглушка;</li>
+          <li>кабелі 0,3 м і 1,2 м за варіантом комплектації.</li>
+        </ul>
+
+        <h3 id="pidhotovka-zaryadnyy-prystriy" data-legacy-anchor="pidhotovka-зарядний-пристрій">
+          Зарядний пристрій
+        </h3>
+        <ul>
+          <li>розрахований на дві батареї;</li>
+          <li>оранжевий індикатор (постійне світіння) — батарея заряджається;</li>
+          <li>зелений індикатор (постійне світіння) — батарея заряджена;</li>
+          <li>червоний індикатор (постійне світіння) — проблема з АКБ.</li>
+        </ul>
+
+        <h3 id="pidhotovka-pidhotovka" data-legacy-anchor="pidhotovka-підготовка">Підготовка</h3>
+        <ol>
+          <li>Встановити органи керування у вихідне положення, перемикач - у положення OFF.</li>
+          <li>
+            Перевірити високочастотні роз'єми радіостанції та антени: без механічних пошкоджень,
+            стружки чи сміття.
+          </li>
+          <li>
+            При використанні внутрішнього GPS перевірити чистоту роз'ємів і прикрутити GPS-антену.
+          </li>
+          <li>
+            Під кутом встановити батарею до упору й зафіксувати її поворотом відносно трансивера.
+          </li>
+          <li>Підняти й повернути перемикач з OFF у потрібне положення 1-13.</li>
+          <li>
+            Переконатися, що немає індикації несправності, а індикатор АКБ показує достатній заряд.
+          </li>
+        </ol>
+
+        <h3
+          id="pidhotovka-pered-vykhodom-u-zv-yazok"
+          data-legacy-anchor="pidhotovka-перед-виходом-у-зв-язок"
+        >
+          Перед виходом у зв'язок
+        </h3>
+        <ul>
+          <li>
+            Радіостанція має бути заздалегідь запрограмована через CPA, передню панель або Web UI.
+          </li>
+          <li>
+            Перевірити тип мережі, назву мережі, PT / CT, рівень потужності, Rx / Tx частоти або
+            hopset, вокодер і швидкість.
+          </li>
+          <li>
+            У режимі CT мають бути завантажені відповідні ключі COMSEC; для QL3 і QLW також потрібні
+            ключ TRANSEC та Network ID.
+          </li>
+          <li>
+            Для економії АКБ передавати лише за потреби й застосовувати найнижчу потужність,
+            достатню для стійкого зв'язку.
+          </li>
+        </ul>
+
+        <h3 id="pidhotovka-zberihannya" data-legacy-anchor="pidhotovka-зберігання">Зберігання</h3>
+        <p>
+          Зберігати радіостанцію у захищеному місці. АКБ зберігати в чистому, сухому, вентильованому
+          приміщенні за температури нижче +21 °C.
+        </p>
+      </section>
+
+      <section id="orhany-keruvannia" class="section">
+        <h2>Органи керування</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Елемент</th>
+              <th>Що пам'ятати</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>PTT</td>
+              <td>Нижня та верхня кнопки PTT для передачі.</td>
+            </tr>
+            <tr>
+              <td>Регулятор гучності</td>
+              <td>Керує гучністю прийому.</td>
+            </tr>
+            <tr>
+              <td>Поворотний перемикач</td>
+              <td>Вибір запрограмованих мереж / положень.</td>
+            </tr>
+            <tr>
+              <td>Роз'єм антени GPS</td>
+              <td>Підключення GPS-антени.</td>
+            </tr>
+            <tr>
+              <td>Роз'єм для антени</td>
+              <td>Підключення основної антени.</td>
+            </tr>
+            <tr>
+              <td>6-контактний роз'єм і роз'єм додаткового обладнання</td>
+              <td>Підключення зовнішніх пристроїв.</td>
+            </tr>
+            <tr>
+              <td>Фіксатор батареї</td>
+              <td>Для заміни АКБ потягнути вгору.</td>
+            </tr>
+            <tr>
+              <td>Клавіатура і дисплей</td>
+              <td>Навігація, введення, програмування, індикація стану.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 id="orhany-keruvannia-klaviatura" data-legacy-anchor="orhany-keruvannia-клавіатура">
+          Клавіатура
+        </h3>
+        <ul>
+          <li>Екранні клавіші виконують функції згідно з підписами на дисплеї.</li>
+          <li>
+            <kbd class="key-button">7 APPS</kbd> - прикладне меню,
+            <kbd class="key-button">9 PGM</kbd> - меню програмування,
+            <kbd class="key-button">1 SQL</kbd> - шумоподавлення,
+            <kbd class="key-button">3 LT</kbd> - підсвітка.
+          </li>
+          <li>
+            <kbd class="key-button">ENT</kbd> - введення або зміна підсвіченого поля;
+            <kbd class="key-button">CLR</kbd> - повернення на рівень вище або скидання поля.
+          </li>
+          <li>
+            Стрілки переміщують курсор; екранна клавіша <kbd class="key-button">DEL</kbd> видаляє
+            літеру, <kbd class="key-button">CLR</kbd> очищає поле.
+          </li>
+          <li>
+            Клавіша <kbd class="key-button">0 ↻</kbd> перемикає повний статус, головний екран TAC
+            CHAT і короткий статус; під час редагування вона вводить пробіл.
+          </li>
+          <li>
+            Блокування передньої панелі - екранна клавіша <kbd class="key-button">LOCK</kbd>;
+            розблокування - швидко натиснути <kbd class="key-button">CLR</kbd> 5 разів.
+          </li>
+        </ul>
+      </section>
+
+      <section id="praktychni-funktsii" class="section">
+        <h2>Практичні функції</h2>
+        <h3 id="praktychni-funktsii-zeroize" data-legacy-anchor="praktychni-funktsii-zeroize">
+          ZEROIZE
+        </h3>
+        <ul>
+          <li>Викликається екранною клавішею ZERO або положенням перемикача Z.</li>
+          <li>
+            Екранна команда дозволяє вибрати ALL, CONFIG або FILESYSTEM і потребує підтвердження.
+          </li>
+          <li>
+            Положення Z очищує всі запрограмовані змінні, включно з ключами шифрування та даними
+            користувача. Це незворотна оперативна дія, а не звичайне вимкнення.
+          </li>
+        </ul>
+
+        <h3
+          id="praktychni-funktsii-skanuvannya-kanaliv"
+          data-legacy-anchor="praktychni-funktsii-сканування-каналів"
+        >
+          Сканування каналів
+        </h3>
+        <ul>
+          <li>Працює лише для FIX; список може містити до 25 мереж.</li>
+          <li>Недоступне у режимах ППРЧ і в мережах з Legacy MACA або MACA2.</li>
+          <li>
+            Для надійного CT-сканування рекомендовано не більше п'яти мереж плюс одна пріоритетна
+            RX-мережа та довга преамбула ROBUST.
+          </li>
+          <li>
+            Режими сканування: inactive, manual, automatic; за Dual PTT доступний Dual PTT Scan.
+          </li>
+        </ul>
+
+        <h3
+          id="praktychni-funktsii-hopset-i-lockset"
+          data-legacy-anchor="praktychni-funktsii-hopset-і-lockset"
+        >
+          Hopset і Lockset
+        </h3>
+        <ul>
+          <li>
+            <strong>Hopset</strong> - заздалегідь визначений набір частот, між якими радіостанція
+            швидко перемикається під час передавання і приймання.
+          </li>
+          <li>
+            <strong>Lockset</strong> - діапазон або набір частот, заборонених для використання під
+            час ППРЧ через місцеві обмеження чи оперативні причини.
+          </li>
+        </ul>
+
+        <h3
+          id="praktychni-funktsii-black-repeater"
+          data-legacy-anchor="praktychni-funktsii-black-repeater"
+        >
+          Black Repeater
+        </h3>
+        <ul>
+          <li>Окрема радіостанція може працювати як ретранслятор Black Repeater.</li>
+          <li>Лише одна станція в мережі FF/LOS або QL може бути ретранслятором.</li>
+          <li>Призначення - розширення радіусу дії мережі.</li>
+          <li>
+            Ретранслятор працює в режимі PT без ключів шифрування, може бути без нагляду, не
+            розшифровує інформацію, а передає її в зашифрованому вигляді.
+          </li>
+          <li>
+            Для налаштування: Advanced у Network Information, Retransmit = Enabled, Retransmit Mode
+            = Simple або Advanced, Channel Access = None, Black Repeater = Enabled.
+          </li>
+        </ul>
+
+        <h3 id="praktychni-funktsii-dual-ptt" data-legacy-anchor="praktychni-funktsii-dual-ptt">
+          Dual PTT
+        </h3>
+        <p>
+          Функція дає можливість працювати з двома мережами FIX через дві тангенти, якщо вимкнена
+          MACA. На екзамені важливо прив'язати Dual PTT саме до режиму FIX і одночасної роботи у
+          двох мережах.
+        </p>
+
+        <h3 id="time-date">Час і дата</h3>
+        <div class="menu-path">
+          <span>7 APPS</span><span>TIME AND DATE</span><span>дата і час</span>
+        </div>
+        <p>
+          У меню <code>TIME AND DATE</code> встановлюють дату та час радіостанції. Екранна клавіша
+          <kbd class="key-button">UTC</kbd> змінює формат дати та дає внести поправку часового
+          поясу.
+        </p>
+
+        <h3 id="radio-info">Перегляд ID та імені радіостанції</h3>
+        <p><strong>RF-7850M-HH:</strong></p>
+        <div class="menu-path">
+          <span>9 PGM</span><span>APP</span><span>MISC</span><span>CID</span><span>RADIO NAME</span>
+        </div>
+        <p><strong>RF-7800V-HH:</strong></p>
+        <div class="menu-path">
+          <span>9 PGM</span><span>MISC</span><span>CID</span><span>RADIO NAME</span>
+        </div>
+        <h3 id="static-ip">Перегляд статичної IP-адреси</h3>
+        <p><strong>RF-7850M-HH:</strong></p>
+        <div class="menu-path">
+          <span>9 PGM</span><span>APP</span><span>IP CONFIG</span><span>NETWORK ADAPTER</span
+          ><span>ETHERNET</span><span>STATIC ADDRESS</span>
+        </div>
+        <p><strong>RF-7800V-HH:</strong></p>
+        <div class="menu-path"><span>9 PGM</span><span>IP CONFIG</span></div>
+
+        <h3 id="flash-config">Завантаження конфігурації з флеш-накопичувача</h3>
+        <div class="menu-path">
+          <span>7 APPS</span><span>FILL RADIO</span><span>FILL FROM FILE</span
+          ><span>EXTUSBDRIVE*</span><span>файл конфігурації</span>
+        </div>
+        <p>
+          Після підключення накопичувача відкрий <code>EXTUSBDRIVE*</code> і вибери потрібний файл
+          конфігурації <code>*.cpafill</code>.
+        </p>
+
+        <h3 id="tac-chat">Tactical Chat (TAC CHAT) і голосові повідомлення</h3>
+        <p>
+          Клавіша <kbd class="key-button">0 ↻</kbd> перемикає екрани до появи меню
+          <code>NAVIGATION</code>. Екранна клавіша <code>CALL MENU</code> з піктограмою телефонної
+          трубки є окремою кнопкою та використовується для викликів.
+        </p>
+        <p><strong>Текстове повідомлення:</strong></p>
+        <div class="menu-path">
+          <span>0 ↻</span><span>NAVIGATION</span><span>&gt;&gt;&gt;</span
+          ><span>MESSAGES (конверт)</span><span>TAC CHAT</span><span>EDIT TEXT</span
+          ><span>текст</span><span>контакт</span>
+        </div>
+        <p><strong>Голосове повідомлення Voice Mail:</strong></p>
+        <div class="menu-path">
+          <span>0 ↻</span><span>NAVIGATION</span><span>&gt;&gt;&gt;</span
+          ><span>MESSAGES (конверт)</span><span>VOICE MAIL</span><span>PTT TO RECORD</span
+          ><span>контакт</span>
+        </div>
+        <ol>
+          <li>Відкрий <code>VOICE MAIL</code> і натисни <kbd class="key-button">ENT</kbd>.</li>
+          <li>
+            Натисни <kbd class="key-button">PTT</kbd>, продиктуй повідомлення та відпусти тангенту.
+          </li>
+          <li>
+            Підтвердь запис кнопкою <kbd class="key-button">ENT</kbd>, обери контакт і знову натисни
+            <kbd class="key-button">ENT</kbd>.
+          </li>
+        </ol>
+        <p>
+          Максимальна тривалість голосового повідомлення - <strong>60 секунд</strong>. Voice Mail є
+          записаним повідомленням, яке передається як дані. Для тесту його пов'язують із режимами
+          пакетної роботи з <strong>MACA, TDMA або ANW2</strong>, а не лише з голосовими QL2 і QL3.
+        </p>
+
+        <h3
+          id="praktychni-funktsii-indyvidualnyy-vyklyk"
+          data-legacy-anchor="praktychni-funktsii-індивідуальний-виклик"
+        >
+          Індивідуальний виклик
+        </h3>
+        <div class="menu-path">
+          <span>0 ↻</span><span>NAVIGATION</span><span>CALL MENU (трубка)</span
+          ><span>RADIO CONTACT</span><span>контакт</span>
+        </div>
+        <p>Після вибору контакту підтвердь виклик кнопкою <kbd class="key-button">ENT</kbd>.</p>
+      </section>
+
+      <section id="dostup-ta-obsluhovuvannia" class="section">
+        <h2>Доступ, самотестування та обслуговування</h2>
+        <h3
+          id="dostup-ta-obsluhovuvannia-rivni-korystuvacha"
+          data-legacy-anchor="dostup-ta-obsluhovuvannia-рівні-користувача"
+        >
+          Рівні користувача
+        </h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Рівень</th>
+              <th>Призначення</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Operator - повсякденна експлуатація</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>COMSEC - робота з криптографічними функціями й ключами</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>
+                Communications Officer - розширене програмування та конфігурація.<br /><strong
+                  >Вхід:</strong
+                >
+                <code>level3</code> / <code>hh03</code>
+              </td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Maintenance - технічне обслуговування</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          Доступні екрани й меню залежать від рівня. Параметр KEEP LOGIN зберігає вхід після циклу
+          живлення і потребує щонайменше рівня 2.
+        </p>
+
+        <h3 id="dostup-ta-obsluhovuvannia-bit" data-legacy-anchor="dostup-ta-obsluhovuvannia-bit">
+          BIT
+        </h3>
+        <div class="menu-path">
+          <span>7 APPS</span><span>BUILT IN TEST</span><span>NON-INTERACTIVE</span
+          ><span>TEST STATUS</span><span>RESULTS</span>
+        </div>
+        <ul>
+          <li>
+            Після завершення неінтерактивного тесту відкрий <code>RESULTS</code> для перегляду
+            результатів.
+          </li>
+          <li>
+            Інтерактивні тести перевіряють підсвітку, LCD, клавіатуру, перемикач, мікрофони та
+            гучномовці.
+          </li>
+          <li>
+            Неінтерактивні тести перевіряють криптомодуль, передню панель, GPS, DSP, RAM, файлову
+            систему, синтезатор, USB, VAA та інші внутрішні вузли.
+          </li>
+          <li>
+            RUN ALL запускає всі неінтерактивні тести; результати показують кількість пройдених і
+            невдалих перевірок.
+          </li>
+        </ul>
+
+        <h3
+          id="dostup-ta-obsluhovuvannia-profilaktyka-i-reaktsiya-na-nespravnist"
+          data-legacy-anchor="dostup-ta-obsluhovuvannia-профілактика-і-реакція-на-несправність"
+        >
+          Профілактика і реакція на несправність
+        </h3>
+        <ul>
+          <li>Щодня під час експлуатації виконувати Self Test.</li>
+          <li>
+            Щотижня оглядати антену, роз'єми та захисні кришки; тримати обладнання чистим, сухим і
+            без пилу.
+          </li>
+          <li>
+            Після прісної або солоної води від'єднати АКБ, промити чистою прісною водою і повністю
+            витерти м'якою тканиною. Не сушити нагріванням.
+          </li>
+          <li>
+            Fault зберігається після перезапуску й очищується вручну; Warning вказує на помилку
+            експлуатації, наприклад відсутній ключ або низький заряд.
+          </li>
+          <li>
+            Якщо BIT виявив несправність, з'являється постійний fault або робота помітно
+            погіршилась, потрібне технічне обслуговування відповідного рівня.
+          </li>
+        </ul>
+      </section>
+
+      <div class="topic-quiz-cta">
+        <div>
+          <strong>Перевір себе</strong><span>Перевір знання за матеріалами цієї теми.</span>
+        </div>
+        <a class="topic-quiz-button" href="../quiz.html?topic=5"
+          >Почати вікторину <span aria-hidden="true">→</span></a
+        >
       </div>
-      <p class="table-note"><strong>Термінологія CWR:</strong> <em>stage</em> - ретрансляторний вузол або точка доступу до IP-магістралі, а <em>outstation</em> - абонентська радіостанція. Коли абонент переходить у зону покриття іншого вузла, радіостанція автоматично реєструється на доступному новому вузлі, зберігаючи доступ до мережі.</p>
-    </section>
+    </main>
+    <script src="../asset-version.js?v=0b5515a61641"></script>
 
-    <section id="modeli" class="section">
-      <h2>Порівняння RF-7850M-HH і RF-7800V-HH</h2>
-      <p><strong>Головна відмінність:</strong> RF-7850M-HH працює до 512 МГц, тому підтримує високочастотні можливості ANW2C, STC, AM і ASK. RF-7800V-HH обмежена діапазоном до 108 МГц. Базові мережі, вокодери та органи керування в них спільні.</p>
-      <div class="comparison-key" aria-label="Позначення в таблиці">
-        <span class="key-shared">Спільне</span>
-        <span class="key-exclusive">Лише RF-7850M-HH</span>
-        <span class="key-missing">Недоступне</span>
-      </div>
-      <table class="responsive-table model-comparison">
-        <thead><tr><th>Можливість</th><th>RF-7850M-HH</th><th>RF-7800V-HH</th></tr></thead>
-        <tbody>
-          <tr class="key-difference">
-            <td data-label="Можливість">Робочий діапазон</td>
-            <td data-label="RF-7850M-HH"><strong>30-512 МГц</strong><span class="availability exclusive">Ширший діапазон</span></td>
-            <td data-label="RF-7800V-HH"><strong>30-108 МГц</strong></td>
-          </tr>
-          <tr>
-            <td data-label="Можливість">Режими та мережі</td>
-            <td data-label="RF-7850M-HH">FIX, QL1A, QL2, QL3, QLW, TNW, CWR<span class="availability exclusive">Додатково: ANW2C, STC</span></td>
-            <td data-label="RF-7800V-HH">FIX, QL1A, QL2, QL3, QLW, TNW, CWR<span class="availability missing">ANW2C і STC недоступні</span></td>
-          </tr>
-          <tr>
-            <td data-label="Можливість">Модуляції</td>
-            <td data-label="RF-7850M-HH">FM, FSK<span class="availability exclusive">AM і ASK: 108,025-512 МГц</span></td>
-            <td data-label="RF-7800V-HH">FM, FSK<span class="availability missing">AM і ASK недоступні</span></td>
-          </tr>
-          <tr>
-            <td data-label="Можливість">Вокодери</td>
-            <td data-label="RF-7850M-HH">MELP 2400 біт/с, CVSD 16000 біт/с<span class="availability shared">Однаково</span></td>
-            <td data-label="RF-7800V-HH">MELP 2400 біт/с, CVSD 16000 біт/с<span class="availability shared">Однаково</span></td>
-          </tr>
-          <tr>
-            <td data-label="Можливість">QL і TNW</td>
-            <td data-label="RF-7850M-HH">30-511,975 МГц</td>
-            <td data-label="RF-7800V-HH">30-107,075 МГц</td>
-          </tr>
-          <tr>
-            <td data-label="Можливість">ANW2C</td>
-            <td data-label="RF-7850M-HH">225,6-512 МГц; MANET, до 1372 кбіт/с<span class="availability exclusive">Лише RF-7850M-HH</span></td>
-            <td data-label="RF-7800V-HH"><span class="availability missing">Недоступний</span></td>
-          </tr>
-          <tr>
-            <td data-label="Можливість">STC</td>
-            <td data-label="RF-7850M-HH">Rx 243-270 МГц; Tx 291-318,3 МГц<span class="availability exclusive">Лише RF-7850M-HH</span></td>
-            <td data-label="RF-7800V-HH"><span class="availability missing">Недоступний</span></td>
-          </tr>
-          <tr>
-            <td data-label="Можливість">Інші спільні можливості</td>
-            <td data-label="RF-7850M-HH">25 мереж, 13 положень перемикача, GPS, CITADEL/AES, CWR</td>
-            <td data-label="RF-7800V-HH">25 мереж, 13 положень перемикача, GPS, CITADEL/AES, CWR</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section id="chyslovi-kharakterystyky" class="section">
-      <h2>Числові характеристики</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Параметр</th>
-            <th>Значення</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>Робочий діапазон RF-7850M-HH</td><td>30-512 МГц</td></tr>
-          <tr><td>Кількість програмованих мереж</td><td>25</td></tr>
-          <tr><td>Вибір перемикачем</td><td>13 мереж</td></tr>
-          <tr><td>MELP</td><td>2400 біт/с</td></tr>
-          <tr><td>CVSD</td><td>16000 біт/с</td></tr>
-          <tr><td>Шифрування</td><td>CITADEL, AES 128/256 біт</td></tr>
-          <tr><td>Живлення</td><td>Li-ion батарея 10,8 В, 4,8 / 5,8 / 6,8 А/год</td></tr>
-          <tr><td>Середній час роботи АКБ</td><td>Близько 18 год за циклу 10% TX / 10% RX / 80% очікування при +20 °C; при -20 °C скорочується приблизно на 20-25%</td></tr>
-          <tr><td>Температура без батареї</td><td>-30 °C до +60 °C</td></tr>
-          <tr><td>Температура з батареєю</td><td>-20 °C до +60 °C</td></tr>
-          <tr><td>Занурення у воду</td><td>До 5 м</td></tr>
-          <tr><td>Вологість</td><td>До 95%</td></tr>
-          <tr><td>Антенний порт</td><td>50 Ом, роз'єм TNC</td></tr>
-          <tr><td>Стабільність частоти</td><td>+/- 1 ppm</td></tr>
-          <tr><td>Вага без батареї</td><td>680 г</td></tr>
-          <tr><td>Вага з батареєю</td><td>1,09 кг за Operation Manual Rev. L; у навчальній презентації вказано 910 г. На екзамені орієнтуватися на формулювання викладача.</td></tr>
-        </tbody>
-      </table>
-      <p><strong>Примітка щодо температури:</strong> таблиця специфікацій посібника для радіостанції загалом наводить -30...+60 °C, а навчальна презентація окремо вказує для комплекту з батареєю -20...+60 °C.</p>
-    </section>
-
-    <section id="potuzhnist" class="section">
-      <h2>Потужність передавача</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Режим</th>
-            <th>Потужність</th>
-            <th>Примітка</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>LOW</td><td>1 Вт або 0,25 Вт</td><td>1 Вт у мережах з MACA2; 0,25 Вт у мережах без MACA2.</td></tr>
-          <tr><td>MEDIUM</td><td>2 Вт</td><td>Середня потужність.</td></tr>
-          <tr><td>HIGH</td><td>5 Вт</td><td>Висока потужність.</td></tr>
-          <tr><td>HIGH+</td><td>10 Вт</td><td>Надвисока потужність, короткочасне використання.</td></tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section id="bezpeka" class="section exam">
-      <h2>Безпека експлуатації</h2>
-      <ul>
-        <li>Не торкатися антени під час передачі. Радіостанція може випромінювати і без натискання <kbd class="key-button">PTT</kbd> під час передавання даних або IP-з'єднання.</li>
-        <li>Не розбирати, не стискати, не замикати, не змінювати полярність і не нагрівати Li-ion АКБ понад 71 °C. Використовувати лише схвалені зарядні пристрої.</li>
-        <li>Пошкоджену батарею, особливо після контакту з водою, негайно вивести з експлуатації. Не сушити АКБ нагріванням.</li>
-        <li>Тривала передача та недостатнє охолодження можуть сильно нагріти корпус. Дати радіостанції охолонути; повідомлення про перегрів можуть автоматично знизити потужність або заборонити передачу.</li>
-        <li>Перед використанням гарнітури встановити безпечний рівень гучності. Не працювати поблизу пального, боєприпасів або ліній електропередач без дотримання встановлених безпечних відстаней.</li>
-        <li>Li-ion АКБ тримати окремо від свинцево-кислотних батарей та інструментів, забруднених кислотою.</li>
-      </ul>
-    </section>
-
-    <section id="pidhotovka" class="section">
-      <h2>Комплект і підготовка до роботи</h2>
-      <h3 id="pidhotovka-komplekt" data-legacy-anchor="pidhotovka-комплект">Комплект</h3>
-      <ul>
-        <li>прийомопередавач;</li>
-        <li>інструкція;</li>
-        <li>АКБ;</li>
-        <li>програмне забезпечення;</li>
-        <li>GPS-антена;</li>
-        <li>коротка стрічкова антена 30 см або довга стрічкова антена 120 см;</li>
-        <li>виносна штирьова антена;</li>
-        <li>заглушка;</li>
-        <li>кабелі 0,3 м і 1,2 м за варіантом комплектації.</li>
-      </ul>
-
-      <h3 id="pidhotovka-zaryadnyy-prystriy" data-legacy-anchor="pidhotovka-зарядний-пристрій">Зарядний пристрій</h3>
-      <ul>
-        <li>розрахований на дві батареї;</li>
-        <li>оранжевий індикатор (постійне світіння) — батарея заряджається;</li>
-        <li>зелений індикатор (постійне світіння) — батарея заряджена;</li>
-        <li>червоний індикатор (постійне світіння) — проблема з АКБ.</li>
-      </ul>
-
-      <h3 id="pidhotovka-pidhotovka" data-legacy-anchor="pidhotovka-підготовка">Підготовка</h3>
-      <ol>
-        <li>Встановити органи керування у вихідне положення, перемикач - у положення OFF.</li>
-        <li>Перевірити високочастотні роз'єми радіостанції та антени: без механічних пошкоджень, стружки чи сміття.</li>
-        <li>При використанні внутрішнього GPS перевірити чистоту роз'ємів і прикрутити GPS-антену.</li>
-        <li>Під кутом встановити батарею до упору й зафіксувати її поворотом відносно трансивера.</li>
-        <li>Підняти й повернути перемикач з OFF у потрібне положення 1-13.</li>
-        <li>Переконатися, що немає індикації несправності, а індикатор АКБ показує достатній заряд.</li>
-      </ol>
-
-      <h3 id="pidhotovka-pered-vykhodom-u-zv-yazok" data-legacy-anchor="pidhotovka-перед-виходом-у-зв-язок">Перед виходом у зв'язок</h3>
-      <ul>
-        <li>Радіостанція має бути заздалегідь запрограмована через CPA, передню панель або Web UI.</li>
-        <li>Перевірити тип мережі, назву мережі, PT / CT, рівень потужності, Rx / Tx частоти або hopset, вокодер і швидкість.</li>
-        <li>У режимі CT мають бути завантажені відповідні ключі COMSEC; для QL3 і QLW також потрібні ключ TRANSEC та Network ID.</li>
-        <li>Для економії АКБ передавати лише за потреби й застосовувати найнижчу потужність, достатню для стійкого зв'язку.</li>
-      </ul>
-
-      <h3 id="pidhotovka-zberihannya" data-legacy-anchor="pidhotovka-зберігання">Зберігання</h3>
-      <p>Зберігати радіостанцію у захищеному місці. АКБ зберігати в чистому, сухому, вентильованому приміщенні за температури нижче +21 °C.</p>
-    </section>
-
-    <section id="orhany-keruvannia" class="section">
-      <h2>Органи керування</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Елемент</th>
-            <th>Що пам'ятати</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>PTT</td><td>Нижня та верхня кнопки PTT для передачі.</td></tr>
-          <tr><td>Регулятор гучності</td><td>Керує гучністю прийому.</td></tr>
-          <tr><td>Поворотний перемикач</td><td>Вибір запрограмованих мереж / положень.</td></tr>
-          <tr><td>Роз'єм антени GPS</td><td>Підключення GPS-антени.</td></tr>
-          <tr><td>Роз'єм для антени</td><td>Підключення основної антени.</td></tr>
-          <tr><td>6-контактний роз'єм і роз'єм додаткового обладнання</td><td>Підключення зовнішніх пристроїв.</td></tr>
-          <tr><td>Фіксатор батареї</td><td>Для заміни АКБ потягнути вгору.</td></tr>
-          <tr><td>Клавіатура і дисплей</td><td>Навігація, введення, програмування, індикація стану.</td></tr>
-        </tbody>
-      </table>
-
-      <h3 id="orhany-keruvannia-klaviatura" data-legacy-anchor="orhany-keruvannia-клавіатура">Клавіатура</h3>
-      <ul>
-        <li>Екранні клавіші виконують функції згідно з підписами на дисплеї.</li>
-        <li><kbd class="key-button">7 APPS</kbd> - прикладне меню, <kbd class="key-button">9 PGM</kbd> - меню програмування, <kbd class="key-button">1 SQL</kbd> - шумоподавлення, <kbd class="key-button">3 LT</kbd> - підсвітка.</li>
-        <li><kbd class="key-button">ENT</kbd> - введення або зміна підсвіченого поля; <kbd class="key-button">CLR</kbd> - повернення на рівень вище або скидання поля.</li>
-        <li>Стрілки переміщують курсор; екранна клавіша <kbd class="key-button">DEL</kbd> видаляє літеру, <kbd class="key-button">CLR</kbd> очищає поле.</li>
-        <li>Клавіша <kbd class="key-button">0 ↻</kbd> перемикає повний статус, головний екран TAC CHAT і короткий статус; під час редагування вона вводить пробіл.</li>
-        <li>Блокування передньої панелі - екранна клавіша <kbd class="key-button">LOCK</kbd>; розблокування - швидко натиснути <kbd class="key-button">CLR</kbd> 5 разів.</li>
-      </ul>
-    </section>
-
-    <section id="praktychni-funktsii" class="section">
-      <h2>Практичні функції</h2>
-      <h3 id="praktychni-funktsii-zeroize" data-legacy-anchor="praktychni-funktsii-zeroize">ZEROIZE</h3>
-      <ul>
-        <li>Викликається екранною клавішею ZERO або положенням перемикача Z.</li>
-        <li>Екранна команда дозволяє вибрати ALL, CONFIG або FILESYSTEM і потребує підтвердження.</li>
-        <li>Положення Z очищує всі запрограмовані змінні, включно з ключами шифрування та даними користувача. Це незворотна оперативна дія, а не звичайне вимкнення.</li>
-      </ul>
-
-      <h3 id="praktychni-funktsii-skanuvannya-kanaliv" data-legacy-anchor="praktychni-funktsii-сканування-каналів">Сканування каналів</h3>
-      <ul>
-        <li>Працює лише для FIX; список може містити до 25 мереж.</li>
-        <li>Недоступне у режимах ППРЧ і в мережах з Legacy MACA або MACA2.</li>
-        <li>Для надійного CT-сканування рекомендовано не більше п'яти мереж плюс одна пріоритетна RX-мережа та довга преамбула ROBUST.</li>
-        <li>Режими сканування: inactive, manual, automatic; за Dual PTT доступний Dual PTT Scan.</li>
-      </ul>
-
-      <h3 id="praktychni-funktsii-hopset-i-lockset" data-legacy-anchor="praktychni-funktsii-hopset-і-lockset">Hopset і Lockset</h3>
-      <ul>
-        <li><strong>Hopset</strong> - заздалегідь визначений набір частот, між якими радіостанція швидко перемикається під час передавання і приймання.</li>
-        <li><strong>Lockset</strong> - діапазон або набір частот, заборонених для використання під час ППРЧ через місцеві обмеження чи оперативні причини.</li>
-      </ul>
-
-      <h3 id="praktychni-funktsii-black-repeater" data-legacy-anchor="praktychni-funktsii-black-repeater">Black Repeater</h3>
-      <ul>
-        <li>Окрема радіостанція може працювати як ретранслятор Black Repeater.</li>
-        <li>Лише одна станція в мережі FF/LOS або QL може бути ретранслятором.</li>
-        <li>Призначення - розширення радіусу дії мережі.</li>
-        <li>Ретранслятор працює в режимі PT без ключів шифрування, може бути без нагляду, не розшифровує інформацію, а передає її в зашифрованому вигляді.</li>
-        <li>Для налаштування: Advanced у Network Information, Retransmit = Enabled, Retransmit Mode = Simple або Advanced, Channel Access = None, Black Repeater = Enabled.</li>
-      </ul>
-
-      <h3 id="praktychni-funktsii-dual-ptt" data-legacy-anchor="praktychni-funktsii-dual-ptt">Dual PTT</h3>
-      <p>Функція дає можливість працювати з двома мережами FIX через дві тангенти, якщо вимкнена MACA. На екзамені важливо прив'язати Dual PTT саме до режиму FIX і одночасної роботи у двох мережах.</p>
-
-      <h3 id="time-date">Час і дата</h3>
-      <div class="menu-path"><span>7 APPS</span><span>TIME AND DATE</span><span>дата і час</span></div>
-      <p>У меню <code>TIME AND DATE</code> встановлюють дату та час радіостанції. Екранна клавіша <kbd class="key-button">UTC</kbd> змінює формат дати та дає внести поправку часового поясу.</p>
-
-      <h3 id="radio-info">Перегляд ID та імені радіостанції</h3>
-      <p><strong>RF-7850M-HH:</strong></p>
-      <div class="menu-path"><span>9 PGM</span><span>APP</span><span>MISC</span><span>CID</span><span>RADIO NAME</span></div>
-      <p><strong>RF-7800V-HH:</strong></p>
-      <div class="menu-path"><span>9 PGM</span><span>MISC</span><span>CID</span><span>RADIO NAME</span></div>
-      <h3 id="static-ip">Перегляд статичної IP-адреси</h3>
-      <p><strong>RF-7850M-HH:</strong></p>
-      <div class="menu-path"><span>9 PGM</span><span>APP</span><span>IP CONFIG</span><span>NETWORK ADAPTER</span><span>ETHERNET</span><span>STATIC ADDRESS</span></div>
-      <p><strong>RF-7800V-HH:</strong></p>
-      <div class="menu-path"><span>9 PGM</span><span>IP CONFIG</span></div>
-
-      <h3 id="flash-config">Завантаження конфігурації з флеш-накопичувача</h3>
-      <div class="menu-path"><span>7 APPS</span><span>FILL RADIO</span><span>FILL FROM FILE</span><span>EXTUSBDRIVE*</span><span>файл конфігурації</span></div>
-      <p>Після підключення накопичувача відкрий <code>EXTUSBDRIVE*</code> і вибери потрібний файл конфігурації <code>*.cpafill</code>.</p>
-
-      <h3 id="tac-chat">Tactical Chat (TAC CHAT) і голосові повідомлення</h3>
-      <p>Клавіша <kbd class="key-button">0 ↻</kbd> перемикає екрани до появи меню <code>NAVIGATION</code>. Екранна клавіша <code>CALL MENU</code> з піктограмою телефонної трубки є окремою кнопкою та використовується для викликів.</p>
-      <p><strong>Текстове повідомлення:</strong></p>
-      <div class="menu-path"><span>0 ↻</span><span>NAVIGATION</span><span>&gt;&gt;&gt;</span><span>MESSAGES (конверт)</span><span>TAC CHAT</span><span>EDIT TEXT</span><span>текст</span><span>контакт</span></div>
-      <p><strong>Голосове повідомлення Voice Mail:</strong></p>
-      <div class="menu-path"><span>0 ↻</span><span>NAVIGATION</span><span>&gt;&gt;&gt;</span><span>MESSAGES (конверт)</span><span>VOICE MAIL</span><span>PTT TO RECORD</span><span>контакт</span></div>
-      <ol>
-        <li>Відкрий <code>VOICE MAIL</code> і натисни <kbd class="key-button">ENT</kbd>.</li>
-        <li>Натисни <kbd class="key-button">PTT</kbd>, продиктуй повідомлення та відпусти тангенту.</li>
-        <li>Підтвердь запис кнопкою <kbd class="key-button">ENT</kbd>, обери контакт і знову натисни <kbd class="key-button">ENT</kbd>.</li>
-      </ol>
-      <p>Максимальна тривалість голосового повідомлення - <strong>60 секунд</strong>. Voice Mail є записаним повідомленням, яке передається як дані. Для тесту його пов'язують із режимами пакетної роботи з <strong>MACA, TDMA або ANW2</strong>, а не лише з голосовими QL2 і QL3.</p>
-
-      <h3 id="praktychni-funktsii-indyvidualnyy-vyklyk" data-legacy-anchor="praktychni-funktsii-індивідуальний-виклик">Індивідуальний виклик</h3>
-      <div class="menu-path"><span>0 ↻</span><span>NAVIGATION</span><span>CALL MENU (трубка)</span><span>RADIO CONTACT</span><span>контакт</span></div>
-      <p>Після вибору контакту підтвердь виклик кнопкою <kbd class="key-button">ENT</kbd>.</p>
-    </section>
-
-    <section id="dostup-ta-obsluhovuvannia" class="section">
-      <h2>Доступ, самотестування та обслуговування</h2>
-      <h3 id="dostup-ta-obsluhovuvannia-rivni-korystuvacha" data-legacy-anchor="dostup-ta-obsluhovuvannia-рівні-користувача">Рівні користувача</h3>
-      <table>
-        <thead>
-          <tr><th>Рівень</th><th>Призначення</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>1</td><td>Operator - повсякденна експлуатація</td></tr>
-          <tr><td>2</td><td>COMSEC - робота з криптографічними функціями й ключами</td></tr>
-          <tr><td>3</td><td>Communications Officer - розширене програмування та конфігурація.<br><strong>Вхід:</strong> <code>level3</code> / <code>hh03</code></td></tr>
-          <tr><td>4</td><td>Maintenance - технічне обслуговування</td></tr>
-        </tbody>
-      </table>
-      <p>Доступні екрани й меню залежать від рівня. Параметр KEEP LOGIN зберігає вхід після циклу живлення і потребує щонайменше рівня 2.</p>
-
-      <h3 id="dostup-ta-obsluhovuvannia-bit" data-legacy-anchor="dostup-ta-obsluhovuvannia-bit">BIT</h3>
-      <div class="menu-path"><span>7 APPS</span><span>BUILT IN TEST</span><span>NON-INTERACTIVE</span><span>TEST STATUS</span><span>RESULTS</span></div>
-      <ul>
-        <li>Після завершення неінтерактивного тесту відкрий <code>RESULTS</code> для перегляду результатів.</li>
-        <li>Інтерактивні тести перевіряють підсвітку, LCD, клавіатуру, перемикач, мікрофони та гучномовці.</li>
-        <li>Неінтерактивні тести перевіряють криптомодуль, передню панель, GPS, DSP, RAM, файлову систему, синтезатор, USB, VAA та інші внутрішні вузли.</li>
-        <li>RUN ALL запускає всі неінтерактивні тести; результати показують кількість пройдених і невдалих перевірок.</li>
-      </ul>
-
-      <h3 id="dostup-ta-obsluhovuvannia-profilaktyka-i-reaktsiya-na-nespravnist" data-legacy-anchor="dostup-ta-obsluhovuvannia-профілактика-і-реакція-на-несправність">Профілактика і реакція на несправність</h3>
-      <ul>
-        <li>Щодня під час експлуатації виконувати Self Test.</li>
-        <li>Щотижня оглядати антену, роз'єми та захисні кришки; тримати обладнання чистим, сухим і без пилу.</li>
-        <li>Після прісної або солоної води від'єднати АКБ, промити чистою прісною водою і повністю витерти м'якою тканиною. Не сушити нагріванням.</li>
-        <li>Fault зберігається після перезапуску й очищується вручну; Warning вказує на помилку експлуатації, наприклад відсутній ключ або низький заряд.</li>
-        <li>Якщо BIT виявив несправність, з'являється постійний fault або робота помітно погіршилась, потрібне технічне обслуговування відповідного рівня.</li>
-      </ul>
-    </section>
-
-    <div class="topic-quiz-cta"><div><strong>Перевір себе</strong><span>Перевір знання за матеріалами цієї теми.</span></div><a class="topic-quiz-button" href="../quiz.html?topic=5">Почати вікторину <span aria-hidden="true">→</span></a></div>
-
-  </main>
-  <script src="../asset-version.js?v=cac2c39847d8"></script>
-
-  <script src="../search-index.js?v=cac2c39847d8"></script>
-  <script src="../topic-search.js?v=cac2c39847d8"></script>
-  <script>window.GLOSSARY_ROOT = "../";</script>
-  <script src="../glossary-data.js?v=cac2c39847d8"></script>
-  <script src="../glossary-terms.js?v=cac2c39847d8"></script>
-  <script src="../site-ui.js?v=cac2c39847d8"></script>
-</body>
+    <script src="../search-index.js?v=0b5515a61641"></script>
+    <script src="../topic-search.js?v=0b5515a61641"></script>
+    <script>
+      window.GLOSSARY_ROOT = "../";
+    </script>
+    <script src="../glossary-data.js?v=0b5515a61641"></script>
+    <script src="../glossary-terms.js?v=0b5515a61641"></script>
+    <script src="../site-ui.js?v=0b5515a61641"></script>
+  </body>
 </html>

@@ -2,6 +2,8 @@
   "name": "vos-420-notes",
   "private": true,
   "scriptsInfo": {
+    "format": "npm run format — відформатувати HTML, CSS і JavaScript (включно з mjs/cjs) для зручного читання та редагування.",
+    "format:check": "npm run format:check — перевірити форматування без зміни файлів.",
     "test:statistics": "npm run test:statistics — перевірити формат резервної копії статистики, відновлення результатів і відхилення некоректних файлів.",
     "usage": "Команди запускаються з каталогу VOS-420-NOTES: npm run <назва команди>.",
     "build:glossary": "npm run build:glossary — перевірити терміни глосарію та їх використання у конспектах.",
@@ -14,6 +16,8 @@
     "test:admin": "npm run test:admin — перевірити локальний сервер редактора: збереження, валідацію, конфлікти змін і обмеження доступу. Тести використовують тимчасовий каталог, не змінюючи робочі питання."
   },
   "scripts": {
+    "format": "prettier --write \"**/*.{html,js,mjs,cjs,css}\"",
+    "format:check": "prettier --check \"**/*.{html,js,mjs,cjs,css}\"",
     "test:statistics": "node --test quiz-statistics.test.cjs",
     "build:glossary": "node build-glossary-audit.mjs",
     "build:search-index": "node build-search-index.mjs",
@@ -23,5 +27,8 @@
     "build:quiz": "node build-quiz-data.mjs",
     "quiz:admin": "node admin/server.mjs",
     "test:admin": "node --test admin/server.test.mjs"
+  },
+  "devDependencies": {
+    "prettier": "3.9.9"
   }
 }

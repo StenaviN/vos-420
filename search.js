@@ -18,7 +18,13 @@
   }
 
   function queryTokens(value) {
-    return [...new Set(normalize(value).split(" ").filter((token) => token.length >= 2 || /^\d+$/.test(token)))];
+    return [
+      ...new Set(
+        normalize(value)
+          .split(" ")
+          .filter((token) => token.length >= 2 || /^\d+$/.test(token)),
+      ),
+    ];
   }
 
   function containsToken(value, token) {
@@ -30,11 +36,23 @@
     const topic = normalize(entry.topic);
     const section = normalize(entry.section);
     const text = normalize(entry.text);
-    if (!tokens.every((token) => containsToken(topic, token) || containsToken(section, token) || containsToken(text, token))) return 0;
-    let score = tokens.reduce((total, token) => total
-      + (containsToken(topic, token) ? 12 : 0)
-      + (containsToken(section, token) ? 8 : 0)
-      + (containsToken(text, token) ? 2 : 0), 0);
+    if (
+      !tokens.every(
+        (token) =>
+          containsToken(topic, token) ||
+          containsToken(section, token) ||
+          containsToken(text, token),
+      )
+    )
+      return 0;
+    let score = tokens.reduce(
+      (total, token) =>
+        total +
+        (containsToken(topic, token) ? 12 : 0) +
+        (containsToken(section, token) ? 8 : 0) +
+        (containsToken(text, token) ? 2 : 0),
+      0,
+    );
     if (phrase && topic.includes(phrase)) score += 20;
     if (phrase && section.includes(phrase)) score += 14;
     if (phrase && text.includes(phrase)) score += 6;
@@ -44,11 +62,14 @@
   function snippetFor(entry, tokens) {
     const source = entry.text;
     const lower = source.toLocaleLowerCase("uk");
-    const positions = tokens.map((token) => {
-      if (token.length > 3 && !/^\d+$/.test(token)) return lower.indexOf(token);
-      const escaped = token.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-      return lower.search(new RegExp(`(?<![\\p{L}\\p{N}])${escaped}(?![\\p{L}\\p{N}])`, "u"));
-    }).filter((position) => position >= 0).sort((left, right) => left - right);
+    const positions = tokens
+      .map((token) => {
+        if (token.length > 3 && !/^\d+$/.test(token)) return lower.indexOf(token);
+        const escaped = token.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        return lower.search(new RegExp(`(?<![\\p{L}\\p{N}])${escaped}(?![\\p{L}\\p{N}])`, "u"));
+      })
+      .filter((position) => position >= 0)
+      .sort((left, right) => left - right);
     if (!positions.length) return source.slice(0, 210).trim();
 
     const windows = [];
@@ -59,11 +80,19 @@
       if (previous && start <= previous.end + 20) previous.end = Math.max(previous.end, end);
       else if (windows.length < 2) windows.push({ start, end });
     }
-    return windows.map(({ start, end }) => `${start ? "…" : ""}${source.slice(start, end).trim()}${end < source.length ? "…" : ""}`).join(" ");
+    return windows
+      .map(
+        ({ start, end }) =>
+          `${start ? "…" : ""}${source.slice(start, end).trim()}${end < source.length ? "…" : ""}`,
+      )
+      .join(" ");
   }
 
   function appendHighlighted(container, value, tokens) {
-    if (!tokens.length) { container.textContent = value; return; }
+    if (!tokens.length) {
+      container.textContent = value;
+      return;
+    }
     const alternatives = tokens.map((token) => {
       const escaped = token.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
       return token.length <= 3 || /^\d+$/.test(token)
@@ -101,7 +130,10 @@
     const matches = entries
       .map((entry) => ({ entry, score: scoreEntry(entry, tokens, phrase) }))
       .filter((item) => item.score > 0)
-      .sort((left, right) => right.score - left.score || left.entry.topic.localeCompare(right.entry.topic, "uk"));
+      .sort(
+        (left, right) =>
+          right.score - left.score || left.entry.topic.localeCompare(right.entry.topic, "uk"),
+      );
 
     status.textContent = matches.length
       ? `Знайдено: ${matches.length}`
@@ -125,8 +157,15 @@
     });
   }
 
-  form.addEventListener("submit", (event) => { event.preventDefault(); render(); });
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    render();
+  });
   input.addEventListener("input", render);
-  clearButton.addEventListener("click", () => { input.value = ""; render(); input.focus(); });
+  clearButton.addEventListener("click", () => {
+    input.value = "";
+    render();
+    input.focus();
+  });
   render();
 })();

@@ -21,7 +21,14 @@ function homeTabFromUrl() {
 
 function updateHomeTabUrl(name) {
   const url = new URL(location.href);
-  url.hash = name === "quiz" ? "quiz" : name === "glossary" ? "glossary" : name === "search" ? "search" : "topics";
+  url.hash =
+    name === "quiz"
+      ? "quiz"
+      : name === "glossary"
+        ? "glossary"
+        : name === "search"
+          ? "search"
+          : "topics";
   if (url.href !== location.href) history.pushState(null, "", url);
 }
 
@@ -45,7 +52,8 @@ function selectedTopics() {
 function updateSelection() {
   const selected = selectedTopics();
   const questions = selected.reduce((total, box) => total + Number(box.dataset.questions), 0);
-  const topicWord = selected.length === 1 ? "тему" : selected.length >= 2 && selected.length <= 4 ? "теми" : "тем";
+  const topicWord =
+    selected.length === 1 ? "тему" : selected.length >= 2 && selected.length <= 4 ? "теми" : "тем";
   selectAll.checked = selected.length === topicBoxes.length;
   selectAll.indeterminate = selected.length > 0 && selected.length < topicBoxes.length;
   summary.textContent = `Обрано ${selected.length} ${topicWord} · доступно ${questions} питань`;
@@ -56,17 +64,24 @@ function updateSelection() {
 
 function openQuiz(view) {
   const selected = selectedTopics();
-  if (!selected.length) { error.hidden = false; return; }
+  if (!selected.length) {
+    error.hidden = false;
+    return;
+  }
   const keys = selected.map((box) => box.value).join(",");
   location.href = `quiz.html?topics=${keys}${view === "stats" ? "&view=stats" : ""}`;
 }
 
 selectAll.addEventListener("change", () => {
-  topicBoxes.forEach((box) => { box.checked = selectAll.checked; });
+  topicBoxes.forEach((box) => {
+    box.checked = selectAll.checked;
+  });
   updateSelection();
 });
 topicBoxes.forEach((box) => box.addEventListener("change", updateSelection));
-homeTabs.forEach((button) => button.addEventListener("click", () => showHomeTab(button.dataset.homeTab, true)));
+homeTabs.forEach((button) =>
+  button.addEventListener("click", () => showHomeTab(button.dataset.homeTab, true)),
+);
 window.addEventListener("popstate", () => showHomeTab(homeTabFromUrl()));
 startButton.addEventListener("click", () => openQuiz("quiz"));
 statsButton.addEventListener("click", () => openQuiz("stats"));

@@ -1,4 +1,5 @@
 import { readdir, readFile, writeFile } from "node:fs/promises";
+import { formatJavaScript } from "./format-source.mjs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -15,10 +16,12 @@ function decodeEntities(value) {
 }
 
 function plainText(html) {
-  return decodeEntities(html
-    .replace(/<(script|style)\b[^>]*>[\s\S]*?<\/\1>/gi, " ")
-    .replace(/<br\s*\/?>/gi, " ")
-    .replace(/<[^>]+>/g, " "))
+  return decodeEntities(
+    html
+      .replace(/<(script|style)\b[^>]*>[\s\S]*?<\/\1>/gi, " ")
+      .replace(/<br\s*\/?>/gi, " ")
+      .replace(/<[^>]+>/g, " "),
+  )
     .replace(/\s+/g, " ")
     .trim();
 }
@@ -51,11 +54,19 @@ const entries = [];
 for (const directory of topicDirectories) {
   const html = await readFile(path.join(root, directory, "index.html"), "utf8");
   const topic = firstMatch(html, /<h1\b[^>]*>([\s\S]*?)<\/h1>/i, directory);
-  const overview = html.match(/<header\b[^>]*class="[^"]*\bhero\b[^"]*"[^>]*>([\s\S]*?)<\/header>/i)?.[1];
-  if (overview) entries.push({ topic, section: "Огляд", url: `${directory}/index.html`, text: plainText(overview) });
+  const overview = html.match(
+    /<header\b[^>]*class="[^"]*\bhero\b[^"]*"[^>]*>([\s\S]*?)<\/header>/i,
+  )?.[1];
+  if (overview)
+    entries.push({
+      topic,
+      section: "Огляд",
+      url: `${directory}/index.html`,
+      text: plainText(overview),
+    });
   entries.push(...sectionEntries(html, directory, topic));
 }
 
 const output = `"use strict";\n\nwindow.SEARCH_INDEX = ${JSON.stringify({ version: 1, entries }, null, 2)};\n`;
-await writeFile(path.join(root, "search-index.js"), output, "utf8");
+await writeFile(path.join(root, "search-index.js"), await formatJavaScript(output), "utf8");
 console.log(`Indexed ${entries.length} sections from ${topicDirectories.length} topics.`);

@@ -1,0 +1,6 @@
+node_modules/
+.git/
+.playwright-cli/
+output/
+.codex-remote-attachments/
+.codex-docx-render/

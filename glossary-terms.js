@@ -8,20 +8,29 @@
   const autoExcludedTerms = new Set(["rf", "hh"]);
   const byTerm = new Map(terms.map((entry) => [entry.term.toLocaleLowerCase("uk-UA"), entry]));
   const candidates = terms
-    .filter((entry) => entry.term.length >= 2 && !autoExcludedTerms.has(entry.term.toLocaleLowerCase("uk-UA")))
+    .filter(
+      (entry) =>
+        entry.term.length >= 2 && !autoExcludedTerms.has(entry.term.toLocaleLowerCase("uk-UA")),
+    )
     .map((entry) => entry.term)
     .sort((left, right) => right.length - left.length)
     .map((term) => term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
-  const pattern = new RegExp(`(^|[^\\p{L}\\p{N}])(${candidates.join("|")})(?=$|[^\\p{L}\\p{N}])`, "giu");
-  const usbCableContext = /(?:USB\s*[-‑–—]?\s*(?:кабел|підключ|порт|інтерфейс)|(?:кабел|підключ|порт|інтерфейс)[^.!?]{0,24}USB|DIRECT\s+USB)/iu;
-  const excluded = "script, style, code, kbd, a, button, input, textarea, select, .menu-path, .glossary-inline, .topbar";
+  const pattern = new RegExp(
+    `(^|[^\\p{L}\\p{N}])(${candidates.join("|")})(?=$|[^\\p{L}\\p{N}])`,
+    "giu",
+  );
+  const usbCableContext =
+    /(?:USB\s*[-‑–—]?\s*(?:кабел|підключ|порт|інтерфейс)|(?:кабел|підключ|порт|інтерфейс)[^.!?]{0,24}USB|DIRECT\s+USB)/iu;
+  const excluded =
+    "script, style, code, kbd, a, button, input, textarea, select, .menu-path, .glossary-inline, .topbar";
   const nodes = [];
   const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
     acceptNode(node) {
-      if (!node.nodeValue.trim() || node.parentElement?.closest(excluded)) return NodeFilter.FILTER_REJECT;
+      if (!node.nodeValue.trim() || node.parentElement?.closest(excluded))
+        return NodeFilter.FILTER_REJECT;
       pattern.lastIndex = 0;
       return pattern.test(node.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
-    }
+    },
   });
   while (walker.nextNode()) nodes.push(walker.currentNode);
 
@@ -85,7 +94,11 @@
     }
     if (includeLink) {
       const link = document.createElement("a");
-      link.href = `${window.GLOSSARY_ROOT || ""}glossary.html#${entry.term.toLocaleLowerCase("uk-UA").replace(/\+/g, "-plus").replace(/[^\p{L}\p{N}]+/gu, "-").replace(/^-|-$/g, "")}`;
+      link.href = `${window.GLOSSARY_ROOT || ""}glossary.html#${entry.term
+        .toLocaleLowerCase("uk-UA")
+        .replace(/\+/g, "-plus")
+        .replace(/[^\p{L}\p{N}]+/gu, "-")
+        .replace(/^-|-$/g, "")}`;
       link.textContent = "Відкрити у глосарії";
       wrapper.append(link);
     }
@@ -99,7 +112,10 @@
     tooltip.hidden = false;
     const rect = marker.getBoundingClientRect();
     const tipRect = tooltip.getBoundingClientRect();
-    const left = Math.min(window.innerWidth - tipRect.width - 12, Math.max(12, rect.left + rect.width / 2 - tipRect.width / 2));
+    const left = Math.min(
+      window.innerWidth - tipRect.width - 12,
+      Math.max(12, rect.left + rect.width / 2 - tipRect.width / 2),
+    );
     const above = rect.top > tipRect.height + 18;
     tooltip.style.left = `${left}px`;
     tooltip.style.top = `${above ? rect.top - tipRect.height - 8 : rect.bottom + 8}px`;

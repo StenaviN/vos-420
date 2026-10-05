@@ -26,36 +26,88 @@
     updateQueued = false;
   };
 
-  window.addEventListener("scroll", () => {
-    if (updateQueued) return;
-    updateQueued = true;
-    window.requestAnimationFrame(updateVisibility);
-  }, { passive: true });
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (updateQueued) return;
+      updateQueued = true;
+      window.requestAnimationFrame(updateVisibility);
+    },
+    { passive: true },
+  );
   updateVisibility();
 })();
 
 (() => {
   const topicMain = document.querySelector("main.page");
-  if (!topicMain?.querySelector(":scope > .topbar") || !topicMain.querySelector(":scope > header.hero")) return;
+  if (
+    !topicMain?.querySelector(":scope > .topbar") ||
+    !topicMain.querySelector(":scope > header.hero")
+  )
+    return;
 
-  const headings = [...topicMain.querySelectorAll(":scope > section[id] > h2, :scope > section[id] h3")];
+  const headings = [
+    ...topicMain.querySelectorAll(":scope > section[id] > h2, :scope > section[id] h3"),
+  ];
   if (!headings.length) return;
 
   const usedIds = new Set([...document.querySelectorAll("[id]")].map((element) => element.id));
   const legacyIds = new Map();
-  const transliterate = (value) => value.replace(/[а-яіїєґёыэъь]/g, (letter) => ({
-    а: 'a', б: 'b', в: 'v', г: 'h', ґ: 'g', д: 'd', е: 'e', є: 'ye', ж: 'zh', з: 'z',
-    и: 'y', і: 'i', ї: 'yi', й: 'y', к: 'k', л: 'l', м: 'm', н: 'n', о: 'o', п: 'p',
-    р: 'r', с: 's', т: 't', у: 'u', ф: 'f', х: 'kh', ц: 'ts', ч: 'ch', ш: 'sh', щ: 'shch',
-    ь: '', ю: 'yu', я: 'ya', ё: 'yo', ы: 'y', э: 'e', ъ: ''
-  })[letter]);
-  const legacySlug = (value) => value
-    .toLocaleLowerCase("uk")
-    .normalize("NFC")
-    .replace(/[^\p{L}\p{N}]+/gu, "-")
-    .replace(/^-+|-+$/g, "") || "rozdil";
+  const transliterate = (value) =>
+    value.replace(
+      /[а-яіїєґёыэъь]/g,
+      (letter) =>
+        ({
+          а: "a",
+          б: "b",
+          в: "v",
+          г: "h",
+          ґ: "g",
+          д: "d",
+          е: "e",
+          є: "ye",
+          ж: "zh",
+          з: "z",
+          и: "y",
+          і: "i",
+          ї: "yi",
+          й: "y",
+          к: "k",
+          л: "l",
+          м: "m",
+          н: "n",
+          о: "o",
+          п: "p",
+          р: "r",
+          с: "s",
+          т: "t",
+          у: "u",
+          ф: "f",
+          х: "kh",
+          ц: "ts",
+          ч: "ch",
+          ш: "sh",
+          щ: "shch",
+          ь: "",
+          ю: "yu",
+          я: "ya",
+          ё: "yo",
+          ы: "y",
+          э: "e",
+          ъ: "",
+        })[letter],
+    );
+  const legacySlug = (value) =>
+    value
+      .toLocaleLowerCase("uk")
+      .normalize("NFC")
+      .replace(/[^\p{L}\p{N}]+/gu, "-")
+      .replace(/^-+|-+$/g, "") || "rozdil";
 
-  const slugify = (value) => transliterate(legacySlug(value)).replace(/[^a-z0-9-]+/g, "-").replace(/^-+|-+$/g, "") || "rozdil";
+  const slugify = (value) =>
+    transliterate(legacySlug(value))
+      .replace(/[^a-z0-9-]+/g, "-")
+      .replace(/^-+|-+$/g, "") || "rozdil";
 
   const uniqueId = (base) => {
     let candidate = base;
@@ -122,7 +174,8 @@
   headings.forEach((heading) => {
     const section = heading.closest("section[id]");
     let targetId = heading.id;
-    if (targetId && heading.dataset.legacyAnchor) legacyIds.set(heading.dataset.legacyAnchor, targetId);
+    if (targetId && heading.dataset.legacyAnchor)
+      legacyIds.set(heading.dataset.legacyAnchor, targetId);
     if (!targetId && heading.tagName === "H2") targetId = section.id;
     if (!targetId) {
       const oldBase = `${section.id}-${legacySlug(heading.textContent)}`;
@@ -138,7 +191,10 @@
     button.type = "button";
     button.className = "heading-link-button";
     button.title = "Копіювати посилання на цей розділ";
-    button.setAttribute("aria-label", `Копіювати посилання на розділ «${heading.textContent.trim()}»`);
+    button.setAttribute(
+      "aria-label",
+      `Копіювати посилання на розділ «${heading.textContent.trim()}»`,
+    );
     button.innerHTML = '<span aria-hidden="true">🔗</span>';
     button.addEventListener("click", async () => {
       clearTimeout(anchorUpdateTimer);
@@ -152,7 +208,9 @@
       } catch {
         toast.textContent = "Не вдалося скопіювати посилання";
         showToast(button);
-        setTimeout(() => { toast.textContent = "Посилання скопійовано"; }, 1900);
+        setTimeout(() => {
+          toast.textContent = "Посилання скопійовано";
+        }, 1900);
       }
     });
     const label = document.createElement("span");
@@ -174,14 +232,16 @@
   window.addEventListener("hashchange", migrateHash);
   migrateHash();
 
-  const initialTarget = window.location.hash ? document.getElementById(decodeURIComponent(window.location.hash.slice(1))) : null;
+  const initialTarget = window.location.hash
+    ? document.getElementById(decodeURIComponent(window.location.hash.slice(1)))
+    : null;
   if (initialTarget) requestAnimationFrame(() => initialTarget.scrollIntoView());
 
   // Track reading position only in notes, leaving quiz and other page hashes alone.
   if (/\/\d{2}-[^/]+\/(?:index\.html)?$/.test(location.pathname)) {
     const updateReadingAnchor = () => {
       if (performance.now() < holdAnchorUntil || document.querySelector("dialog[open]")) return;
-      const readingLine = Math.min(140, innerHeight * .2);
+      const readingLine = Math.min(140, innerHeight * 0.2);
       let activeId = "";
       for (const { heading, id } of anchorHeadings) {
         if (!heading.getClientRects().length) continue;
@@ -190,10 +250,14 @@
       }
       replaceAnchor(activeId);
     };
-    window.addEventListener("scroll", () => {
-      clearTimeout(anchorUpdateTimer);
-      anchorUpdateTimer = setTimeout(updateReadingAnchor, 150);
-    }, { passive: true });
+    window.addEventListener(
+      "scroll",
+      () => {
+        clearTimeout(anchorUpdateTimer);
+        anchorUpdateTimer = setTimeout(updateReadingAnchor, 150);
+      },
+      { passive: true },
+    );
     window.addEventListener("hashchange", () => {
       clearTimeout(anchorUpdateTimer);
       holdAnchorUntil = performance.now() + 600;
@@ -204,7 +268,7 @@
 })();
 
 (() => {
-  document.querySelectorAll("main img").forEach(image => {
+  document.querySelectorAll("main img").forEach((image) => {
     if (image.closest("button, a")) return;
     const button = document.createElement("button");
     button.type = "button";
@@ -250,10 +314,14 @@
     const before = image.getBoundingClientRect();
     const x = point?.x ?? viewport.left + stage.clientWidth / 2;
     const y = point?.y ?? viewport.top + stage.clientHeight / 2;
-    const fx = before.width ? (x - before.left) / before.width : .5;
-    const fy = before.height ? (y - before.top) / before.height : .5;
+    const fx = before.width ? (x - before.left) / before.width : 0.5;
+    const fy = before.height ? (y - before.top) / before.height : 0.5;
     zoom = Math.max(1, Math.min(8, nextZoom));
-    const fit = Math.min(stage.clientWidth / image.naturalWidth, stage.clientHeight / image.naturalHeight, 1);
+    const fit = Math.min(
+      stage.clientWidth / image.naturalWidth,
+      stage.clientHeight / image.naturalHeight,
+      1,
+    );
     const width = image.naturalWidth * fit * zoom;
     const height = image.naturalHeight * fit * zoom;
     const canvasWidth = Math.max(stage.clientWidth, width);
@@ -277,43 +345,58 @@
   zoomIn.addEventListener("click", () => render(zoom * 1.5));
   zoomOut.addEventListener("click", () => render(zoom / 1.5));
   dialog.querySelector('[data-zoom="fit"]').addEventListener("click", fit);
-  stage.addEventListener("wheel", event => {
-    event.preventDefault();
-    render(zoom * Math.exp(-Math.max(-100, Math.min(100, event.deltaY)) * .004), { x: event.clientX, y: event.clientY });
-  }, { passive: false });
-  stage.addEventListener("dblclick", event => render(zoom > 1 ? 1 : 2, { x: event.clientX, y: event.clientY }));
-  stage.addEventListener("pointerdown", event => {
+  stage.addEventListener(
+    "wheel",
+    (event) => {
+      event.preventDefault();
+      render(zoom * Math.exp(-Math.max(-100, Math.min(100, event.deltaY)) * 0.004), {
+        x: event.clientX,
+        y: event.clientY,
+      });
+    },
+    { passive: false },
+  );
+  stage.addEventListener("dblclick", (event) =>
+    render(zoom > 1 ? 1 : 2, { x: event.clientX, y: event.clientY }),
+  );
+  stage.addEventListener("pointerdown", (event) => {
     if (event.button !== 0) return;
     pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
     stage.setPointerCapture(event.pointerId);
   });
-  stage.addEventListener("pointermove", event => {
+  stage.addEventListener("pointermove", (event) => {
     if (!pointers.has(event.pointerId)) return;
     const previous = pointers.get(event.pointerId);
     const oldPair = [...pointers.values()];
     pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
     const pair = [...pointers.values()];
     if (pair.length === 2) {
-      const distance = points => Math.hypot(points[0].x - points[1].x, points[0].y - points[1].y);
+      const distance = (points) => Math.hypot(points[0].x - points[1].x, points[0].y - points[1].y);
       const oldDistance = distance(oldPair);
-      if (oldDistance > 0) render(zoom * distance(pair) / oldDistance, { x: (pair[0].x + pair[1].x) / 2, y: (pair[0].y + pair[1].y) / 2 });
+      if (oldDistance > 0)
+        render((zoom * distance(pair)) / oldDistance, {
+          x: (pair[0].x + pair[1].x) / 2,
+          y: (pair[0].y + pair[1].y) / 2,
+        });
     } else if (pair.length === 1) {
       stage.scrollLeft -= event.clientX - previous.x;
       stage.scrollTop -= event.clientY - previous.y;
     }
   });
   for (const name of ["pointerup", "pointercancel", "lostpointercapture"]) {
-    stage.addEventListener(name, event => pointers.delete(event.pointerId));
+    stage.addEventListener(name, (event) => pointers.delete(event.pointerId));
   }
-  dialog.addEventListener("keydown", event => {
+  dialog.addEventListener("keydown", (event) => {
     if (["+", "=", "-", "0"].includes(event.key)) {
       event.preventDefault();
       if (event.key === "0") fit();
       else render(event.key === "-" ? zoom / 1.5 : zoom * 1.5);
     }
   });
-  new ResizeObserver(() => { if (dialog.open) fit(); }).observe(dialog);
-  triggers.forEach(trigger => {
+  new ResizeObserver(() => {
+    if (dialog.open) fit();
+  }).observe(dialog);
+  triggers.forEach((trigger) => {
     trigger.addEventListener("click", () => {
       const source = trigger.querySelector("img");
       if (!source) return;
@@ -322,14 +405,17 @@
       zoom = 1;
       image.src = source.currentSrc || source.src;
       image.alt = source.alt;
-      caption.textContent = trigger.closest("figure")?.querySelector("figcaption")?.textContent || source.alt;
+      caption.textContent =
+        trigger.closest("figure")?.querySelector("figcaption")?.textContent || source.alt;
       dialog.showModal();
       fit();
       closeButton.focus();
     });
   });
   closeButton.addEventListener("click", () => dialog.close());
-  dialog.addEventListener("click", event => { if (event.target === dialog) dialog.close(); });
+  dialog.addEventListener("click", (event) => {
+    if (event.target === dialog) dialog.close();
+  });
   dialog.addEventListener("close", () => {
     pointers.clear();
     image.removeAttribute("src");
@@ -375,7 +461,10 @@
     control.content.hidden = collapsed;
     control.button.setAttribute("aria-expanded", String(!collapsed));
     control.button.title = collapsed ? "Розгорнути розділ" : "Згорнути розділ";
-    control.button.setAttribute("aria-label", `${collapsed ? "Розгорнути" : "Згорнути"} розділ «${control.title}»`);
+    control.button.setAttribute(
+      "aria-label",
+      `${collapsed ? "Розгорнути" : "Згорнути"} розділ «${control.title}»`,
+    );
     control.button.querySelector("span").textContent = collapsed ? "▸" : "▾";
     if (collapsed) collapsedIds.add(section.id);
     else collapsedIds.delete(section.id);
@@ -399,7 +488,9 @@
     button.innerHTML = '<span aria-hidden="true"></span>';
     const title = headingText(heading);
     controls.set(section.id, { button, content, title });
-    button.addEventListener("click", () => setCollapsed(section, !section.classList.contains("is-collapsed")));
+    button.addEventListener("click", () =>
+      setCollapsed(section, !section.classList.contains("is-collapsed")),
+    );
     heading.classList.add("collapsible-heading");
     heading.addEventListener("click", (event) => {
       if (event.target.closest("button, a")) return;

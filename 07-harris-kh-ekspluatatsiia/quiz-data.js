@@ -1,742 +1,631 @@
 "use strict";
 // Generated from questions.json by npm run build:quiz.
 window.QUIZ_CONFIG = {
-  "id": "topic7-harris-hf-operation",
-  "label": "ВОС-420 · Експлуатація HARRIS КХ",
-  "title": "Вікторина з експлуатації HARRIS КХ",
-  "quizSize": 25,
-  "questions": [
+  id: "topic7-harris-hf-operation",
+  label: "ВОС-420 · Експлуатація HARRIS КХ",
+  title: "Вікторина з експлуатації HARRIS КХ",
+  quizSize: 25,
+  questions: [
     {
-      "id": "t7-01",
-      "topic": "Підготовка",
-      "question": "Яка команда меню змінює вихідну потужність?",
-      "correct": "TX POWER",
-      "wrong": [
-        "RADIO NAME",
-        "GPS-TOD",
-        "RESET HUB",
-        "RF POWER"
-      ],
-      "explanation": "TX POWER дозволяє обрати LOW, MED або HIGH.",
-      "reference": "#pered-robotoyu"
+      id: "t7-01",
+      topic: "Підготовка",
+      question: "Яка команда меню змінює вихідну потужність?",
+      correct: "TX POWER",
+      wrong: ["RADIO NAME", "GPS-TOD", "RESET HUB", "RF POWER"],
+      explanation: "TX POWER дозволяє обрати LOW, MED або HIGH.",
+      reference: "#pered-robotoyu",
     },
     {
-      "id": "t7-02",
-      "topic": "Підготовка",
-      "question": "Яке значення INTERNAL COUPLER обов'язково встановлюють перед початком роботи?",
-      "correct": "ENABLE",
-      "wrong": [
-        "BY PASSED",
-        "DISABLE",
-        "RESET HUB",
-        "AUTO"
-      ],
-      "explanation": "Перед роботою внутрішній антенний узгоджувач має бути ввімкнений: INTERNAL COUPLER → ENABLE.",
-      "reference": "#pered-robotoyu"
+      id: "t7-02",
+      topic: "Підготовка",
+      question: "Яке значення INTERNAL COUPLER обов'язково встановлюють перед початком роботи?",
+      correct: "ENABLE",
+      wrong: ["BY PASSED", "DISABLE", "RESET HUB", "AUTO"],
+      explanation:
+        "Перед роботою внутрішній антенний узгоджувач має бути ввімкнений: INTERNAL COUPLER → ENABLE.",
+      reference: "#pered-robotoyu",
     },
     {
-      "id": "t7-03",
-      "topic": "Тестування",
-      "question": "Яке повідомлення означає успішний системний тест?",
-      "correct": "TEST PASSED",
-      "wrong": [
-        "TEST IN PROGRESS",
-        "VSWR TEST FAILED",
-        "DEFAULT PASSWORD DETECTED",
-        "SYSTEM READY"
-      ],
-      "explanation": "Після успішного BIT / SYSTEM з'являється TEST PASSED.",
-      "reference": "#systemnyi-test"
+      id: "t7-03",
+      topic: "Тестування",
+      question: "Яке повідомлення означає успішний системний тест?",
+      correct: "TEST PASSED",
+      wrong: ["TEST IN PROGRESS", "VSWR TEST FAILED", "DEFAULT PASSWORD DETECTED", "SYSTEM READY"],
+      explanation: "Після успішного BIT / SYSTEM з'являється TEST PASSED.",
+      reference: "#systemnyi-test",
     },
     {
-      "id": "t7-04",
-      "topic": "Тестування",
-      "question": "Який пункт тестує стан живлення?",
-      "correct": "BATTERY",
-      "wrong": [
-        "VSWR",
-        "SCORE",
-        "GPS-APR",
-        "POWER SUPPLY"
-      ],
-      "explanation": "BATTERY призначений для контролю батареї.",
-      "reference": "#test-batarei"
+      id: "t7-04",
+      topic: "Тестування",
+      question: "Який пункт тестує стан живлення?",
+      correct: "BATTERY",
+      wrong: ["VSWR", "SCORE", "GPS-APR", "POWER SUPPLY"],
+      explanation: "BATTERY призначений для контролю батареї.",
+      reference: "#test-batarei",
     },
     {
-      "id": "t7-05",
-      "topic": "Тестування",
-      "question": "Що перевіряє VSWR?",
-      "correct": "Підсилювач і узгодження антени на робочій частоті",
-      "wrong": [
+      id: "t7-05",
+      topic: "Тестування",
+      question: "Що перевіряє VSWR?",
+      correct: "Підсилювач і узгодження антени на робочій частоті",
+      wrong: [
         "Тільки правильність часу",
         "Пам'ять SMS",
         "Ім'я радіостанції",
-        "Лише вихідну потужність передавача без перевірки узгодження"
+        "Лише вихідну потужність передавача без перевірки узгодження",
       ],
-      "explanation": "VSWR стосується антенно-фідерного тракту та вихідного каскаду.",
-      "reference": "#test-anteno-fidernoho-traktu"
+      explanation: "VSWR стосується антенно-фідерного тракту та вихідного каскаду.",
+      reference: "#test-anteno-fidernoho-traktu",
     },
     {
-      "id": "t7-50",
-      "topic": "Підготовка",
-      "question": "У яке положення встановлюють перемикач для початкового ввімкнення за алгоритмом?",
-      "correct": "PT",
-      "wrong": [
-        "Z",
-        "LD",
-        "CLR",
-        "CT"
-      ],
-      "explanation": "Після підключення обладнання радіостанцію вмикають у відкритому режимі PT.",
-      "reference": "#pered-robotoyu"
+      id: "t7-50",
+      topic: "Підготовка",
+      question: "У яке положення встановлюють перемикач для початкового ввімкнення за алгоритмом?",
+      correct: "PT",
+      wrong: ["Z", "LD", "CLR", "CT"],
+      explanation: "Після підключення обладнання радіостанцію вмикають у відкритому режимі PT.",
+      reference: "#pered-robotoyu",
     },
     {
-      "id": "t7-51",
-      "topic": "VSWR",
-      "question": "Який діапазон КСХ зазначено як нормальний?",
-      "correct": "1,0-1,9",
-      "wrong": [
-        "2,5-3,5",
-        "4,0-5,0",
-        "Тільки рівно 0",
-        "1,0-2,5"
-      ],
-      "explanation": "Якщо VSWR-тест невдалий, перевіряють підключення і цілісність антени.",
-      "reference": "#test-anteno-fidernoho-traktu"
+      id: "t7-51",
+      topic: "VSWR",
+      question: "Який діапазон КСХ зазначено як нормальний?",
+      correct: "1,0-1,9",
+      wrong: ["2,5-3,5", "4,0-5,0", "Тільки рівно 0", "1,0-2,5"],
+      explanation: "Якщо VSWR-тест невдалий, перевіряють підключення і цілісність антени.",
+      reference: "#test-anteno-fidernoho-traktu",
     },
     {
-      "id": "t7-06",
-      "topic": "Антена",
-      "question": "Яке налаштування обирають для штирьової антени?",
-      "correct": "HIGH VOLTAGE",
-      "wrong": [
-        "50 OM",
-        "DIRECT USB",
-        "BY PASSED",
-        "INTERNAL COUPLER"
-      ],
-      "explanation": "У меню ACCESSORY для штирьової антени обирають HIGH VOLTAGE.",
-      "reference": "#typ-antenny"
+      id: "t7-06",
+      topic: "Антена",
+      question: "Яке налаштування обирають для штирьової антени?",
+      correct: "HIGH VOLTAGE",
+      wrong: ["50 OM", "DIRECT USB", "BY PASSED", "INTERNAL COUPLER"],
+      explanation: "У меню ACCESSORY для штирьової антени обирають HIGH VOLTAGE.",
+      reference: "#typ-antenny",
     },
     {
-      "id": "t7-07",
-      "topic": "Антена",
-      "question": "Яке налаштування обирають для диполя?",
-      "correct": "50 OM",
-      "wrong": [
-        "HIGH VOLTAGE",
-        "RESET HUB",
-        "LOW",
-        "HIGH IMPEDANCE"
-      ],
-      "explanation": "Для диполя вказано 50 OM.",
-      "reference": "#typ-antenny"
+      id: "t7-07",
+      topic: "Антена",
+      question: "Яке налаштування обирають для диполя?",
+      correct: "50 OM",
+      wrong: ["HIGH VOLTAGE", "RESET HUB", "LOW", "HIGH IMPEDANCE"],
+      explanation: "Для диполя вказано 50 OM.",
+      reference: "#typ-antenny",
     },
     {
-      "id": "t7-08",
-      "topic": "Мережа",
-      "question": "Яка IP-адреса прямого USB-підключення наведена в інструкції?",
-      "correct": "169.254.78.1",
-      "wrong": [
+      id: "t7-08",
+      topic: "Мережа",
+      question: "Яка IP-адреса прямого USB-підключення наведена в інструкції?",
+      correct: "169.254.78.1",
+      wrong: [
         "192.168.1.1",
         "127.0.0.1",
         "10.0.0.1",
         "169.254.78.2",
         "169.254.1.1",
-        "192.168.78.1"
+        "192.168.78.1",
       ],
-      "explanation": "Для DIRECT USB наведено адресу 169.254.78.1.",
-      "reference": "#ip-adresa"
+      explanation: "Для DIRECT USB наведено адресу 169.254.78.1.",
+      reference: "#ip-adresa",
     },
     {
-      "id": "t7-09",
-      "topic": "Обслуговування",
-      "question": "Для якої моделі передбачено RESET HUB?",
-      "correct": "RF-7800H-MP",
-      "wrong": [
+      id: "t7-09",
+      topic: "Обслуговування",
+      question: "Для якої моделі передбачено RESET HUB?",
+      correct: "RF-7800H-MP",
+      wrong: [
         "Лише MPR-9600-MP",
         "Для обох без винятку",
         "Для RF-7800V-HH",
         "RF-7800H-MP і MPR-9600-MP залежно від антени",
         "RF-7850M-HH",
-        "Для RF-7800H-MP і MPR-9600-MP"
+        "Для RF-7800H-MP і MPR-9600-MP",
       ],
-      "explanation": "Скидання лічильника HUB у цій процедурі стосується RF-7800H-MP.",
-      "reference": "#test-batarei"
+      explanation: "Скидання лічильника HUB у цій процедурі стосується RF-7800H-MP.",
+      reference: "#test-batarei",
     },
     {
-      "id": "t7-10",
-      "topic": "FIX",
-      "question": "Що є основою роботи в режимі FIX?",
-      "correct": "Заздалегідь запрограмована фіксована частота",
-      "wrong": [
+      id: "t7-10",
+      topic: "FIX",
+      question: "Що є основою роботи в режимі FIX?",
+      correct: "Заздалегідь запрограмована фіксована частота",
+      wrong: [
         "Автоматичний перескок без синхронізації",
         "Тільки GPS-звіт",
         "Одночасне сканування 3G та ALE",
-        "Автоматичний вибір найкращої частоти за LQA"
+        "Автоматичний вибір найкращої частоти за LQA",
       ],
-      "explanation": "FIX використовує фіксований запрограмований канал.",
-      "reference": "#fix"
+      explanation: "FIX використовує фіксований запрограмований канал.",
+      reference: "#fix",
     },
     {
-      "id": "t7-11",
-      "topic": "FIX",
-      "question": "Якими кнопками обирають запрограмований канал?",
-      "correct": "+/- PRE",
-      "wrong": [
-        "+/- VOL",
-        "PTT",
-        "CLR та 0",
-        "Стрілками < | >"
-      ],
-      "explanation": "Кнопки PRE перемикають запрограмовані канали PRESET.",
-      "reference": "#fix"
+      id: "t7-11",
+      topic: "FIX",
+      question: "Якими кнопками обирають запрограмований канал?",
+      correct: "+/- PRE",
+      wrong: ["+/- VOL", "PTT", "CLR та 0", "Стрілками < | >"],
+      explanation: "Кнопки PRE перемикають запрограмовані канали PRESET.",
+      reference: "#fix",
     },
     {
-      "id": "t7-12",
-      "topic": "FIX",
-      "question": "Якою кнопкою передають голосове повідомлення?",
-      "correct": "PTT",
-      "wrong": [
-        "ENT",
-        "CLR",
-        "7 OPT",
-        "1 CALL"
-      ],
-      "explanation": "PTT переводить станцію на передавання голосу.",
-      "reference": "#fix"
+      id: "t7-12",
+      topic: "FIX",
+      question: "Якою кнопкою передають голосове повідомлення?",
+      correct: "PTT",
+      wrong: ["ENT", "CLR", "7 OPT", "1 CALL"],
+      explanation: "PTT переводить станцію на передавання голосу.",
+      reference: "#fix",
     },
     {
-      "id": "t7-13",
-      "topic": "HOP",
-      "question": "Що обов'язково потрібно для узгодженого перескоку частот?",
-      "correct": "Синхронізований час і однаковий Hop Set",
-      "wrong": [
+      id: "t7-13",
+      topic: "HOP",
+      question: "Що обов'язково потрібно для узгодженого перескоку частот?",
+      correct: "Синхронізований час і однаковий Hop Set",
+      wrong: [
         "Лише однакова гучність",
         "Тільки IP-адреса",
         "Різні частотні плани",
-        "Однаковий канал FIX і синхронізований GPS-звіт"
+        "Однаковий канал FIX і синхронізований GPS-звіт",
       ],
-      "explanation": "Станції мають використовувати спільний набір і часову основу.",
-      "reference": "#hop"
+      explanation: "Станції мають використовувати спільний набір і часову основу.",
+      reference: "#hop",
     },
     {
-      "id": "t7-14",
-      "topic": "HOP",
-      "question": "Яку дію виконує головна станція для передавання синхронізації?",
-      "correct": "1 CALL → BROADCAST → ENT",
-      "wrong": [
+      id: "t7-14",
+      topic: "HOP",
+      question: "Яку дію виконує головна станція для передавання синхронізації?",
+      correct: "1 CALL → BROADCAST → ENT",
+      wrong: [
         "1 CALL → REQUEST → ENT",
         "7 OPT → TEST → BATTERY",
         "CLR → TERMINATE LINK",
-        "1 CALL → SYNC → REQUEST → ENT"
+        "1 CALL → SYNC → REQUEST → ENT",
       ],
-      "explanation": "BROADCAST передає час підлеглим станціям.",
-      "reference": "#hop"
+      explanation: "BROADCAST передає час підлеглим станціям.",
+      reference: "#hop",
     },
     {
-      "id": "t7-15",
-      "topic": "HOP",
-      "question": "Яку дію виконує підлегла станція для запиту синхронізації?",
-      "correct": "1 CALL → REQUEST → ENT",
-      "wrong": [
+      id: "t7-15",
+      topic: "HOP",
+      question: "Яку дію виконує підлегла станція для запиту синхронізації?",
+      correct: "1 CALL → REQUEST → ENT",
+      wrong: [
         "1 CALL → BROADCAST → ENT",
         "7 OPT → GPS-APR → VIEW",
         "8 PGM → RESET HUB",
-        "1 CALL → SYNC → BROADCAST → ENT"
+        "1 CALL → SYNC → BROADCAST → ENT",
       ],
-      "explanation": "REQUEST є запитом синхронізації.",
-      "reference": "#hop"
+      explanation: "REQUEST є запитом синхронізації.",
+      reference: "#hop",
     },
     {
-      "id": "t7-16",
-      "topic": "HOP",
-      "question": "Що означає режим синхронізації AUTO?",
-      "correct": "Автоматична синхронізація за GPS",
-      "wrong": [
+      id: "t7-16",
+      topic: "HOP",
+      question: "Що означає режим синхронізації AUTO?",
+      correct: "Автоматична синхронізація за GPS",
+      wrong: [
         "Повна відсутність синхронізації",
         "Ручна синхронізація на шість годин",
         "Автоматичне стирання Hop Set",
-        "Автоматична синхронізація від головної станції без GPS"
+        "Автоматична синхронізація від головної станції без GPS",
       ],
-      "explanation": "AUTO використовує GPS-антену.",
-      "reference": "#hop"
+      explanation: "AUTO використовує GPS-антену.",
+      reference: "#hop",
     },
     {
-      "id": "t7-17",
-      "topic": "HOP",
-      "question": "Як довго зберігається ручна синхронізація MAN за матеріалом?",
-      "correct": "До шести годин",
-      "wrong": [
-        "До десяти хвилин",
-        "Безстроково",
-        "До однієї хвилини",
-        "До дванадцяти годин"
-      ],
-      "explanation": "Для MAN вказано термін до шести годин.",
-      "reference": "#hop"
+      id: "t7-17",
+      topic: "HOP",
+      question: "Як довго зберігається ручна синхронізація MAN за матеріалом?",
+      correct: "До шести годин",
+      wrong: ["До десяти хвилин", "Безстроково", "До однієї хвилини", "До дванадцяти годин"],
+      explanation: "Для MAN вказано термін до шести годин.",
+      reference: "#hop",
     },
     {
-      "id": "t7-18",
-      "topic": "HOP",
-      "question": "Коли потрібно повторно синхронізувати станції?",
-      "correct": "Після зміни Hop Set",
-      "wrong": [
+      id: "t7-18",
+      topic: "HOP",
+      question: "Коли потрібно повторно синхронізувати станції?",
+      correct: "Після зміни Hop Set",
+      wrong: [
         "Після зміни гучності",
         "Після кожного натискання PTT",
         "Після перегляду батареї",
-        "Після кожного переходу між каналами FIX"
+        "Після кожного переходу між каналами FIX",
       ],
-      "explanation": "Новий Hop Set потребує повторної синхронізації.",
-      "reference": "#hop"
+      explanation: "Новий Hop Set потребує повторної синхронізації.",
+      reference: "#hop",
     },
     {
-      "id": "t7-19",
-      "topic": "Час",
-      "question": "Що означає TOD?",
-      "correct": "Time of Day, час доби",
-      "wrong": [
-        "Test of Data",
-        "Transfer over Dipole",
-        "Type of Display",
-        "Time Offset Data"
-      ],
-      "explanation": "TOD є часовою основою мережі.",
-      "reference": "#chas-tod"
+      id: "t7-19",
+      topic: "Час",
+      question: "Що означає TOD?",
+      correct: "Time of Day, час доби",
+      wrong: ["Test of Data", "Transfer over Dipole", "Type of Display", "Time Offset Data"],
+      explanation: "TOD є часовою основою мережі.",
+      reference: "#chas-tod",
     },
     {
-      "id": "t7-20",
-      "topic": "Час",
-      "question": "Через який пункт переглядають час станції?",
-      "correct": "GPS-TOD",
-      "wrong": [
-        "TX POWER",
-        "RX MSG",
-        "RADIO NAME",
-        "TIME OFFSET"
-      ],
-      "explanation": "GPS-TOD показує часові дані станції.",
-      "reference": "#chas-tod"
+      id: "t7-20",
+      topic: "Час",
+      question: "Через який пункт переглядають час станції?",
+      correct: "GPS-TOD",
+      wrong: ["TX POWER", "RX MSG", "RADIO NAME", "TIME OFFSET"],
+      explanation: "GPS-TOD показує часові дані станції.",
+      reference: "#chas-tod",
     },
     {
-      "id": "t7-21",
-      "topic": "ALE",
-      "question": "У якому стані мають бути обидві станції перед ALE-викликом і LQA-тестом?",
-      "correct": "У режимі сканування",
-      "wrong": [
+      id: "t7-21",
+      topic: "ALE",
+      question: "У якому стані мають бути обидві станції перед ALE-викликом і LQA-тестом?",
+      correct: "У режимі сканування",
+      wrong: [
         "У режимі RESET HUB",
         "З вимкненими антенами",
         "У меню BATTERY",
-        "На одному каналі FIX без сканування"
+        "На одному каналі FIX без сканування",
       ],
-      "explanation": "Для ALE-виклику та проведення LQA обидві станції мають перебувати в режимі сканування.",
-      "reference": "#lqa"
+      explanation:
+        "Для ALE-виклику та проведення LQA обидві станції мають перебувати в режимі сканування.",
+      reference: "#lqa",
     },
     {
-      "id": "t7-22",
-      "topic": "ALE",
-      "question": "Які типи адресата доступні для ALE-виклику?",
-      "correct": "INDIVIDUAL, NET або GROUP",
-      "wrong": [
-        "LOW, MED або HIGH",
-        "USB, HUB або GPS",
-        "PT, CT або Z",
-        "INDIVIDUAL або BROADCAST"
-      ],
-      "explanation": "ALE дозволяє викликати станцію, мережу чи групу.",
-      "reference": "#ale"
+      id: "t7-22",
+      topic: "ALE",
+      question: "Які типи адресата доступні для ALE-виклику?",
+      correct: "INDIVIDUAL, NET або GROUP",
+      wrong: ["LOW, MED або HIGH", "USB, HUB або GPS", "PT, CT або Z", "INDIVIDUAL або BROADCAST"],
+      explanation: "ALE дозволяє викликати станцію, мережу чи групу.",
+      reference: "#ale",
     },
     {
-      "id": "t7-23",
-      "topic": "ALE",
-      "question": "Як завершити встановлене ALE-з'єднання?",
-      "correct": "CLR → TERMINATE LINK? → YES → ENT",
-      "wrong": [
+      id: "t7-23",
+      topic: "ALE",
+      question: "Як завершити встановлене ALE-з'єднання?",
+      correct: "CLR → TERMINATE LINK? → YES → ENT",
+      wrong: [
         "PTT → LOW → ENT",
         "7 OPT → TEST → SYSTEM",
         "8 PGM → DIRECT USB → ENABLE",
-        "CLR → END CALL → ENT"
+        "CLR → END CALL → ENT",
       ],
-      "explanation": "Після підтвердження завершення станція повертається до сканування.",
-      "reference": "#ale"
+      explanation: "Після підтвердження завершення станція повертається до сканування.",
+      reference: "#ale",
     },
     {
-      "id": "t7-24",
-      "topic": "LQA",
-      "question": "Для чого призначений LQA?",
-      "correct": "Для оцінювання якості каналів",
-      "wrong": [
+      id: "t7-24",
+      topic: "LQA",
+      question: "Для чого призначений LQA?",
+      correct: "Для оцінювання якості каналів",
+      wrong: [
         "Для заряджання батареї",
         "Для зміни назви станції",
         "Для стирання ключів",
-        "Для синхронізації часу між станціями"
+        "Для синхронізації часу між станціями",
       ],
-      "explanation": "LQA означає Link Quality Analysis.",
-      "reference": "#lqa"
+      explanation: "LQA означає Link Quality Analysis.",
+      reference: "#lqa",
     },
     {
-      "id": "t7-25",
-      "topic": "LQA",
-      "question": "Чим EXCHANGE відрізняється від SOUND?",
-      "correct": "EXCHANGE двосторонній, SOUND односторонній",
-      "wrong": [
+      id: "t7-25",
+      topic: "LQA",
+      question: "Чим EXCHANGE відрізняється від SOUND?",
+      correct: "EXCHANGE двосторонній, SOUND односторонній",
+      wrong: [
         "EXCHANGE лише для GPS, SOUND для SMS",
         "EXCHANGE працює без антени",
         "Відмінності немає",
-        "EXCHANGE односторонній, SOUND двосторонній"
+        "EXCHANGE односторонній, SOUND двосторонній",
       ],
-      "explanation": "EXCHANGE дає оцінки обом кореспондентам, SOUND — приймальній стороні.",
-      "reference": "#lqa"
+      explanation: "EXCHANGE дає оцінки обом кореспондентам, SOUND — приймальній стороні.",
+      reference: "#lqa",
     },
     {
-      "id": "t7-26",
-      "topic": "LQA",
-      "question": "Де зберігається результат SOUND?",
-      "correct": "На станції, яка приймає зондування",
-      "wrong": [
+      id: "t7-26",
+      topic: "LQA",
+      question: "Де зберігається результат SOUND?",
+      correct: "На станції, яка приймає зондування",
+      wrong: [
         "Лише на головній станції, що передає",
         "На зовнішньому сервері",
         "Ніде",
-        "На обох станціях після автоматичного підтвердження"
+        "На обох станціях після автоматичного підтвердження",
       ],
-      "explanation": "SOUND є одностороннім зондуванням.",
-      "reference": "#lqa"
+      explanation: "SOUND є одностороннім зондуванням.",
+      reference: "#lqa",
     },
     {
-      "id": "t7-27",
-      "topic": "LQA",
-      "question": "Що робить ALE за наявності результатів LQA?",
-      "correct": "Обирає канал із найкращою оцінкою",
-      "wrong": [
+      id: "t7-27",
+      topic: "LQA",
+      question: "Що робить ALE за наявності результатів LQA?",
+      correct: "Обирає канал із найкращою оцінкою",
+      wrong: [
         "Завжди обирає найнижчу частоту",
         "Вимикає сканування назавжди",
         "Скидає HUB",
-        "Послідовно перебирає канали від найнижчої частоти"
+        "Послідовно перебирає канали від найнижчої частоти",
       ],
-      "explanation": "Оцінки LQA допомагають вибрати найкращий канал.",
-      "reference": "#lqa"
+      explanation: "Оцінки LQA допомагають вибрати найкращий канал.",
+      reference: "#lqa",
     },
     {
-      "id": "t7-28",
-      "topic": "LQA",
-      "question": "Яку частоту використовує алгоритм спочатку, якщо оцінок LQA немає?",
-      "correct": "Запрограмовану частоту з найбільшим номіналом",
-      "wrong": [
+      id: "t7-28",
+      topic: "LQA",
+      question: "Яку частоту використовує алгоритм спочатку, якщо оцінок LQA немає?",
+      correct: "Запрограмовану частоту з найбільшим номіналом",
+      wrong: [
         "Завжди 1,5 МГц",
         "Випадкову незапрограмовану частоту",
         "Частоту GPS",
-        "Першу частоту у списку каналів незалежно від номіналу"
+        "Першу частоту у списку каналів незалежно від номіналу",
       ],
-      "explanation": "За відсутності LQA виклик починається з найвищої запрограмованої частоти.",
-      "reference": "#lqa"
+      explanation: "За відсутності LQA виклик починається з найвищої запрограмованої частоти.",
+      reference: "#lqa",
     },
     {
-      "id": "t7-29",
-      "topic": "ALE",
-      "question": "Що означає AMD?",
-      "correct": "Automatic Message Display",
-      "wrong": [
+      id: "t7-29",
+      topic: "ALE",
+      question: "Що означає AMD?",
+      correct: "Automatic Message Display",
+      wrong: [
         "Automatic Modem Data",
         "Adaptive Manual Dialing",
         "Antenna Matching Device",
-        "Automatic Message Data"
+        "Automatic Message Data",
       ],
-      "explanation": "AMD є засобом коротких текстових повідомлень в ALE.",
-      "reference": "#ale-povidomlennia"
+      explanation: "AMD є засобом коротких текстових повідомлень в ALE.",
+      reference: "#ale-povidomlennia",
     },
     {
-      "id": "t7-30",
-      "topic": "ALE",
-      "question": "Яка максимальна довжина AMD-повідомлення?",
-      "correct": "100 символів",
-      "wrong": [
-        "10 символів",
-        "160 символів",
-        "1000 символів",
-        "120 символів"
-      ],
-      "explanation": "В ALE передбачено текст до 100 символів.",
-      "reference": "#ale-povidomlennia"
+      id: "t7-30",
+      topic: "ALE",
+      question: "Яка максимальна довжина AMD-повідомлення?",
+      correct: "100 символів",
+      wrong: ["10 символів", "160 символів", "1000 символів", "120 символів"],
+      explanation: "В ALE передбачено текст до 100 символів.",
+      reference: "#ale-povidomlennia",
     },
     {
-      "id": "t7-31",
-      "topic": "3G",
-      "question": "Які моделі з цієї пари підтримують 3G і 3G+?",
-      "correct": "RF-7800H-MP",
-      "wrong": [
+      id: "t7-31",
+      topic: "3G",
+      question: "Які моделі з цієї пари підтримують 3G і 3G+?",
+      correct: "RF-7800H-MP",
+      wrong: [
         "MPR-9600-MP",
         "Обидві моделі",
         "Жодна",
-        "RF-7800H-MP і MPR-9600-MP лише в режимі 3G"
+        "RF-7800H-MP і MPR-9600-MP лише в режимі 3G",
       ],
-      "explanation": "3G і 3G+ недоступні у MPR-9600-MP.",
-      "reference": "#three-g"
+      explanation: "3G і 3G+ недоступні у MPR-9600-MP.",
+      reference: "#three-g",
     },
     {
-      "id": "t7-32",
-      "topic": "3G",
-      "question": "Яка команда передає синхронізацію для всіх налаштованих планів?",
-      "correct": "BROADCAST SYNC-ALL",
-      "wrong": [
-        "SYNC REQUEST",
-        "BROADCAST SYNC",
-        "SEND GPS REPORT",
-        "BROADCAST ALL PLANS"
-      ],
-      "explanation": "SYNC-ALL охоплює всі налаштовані частотні плани.",
-      "reference": "#three-g"
+      id: "t7-32",
+      topic: "3G",
+      question: "Яка команда передає синхронізацію для всіх налаштованих планів?",
+      correct: "BROADCAST SYNC-ALL",
+      wrong: ["SYNC REQUEST", "BROADCAST SYNC", "SEND GPS REPORT", "BROADCAST ALL PLANS"],
+      explanation: "SYNC-ALL охоплює всі налаштовані частотні плани.",
+      reference: "#three-g",
     },
     {
-      "id": "t7-33",
-      "topic": "3G",
-      "question": "Який варіант виклику використовує найкращий канал за оцінками?",
-      "correct": "BEST",
-      "wrong": [
-        "MANUAL",
-        "RESET HUB",
-        "DIRECT USB",
-        "LQA"
-      ],
-      "explanation": "BEST спирається на доступні результати оцінювання каналів.",
-      "reference": "#three-g"
+      id: "t7-33",
+      topic: "3G",
+      question: "Який варіант виклику використовує найкращий канал за оцінками?",
+      correct: "BEST",
+      wrong: ["MANUAL", "RESET HUB", "DIRECT USB", "LQA"],
+      explanation: "BEST спирається на доступні результати оцінювання каналів.",
+      reference: "#three-g",
     },
     {
-      "id": "t7-34",
-      "topic": "LDV",
-      "question": "Коли можна передавати LDV?",
-      "correct": "Після встановлення 3G-з'єднання",
-      "wrong": [
+      id: "t7-34",
+      topic: "LDV",
+      question: "Коли можна передавати LDV?",
+      correct: "Після встановлення 3G-з'єднання",
+      wrong: [
         "До ввімкнення станції",
         "Тільки в FIX без з'єднання",
         "Під час тесту VSWR",
-        "Після входу в режим 3G до встановлення з'єднання"
+        "Після входу в режим 3G до встановлення з'єднання",
       ],
-      "explanation": "LDV передається в межах встановленого 3G-з'єднання.",
-      "reference": "#ldv"
+      explanation: "LDV передається в межах встановленого 3G-з'єднання.",
+      reference: "#ldv",
     },
     {
-      "id": "t7-35",
-      "topic": "LDV",
-      "question": "Що відбувається після завершення запису LDV?",
-      "correct": "Запис автоматично передається",
-      "wrong": [
+      id: "t7-35",
+      topic: "LDV",
+      question: "Що відбувається після завершення запису LDV?",
+      correct: "Запис автоматично передається",
+      wrong: [
         "Станція вимикається",
         "Запис лише зберігається без передавання",
         "Скидається HUB",
-        "Запис зберігається і передається окремою командою SEND"
+        "Запис зберігається і передається окремою командою SEND",
       ],
-      "explanation": "Після запису LDV повідомлення передається адресату автоматично.",
-      "reference": "#ldv"
+      explanation: "Після запису LDV повідомлення передається адресату автоматично.",
+      reference: "#ldv",
     },
     {
-      "id": "t7-36",
-      "topic": "LDV",
-      "question": "Яка максимальна тривалість LDV у матеріалі?",
-      "correct": "1 хв 50 с",
-      "wrong": [
-        "10 с",
-        "30 с",
-        "10 хв",
-        "2 хв"
-      ],
-      "explanation": "Інструкція наводить максимум 1 хвилину 50 секунд.",
-      "reference": "#ldv"
+      id: "t7-36",
+      topic: "LDV",
+      question: "Яка максимальна тривалість LDV у матеріалі?",
+      correct: "1 хв 50 с",
+      wrong: ["10 с", "30 с", "10 хв", "2 хв"],
+      explanation: "Інструкція наводить максимум 1 хвилину 50 секунд.",
+      reference: "#ldv",
     },
     {
-      "id": "t7-37",
-      "topic": "3G",
-      "question": "Яка максимальна довжина SMS у 3G?",
-      "correct": "160 символів",
-      "wrong": [
-        "100 символів",
-        "50 символів",
-        "Без обмеження",
-        "120 символів"
-      ],
-      "explanation": "3G SMS може містити до 160 символів.",
-      "reference": "#three-g-povidomlennia"
+      id: "t7-37",
+      topic: "3G",
+      question: "Яка максимальна довжина SMS у 3G?",
+      correct: "160 символів",
+      wrong: ["100 символів", "50 символів", "Без обмеження", "120 символів"],
+      explanation: "3G SMS може містити до 160 символів.",
+      reference: "#three-g-povidomlennia",
     },
     {
-      "id": "t7-38",
-      "topic": "3G",
-      "question": "Скільки SMS зберігається в пам'яті?",
-      "correct": "До 10",
-      "wrong": [
-        "Одне",
-        "До 100",
-        "Не зберігаються",
-        "До 20"
-      ],
-      "explanation": "У матеріалі вказано зберігання до десяти SMS.",
-      "reference": "#three-g-povidomlennia"
+      id: "t7-38",
+      topic: "3G",
+      question: "Скільки SMS зберігається в пам'яті?",
+      correct: "До 10",
+      wrong: ["Одне", "До 100", "Не зберігаються", "До 20"],
+      explanation: "У матеріалі вказано зберігання до десяти SMS.",
+      reference: "#three-g-povidomlennia",
     },
     {
-      "id": "t7-39",
-      "topic": "3G",
-      "question": "Через яку команду надсилають координати?",
-      "correct": "SEND GPS REPORT",
-      "wrong": [
-        "GPS-TOD",
-        "RADIO NAME",
-        "TEST SYSTEM",
-        "REQUEST GPS REPORT"
-      ],
-      "explanation": "SEND GPS REPORT передає координати станції або мережі.",
-      "reference": "#three-g-povidomlennia"
+      id: "t7-39",
+      topic: "3G",
+      question: "Через яку команду надсилають координати?",
+      correct: "SEND GPS REPORT",
+      wrong: ["GPS-TOD", "RADIO NAME", "TEST SYSTEM", "REQUEST GPS REPORT"],
+      explanation: "SEND GPS REPORT передає координати станції або мережі.",
+      reference: "#three-g-povidomlennia",
     },
     {
-      "id": "t7-40",
-      "topic": "3G",
-      "question": "Де переглянути отриманий GPS-звіт?",
-      "correct": "7 OPT → GPS-APR → VIEW",
-      "wrong": [
+      id: "t7-40",
+      topic: "3G",
+      question: "Де переглянути отриманий GPS-звіт?",
+      correct: "7 OPT → GPS-APR → VIEW",
+      wrong: [
         "8 PGM → TEST → VSWR",
         "1 CALL → REQUEST → ENT",
         "3 MODE → FIX",
-        "7 OPT → GPS-APR → RX REPORT"
+        "7 OPT → GPS-APR → RX REPORT",
       ],
-      "explanation": "Отримані координати відкривають через 7 OPT → GPS-APR → VIEW.",
-      "reference": "#three-g-povidomlennia"
+      explanation: "Отримані координати відкривають через 7 OPT → GPS-APR → VIEW.",
+      reference: "#three-g-povidomlennia",
     },
     {
-      "id": "t7-41",
-      "topic": "3G+",
-      "question": "У чому практична особливість 3G+?",
-      "correct": "Він дає змогу працювати з кореспондентами ALE та 3G",
-      "wrong": [
+      id: "t7-41",
+      topic: "3G+",
+      question: "У чому практична особливість 3G+?",
+      correct: "Він дає змогу працювати з кореспондентами ALE та 3G",
+      wrong: [
         "Він працює лише як тест батареї",
         "Він доступний тільки MPR-9600-MP",
         "Він не використовує адресатів",
-        "Він автоматично об'єднує всі мережі 3G в одну"
+        "Він автоматично об'єднує всі мережі 3G в одну",
       ],
-      "explanation": "У 3G+ оператор обирає процедуру відповідно до режиму кореспондента.",
-      "reference": "#three-g-plus"
+      explanation: "У 3G+ оператор обирає процедуру відповідно до режиму кореспондента.",
+      reference: "#three-g-plus",
     },
     {
-      "id": "t7-42",
-      "topic": "3G+",
-      "question": "Що потрібно визначити перед викликом у 3G+?",
-      "correct": "Чи працює кореспондент у ALE або 3G",
-      "wrong": [
+      id: "t7-42",
+      topic: "3G+",
+      question: "Що потрібно визначити перед викликом у 3G+?",
+      correct: "Чи працює кореспондент у ALE або 3G",
+      wrong: [
         "Колір дисплея кореспондента",
         "Тип його батареї",
         "Його поточну гучність",
-        "Який канал FIX запрограмовано в кореспондента"
+        "Який канал FIX запрограмовано в кореспондента",
       ],
-      "explanation": "Від режиму кореспондента залежить команда виклику.",
-      "reference": "#three-g-plus"
+      explanation: "Від режиму кореспондента залежить команда виклику.",
+      reference: "#three-g-plus",
     },
     {
-      "id": "t7-43",
-      "topic": "HOP",
-      "question": "Що обирають кнопками +/- PRE у режимі HOP?",
-      "correct": "Потрібний PRESET (ім'я)",
-      "wrong": [
+      id: "t7-43",
+      topic: "HOP",
+      question: "Що обирають кнопками +/- PRE у режимі HOP?",
+      correct: "Потрібний PRESET (ім'я)",
+      wrong: [
         "Hop Set безпосередньо",
         "Режим синхронізації AUTO",
         "Частотний план 3G",
         "Адресата ALE",
         "Рівень TX POWER",
-        "Тип LQA"
+        "Тип LQA",
       ],
-      "explanation": "У режимі HOP кнопками +/- PRE обирають PRESET. Hop Set є параметром конфігурації, а не прямим результатом натискання цих кнопок.",
-      "reference": "#hop"
+      explanation:
+        "У режимі HOP кнопками +/- PRE обирають PRESET. Hop Set є параметром конфігурації, а не прямим результатом натискання цих кнопок.",
+      reference: "#hop",
     },
     {
-      "id": "t7-44",
-      "topic": "Керування",
-      "question": "Які кнопки використовують для вибору та зміни параметра всередині пресета або частотного плану?",
-      "correct": "<, >, ^, v; підтвердження ENT",
-      "wrong": [
+      id: "t7-44",
+      topic: "Керування",
+      question:
+        "Які кнопки використовують для вибору та зміни параметра всередині пресета або частотного плану?",
+      correct: "<, >, ^, v; підтвердження ENT",
+      wrong: [
         "Тільки +/- VOL",
         "1 CALL і PTT",
         "7 OPT і CLR",
         "Тільки +/- PRE",
         "8 PGM і PTT",
-        "RESET HUB і CLR"
+        "RESET HUB і CLR",
       ],
-      "explanation": "Стрілками <, >, ^ і v обирають та змінюють параметр, після чого підтверджують вибір кнопкою ENT.",
-      "reference": "#fix"
+      explanation:
+        "Стрілками <, >, ^ і v обирають та змінюють параметр, після чого підтверджують вибір кнопкою ENT.",
+      reference: "#fix",
     },
     {
-      "id": "t7-45",
-      "topic": "3G · LQA",
-      "question": "У якому стані мають перебувати радіостанції для проведення LQA в режимі 3G?",
-      "correct": "У режимі сканування",
-      "wrong": [
+      id: "t7-45",
+      topic: "3G · LQA",
+      question: "У якому стані мають перебувати радіостанції для проведення LQA в режимі 3G?",
+      correct: "У режимі сканування",
+      wrong: [
         "У режимі передавання PTT",
         "У меню GPS-TOD",
         "У режимі RESET HUB",
         "З вимкненим приймачем",
         "У режимі FIX",
-        "У меню TX POWER"
+        "У меню TX POWER",
       ],
-      "explanation": "Для LQA в 3G обидві радіостанції обов'язково мають перебувати в режимі сканування.",
-      "reference": "#three-g"
+      explanation:
+        "Для LQA в 3G обидві радіостанції обов'язково мають перебувати в режимі сканування.",
+      reference: "#three-g",
     },
     {
-      "id": "t7-46",
-      "topic": "LQA",
-      "question": "Коли бажано провести LQA?",
-      "correct": "До встановлення з'єднання",
-      "wrong": [
+      id: "t7-46",
+      topic: "LQA",
+      question: "Коли бажано провести LQA?",
+      correct: "До встановлення з'єднання",
+      wrong: [
         "Після завершення з'єднання",
         "Лише після RESET HUB",
         "Під час тесту BATTERY",
         "Після вимкнення сканування",
         "Тільки після GPS-звіту",
-        "Після кожної передачі PTT"
+        "Після кожної передачі PTT",
       ],
-      "explanation": "LQA бажано виконати до виклику, щоб під час встановлення з'єднання станція могла використати канал із найкращою оцінкою.",
-      "reference": "#lqa"
+      explanation:
+        "LQA бажано виконати до виклику, щоб під час встановлення з'єднання станція могла використати канал із найкращою оцінкою.",
+      reference: "#lqa",
     },
     {
-      "id": "t7-47",
-      "topic": "ALE · повідомлення",
-      "question": "Яке повідомлення можна обрати для передавання через TX MSG в ALE?",
-      "correct": "Лише завчасно створене й збережене; у пам'яті їх до 10",
-      "wrong": [
+      id: "t7-47",
+      topic: "ALE · повідомлення",
+      question: "Яке повідомлення можна обрати для передавання через TX MSG в ALE?",
+      correct: "Лише завчасно створене й збережене; у пам'яті їх до 10",
+      wrong: [
         "Будь-який новий текст без попереднього збереження",
         "Лише отримане повідомлення з RX MSG",
         "Тільки GPS-звіт",
         "Лише одне заводське повідомлення",
         "До 100 незбережених повідомлень",
-        "Тільки голосовий запис LDV"
+        "Тільки голосовий запис LDV",
       ],
-      "explanation": "Через TX MSG передають одне із завчасно створених і збережених AMD-повідомлень; пам'ять містить до 10 таких повідомлень.",
-      "reference": "#ale-povidomlennia"
+      explanation:
+        "Через TX MSG передають одне із завчасно створених і збережених AMD-повідомлень; пам'ять містить до 10 таких повідомлень.",
+      reference: "#ale-povidomlennia",
     },
     {
-      "id": "t7-48",
-      "topic": "ALE · повідомлення",
-      "question": "Через який пункт переглядають отримані текстові повідомлення ALE?",
-      "correct": "RX MSG",
-      "wrong": [
-        "TX MSG",
-        "SEND GPS REPORT",
-        "GPS-TOD",
-        "RADIO NAME",
-        "BROADCAST SYNC",
-        "BATTERY"
-      ],
-      "explanation": "Отримані ALE-повідомлення переглядають через 7 OPT → ALE → RX MSG.",
-      "reference": "#ale-povidomlennia"
+      id: "t7-48",
+      topic: "ALE · повідомлення",
+      question: "Через який пункт переглядають отримані текстові повідомлення ALE?",
+      correct: "RX MSG",
+      wrong: ["TX MSG", "SEND GPS REPORT", "GPS-TOD", "RADIO NAME", "BROADCAST SYNC", "BATTERY"],
+      explanation: "Отримані ALE-повідомлення переглядають через 7 OPT → ALE → RX MSG.",
+      reference: "#ale-povidomlennia",
     },
     {
-      "id": "t7-49",
-      "topic": "Керування",
-      "question": "Якою кнопкою обирають режим роботи FIX, HOP, ALE, 3G або 3G+?",
-      "correct": "3 MODE",
-      "wrong": [
-        "1 CALL",
-        "7 OPT",
-        "8 PGM",
-        "PTT",
-        "CLR",
-        "+/- PRE"
-      ],
-      "explanation": "Кнопку 3 MODE натискають до появи на дисплеї потрібного режиму роботи.",
-      "reference": "#fix"
-    }
-  ]
+      id: "t7-49",
+      topic: "Керування",
+      question: "Якою кнопкою обирають режим роботи FIX, HOP, ALE, 3G або 3G+?",
+      correct: "3 MODE",
+      wrong: ["1 CALL", "7 OPT", "8 PGM", "PTT", "CLR", "+/- PRE"],
+      explanation: "Кнопку 3 MODE натискають до появи на дисплеї потрібного режиму роботи.",
+      reference: "#fix",
+    },
+  ],
 };

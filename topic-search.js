@@ -8,7 +8,9 @@
   if (!hero || !topicDirectory || !allEntries.length) return;
 
   const topicPrefix = `${decodeURIComponent(topicDirectory)}/index.html`;
-  const entries = allEntries.filter((entry) => decodeURIComponent(entry.url).split("#")[0] === topicPrefix);
+  const entries = allEntries.filter(
+    (entry) => decodeURIComponent(entry.url).split("#")[0] === topicPrefix,
+  );
   if (!entries.length) return;
 
   const panel = document.createElement("section");
@@ -41,7 +43,13 @@
   }
 
   function queryTokens(value) {
-    return [...new Set(normalize(value).split(" ").filter((token) => token.length >= 2 || /^\d+$/.test(token)))];
+    return [
+      ...new Set(
+        normalize(value)
+          .split(" ")
+          .filter((token) => token.length >= 2 || /^\d+$/.test(token)),
+      ),
+    ];
   }
 
   function containsToken(value, token) {
@@ -52,10 +60,13 @@
   function scoreEntry(entry, tokens, phrase) {
     const section = normalize(entry.section);
     const text = normalize(entry.text);
-    if (!tokens.every((token) => containsToken(section, token) || containsToken(text, token))) return 0;
-    let score = tokens.reduce((total, token) => total
-      + (containsToken(section, token) ? 10 : 0)
-      + (containsToken(text, token) ? 2 : 0), 0);
+    if (!tokens.every((token) => containsToken(section, token) || containsToken(text, token)))
+      return 0;
+    let score = tokens.reduce(
+      (total, token) =>
+        total + (containsToken(section, token) ? 10 : 0) + (containsToken(text, token) ? 2 : 0),
+      0,
+    );
     if (phrase && section.includes(phrase)) score += 16;
     if (phrase && text.includes(phrase)) score += 6;
     return score;
@@ -64,7 +75,10 @@
   function snippetFor(entry, tokens) {
     const source = entry.text;
     const lower = source.toLocaleLowerCase("uk");
-    const positions = tokens.map((token) => lower.indexOf(token)).filter((position) => position >= 0).sort((left, right) => left - right);
+    const positions = tokens
+      .map((token) => lower.indexOf(token))
+      .filter((position) => position >= 0)
+      .sort((left, right) => left - right);
     if (!positions.length) return source.slice(0, 190).trim();
     const start = Math.max(0, positions[0] - 55);
     const end = Math.min(source.length, positions[0] + 125);
@@ -72,7 +86,10 @@
   }
 
   function appendHighlighted(container, value, tokens) {
-    if (!tokens.length) { container.textContent = value; return; }
+    if (!tokens.length) {
+      container.textContent = value;
+      return;
+    }
     const alternatives = tokens.map((token) => token.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
     const pattern = new RegExp(`(${alternatives.join("|")})`, "giu");
     value.split(pattern).forEach((part) => {
@@ -110,10 +127,15 @@
     const walker = document.createTreeWalker(target, NodeFilter.SHOW_TEXT, {
       acceptNode(node) {
         if (!node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
-        if (node.parentElement?.closest("script, style, mark, input, textarea, button, .topic-search-panel")) return NodeFilter.FILTER_REJECT;
+        if (
+          node.parentElement?.closest(
+            "script, style, mark, input, textarea, button, .topic-search-panel",
+          )
+        )
+          return NodeFilter.FILTER_REJECT;
         pattern.lastIndex = 0;
         return pattern.test(node.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
-      }
+      },
     });
     const nodes = [];
     while (walker.nextNode()) nodes.push(walker.currentNode);
@@ -170,9 +192,14 @@
     const matches = entries
       .map((entry) => ({ entry, score: scoreEntry(entry, tokens, phrase) }))
       .filter((item) => item.score > 0)
-      .sort((left, right) => right.score - left.score || left.entry.section.localeCompare(right.entry.section, "uk"));
+      .sort(
+        (left, right) =>
+          right.score - left.score || left.entry.section.localeCompare(right.entry.section, "uk"),
+      );
 
-    status.textContent = matches.length ? `Знайдено: ${matches.length}` : "Нічого не знайдено в цій темі.";
+    status.textContent = matches.length
+      ? `Знайдено: ${matches.length}`
+      : "Нічого не знайдено в цій темі.";
     results.hidden = !matches.length;
     matches.slice(0, 12).forEach(({ entry }) => {
       const link = document.createElement("a");
@@ -189,12 +216,21 @@
     });
   }
 
-  form.addEventListener("submit", (event) => { event.preventDefault(); render(); });
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    render();
+  });
   input.addEventListener("input", () => render());
-  clearButton.addEventListener("click", () => { input.value = ""; render(); input.focus(); });
+  clearButton.addEventListener("click", () => {
+    input.value = "";
+    render();
+    input.focus();
+  });
   input.value = new URLSearchParams(location.search).get("search") || "";
   render({ updateHistory: false });
   const initialTarget = decodeURIComponent(location.hash.slice(1));
   if (initialTarget && input.value) highlightContent(initialTarget, queryTokens(input.value));
-  window.addEventListener("hashchange", () => highlightContent(decodeURIComponent(location.hash.slice(1)), queryTokens(input.value)));
+  window.addEventListener("hashchange", () =>
+    highlightContent(decodeURIComponent(location.hash.slice(1)), queryTokens(input.value)),
+  );
 })();

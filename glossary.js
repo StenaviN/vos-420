@@ -1,7 +1,9 @@
 "use strict";
 
 (() => {
-  const terms = [...(window.GLOSSARY_TERMS || [])].sort((left, right) => left.term.localeCompare(right.term, "en", { numeric: true }));
+  const terms = [...(window.GLOSSARY_TERMS || [])].sort((left, right) =>
+    left.term.localeCompare(right.term, "en", { numeric: true }),
+  );
   const list = document.querySelector("#glossaryList");
   const index = document.querySelector("#glossaryIndex");
   const form = document.querySelector("#glossarySearchForm");
@@ -18,22 +20,68 @@
     6: ["Harris КХ", "06-harris-kh/index.html"],
     7: ["Експлуатація HARRIS КХ", "07-harris-kh-ekspluatatsiia/index.html"],
     9: ["TOOWAY", "09-tooway/index.html"],
-    10: ["MOTOTRBO", "10-mototrbo/index.html"]
+    10: ["MOTOTRBO", "10-mototrbo/index.html"],
   };
 
-  const transliterate = (value) => value.replace(/[а-яіїєґёыэъь]/g, (letter) => ({
-    а: 'a', б: 'b', в: 'v', г: 'h', ґ: 'g', д: 'd', е: 'e', є: 'ye', ж: 'zh', з: 'z',
-    и: 'y', і: 'i', ї: 'yi', й: 'y', к: 'k', л: 'l', м: 'm', н: 'n', о: 'o', п: 'p',
-    р: 'r', с: 's', т: 't', у: 'u', ф: 'f', х: 'kh', ц: 'ts', ч: 'ch', ш: 'sh', щ: 'shch',
-    ь: '', ю: 'yu', я: 'ya', ё: 'yo', ы: 'y', э: 'e', ъ: ''
-  })[letter]);
+  const transliterate = (value) =>
+    value.replace(
+      /[а-яіїєґёыэъь]/g,
+      (letter) =>
+        ({
+          а: "a",
+          б: "b",
+          в: "v",
+          г: "h",
+          ґ: "g",
+          д: "d",
+          е: "e",
+          є: "ye",
+          ж: "zh",
+          з: "z",
+          и: "y",
+          і: "i",
+          ї: "yi",
+          й: "y",
+          к: "k",
+          л: "l",
+          м: "m",
+          н: "n",
+          о: "o",
+          п: "p",
+          р: "r",
+          с: "s",
+          т: "t",
+          у: "u",
+          ф: "f",
+          х: "kh",
+          ц: "ts",
+          ч: "ch",
+          ш: "sh",
+          щ: "shch",
+          ь: "",
+          ю: "yu",
+          я: "ya",
+          ё: "yo",
+          ы: "y",
+          э: "e",
+          ъ: "",
+        })[letter],
+    );
 
   function legacySlug(term) {
-    return term.toLocaleLowerCase("uk-UA").replace(/\+/g, "-plus").replace(/[^\p{L}\p{N}]+/gu, "-").replace(/^-|-$/g, "");
+    return term
+      .toLocaleLowerCase("uk-UA")
+      .replace(/\+/g, "-plus")
+      .replace(/[^\p{L}\p{N}]+/gu, "-")
+      .replace(/^-|-$/g, "");
   }
 
   function slug(term) {
-    return transliterate(legacySlug(term)).replace(/[^a-z0-9-]+/g, "-").replace(/^-+|-+$/g, "") || "term";
+    return (
+      transliterate(legacySlug(term))
+        .replace(/[^a-z0-9-]+/g, "-")
+        .replace(/^-+|-+$/g, "") || "term"
+    );
   }
 
   function group(entry) {
@@ -42,12 +90,17 @@
   }
 
   function normalized(value) {
-    return String(value || "").toLocaleLowerCase("uk-UA").normalize("NFD").replace(/\p{Diacritic}/gu, "");
+    return String(value || "")
+      .toLocaleLowerCase("uk-UA")
+      .normalize("NFD")
+      .replace(/\p{Diacritic}/gu, "");
   }
 
   function matches(entry, query) {
     if (!query) return true;
-    return normalized([entry.term, entry.full, entry.uk, entry.description].join(" ")).includes(normalized(query));
+    return normalized([entry.term, entry.full, entry.uk, entry.description].join(" ")).includes(
+      normalized(query),
+    );
   }
 
   function hashFor(id) {
@@ -130,7 +183,11 @@
         link.addEventListener("click", (event) => {
           event.preventDefault();
           history.pushState(null, "", hashFor(section.id));
-          section.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+          section.scrollIntoView({
+            behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+              ? "auto"
+              : "smooth",
+          });
         });
       }
       index.append(link);
@@ -162,5 +219,6 @@
   const initialQuery = new URLSearchParams(window.location.search).get("q") || "";
   input.value = initialQuery;
   render(initialQuery);
-  if (window.location.hash) requestAnimationFrame(() => document.getElementById(idFromHash())?.focus());
+  if (window.location.hash)
+    requestAnimationFrame(() => document.getElementById(idFromHash())?.focus());
 })();
