@@ -2,6 +2,7 @@
   "name": "vos-420-notes",
   "private": true,
   "scriptsInfo": {
+    "test:statistics": "npm run test:statistics — перевірити формат резервної копії статистики, відновлення результатів і відхилення некоректних файлів.",
     "usage": "Команди запускаються з каталогу VOS-420-NOTES: npm run <назва команди>.",
     "build:glossary": "npm run build:glossary — перевірити терміни глосарію та їх використання у конспектах.",
     "build:search-index": "npm run build:search-index — оновити search-index.js після зміни тексту або розділів конспектів.",
@@ -13,6 +14,7 @@
     "test:admin": "npm run test:admin — перевірити локальний сервер редактора: збереження, валідацію, конфлікти змін і обмеження доступу. Тести використовують тимчасовий каталог, не змінюючи робочі питання."
   },
   "scripts": {
+    "test:statistics": "node --test quiz-statistics.test.cjs",
     "build:glossary": "node build-glossary-audit.mjs",
     "build:search-index": "node build-search-index.mjs",
     "build:assets": "node build-asset-versions.mjs",

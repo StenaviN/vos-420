@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Вікторини ВОС-420</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="style.css?v=51b1c8275321">
-  <link rel="stylesheet" href="quiz-common.css?v=51b1c8275321">
+  <link rel="stylesheet" href="style.css?v=cac2c39847d8">
+  <link rel="stylesheet" href="quiz-common.css?v=cac2c39847d8">
 </head>
 <body>
   <main class="page quiz-page">
@@ -38,6 +38,13 @@
 
     <section id="statsPanel" class="stats-panel" hidden>
       <div class="stats-heading"><div><p class="question-topic">Навчальний прогрес</p><h2>Статистика вікторин</h2><p id="statsScope"></p></div><p>Дані зберігаються лише в цьому браузері.</p></div>
+      <section class="stats-transfer" aria-labelledby="statsTransferTitle">
+        <h3 id="statsTransferTitle">Експорт та імпорт</h3>
+        <p>Збережи статистику всіх тем і змішаних вікторин у JSON: прогрес питань, історію та результати останніх спроб. Імпорт повністю замінить статистику цього браузера. Незавершені вікторини й налаштування не переносяться.</p>
+        <div class="quiz-actions"><button id="exportStats" class="secondary-button" type="button">Експортувати JSON</button><button id="importStats" class="secondary-button" type="button">Імпортувати JSON</button></div>
+        <input id="importStatsFile" type="file" accept=".json,application/json" hidden>
+        <p id="statsTransferStatus" role="status" aria-live="polite"></p>
+      </section>
       <div id="statsSummary" class="stats-summary"></div>
       <div class="stats-columns"><section><h3>Останні спроби вибраного зрізу</h3><div id="trendChart" class="bar-chart"></div></section><section><h3>Точність за темами</h3><div id="topicChart" class="bar-chart"></div></section></div>
       <section class="stats-section"><h3>Питання, які варто повторити</h3><div id="hardQuestions"></div></section>
@@ -60,9 +67,16 @@
     <p id="finishDialogMessage"></p>
     <div class="quiz-actions"><button id="continueQuizButton" class="secondary-button" type="button" autofocus>Продовжити</button><button id="confirmFinishButton" class="primary-button" type="button">Завершити</button></div>
   </dialog>
-  <script src="asset-version.js?v=51b1c8275321"></script>
+  <dialog id="importStatsDialog" class="quiz-confirm-dialog" aria-labelledby="importStatsTitle" aria-describedby="importStatsMessage">
+    <h2 id="importStatsTitle">Замінити всю статистику?</h2>
+    <p id="importStatsMessage"></p>
+    <p>Поточні дані всіх тем буде замінено без об’єднання. За потреби спочатку експортуй їх. Незавершені спроби залишаться в браузері.</p>
+    <div class="quiz-actions"><button id="cancelImportStats" class="secondary-button" type="button" autofocus>Скасувати</button><button id="confirmImportStats" class="primary-button" type="button">Замінити статистику</button></div>
+  </dialog>
+  <script src="asset-version.js?v=cac2c39847d8"></script>
+  <script src="quiz-statistics.js?v=cac2c39847d8"></script>
 
-  <script src="quiz-loader.js?v=51b1c8275321"></script>
-  <script src="site-ui.js?v=51b1c8275321"></script>
+  <script src="quiz-loader.js?v=cac2c39847d8"></script>
+  <script src="site-ui.js?v=cac2c39847d8"></script>
 </body>
 </html>
