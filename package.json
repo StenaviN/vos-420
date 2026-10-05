@@ -1,6 +1,17 @@
 {
   "name": "vos-420-notes",
   "private": true,
+  "scriptsInfo": {
+    "usage": "Команди запускаються з каталогу VOS-420-NOTES: npm run <назва команди>.",
+    "build:glossary": "npm run build:glossary — перевірити терміни глосарію та їх використання у конспектах.",
+    "build:search-index": "npm run build:search-index — оновити search-index.js після зміни тексту або розділів конспектів.",
+    "build:assets": "npm run build:assets — оновити версії ресурсів і посилання в HTML, щоб браузер завантажив змінені файли.",
+    "build:search": "npm run build:search — оновити пошуковий індекс і версії ресурсів.",
+    "build": "npm run build — повна перевірка та збірка: питання вікторин, глосарій, пошуковий індекс і версії ресурсів. Запускати перед публікацією змін.",
+    "build:quiz": "npm run build:quiz — перевірити questions.json усіх тем, згенерувати quiz-data.js і оновити лічильники питань. Редагувати слід questions.json, а не згенеровані quiz-data.js.",
+    "quiz:admin": "npm run quiz:admin — запустити локальний редактор: http://127.0.0.1:8769/admin/. Збереження у редакторі оновлює файли та версії ресурсів, але не створює коміт. Зупинка: Ctrl+C. Інший порт у PowerShell: $env:QUIZ_ADMIN_PORT='8770'; npm run quiz:admin.",
+    "test:admin": "npm run test:admin — перевірити локальний сервер редактора: збереження, валідацію, конфлікти змін і обмеження доступу. Тести використовують тимчасовий каталог, не змінюючи робочі питання."
+  },
   "scripts": {
     "build:glossary": "node build-glossary-audit.mjs",
     "build:search-index": "node build-search-index.mjs",
