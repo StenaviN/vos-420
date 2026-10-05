@@ -17,7 +17,8 @@
     5: ["Harris УКХ", "05-harris-ukh/index.html"],
     6: ["Harris КХ", "06-harris-kh/index.html"],
     7: ["Експлуатація HARRIS КХ", "07-harris-kh-ekspluatatsiia/index.html"],
-    9: ["TOOWAY", "09-tooway/index.html"]
+    9: ["TOOWAY", "09-tooway/index.html"],
+    10: ["MOTOTRBO", "10-mototrbo/index.html"]
   };
 
   const transliterate = (value) => value.replace(/[а-яіїєґёыэъь]/g, (letter) => ({
