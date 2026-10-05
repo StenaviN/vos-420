@@ -72,6 +72,14 @@
   toast.textContent = "Посилання скопійовано";
   document.body.append(toast);
   let toastTimer;
+  const anchorHeadings = [];
+  let anchorUpdateTimer;
+  let holdAnchorUntil = 0;
+  const replaceAnchor = (id) => {
+    const url = new URL(location.href);
+    url.hash = id;
+    if (url.href !== location.href) history.replaceState(history.state, "", url);
+  };
 
   const showToast = (anchor) => {
     toast.classList.add("is-visible");
@@ -133,8 +141,11 @@
     button.setAttribute("aria-label", `Копіювати посилання на розділ «${heading.textContent.trim()}»`);
     button.innerHTML = '<span aria-hidden="true">🔗</span>';
     button.addEventListener("click", async () => {
+      clearTimeout(anchorUpdateTimer);
+      holdAnchorUntil = performance.now() + 500;
       const url = new URL(window.location.href);
       url.hash = targetId;
+      replaceAnchor(targetId);
       try {
         await copyText(url.href);
         showToast(button);
@@ -149,6 +160,7 @@
     while (heading.firstChild) label.append(heading.firstChild);
     heading.classList.add("has-heading-link");
     heading.append(label, button);
+    anchorHeadings.push({ heading, id: targetId });
   });
 
   const migrateHash = () => {
@@ -164,6 +176,31 @@
 
   const initialTarget = window.location.hash ? document.getElementById(decodeURIComponent(window.location.hash.slice(1))) : null;
   if (initialTarget) requestAnimationFrame(() => initialTarget.scrollIntoView());
+
+  // Track reading position only in notes, leaving quiz and other page hashes alone.
+  if (/\/\d{2}-[^/]+\/(?:index\.html)?$/.test(location.pathname)) {
+    const updateReadingAnchor = () => {
+      if (performance.now() < holdAnchorUntil || document.querySelector("dialog[open]")) return;
+      const readingLine = Math.min(140, innerHeight * .2);
+      let activeId = "";
+      for (const { heading, id } of anchorHeadings) {
+        if (!heading.getClientRects().length) continue;
+        if (heading.getBoundingClientRect().top > readingLine) break;
+        activeId = id;
+      }
+      replaceAnchor(activeId);
+    };
+    window.addEventListener("scroll", () => {
+      clearTimeout(anchorUpdateTimer);
+      anchorUpdateTimer = setTimeout(updateReadingAnchor, 150);
+    }, { passive: true });
+    window.addEventListener("hashchange", () => {
+      clearTimeout(anchorUpdateTimer);
+      holdAnchorUntil = performance.now() + 600;
+    });
+    // Preserve an incoming deep link during initial layout and image loading.
+    holdAnchorUntil = performance.now() + 800;
+  }
 })();
 
 (() => {
