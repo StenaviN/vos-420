@@ -167,42 +167,136 @@
 })();
 
 (() => {
+  document.querySelectorAll("main img").forEach(image => {
+    if (image.closest("button, a")) return;
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "procedure-shot-button";
+    button.setAttribute("aria-label", `Збільшити: ${image.alt || "зображення"}`);
+    image.replaceWith(button);
+    button.append(image);
+  });
   const triggers = [...document.querySelectorAll(".procedure-shot-button")];
   if (!triggers.length || typeof HTMLDialogElement === "undefined") return;
 
   const dialog = document.createElement("dialog");
   dialog.className = "media-viewer";
-  dialog.setAttribute("aria-label", "Збільшений скріншот CPA");
+  dialog.setAttribute("aria-label", "Перегляд зображення");
   dialog.innerHTML = `
+    <div class="media-viewer-toolbar" role="group" aria-label="Масштаб зображення">
+      <button type="button" data-zoom="out" aria-label="Зменшити зображення">−</button>
+      <output class="media-viewer-scale" aria-label="Поточний масштаб">100%</output>
+      <button type="button" data-zoom="in" aria-label="Збільшити зображення">+</button>
+      <button type="button" data-zoom="fit">Вмістити</button>
+    </div>
     <button class="media-viewer-close" type="button" aria-label="Закрити збільшене зображення" title="Закрити">×</button>
-    <div class="media-viewer-stage">
-      <img alt="">
+    <div class="media-viewer-stage" tabindex="0" aria-label="Зображення: збільшення колесом або двома пальцями, переміщення перетягуванням">
+      <div class="media-viewer-canvas"><img alt="" draggable="false"></div>
     </div>
     <p class="media-viewer-caption"></p>`;
   document.body.append(dialog);
-
   const image = dialog.querySelector("img");
+  const stage = dialog.querySelector(".media-viewer-stage");
+  const canvas = dialog.querySelector(".media-viewer-canvas");
   const caption = dialog.querySelector(".media-viewer-caption");
   const closeButton = dialog.querySelector(".media-viewer-close");
+  const output = dialog.querySelector("output");
+  const zoomIn = dialog.querySelector('[data-zoom="in"]');
+  const zoomOut = dialog.querySelector('[data-zoom="out"]');
+  let zoom = 1;
+  let opener;
+  const pointers = new Map();
 
-  triggers.forEach((trigger) => {
+  function render(nextZoom = zoom, point) {
+    if (!dialog.open || !image.naturalWidth || !stage.clientWidth) return;
+    const viewport = stage.getBoundingClientRect();
+    const before = image.getBoundingClientRect();
+    const x = point?.x ?? viewport.left + stage.clientWidth / 2;
+    const y = point?.y ?? viewport.top + stage.clientHeight / 2;
+    const fx = before.width ? (x - before.left) / before.width : .5;
+    const fy = before.height ? (y - before.top) / before.height : .5;
+    zoom = Math.max(1, Math.min(8, nextZoom));
+    const fit = Math.min(stage.clientWidth / image.naturalWidth, stage.clientHeight / image.naturalHeight, 1);
+    const width = image.naturalWidth * fit * zoom;
+    const height = image.naturalHeight * fit * zoom;
+    const canvasWidth = Math.max(stage.clientWidth, width);
+    const canvasHeight = Math.max(stage.clientHeight, height);
+    canvas.style.width = `${canvasWidth}px`;
+    canvas.style.height = `${canvasHeight}px`;
+    image.style.width = `${width}px`;
+    image.style.height = `${height}px`;
+    stage.scrollLeft = (canvasWidth - width) / 2 + fx * width - (x - viewport.left);
+    stage.scrollTop = (canvasHeight - height) / 2 + fy * height - (y - viewport.top);
+    output.value = `${Math.round(zoom * 100)}%`;
+    zoomOut.disabled = zoom <= 1;
+    zoomIn.disabled = zoom >= 8;
+    stage.classList.toggle("is-zoomed", zoom > 1);
+  }
+  function fit() {
+    render(1);
+    stage.scrollTo(0, 0);
+  }
+  image.addEventListener("load", fit);
+  zoomIn.addEventListener("click", () => render(zoom * 1.5));
+  zoomOut.addEventListener("click", () => render(zoom / 1.5));
+  dialog.querySelector('[data-zoom="fit"]').addEventListener("click", fit);
+  stage.addEventListener("wheel", event => {
+    event.preventDefault();
+    render(zoom * Math.exp(-Math.max(-100, Math.min(100, event.deltaY)) * .004), { x: event.clientX, y: event.clientY });
+  }, { passive: false });
+  stage.addEventListener("dblclick", event => render(zoom > 1 ? 1 : 2, { x: event.clientX, y: event.clientY }));
+  stage.addEventListener("pointerdown", event => {
+    if (event.button !== 0) return;
+    pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+    stage.setPointerCapture(event.pointerId);
+  });
+  stage.addEventListener("pointermove", event => {
+    if (!pointers.has(event.pointerId)) return;
+    const previous = pointers.get(event.pointerId);
+    const oldPair = [...pointers.values()];
+    pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+    const pair = [...pointers.values()];
+    if (pair.length === 2) {
+      const distance = points => Math.hypot(points[0].x - points[1].x, points[0].y - points[1].y);
+      const oldDistance = distance(oldPair);
+      if (oldDistance > 0) render(zoom * distance(pair) / oldDistance, { x: (pair[0].x + pair[1].x) / 2, y: (pair[0].y + pair[1].y) / 2 });
+    } else if (pair.length === 1) {
+      stage.scrollLeft -= event.clientX - previous.x;
+      stage.scrollTop -= event.clientY - previous.y;
+    }
+  });
+  for (const name of ["pointerup", "pointercancel", "lostpointercapture"]) {
+    stage.addEventListener(name, event => pointers.delete(event.pointerId));
+  }
+  dialog.addEventListener("keydown", event => {
+    if (["+", "=", "-", "0"].includes(event.key)) {
+      event.preventDefault();
+      if (event.key === "0") fit();
+      else render(event.key === "-" ? zoom / 1.5 : zoom * 1.5);
+    }
+  });
+  new ResizeObserver(() => { if (dialog.open) fit(); }).observe(dialog);
+  triggers.forEach(trigger => {
     trigger.addEventListener("click", () => {
       const source = trigger.querySelector("img");
-      const figure = trigger.closest("figure");
+      if (!source) return;
+      opener = trigger;
+      pointers.clear();
+      zoom = 1;
       image.src = source.currentSrc || source.src;
       image.alt = source.alt;
-      caption.textContent = figure?.querySelector("figcaption")?.textContent || source.alt;
+      caption.textContent = trigger.closest("figure")?.querySelector("figcaption")?.textContent || source.alt;
       dialog.showModal();
+      fit();
       closeButton.focus();
     });
   });
-
   closeButton.addEventListener("click", () => dialog.close());
-  dialog.addEventListener("click", (event) => {
-    if (event.target === dialog) dialog.close();
-  });
+  dialog.addEventListener("click", event => { if (event.target === dialog) dialog.close(); });
   dialog.addEventListener("close", () => {
+    pointers.clear();
     image.removeAttribute("src");
+    opener?.focus({ preventScroll: true });
   });
 })();
 
