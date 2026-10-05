@@ -1,5 +1,11 @@
 .mototrbo-table { overflow-x: auto; margin: 18px 0; }
 .mototrbo-table table { min-width: 420px; }
+.mototrbo-difference > td { background: #fff6df; }
+.mototrbo-difference > td:first-child { border-left: 4px solid #a16b0a; }
+.mototrbo-difference > td:not(:first-child) { font-weight: 700; }
+.mototrbo-difference-label { display: inline-block; padding: 2px 8px; border: 1px solid #d9b875; border-radius: 5px; background: #fff6df; color: #704800; font-size: .75rem; font-weight: 600; line-height: 1.5; }
+.mototrbo-difference td .mototrbo-difference-label { display: table; margin-top: 6px; }
+.mototrbo-difference-legend { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; color: var(--muted); font-size: .9rem; }
 .topic-figure { margin: 24px 0; }
 .topic-figure .procedure-shot-button { display: block; width: 100%; }
 .topic-figure img { display: block; max-width: 100%; max-height: 650px; width: auto; height: auto; margin: auto; object-fit: contain; }
