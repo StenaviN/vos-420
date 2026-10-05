@@ -42,7 +42,8 @@ const elements = {
   statsResetStatus: $("#statsResetStatus")
 };
 
-elements.topicLabel.textContent = config.label;
+elements.topicLabel.textContent = isMixed ? config.label : "";
+elements.topicLabel.hidden = !isMixed;
 elements.quizTitle.textContent = config.title;
 $("#noteLink").href = config.notePath;
 $("#resultNoteLink").href = config.notePath;
