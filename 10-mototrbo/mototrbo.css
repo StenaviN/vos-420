@@ -1,7 +1,7 @@
 .mototrbo-table { overflow-x: auto; margin: 18px 0; }
 .mototrbo-table table { min-width: 420px; }
 .mototrbo-indicator { display: flex; align-items: center; gap: 12px; }
-.mototrbo-led { --led-color: #29b85b; display: inline-flex; flex: 0 0 22px; width: 22px; height: 22px; padding: 3px; box-sizing: border-box; border: 1px solid #52616b; border-radius: 50%; background: #23313c; }
+.mototrbo-led { --led-color: #29b85b; display: inline-flex; flex: 0 0 22px; width: 22px; height: 22px; padding: 3px; box-sizing: border-box; border: 1px solid #a8b5bc; border-radius: 50%; background: transparent; }
 .mototrbo-led > span { width: 100%; height: 100%; border-radius: 50%; background: var(--led-color); box-shadow: 0 0 5px var(--led-color); }
 .led-red { --led-color: #f34d4d; }
 .led-orange { --led-color: #ff941f; }
@@ -15,8 +15,8 @@
 .mototrbo-led-control { display: flex; align-items: center; gap: 9px; width: fit-content; padding: 9px 12px; border: 1px solid #ccd9d5; border-radius: 7px; background: #f3f7f5; cursor: pointer; font-size: .9rem; }
 .mototrbo-led-control input { accent-color: #286c59; width: 18px; height: 18px; }
 .mototrbo-table:has(.mototrbo-led-control input:checked) .mototrbo-led > span { animation: none; }
-@keyframes mototrbo-blink { 0%, 100% { opacity: 1; } 50% { opacity: .12; } }
-@keyframes mototrbo-double { 0%, 30%, 100% { opacity: 1; } 15%, 45% { opacity: .12; } }
+@keyframes mototrbo-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+@keyframes mototrbo-double { 0%, 30%, 100% { opacity: 1; } 15%, 45% { opacity: 0; } }
 @keyframes mototrbo-alternate { 0%, 100% { background: #f34d4d; box-shadow: 0 0 5px #f34d4d; } 50% { background: #29b85b; box-shadow: 0 0 5px #29b85b; } }
 @media (prefers-reduced-motion: reduce) { .mototrbo-led > span { animation: none; } .mototrbo-led-control { display: none; } }
 @media print { .mototrbo-led > span { animation: none; } .mototrbo-led-control { display: none; } }
