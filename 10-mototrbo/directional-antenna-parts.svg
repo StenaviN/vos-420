@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="660" viewBox="0 0 1120 660" role="img" aria-labelledby="title desc">
+  <title id="title">Елементи зібраної директорної антени</title>
+  <desc id="desc">На горизонтальній траверсі зліва направо розміщені довгий рефлектор, петлеподібний вібратор із кабелем та коротший директор. Ліворуч на траверсі — кріплення до щогли. Кожний елемент має окрему виноску з підписом.</desc>
+  <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="none" stroke="#365c53" stroke-width="1.4"/></marker></defs>
+  <rect width="1120" height="660" rx="16" fill="#fff"/>
+  <g font-family="Arial, sans-serif" fill="#19342d">
+    <text x="48" y="52" font-size="28" font-weight="700">Директорна антена: складові</text>
+    <text x="48" y="82" font-size="17" fill="#61756f">Умовна схема зібраної антени, без масштабу</text>
+  </g>
+  <!-- Antenna geometry follows the assembled state in the supplied slide. -->
+  <rect x="200" y="315" width="740" height="26" rx="3" fill="#c4cdca" stroke="#73867f" stroke-width="2"/>
+  <rect x="215" y="300" width="72" height="56" rx="4" fill="#e1e9e5" stroke="#527767" stroke-width="3"/>
+  <path d="M228 309H274M228 346H274" stroke="#527767" stroke-width="5" stroke-linecap="round"/>
+  <path d="M390 165V500" stroke="#806e3f" stroke-width="10" stroke-linecap="round"/>
+  <rect x="600" y="195" width="72" height="275" rx="17" fill="none" stroke="#806e3f" stroke-width="10"/>
+  <path d="M870 215V450" stroke="#806e3f" stroke-width="10" stroke-linecap="round"/>
+  <g fill="#806e3f"><rect x="380" y="308" width="20" height="40"/><rect x="662" y="308" width="20" height="40"/><rect x="860" y="308" width="20" height="40"/></g>
+  <rect x="589" y="298" width="21" height="58" rx="5" fill="#273c35"/>
+  <path d="M595 311C524 310 505 353 500 454" stroke="#273c35" stroke-width="7" fill="none"/>
+  <rect x="493" y="450" width="14" height="22" rx="2" fill="#dce3e0" stroke="#273c35" stroke-width="2"/>
+  <!-- Callouts end on the relevant part, not merely beside the antenna. -->
+  <g stroke="#365c53" stroke-width="2" fill="none" marker-end="url(#arrow)">
+    <path d="M210 199H250V295"/>
+    <path d="M332 130H390V156"/>
+    <path d="M627 135V179L637 190"/>
+    <path d="M911 158H870V204"/>
+    <path d="M273 550H324V354"/>
+    <path d="M516 532V481"/>
+  </g>
+  <g font-family="Arial, sans-serif" fill="#19342d" font-size="23" font-weight="700">
+    <text x="48" y="180">Кріплення</text><text x="48" y="207">до щогли</text>
+    <text x="252" y="123">Рефлектор</text>
+    <text x="566" y="123">Вібратор</text>
+    <text x="898" y="152">Директор</text>
+    <text x="154" y="558">Траверса</text>
+    <text x="448" y="562">Кабель</text>
+  </g>
+  <text x="48" y="620" font-family="Arial, sans-serif" font-size="18" fill="#61756f">Вібратор у переліку комплекту: «вібратор із технічним отвором».</text>
+</svg>
