@@ -1,7 +1,7 @@
 "use strict";
 
 window.QUIZ_META = {
-  totalQuestions: 466,
+  totalQuestions: 536,
   topics: [
     { key: "1", id: "topic1-basics", shortLabel: "Тема 1", name: "Основи радіозв'язку: організація, режими, радіообмін", path: "01-osnovy-radiozviazku", defaultSize: 25 },
     { key: "2", id: "topic2-safety", shortLabel: "Тема 2", name: "Техніка безпеки при експлуатації та обслуговуванні засобів радіозв'язку", path: "02-tehnika-bezpeky", defaultSize: 20 },
@@ -10,7 +10,8 @@ window.QUIZ_META = {
     { key: "5", id: "topic5-harris", shortLabel: "Тема 5", name: "ТТХ HARRIS УКХ RF-7850M-HH / RF-7800V-HH", path: "05-harris-ukh", defaultSize: 30 },
     { key: "6", id: "topic6-harris-hf", shortLabel: "Тема 6", name: "ТТХ HARRIS КХ RF-7800H-MP / MPR-9600-MP", path: "06-harris-kh", defaultSize: 30 },
     { key: "7", id: "topic7-harris-hf-operation", shortLabel: "Тема 7", name: "Експлуатація HARRIS КХ RF-7800H-MP / MPR-9600-MP", path: "07-harris-kh-ekspluatatsiia", defaultSize: 25 },
-    { key: "9", id: "topic9-tooway", shortLabel: "Тема 9", name: "TOOWAY", path: "09-tooway", defaultSize: 25 }
+    { key: "9", id: "topic9-tooway", shortLabel: "Тема 9", name: "TOOWAY", path: "09-tooway", defaultSize: 25 },
+    { key: "10", id: "topic10-mototrbo", shortLabel: "Тема 10", name: "MOTOTRBO", path: "10-mototrbo", defaultSize: 30 }
   ]
 };
 
