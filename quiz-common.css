@@ -445,7 +445,7 @@
 
 .stats-reset-section {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr);
   gap: 20px 28px;
   align-items: end;
 }
@@ -464,13 +464,19 @@
 
 .stats-reset-controls {
   display: grid;
-  grid-template-columns: minmax(220px, 1fr) auto auto;
+  grid-template-columns: minmax(0, 1fr) auto auto;
   gap: 10px;
   align-items: end;
 }
 
 .stats-reset-field {
-  min-width: 220px;
+  min-width: 0;
+}
+
+.stats-reset-field select {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .danger-button {
