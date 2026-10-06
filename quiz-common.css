@@ -1250,13 +1250,27 @@ a.question-jump {
 .launcher-settings h2 {
   margin: 0 0 16px;
 }
+.question-stats-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  margin-bottom: 16px;
+}
+.question-stats-heading h3 {
+  margin: 0;
+}
 .status-filter {
   display: grid;
   gap: 6px;
+  margin-left: auto;
+  max-width: 100%;
   text-align: left;
 }
 .status-filter select {
   min-width: 110px;
+  max-width: 100%;
   padding: 7px 9px;
   border: 1px solid var(--line);
   border-radius: 6px;
