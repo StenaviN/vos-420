@@ -709,6 +709,8 @@ function renderMistakes() {
 }
 
 function saveAttempt(percent) {
+  // Opening a quiz and finishing without answering is not a learning attempt.
+  if (!state.answers.length) return;
   const data = readStats();
   const date = new Date().toISOString();
   const base = {
@@ -820,6 +822,9 @@ function showResults(review = false) {
     elements.resultMessage.textContent = "Почни з екзаменаційного мінімуму та розбору помилок.";
   }
   const unanswered = state.questions.length - state.answers.length;
+  if (!state.answers.length)
+    elements.resultMessage.textContent =
+      "Жодної відповіді не надано. Цю спробу не додано до статистики.";
   if (unanswered)
     elements.resultMessage.textContent += ` Без перевіреної відповіді: ${unanswered}. Вони не зараховані в результат спроби, але не додають помилок у статистику питань.`;
   $("#showCorrectResults").checked = false;
@@ -1026,9 +1031,6 @@ function makeBar(label, value, detail, href = null) {
 
 function renderStats() {
   const data = readStats();
-  const topics = Object.values(data.topics);
-  const soloAttempts = topics.flatMap((topic) => topic.attempts || []);
-  const attempts = [...soloAttempts, ...data.mixedAttempts];
   const selectedAttempts = (
     isMixed
       ? data.mixedAttempts.filter((item) => item.topicIds.join(",") === config.topicIds.join(","))
@@ -1037,13 +1039,15 @@ function renderStats() {
           ...ensureTopicStats(data, config.topicIds[0], config.shortLabel).mixedSegments,
         ]
   ).sort((a, b) => a.date.localeCompare(b.date));
-  const allQuestionStats = topics.flatMap((topic) => Object.values(topic.questions || {}));
+  const allQuestionStats = config.questions
+    .map((item) => data.topics[item.sourceTopicId]?.questions?.[item.id])
+    .filter(Boolean);
   const answeredUnique = allQuestionStats.filter((item) => item.correct + item.wrong > 0).length;
   const totalCorrect = allQuestionStats.reduce((sum, item) => sum + item.correct, 0);
   const totalAnswers = allQuestionStats.reduce((sum, item) => sum + item.correct + item.wrong, 0);
   const mastered = allQuestionStats.filter(isMastered).length;
-  const totalTime = attempts.reduce((sum, item) => sum + item.timeMs, 0);
-  elements.statsSummary.innerHTML = `<div><strong>${attempts.length}</strong><span>завершених спроб</span></div><div><strong>${answeredUnique}/${window.QUIZ_META.totalQuestions}</strong><span>опрацьовано питань</span></div><div><strong>${totalAnswers ? Math.round((totalCorrect / totalAnswers) * 100) : 0}%</strong><span>загальна точність</span></div><div><strong>${mastered}</strong><span>засвоєно питань</span></div><div><strong>${formatDuration(totalTime)}</strong><span>активний час</span></div>`;
+  const totalTime = selectedAttempts.reduce((sum, item) => sum + item.timeMs, 0);
+  elements.statsSummary.innerHTML = `<div><strong>${selectedAttempts.length}</strong><span>завершених спроб у цьому зрізі</span></div><div><strong>${answeredUnique}/${config.questions.length}</strong><span>опрацьовано питань</span></div><div><strong>${totalAnswers ? Math.round((totalCorrect / totalAnswers) * 100) : 0}%</strong><span>точність у вибраних темах</span></div><div><strong>${mastered}</strong><span>засвоєно питань</span></div><div><strong>${formatDuration(totalTime)}</strong><span>активний час цього зрізу</span></div>`;
   elements.statsScope.textContent = isMixed
     ? `Поточний зріз: ${config.topicKeys.map((key) => `тема ${key}`).join(", ")}.`
     : `Поточний зріз: ${config.shortLabel}. Змішані спроби враховані окремими результатами цієї теми.`;
@@ -1065,16 +1069,23 @@ function renderStats() {
   });
 
   elements.topicChart.replaceChildren();
-  window.QUIZ_META.topics.forEach((meta) => {
-    const topic = data.topics[meta.id];
-    const stats = topic ? Object.values(topic.questions || {}) : [];
-    const correct = stats.reduce((sum, item) => sum + item.correct, 0);
-    const answers = stats.reduce((sum, item) => sum + item.correct + item.wrong, 0);
-    const accuracy = answers ? Math.round((correct / answers) * 100) : 0;
-    elements.topicChart.append(
-      makeBar(meta.shortLabel, accuracy, answers ? `${accuracy}%` : "-", `${meta.path}/index.html`),
-    );
-  });
+  window.QUIZ_META.topics
+    .filter((meta) => config.topicIds.includes(meta.id))
+    .forEach((meta) => {
+      const topic = data.topics[meta.id];
+      const stats = topic ? Object.values(topic.questions || {}) : [];
+      const correct = stats.reduce((sum, item) => sum + item.correct, 0);
+      const answers = stats.reduce((sum, item) => sum + item.correct + item.wrong, 0);
+      const accuracy = answers ? Math.round((correct / answers) * 100) : 0;
+      elements.topicChart.append(
+        makeBar(
+          meta.shortLabel,
+          accuracy,
+          answers ? `${accuracy}%` : "-",
+          `${meta.path}/index.html`,
+        ),
+      );
+    });
 
   const rows = config.questions
     .map((item) => {
@@ -1117,6 +1128,8 @@ function renderStats() {
     const row = document.createElement("tr");
     const status = isMastered(stat) ? "Засвоєно" : total ? "В роботі" : "Нове";
     const statusClass = status === "Засвоєно" ? "mastered" : status === "Нове" ? "new" : "progress";
+    const filter = $("#questionStatusFilter").value;
+    if (filter !== "all" && filter !== statusClass) return;
     const accuracy = total ? Math.round((stat.correct / total) * 100) + "%" : "-";
     const statusSymbol = status === "Засвоєно" ? "✓" : status === "В роботі" ? "◐" : "○";
     row.innerHTML = `<td class="question-number" aria-label="Питання ${index + 1}">${index + 1}</td><td class="topic-number"></td><td class="question-cell"></td><td class="metric-cell" aria-label="Спроб: ${stat.shown}"><span class="metric-glyph" aria-hidden="true">↻</span><span>${stat.shown}</span></td><td class="metric-cell" aria-label="Правильно: ${stat.correct}"><span class="metric-glyph" aria-hidden="true">✓</span><span>${stat.correct}</span></td><td class="metric-cell" aria-label="Помилки: ${stat.wrong}"><span class="metric-glyph" aria-hidden="true">×</span><span>${stat.wrong}</span></td><td class="metric-cell" aria-label="Точність: ${accuracy}"><span class="metric-glyph" aria-hidden="true">%</span><span>${accuracy}</span></td><td class="metric-cell status-cell" aria-label="Статус: ${status}"><span class="metric-glyph" aria-hidden="true">◉</span><span class="status status-${statusClass}"><span class="status-long">${status}</span><span class="status-short" aria-hidden="true">${statusSymbol}</span></span></td>`;
@@ -1135,6 +1148,9 @@ function renderStats() {
     row.children[2].replaceChildren(questionLink);
     elements.questionStatsBody.append(row);
   });
+  if (!elements.questionStatsBody.children.length)
+    elements.questionStatsBody.innerHTML =
+      '<tr><td colspan="8" class="empty-state">Питань із вибраним статусом немає.</td></tr>';
 
   elements.historyBody.replaceChildren();
   [...selectedAttempts]
@@ -1174,6 +1190,7 @@ function populateStatsResetTopics() {
 }
 
 $("#showCorrectResults").addEventListener("change", renderMistakes);
+$("#questionStatusFilter").addEventListener("change", renderStats);
 $("#showUnansweredResults").addEventListener("change", renderMistakes);
 $("#continueQuizButton").addEventListener("click", () => $("#finishDialog").close());
 $("#confirmFinishButton").addEventListener("click", () => finishQuiz(false, true));

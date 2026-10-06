@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Вікторини ВОС-420</title>
     <link rel="icon" href="data:," />
-    <link rel="stylesheet" href="style.css?v=9c154c54ea60" />
-    <link rel="stylesheet" href="quiz-common.css?v=9c154c54ea60" />
+    <link rel="stylesheet" href="style.css?v=21435007c1be" />
+    <link rel="stylesheet" href="quiz-common.css?v=21435007c1be" />
   </head>
   <body>
     <main class="page quiz-page">
@@ -178,7 +178,15 @@
                     <span aria-hidden="true">%</span><span class="visually-hidden">Точність</span>
                   </th>
                   <th class="metric-heading" title="Статус засвоєння">
-                    <span aria-hidden="true">◉</span><span class="visually-hidden">Статус</span>
+                    <label class="status-filter"
+                      >Статус
+                      <select id="questionStatusFilter" aria-label="Фільтр статусу питань">
+                        <option value="all">Усі</option>
+                        <option value="new">Нові</option>
+                        <option value="progress">В роботі</option>
+                        <option value="mastered">Засвоєні</option>
+                      </select>
+                    </label>
                   </th>
                 </tr>
               </thead>
@@ -266,12 +274,12 @@
         </button>
       </div>
     </dialog>
-    <script src="asset-version.js?v=9c154c54ea60"></script>
-    <script src="quiz-statistics.js?v=9c154c54ea60"></script>
+    <script src="asset-version.js?v=21435007c1be"></script>
+    <script src="quiz-statistics.js?v=21435007c1be"></script>
 
-    <script src="quiz-meta.js?v=9c154c54ea60"></script>
-    <script src="quiz-transfer.js?v=9c154c54ea60"></script>
-    <script src="quiz-loader.js?v=9c154c54ea60"></script>
-    <script src="site-ui.js?v=9c154c54ea60"></script>
+    <script src="quiz-meta.js?v=21435007c1be"></script>
+    <script src="quiz-transfer.js?v=21435007c1be"></script>
+    <script src="quiz-loader.js?v=21435007c1be"></script>
+    <script src="site-ui.js?v=21435007c1be"></script>
   </body>
 </html>
