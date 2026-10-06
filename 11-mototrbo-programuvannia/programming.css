@@ -1,0 +1,30 @@
+.programming-table {
+  overflow-x: auto;
+  margin: 16px 0;
+}
+.programming-table table {
+  min-width: 520px;
+  margin: 0;
+}
+.programming-table th,
+.programming-table td {
+  white-space: normal;
+}
+.radio-check-gallery {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+.radio-check-gallery .procedure-shot {
+  margin: 0;
+  min-width: 0;
+}
+@media (max-width: 700px) {
+  .radio-check-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .programming-table table {
+    display: table;
+    overflow: visible;
+  }
+}

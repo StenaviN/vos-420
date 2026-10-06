@@ -21,6 +21,7 @@
     7: ["Експлуатація HARRIS КХ", "07-harris-kh-ekspluatatsiia/index.html"],
     9: ["TOOWAY", "09-tooway/index.html"],
     10: ["MOTOTRBO", "10-mototrbo/index.html"],
+    11: ["Програмування MOTOTRBO", "11-mototrbo-programuvannia/index.html"],
   };
 
   const transliterate = (value) =>

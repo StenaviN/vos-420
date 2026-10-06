@@ -1,0 +1,1139 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>11. Програмування MOTOTRBO</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="../style.css?v=83337433e237" />
+    <link rel="stylesheet" href="programming.css?v=83337433e237" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a href="../index.html">До змісту</a><a href="../10-mototrbo/index.html">ТТХ MOTOTRBO</a
+        ><a href="../glossary.html">Глосарій</a>
+      </div>
+      <header class="hero">
+        <h1>11. Програмування MOTOTRBO</h1>
+        <p>
+          CPS 2.0: конфігурація радіостанції, паролі, ключі, контакти, канали, сканування та
+          додаткові функції.
+        </p>
+      </header>
+      <nav class="section topic-toc" aria-label="Зміст конспекту">
+        <h2>Зміст</h2>
+        <ul>
+          <li><a href="#workflow">Послідовність програмування</a></li>
+          <li><a href="#read-write-clone">Прочитати, записати та клонувати</a></li>
+          <li><a href="#radio-identity">Псевдонім та ID радіостанції</a></li>
+          <li><a href="#passwords">Паролі конфігурації та ввімкнення</a></li>
+          <li><a href="#buttons">Призначення кнопок</a></li>
+          <li><a href="#privacy-keys">Ключі AES-256</a></li>
+          <li><a href="#ras-keys">Ключі RAS</a></li>
+          <li><a href="#tls-psk">Автентифікація TLS-PSK</a></li>
+          <li><a href="#digital-contacts">Цифрові контакти</a></li>
+          <li><a href="#rx-groups">Список груп RX</a></li>
+          <li><a href="#zones-channels">Зони та створення каналів</a></li>
+          <li><a href="#channel-general">Основні параметри цифрового каналу</a></li>
+          <li><a href="#channel-rx-tx">Частоти, приймання та передавання</a></li>
+          <li><a href="#scan-lists">Сканування каналів</a></li>
+          <li><a href="#lights-sounds">Вимкнення індикації та звуків</a></li>
+          <li><a href="#transmit-interruption">Пріоритет і переривання передавання</a></li>
+          <li><a href="#one-touch-message">Текстове повідомлення за кнопкою</a></li>
+          <li><a href="#copy-between-models">Копіювання між різними моделями</a></li>
+          <li><a href="#remote-management">Віддалене керування та захист</a></li>
+          <li><a href="#private-call">Приватний контакт та індивідуальний виклик</a></li>
+        </ul>
+      </nav>
+      <section class="section" id="workflow">
+        <h2>Послідовність програмування</h2>
+        <p>
+          У CPS 2.0 спочатку читають конфігурацію радіостанції, потім налаштовують спільні
+          параметри, ключі, контакти та списки. Після цього створені елементи призначають каналам і
+          записують конфігурацію у радіостанцію.
+        </p>
+        <ol>
+          <li>Зчитати конфігурацію та визначити потрібну операцію: запис або клонування.</li>
+          <li>Задати псевдонім та ID радіостанції, паролі й функції кнопок.</li>
+          <li>Створити потрібні ключі AES-256 та RAS; за потреби налаштувати TLS-PSK.</li>
+          <li>Створити цифрові контакти й списки груп RX.</li>
+          <li>
+            Додати зони та канали; призначити частоти, контакт, список RX, колірний код, таймслот і
+            ключі.
+          </li>
+          <li>Налаштувати сканування та потрібні додаткові функції.</li>
+          <li>Записати конфігурацію та перевірити результат на радіостанції.</li>
+        </ol>
+        <div class="note">
+          У цьому конспекті <strong>файл конфігурації (codeplug)</strong> — це набір налаштувань
+          радіостанції. Слово «прошивка» в навчальних прикладах використано для цього файла; описані
+          операції не є процедурою оновлення мікропрограмного забезпечення.
+        </div>
+      </section>
+      <section class="section" id="read-write-clone">
+        <h2>Прочитати, записати та клонувати</h2>
+        <div class="programming-table">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Команда CPS</th>
+                <th scope="col">Що виконує</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Прочитати</td>
+                <td>Зчитує файл конфігурації з радіостанції у CPS.</td>
+              </tr>
+              <tr>
+                <td>Записати</td>
+                <td>Записує конфігурацію в ту радіостанцію, з якої її зчитали.</td>
+              </tr>
+              <tr>
+                <td>Клонувати</td>
+                <td>Переносить конфігурацію в радіостанцію тієї самої моделі.</td>
+              </tr>
+              <tr>
+                <td>Експрес-клонування</td>
+                <td>
+                  Переносить конфігурацію в радіостанцію тієї самої моделі, зберігаючи її ID та
+                  псевдонім.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Основні команди верхньої панелі CPS 2.0."
+          >
+            <img
+              src="cps-toolbar.png"
+              alt="Основні команди верхньої панелі CPS 2.0."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Основні команди верхньої панелі CPS 2.0.</figcaption>
+        </figure>
+      </section>
+      <section class="section" id="radio-identity">
+        <h2>Псевдонім та ID радіостанції</h2>
+        <div class="menu-path"><span>Загальне</span><span>Загальні параметри</span></div>
+        <p>
+          У полі <strong>«Псевдонім радіо»</strong> задають назву радіостанції, а в полі
+          <strong>«ІД радіостанції»</strong> — її ідентифікатор. Для приватного контакту іншої
+          радіостанції використовується саме ID потрібного кореспондента.
+        </p>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Поля псевдоніма та ID радіостанції."
+          >
+            <img
+              src="radio-identity.png"
+              alt="Поля псевдоніма та ID радіостанції."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Поля псевдоніма та ID радіостанції.</figcaption>
+        </figure>
+      </section>
+      <section class="section" id="passwords">
+        <h2>Паролі конфігурації та ввімкнення</h2>
+        <div class="menu-path"><span>Загальне</span><span>Загальні параметри</span></div>
+        <h3 id="codeplug-password">Пароль на зчитування</h3>
+        <p>
+          Ввести пароль у поле <strong>«Пароль Codeplug»</strong>. Для поля
+          <strong>«Перевірити наявність пароля»</strong> вибрати
+          <strong>«Лише для читання»</strong>.
+        </p>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Пароль Codeplug та перевірка пароля під час читання."
+          >
+            <img
+              src="codeplug-password.png"
+              alt="Пароль Codeplug та перевірка пароля під час читання."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Пароль Codeplug та перевірка пароля під час читання.</figcaption>
+        </figure>
+        <h3 id="power-on-password">Пароль на ввімкнення</h3>
+        <p>
+          У розділі <strong>«Пароль і блокування»</strong> позначити <strong>«Увімкнути»</strong> та
+          заповнити поле <strong>«Пароль»</strong>. Це окреме налаштування від пароля зчитування
+          конфігурації.
+        </p>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Увімкнення пароля запуску радіостанції."
+          >
+            <img
+              src="power-on-password.png"
+              alt="Увімкнення пароля запуску радіостанції."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Увімкнення пароля запуску радіостанції.</figcaption>
+        </figure>
+      </section>
+      <section class="section" id="buttons">
+        <h2>Призначення кнопок</h2>
+        <div class="menu-path"><span>Загальне</span><span>Кнопки керування</span></div>
+        <p>
+          Вибрати потрібну кнопку й призначити їй дію. У CPS окремо показані налаштування короткого
+          та довгого натискання. Список доступних кнопок і функцій залежить від моделі.
+        </p>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Програмовані кнопки та призначення дій."
+          >
+            <img
+              src="button-assignment.png"
+              alt="Програмовані кнопки та призначення дій."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Програмовані кнопки та призначення дій.</figcaption>
+        </figure>
+      </section>
+      <section class="section" id="privacy-keys">
+        <h2>Ключі AES-256</h2>
+        <div class="menu-path"><span>Загальне</span><span>Безпека</span></div>
+        <div class="note" id="privacy-settings">
+          <strong>Шифрування — AES-256.</strong> 40-бітний захист не рекомендований до використання.
+          Подальші налаштування шифрування в цьому конспекті виконуються з AES-256. Поля
+          «Конфіденційність» і «Псевдонім конфіденційності» на старих знімках стосуються 40-бітного
+          захисту; їх не слід використовувати замість симетричного ключа AES-256.
+        </div>
+        <h3 id="aes-keys">Створення ключів AES-256</h3>
+        <p>
+          Ключі AES-256 створюють у розділі <strong>«Симетричний»</strong>. У матеріалі зазначено:
+          до <strong>32 ключів</strong>, максимальний <strong>ID ключа — 255</strong>. Для
+          призначення AES-256 каналу потрібна відповідна ліцензія на радіостанції.
+        </p>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Список симетричних ключів AES-256."
+          >
+            <img src="aes-key-list.png" alt="Список симетричних ключів AES-256." loading="lazy" />
+          </button>
+          <figcaption>Список симетричних ключів AES-256.</figcaption>
+        </figure>
+      </section>
+      <section class="section" id="ras-keys">
+        <h2>Ключі RAS</h2>
+        <div class="menu-path">
+          <span>Загальне</span><span>Безпека</span><span>Обмежений доступ до системи (RAS)</span>
+        </div>
+        <p>
+          Для роботи через ретранслятор створити ключ RAS: заповнити його псевдонім та поле
+          <strong>«Значення ключа»</strong>. Довжина ключа — <strong>6–24 символи</strong>; у
+          конфігурації можна створити до <strong>16 ключів</strong>.
+        </p>
+        <p>
+          Після створення ключ потрібно призначити каналу в полі <strong>«Псевдонім RAS»</strong>.
+          Сам запис у списку ключів ще не означає, що його використовує потрібний канал.
+        </p>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Створення ключа RAS."
+          >
+            <img src="ras-key-list.png" alt="Створення ключа RAS." loading="lazy" />
+          </button>
+          <figcaption>Створення ключа RAS.</figcaption>
+        </figure>
+      </section>
+      <section class="section" id="tls-psk">
+        <h2>Автентифікація TLS-PSK</h2>
+        <p>
+          За матеріалом, обладнання MOTOTRBO з версією вище <strong>R02.10.5</strong> підтримує
+          TLS-PSK. Функція передбачає додатковий пароль у CPS 2.0 та в налаштуваннях захисту
+          обладнання. Вона захищає від несанкціонованого запису, клонування та відновлення
+          заводських налаштувань; застосовується під час роботи через USB, Ethernet і радіоефір.
+        </p>
+        <ol>
+          <li>Відкрити керування попередньо наданими ключами в CPS та додати потрібний ключ.</li>
+          <li>
+            Відкрити розділ TLS-PSK у налаштуваннях безпеки радіостанції та вибрати відповідний
+            ключ.
+          </li>
+        </ol>
+        <div class="menu-path">
+          <span>Інструменти</span><span>Керування попередньо наданими ключами…</span>
+        </div>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Меню керування попередньо наданими ключами."
+          >
+            <img
+              src="tls-key-menu.png"
+              alt="Меню керування попередньо наданими ключами."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Меню керування попередньо наданими ключами.</figcaption>
+        </figure>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Вікно зі списком попередньо наданих ключів."
+          >
+            <img
+              src="tls-key-dialog.png"
+              alt="Вікно зі списком попередньо наданих ключів."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Вікно зі списком попередньо наданих ключів.</figcaption>
+        </figure>
+        <div class="menu-path">
+          <span>Загальне</span><span>Безпека</span><span>TLS-PSK автентифікація</span>
+        </div>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Вибір TLS-PSK у конфігурації радіостанції."
+          >
+            <img
+              src="tls-radio-settings.png"
+              alt="Вибір TLS-PSK у конфігурації радіостанції."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Вибір TLS-PSK у конфігурації радіостанції.</figcaption>
+        </figure>
+        <div class="note">
+          <strong>Застереження з навчального матеріалу:</strong> втрата пароля TLS-PSK може
+          унеможливити відновлення обладнання; у презентації це сформульовано як «обладнання
+          відновленню не підлягає». Пароль потрібно зберегти до активації функції.
+        </div>
+      </section>
+      <section class="section" id="digital-contacts">
+        <h2>Цифрові контакти</h2>
+        <div class="menu-path"><span>Контакти</span><span>Контакти</span></div>
+        <p>
+          У конфігурації вже можуть бути стандартні контакти. Для нової мережі створюють окремий
+          цифровий контакт.
+        </p>
+        <ol>
+          <li>Натиснути <strong>«+»</strong> над списком контактів.</li>
+          <li>Натиснути <strong>«+»</strong> біля категорії <strong>«Цифровий»</strong>.</li>
+          <li>Вибрати тип: <strong>груповий</strong> або <strong>приватний виклик</strong>.</li>
+          <li>
+            У полі <strong>«Контакт»</strong> задати назву. Для групового контакту в полі
+            <strong>«ID виклику»</strong> вказати ідентифікатор групи.
+          </li>
+          <li>Перевірити появу контакту в загальному списку.</li>
+        </ol>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Додавання контакту до списку."
+          >
+            <img src="contact-add.png" alt="Додавання контакту до списку." loading="lazy" />
+          </button>
+          <figcaption>Додавання контакту до списку.</figcaption>
+        </figure>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Вибір цифрового контакту."
+          >
+            <img src="contact-digital.png" alt="Вибір цифрового контакту." loading="lazy" />
+          </button>
+          <figcaption>Вибір цифрового контакту.</figcaption>
+        </figure>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Вибір групового або приватного виклику."
+          >
+            <img
+              src="contact-type.png"
+              alt="Вибір групового або приватного виклику."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Вибір групового або приватного виклику.</figcaption>
+        </figure>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Назва групового контакту та ID виклику."
+          >
+            <img
+              src="contact-fields.png"
+              alt="Назва групового контакту та ID виклику."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Назва групового контакту та ID виклику.</figcaption>
+        </figure>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Створений контакт у загальному списку."
+          >
+            <img
+              src="contact-created.png"
+              alt="Створений контакт у загальному списку."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Створений контакт у загальному списку.</figcaption>
+        </figure>
+      </section>
+      <section class="section" id="rx-groups">
+        <h2>Список груп RX</h2>
+        <div class="menu-path">
+          <span>Списки груп RX</span><span>Список груп цифрового RX</span>
+        </div>
+        <ol>
+          <li>
+            Створити новий список або відредагувати наявний, якщо він більше не потрібен для іншого
+            призначення.
+          </li>
+          <li>Додати раніше створений груповий контакт у праву колонку учасників.</li>
+          <li>Назвати список зрозуміло; у прикладі його назва збігається з назвою контакту.</li>
+        </ol>
+        <p>
+          Цей список далі вибирають у параметрах приймання каналу — поле
+          <strong>«Список груп»</strong>.
+        </p>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Списки цифрового RX: створення або редагування."
+          >
+            <img
+              src="rx-list-add.png"
+              alt="Списки цифрового RX: створення або редагування."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Списки цифрового RX: створення або редагування.</figcaption>
+        </figure>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Контакт додано до учасників списку RX."
+          >
+            <img
+              src="rx-list-members.png"
+              alt="Контакт додано до учасників списку RX."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Контакт додано до учасників списку RX.</figcaption>
+        </figure>
+      </section>
+      <section class="section" id="zones-channels">
+        <h2>Зони та створення каналів</h2>
+        <div class="menu-path">
+          <span>Призначення зон/каналів</span><span>Зона</span><span>Zone 1</span>
+        </div>
+        <p>
+          Відкрити потрібну зону. Для нового каналу натиснути <strong>«+»</strong> та вибрати тип —
+          <strong>цифровий</strong> або <strong>аналоговий</strong>. Для редагування наявного каналу
+          виділити його й натиснути кнопку із зображенням <strong>олівця</strong>.
+        </p>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Список каналів вибраної зони."
+          >
+            <img src="zone-channels.png" alt="Список каналів вибраної зони." loading="lazy" />
+          </button>
+          <figcaption>Список каналів вибраної зони.</figcaption>
+        </figure>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Додавання каналу та вибір його типу."
+          >
+            <img src="channel-add.png" alt="Додавання каналу та вибір його типу." loading="lazy" />
+          </button>
+          <figcaption>Додавання каналу та вибір його типу.</figcaption>
+        </figure>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Відкриття параметрів каналу для редагування."
+          >
+            <img
+              src="channel-edit.png"
+              alt="Відкриття параметрів каналу для редагування."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Відкриття параметрів каналу для редагування.</figcaption>
+        </figure>
+      </section>
+      <section class="section" id="channel-general">
+        <h2>Основні параметри цифрового каналу</h2>
+        <div class="programming-table">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Поле</th>
+                <th scope="col">Що задають</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Назва каналу</td>
+                <td>Назву, за якою користувач розпізнає канал.</td>
+              </tr>
+              <tr>
+                <td>Список сканування/роумінгу</td>
+                <td>Раніше створений список для цього каналу.</td>
+              </tr>
+              <tr>
+                <td>Колірний код</td>
+                <td>Колірний код мережі.</td>
+              </tr>
+              <tr>
+                <td>Слот повторювача/часу</td>
+                <td>Таймслот каналу.</td>
+              </tr>
+              <tr>
+                <td>Конфіденційність / Псевдонім конфіденційності</td>
+                <td>
+                  Застарілий 40-бітний захист; не використовуємо. Для AES-256 прапорець
+                  «Конфіденційність» знімаємо.
+                </td>
+              </tr>
+              <tr>
+                <td>Симетричний псевдонім</td>
+                <td>Ключ AES-256, якщо доступна відповідна ліцензія.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          Значення на знімках — приклад конфігурації. Частоти, ID, колірний код, таймслот і ключі
+          задаються для конкретної мережі.
+        </p>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Назва, список сканування, колірний код і таймслот. Позначення 40-бітного захисту на цьому знімку не застосовуємо; AES-256 налаштовуємо нижче."
+          >
+            <img
+              src="channel-general.png"
+              alt="Назва, список сканування, колірний код і таймслот. Позначення 40-бітного захисту на цьому знімку не застосовуємо; AES-256 налаштовуємо нижче."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>
+            Назва, список сканування, колірний код і таймслот. Позначення 40-бітного захисту на
+            цьому знімку не застосовуємо; AES-256 налаштовуємо нижче.
+          </figcaption>
+        </figure>
+        <h3 id="channel-aes">AES-256 на каналі</h3>
+        <p>
+          Якщо радіостанція має ліцензію AES-256, вибрати ключ у полі
+          <strong>«Симетричний псевдонім»</strong>. Прапорець
+          <strong>«Конфіденційність»</strong> при цьому зняти.
+        </p>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Призначення симетричного ключа AES-256 каналу."
+          >
+            <img
+              src="channel-aes.png"
+              alt="Призначення симетричного ключа AES-256 каналу."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Призначення симетричного ключа AES-256 каналу.</figcaption>
+        </figure>
+        <h3 id="random-key">Вибір ключа «Випадково»</h3>
+        <p>
+          У списку симетричних ключів каналу вибрати <strong>«Випадково»</strong>. Для цієї функції
+          потрібні щонайменше <strong>два ключі AES-256</strong>. У розділі
+          <strong>«Безпека → Загальне»</strong> зняти прапорець
+          <strong>«Виправлено дешифрування ключа захисту конфіденційності»</strong>, як показано в
+          матеріалі.
+        </p>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Вибір випадкового симетричного ключа зі списку."
+          >
+            <img
+              src="channel-random-key.png"
+              alt="Вибір випадкового симетричного ключа зі списку."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Вибір випадкового симетричного ключа зі списку.</figcaption>
+        </figure>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Прапорець, який знімають для функції «Випадково»."
+          >
+            <img
+              src="random-key-security.png"
+              alt="Прапорець, який знімають для функції «Випадково»."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Прапорець, який знімають для функції «Випадково».</figcaption>
+        </figure>
+        <h3 id="channel-ras">RAS на каналі</h3>
+        <p>
+          Для каналу через ретранслятор вибрати раніше створений ключ у полі
+          <strong>«Псевдонім RAS»</strong>.
+        </p>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Призначення ключа RAS каналу."
+          >
+            <img src="channel-ras.png" alt="Призначення ключа RAS каналу." loading="lazy" />
+          </button>
+          <figcaption>Призначення ключа RAS каналу.</figcaption>
+        </figure>
+      </section>
+      <section class="section" id="channel-rx-tx">
+        <h2>Частоти, приймання та передавання</h2>
+        <div class="programming-table">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Розділ</th>
+                <th scope="col">Поля</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>RX — приймання</td>
+                <td>Частота приймання; «Список груп» із потрібним списком RX.</td>
+              </tr>
+              <tr>
+                <td>TX — передавання</td>
+                <td>
+                  Частота передавання; «Ім’я контакту»; рівень потужності; TOT — обмеження
+                  тривалості передавання.
+                </td>
+              </tr>
+              <tr>
+                <td>Критерії доступу</td>
+                <td>
+                  «Критерій прийнятності» та «Критерії вхідного виклику». У базовому прикладі — «Без
+                  колірного коду» та «Відповідно до критеріїв прийнятності».
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Поля RX/TX: частоти, група приймання, контакт передавання, потужність і TOT."
+          >
+            <img
+              src="channel-rx-tx.png"
+              alt="Поля RX/TX: частоти, група приймання, контакт передавання, потужність і TOT."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>
+            Поля RX/TX: частоти, група приймання, контакт передавання, потужність і TOT.
+          </figcaption>
+        </figure>
+        <h3 id="repeater-channel">Канал через ретранслятор</h3>
+        <p>
+          У наведеній конфігурації канал розпізнається як ретрансляторний, коли частоти приймання та
+          передавання різні. Для такого каналу матеріал вказує ввімкнути поле з назвою
+          <strong>«Дозволити гучний зв’язок»</strong>.
+        </p>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Параметр ретрансляторного каналу в інтерфейсі CPS."
+          >
+            <img
+              src="repeater-channel.png"
+              alt="Параметр ретрансляторного каналу в інтерфейсі CPS."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Параметр ретрансляторного каналу в інтерфейсі CPS.</figcaption>
+        </figure>
+      </section>
+      <section class="section" id="scan-lists">
+        <h2>Сканування каналів</h2>
+        <div class="menu-path"><span>Списки сканування</span><span>Елементи сканування</span></div>
+        <ol>
+          <li>Створити новий список або відредагувати непотрібний старий.</li>
+          <li>Додати потрібні канали до правої колонки учасників.</li>
+          <li>Дати списку зрозумілу назву.</li>
+          <li>
+            Повернутися до каналу, з якого виконуватиметься сканування, та вибрати цей список у полі
+            <strong>«Список сканування/роумінгу»</strong>.
+          </li>
+        </ol>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Створення списку сканування."
+          >
+            <img src="scan-list-add.png" alt="Створення списку сканування." loading="lazy" />
+          </button>
+          <figcaption>Створення списку сканування.</figcaption>
+        </figure>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Додавання каналів до списку сканування."
+          >
+            <img
+              src="scan-list-members.png"
+              alt="Додавання каналів до списку сканування."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Додавання каналів до списку сканування.</figcaption>
+        </figure>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Призначення списку сканування каналу."
+          >
+            <img
+              src="scan-list-assignment.png"
+              alt="Призначення списку сканування каналу."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Призначення списку сканування каналу.</figcaption>
+        </figure>
+      </section>
+      <section class="section" id="lights-sounds">
+        <h2>Вимкнення індикації та звуків</h2>
+        <div class="menu-path"><span>Загальне</span><span>Загальні параметри</span></div>
+        <p>
+          Для вимкнення світлової індикації позначити
+          <strong>«Вимкнути всі LED-індикатори»</strong>. Для вимкнення звуків перейти до розділу
+          <strong>«Сигнали»</strong> та позначити <strong>«Вимкнути всі звуки»</strong>.
+        </p>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Вимкнення всіх LED-індикаторів."
+          >
+            <img src="disable-led.png" alt="Вимкнення всіх LED-індикаторів." loading="lazy" />
+          </button>
+          <figcaption>Вимкнення всіх LED-індикаторів.</figcaption>
+        </figure>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Вимкнення всіх звукових сигналів."
+          >
+            <img src="disable-sounds.png" alt="Вимкнення всіх звукових сигналів." loading="lazy" />
+          </button>
+          <figcaption>Вимкнення всіх звукових сигналів.</figcaption>
+        </figure>
+      </section>
+      <section class="section" id="transmit-interruption">
+        <h2>Пріоритет і переривання передавання</h2>
+        <p>
+          Обидва варіанти налаштовують у параметрах каналу. Важливо розрізняти дозвіл перервати цю
+          радіостанцію та можливість цієї радіостанції переривати іншу.
+        </p>
+        <div class="programming-table">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Параметр</th>
+                <th scope="col">Цю станцію можна перервати</th>
+                <th scope="col">Ця станція може переривати</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Дозволити переривання</td>
+                <td>Увімкнено</td>
+                <td>Вимкнено</td>
+              </tr>
+              <tr>
+                <td>Критерій прийнятності</td>
+                <td>Без колірного коду</td>
+                <td>Без колірного коду</td>
+              </tr>
+              <tr>
+                <td>Критерії вхідного виклику</td>
+                <td>Відповідно до критеріїв прийнятності</td>
+                <td>Переривання TX</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Варіант, за якого передавання цієї радіостанції можна перервати."
+          >
+            <img
+              src="interruption-allowed.png"
+              alt="Варіант, за якого передавання цієї радіостанції можна перервати."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Варіант, за якого передавання цієї радіостанції можна перервати.</figcaption>
+        </figure>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Варіант для радіостанції, яка перериває передавання."
+          >
+            <img
+              src="interruption-priority.png"
+              alt="Варіант для радіостанції, яка перериває передавання."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Варіант для радіостанції, яка перериває передавання.</figcaption>
+        </figure>
+      </section>
+      <section class="section" id="one-touch-message">
+        <h2>Текстове повідомлення за кнопкою</h2>
+        <div class="menu-path"><span>Загальне</span><span>Текстові повідомлення</span></div>
+        <ol>
+          <li>Створити текст повідомлення.</li>
+          <li>Відкрити <strong>«Загальне → Кнопки керування → Доступ за один дотик»</strong>.</li>
+          <li>
+            У потрібному рядку заповнити контакт у полі <strong>«Виклик»</strong>, вибрати
+            <strong>«Тип виклику → Текстове повідомлення»</strong> та потрібний текст.
+          </li>
+          <li>
+            Призначити кнопці дію <strong>«Доступ за один дотик»</strong> із номером відповідного
+            рядка.
+          </li>
+        </ol>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Створення тексту повідомлення."
+          >
+            <img src="message-text.png" alt="Створення тексту повідомлення." loading="lazy" />
+          </button>
+          <figcaption>Створення тексту повідомлення.</figcaption>
+        </figure>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Налаштування повідомлення в рядку доступу за один дотик."
+          >
+            <img
+              src="one-touch-message.png"
+              alt="Налаштування повідомлення в рядку доступу за один дотик."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Налаштування повідомлення в рядку доступу за один дотик.</figcaption>
+        </figure>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Призначення відповідного номера доступу за один дотик кнопці."
+          >
+            <img
+              src="one-touch-button.png"
+              alt="Призначення відповідного номера доступу за один дотик кнопці."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Призначення відповідного номера доступу за один дотик кнопці.</figcaption>
+        </figure>
+      </section>
+      <section class="section" id="copy-between-models">
+        <h2>Копіювання між різними моделями</h2>
+        <p>
+          Для перенесення налаштувань між різними моделями, наприклад DP4800 та DP4400, у матеріалі
+          використано копіювання вузла <strong>«Конфігурація»</strong>.
+        </p>
+        <ol>
+          <li>
+            У конфігурації вихідної радіостанції натиснути правою кнопкою на
+            <strong>«Конфігурація»</strong> та вибрати <strong>«Копіювати»</strong>.
+          </li>
+          <li>
+            Відкрити конфігурацію радіостанції іншої моделі, натиснути правою кнопкою на
+            <strong>«Конфігурація»</strong> та вибрати <strong>«Вставити»</strong>.
+          </li>
+          <li>
+            Перевірити перенесення ключів, контактів і каналів; за потреби виправити параметри.
+          </li>
+        </ol>
+        <p>
+          Це окрема процедура: команда <strong>«Клонувати»</strong> на верхній панелі описана для
+          радіостанцій тієї самої моделі.
+        </p>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Копіювання вихідної конфігурації."
+          >
+            <img
+              src="configuration-copy.png"
+              alt="Копіювання вихідної конфігурації."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Копіювання вихідної конфігурації.</figcaption>
+        </figure>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Вставлення налаштувань у конфігурацію іншої моделі."
+          >
+            <img
+              src="configuration-paste.png"
+              alt="Вставлення налаштувань у конфігурацію іншої моделі."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Вставлення налаштувань у конфігурацію іншої моделі.</figcaption>
+        </figure>
+      </section>
+      <section class="section" id="remote-management">
+        <h2>Віддалене керування та захист</h2>
+        <div class="menu-path"><span>Системи</span><span>Системи сигналізації</span></div>
+        <p>
+          Щоб вимкнути можливість віддаленого моніторингу та блокування радіостанції, у розділі
+          <strong>«Цифровий»</strong> прибрати відповідні прапорці декодування віддаленого
+          моніторингу й деактивації.
+        </p>
+        <p>
+          У наведеному витягу з настанови запропоновано два варіанти захисту від неавторизованого
+          блокування: вимкнути <strong>«Декодування деактивації радіостанції»</strong> або, якщо
+          модель підтримує цю функцію, використовувати
+          <strong>автентифіковане блокування/розблокування</strong> з автентифікацією користувача та
+          встановленим паролем чи кодовою фразою.
+        </p>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Прапорці віддаленого моніторингу та деактивації."
+          >
+            <img
+              src="remote-decoding.png"
+              alt="Прапорці віддаленого моніторингу та деактивації."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Прапорці віддаленого моніторингу та деактивації.</figcaption>
+        </figure>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Витяг із настанови щодо захисту від неавторизованого блокування."
+          >
+            <img
+              src="remote-security-guidance.png"
+              alt="Витяг із настанови щодо захисту від неавторизованого блокування."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Витяг із настанови щодо захисту від неавторизованого блокування.</figcaption>
+        </figure>
+        <h3 id="remote-menu">Пункти меню керування іншою радіостанцією</h3>
+        <div class="menu-path"><span>Загальне</span><span>Меню</span><span>Контакти</span></div>
+        <p>
+          На радіостанціях з екраном потрібні пункти віддаленого керування вмикають прапорцями в
+          розділі <strong>«Контакти»</strong>. Їхня наявність у меню не замінює налаштувань дозволів
+          та автентифікації керованої радіостанції.
+        </p>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Пункти меню контактів для радіостанції з екраном."
+          >
+            <img
+              src="remote-menu.png"
+              alt="Пункти меню контактів для радіостанції з екраном."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Пункти меню контактів для радіостанції з екраном.</figcaption>
+        </figure>
+      </section>
+      <section class="section" id="private-call">
+        <h2>Приватний контакт та індивідуальний виклик</h2>
+        <div class="menu-path"><span>Контакти</span><span>Контакти</span></div>
+        <ol>
+          <li>
+            Натиснути <strong>«+»</strong> над списком контактів, потім <strong>«+»</strong> біля
+            <strong>«Цифровий»</strong>.
+          </li>
+          <li>Вибрати <strong>«Приватний виклик»</strong> та натиснути <strong>OK</strong>.</li>
+          <li>У поле <strong>«Контакт»</strong> записати ім’я або позивний кореспондента.</li>
+          <li>
+            У поле <strong>«ID виклику»</strong> записати
+            <strong>ID радіостанції кореспондента</strong>, а не номер групи.
+          </li>
+        </ol>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Вибір приватного виклику."
+          >
+            <img src="private-contact-type.png" alt="Вибір приватного виклику." loading="lazy" />
+          </button>
+          <figcaption>Вибір приватного виклику.</figcaption>
+        </figure>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Ім’я приватного контакту та ID потрібної радіостанції."
+          >
+            <img
+              src="private-contact-fields.png"
+              alt="Ім’я приватного контакту та ID потрібної радіостанції."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Ім’я приватного контакту та ID потрібної радіостанції.</figcaption>
+        </figure>
+        <h3 id="private-call-check">Перевірка на DP4800</h3>
+        <p>
+          Після запису конфігурації натиснути <strong>OK</strong>, відкрити
+          <strong>Contacts / Контакти</strong>, підтвердити <strong>OK</strong> та знайти створений
+          контакт. Перевірити його ім’я й номер. Для виклику вибраного кореспондента натиснути
+          <strong>PTT</strong>.
+        </p>
+        <div class="menu-path">
+          <span>OK</span><span>Contacts / Контакти</span><span>OK</span
+          ><span>Потрібний контакт</span><span>PTT</span>
+        </div>
+        <div class="radio-check-gallery">
+          <figure class="procedure-shot">
+            <button
+              class="procedure-shot-button"
+              type="button"
+              aria-label="Збільшити: DP4800: пункт Contacts у головному меню."
+            >
+              <img
+                src="private-call-1.jpeg"
+                alt="DP4800: пункт Contacts у головному меню."
+                loading="lazy"
+              />
+            </button>
+            <figcaption>DP4800: пункт Contacts у головному меню.</figcaption>
+          </figure>
+          <figure class="procedure-shot">
+            <button
+              class="procedure-shot-button"
+              type="button"
+              aria-label="Збільшити: DP4800: вибір створеного контакту."
+            >
+              <img
+                src="private-call-2.jpeg"
+                alt="DP4800: вибір створеного контакту."
+                loading="lazy"
+              />
+            </button>
+            <figcaption>DP4800: вибір створеного контакту.</figcaption>
+          </figure>
+          <figure class="procedure-shot">
+            <button
+              class="procedure-shot-button"
+              type="button"
+              aria-label="Збільшити: DP4800: перевірка імені та номера контакту."
+            >
+              <img
+                src="private-call-3.jpeg"
+                alt="DP4800: перевірка імені та номера контакту."
+                loading="lazy"
+              />
+            </button>
+            <figcaption>DP4800: перевірка імені та номера контакту.</figcaption>
+          </figure>
+          <figure class="procedure-shot">
+            <button
+              class="procedure-shot-button"
+              type="button"
+              aria-label="Збільшити: DP4800: екран індивідуального виклику."
+            >
+              <img
+                src="private-call-4.jpeg"
+                alt="DP4800: екран індивідуального виклику."
+                loading="lazy"
+              />
+            </button>
+            <figcaption>DP4800: екран індивідуального виклику.</figcaption>
+          </figure>
+        </div>
+      </section>
+    </main>
+    <script src="../asset-version.js?v=83337433e237"></script>
+    <script src="../search-index.js?v=83337433e237"></script>
+    <script src="../topic-search.js?v=83337433e237"></script>
+    <script>
+      window.GLOSSARY_ROOT = "../";
+    </script>
+    <script src="../glossary-data.js?v=83337433e237"></script>
+    <script src="../glossary-terms.js?v=83337433e237"></script>
+    <script src="../site-ui.js?v=83337433e237"></script>
+  </body>
+</html>

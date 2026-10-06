@@ -11,9 +11,42 @@ window.GLOSSARY_REVIEWED_TOPICS = [
   "08-harris-kh-programuvannia",
   "09-tooway",
   "10-mototrbo",
+  "11-mototrbo-programuvannia",
 ];
 
 window.GLOSSARY_TERMS = [
+  {
+    term: "CPS",
+    full: "Customer Programming Software",
+    uk: "програмне забезпечення для програмування радіостанцій",
+    description:
+      "У темі MOTOTRBO використовується CPS 2.0 для читання, редагування та запису конфігурації радіостанцій.",
+    topics: [11],
+  },
+  {
+    term: "Codeplug",
+    full: "Codeplug",
+    uk: "файл конфігурації радіостанції",
+    description:
+      "Набір налаштувань: параметри радіостанції, контакти, канали, списки й ключі. Запис конфігурації відрізняється від оновлення мікропрограмного забезпечення.",
+    topics: [11],
+  },
+  {
+    term: "TLS-PSK",
+    full: "Transport Layer Security — Pre-Shared Key",
+    uk: "автентифікація з попередньо наданим ключем",
+    description:
+      "У матеріалі MOTOTRBO використовується для захисту доступу до запису, клонування та відновлення налаштувань обладнання.",
+    topics: [11],
+  },
+  {
+    term: "TOT",
+    full: "Time-Out Timer",
+    uk: "таймер обмеження передавання",
+    description:
+      "Параметр каналу, який обмежує тривалість безперервного передавання; у CPS його задають у секундах.",
+    topics: [11],
+  },
   {
     term: "RSSI",
     full: "Received Signal Strength Indication",
@@ -36,7 +69,7 @@ window.GLOSSARY_TERMS = [
     uk: "ключ обмеження доступу",
     description:
       "Ключ, за яким ретранслятор MOTOTRBO ідентифікує свої радіостанції. Використовується на каналах через ретранслятор; довжина — 6–24 символи.",
-    topics: [10],
+    topics: [10, 11],
   },
   {
     term: "АНД",
@@ -185,7 +218,7 @@ window.GLOSSARY_TERMS = [
     full: "Advanced Encryption Standard",
     uk: "розширений стандарт шифрування",
     description: "Симетричний алгоритм шифрування; у матеріалах згадано ключі 128 і 256 біт.",
-    topics: [4, 5, 6, 8, 10],
+    topics: [4, 5, 6, 8, 10, 11],
   },
   {
     term: "ALE",
