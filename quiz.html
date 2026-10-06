@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Вікторини ВОС-420</title>
     <link rel="icon" href="data:," />
-    <link rel="stylesheet" href="style.css?v=0b5515a61641" />
-    <link rel="stylesheet" href="quiz-common.css?v=0b5515a61641" />
+    <link rel="stylesheet" href="style.css?v=9c154c54ea60" />
+    <link rel="stylesheet" href="quiz-common.css?v=9c154c54ea60" />
   </head>
   <body>
     <main class="page quiz-page">
       <div class="topbar">
-        <a href="index.html#quiz">Змінити вибір тем</a
+        <a id="quizSetupLink" href="index.html#quiz">Налаштування вікторини</a
         ><a id="noteLink" href="index.html">До конспекту</a>
       </div>
       <header class="quiz-header">
@@ -41,52 +41,6 @@
       <div class="progress" aria-hidden="true">
         <div id="progressBar" class="progress-bar"></div>
       </div>
-
-      <section id="setupPanel" class="setup-panel" hidden>
-        <p class="question-topic">Нова спроба</p>
-        <h2>Налаштування вікторини</h2>
-        <div class="settings-grid settings-layout">
-          <label class="field"
-            ><span>Кількість питань</span
-            ><select id="countSelect"></select
-          ></label>
-          <div class="settings-options">
-            <label class="toggle-row"
-              ><input id="examMode" type="checkbox" /><span
-                ><strong>Режим екзамена</strong
-                ><small
-                  >Загальний час — кількість питань × 30 секунд; відповіді можна змінювати до
-                  завершення, перевірка — наприкінці</small
-                ></span
-              ></label
-            >
-            <label class="toggle-row"
-              ><input id="includeMastered" type="checkbox" /><span
-                ><strong>Включати засвоєні питання</strong
-                ><small>Вимкни, щоб не повторювати стабільно правильні відповіді</small></span
-              ></label
-            >
-            <label class="toggle-row"
-              ><input id="prioritizeMistakes" type="checkbox" checked /><span
-                ><strong>Частіше давати складні питання</strong
-                ><small>Питання з помилками отримають більшу ймовірність вибору</small></span
-              ></label
-            >
-            <label class="toggle-row auto-advance-row"
-              ><input id="autoAdvanceCorrect" type="checkbox" checked /><span
-                ><strong>Одразу переходити далі після правильної відповіді</strong
-                ><small
-                  >Після правильної відповіді наступне питання відкриється автоматично</small
-                ></span
-              ></label
-            >
-          </div>
-        </div>
-        <p id="eligibleHint" class="settings-hint"></p>
-        <div class="quiz-actions">
-          <button id="startButton" class="primary-button" type="button">Почати вікторину</button>
-        </div>
-      </section>
 
       <section id="resumePanel" class="resume-panel" hidden>
         <p class="question-topic">Незавершена спроба</p>
@@ -312,10 +266,12 @@
         </button>
       </div>
     </dialog>
-    <script src="asset-version.js?v=0b5515a61641"></script>
-    <script src="quiz-statistics.js?v=0b5515a61641"></script>
+    <script src="asset-version.js?v=9c154c54ea60"></script>
+    <script src="quiz-statistics.js?v=9c154c54ea60"></script>
 
-    <script src="quiz-loader.js?v=0b5515a61641"></script>
-    <script src="site-ui.js?v=0b5515a61641"></script>
+    <script src="quiz-meta.js?v=9c154c54ea60"></script>
+    <script src="quiz-transfer.js?v=9c154c54ea60"></script>
+    <script src="quiz-loader.js?v=9c154c54ea60"></script>
+    <script src="site-ui.js?v=9c154c54ea60"></script>
   </body>
 </html>

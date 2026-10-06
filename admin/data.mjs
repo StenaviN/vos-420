@@ -127,7 +127,7 @@ export async function buildQuiz(root) {
       (_, prefix, suffix) => `${prefix}${t.data.questions.length}${suffix}`,
     );
   outputs.push([indexFile, index]);
-  const loader = path.join(root, "quiz-loader.js");
+  const loader = path.join(root, "quiz-meta.js");
   outputs.push([
     loader,
     (await readFile(loader, "utf8")).replace(/totalQuestions: \d+/, `totalQuestions: ${total}`),

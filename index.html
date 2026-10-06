@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Конспекти ВОС-420 з радіозв'язку</title>
     <link rel="icon" href="data:," />
-    <link rel="stylesheet" href="style.css?v=0b5515a61641" />
+    <link rel="stylesheet" href="style.css?v=9c154c54ea60" />
+    <link rel="stylesheet" href="quiz-common.css?v=9c154c54ea60" />
   </head>
   <body>
     <main class="page">
@@ -123,16 +124,75 @@
             ></label
           >
         </div>
+        <section id="launcherSettings" class="launcher-settings">
+          <p class="question-topic">Нова спроба</p>
+          <h2>Налаштування вікторини</h2>
+          <div class="settings-grid settings-layout">
+            <label class="field"
+              ><span>Кількість питань</span
+              ><select id="countSelect"></select
+            ></label>
+            <div class="settings-options">
+              <label class="toggle-row"
+                ><input id="examMode" type="checkbox" /><span
+                  ><strong>Режим екзамена</strong
+                  ><small
+                    >Загальний час — кількість питань × 30 секунд; відповіді можна змінювати до
+                    завершення, перевірка — наприкінці</small
+                  ></span
+                ></label
+              >
+              <label class="toggle-row"
+                ><input id="includeMastered" type="checkbox" /><span
+                  ><strong>Включати засвоєні питання</strong
+                  ><small>Вимкни, щоб не повторювати стабільно правильні відповіді</small></span
+                ></label
+              >
+              <label class="toggle-row"
+                ><input id="prioritizeMistakes" type="checkbox" checked /><span
+                  ><strong>Частіше давати складні питання</strong
+                  ><small>Питання з помилками отримають більшу ймовірність вибору</small></span
+                ></label
+              >
+              <label class="toggle-row auto-advance-row"
+                ><input id="autoAdvanceCorrect" type="checkbox" checked /><span
+                  ><strong>Одразу переходити далі після правильної відповіді</strong
+                  ><small
+                    >Після правильної відповіді наступне питання відкриється автоматично</small
+                  ></span
+                ></label
+              >
+            </div>
+          </div>
+          <p id="eligibleHint" class="settings-hint"></p>
+        </section>
         <div class="launcher-footer">
           <p id="quizSelectionSummary">Обрано 0 тем · доступно 0 питань</p>
           <div>
             <button id="openQuizStats" class="launcher-secondary" type="button" disabled>
               Статистика</button
             ><button id="startSelectedQuiz" class="launcher-primary" type="button" disabled>
-              Налаштувати вікторину
+              Почати вікторину
             </button>
           </div>
         </div>
+        <section class="stats-transfer" aria-labelledby="statsTransferTitle">
+          <h3 id="statsTransferTitle">Експорт та імпорт</h3>
+          <p>
+            Збережи статистику всіх тем і змішаних вікторин у JSON: прогрес питань, історію та
+            результати останніх спроб. Імпорт повністю замінить статистику цього браузера.
+            Незавершені вікторини й налаштування не переносяться.
+          </p>
+          <div class="quiz-actions">
+            <button id="exportStats" class="secondary-button" type="button">
+              Експортувати JSON</button
+            ><button id="importStats" class="secondary-button" type="button">
+              Імпортувати JSON
+            </button>
+          </div>
+          <input id="importStatsFile" type="file" accept=".json,application/json" hidden />
+          <p id="statsTransferStatus" role="status" aria-live="polite"></p>
+        </section>
         <p id="quizSelectionError" class="launcher-error" hidden>Обери принаймні одну тему.</p>
       </section>
 
@@ -328,13 +388,36 @@
         </section>
       </div>
     </main>
-    <script src="asset-version.js?v=0b5515a61641"></script>
+    <dialog
+      id="importStatsDialog"
+      class="quiz-confirm-dialog"
+      aria-labelledby="importStatsTitle"
+      aria-describedby="importStatsMessage"
+    >
+      <h2 id="importStatsTitle">Замінити всю статистику?</h2>
+      <p id="importStatsMessage"></p>
+      <p>
+        Поточні дані всіх тем буде замінено без об’єднання. За потреби спочатку експортуй їх.
+        Незавершені спроби залишаться в браузері.
+      </p>
+      <div class="quiz-actions">
+        <button id="cancelImportStats" class="secondary-button" type="button" autofocus>
+          Скасувати</button
+        ><button id="confirmImportStats" class="primary-button" type="button">
+          Замінити статистику
+        </button>
+      </div>
+    </dialog>
+    <script src="asset-version.js?v=9c154c54ea60"></script>
 
-    <script src="search-index.js?v=0b5515a61641"></script>
-    <script src="glossary-data.js?v=0b5515a61641"></script>
-    <script src="glossary.js?v=0b5515a61641"></script>
-    <script src="quiz-launcher.js?v=0b5515a61641"></script>
-    <script src="search.js?v=0b5515a61641"></script>
-    <script src="site-ui.js?v=0b5515a61641"></script>
+    <script src="search-index.js?v=9c154c54ea60"></script>
+    <script src="glossary-data.js?v=9c154c54ea60"></script>
+    <script src="glossary.js?v=9c154c54ea60"></script>
+    <script src="quiz-meta.js?v=9c154c54ea60"></script>
+    <script src="quiz-statistics.js?v=9c154c54ea60"></script>
+    <script src="quiz-transfer.js?v=9c154c54ea60"></script>
+    <script src="quiz-launcher.js?v=9c154c54ea60"></script>
+    <script src="search.js?v=9c154c54ea60"></script>
+    <script src="site-ui.js?v=9c154c54ea60"></script>
   </body>
 </html>

@@ -30,21 +30,13 @@ let autoAdvanceTimer = null;
 
 const $ = (selector) => document.querySelector(selector);
 const elements = {
-  examMode: $("#examMode"),
   examTimer: $("#examTimer"),
-  setupPanel: $("#setupPanel"),
   resumePanel: $("#resumePanel"),
   quizPanel: $("#quizPanel"),
   resultPanel: $("#resultPanel"),
   statsPanel: $("#statsPanel"),
   quizTitle: $("#quizTitle"),
   topicLabel: $("#topicLabel"),
-  countSelect: $("#countSelect"),
-  includeMastered: $("#includeMastered"),
-  prioritizeMistakes: $("#prioritizeMistakes"),
-  autoAdvanceCorrect: $("#autoAdvanceCorrect"),
-  eligibleHint: $("#eligibleHint"),
-  startButton: $("#startButton"),
   resumeSummary: $("#resumeSummary"),
   resumeButton: $("#resumeButton"),
   newQuizButton: $("#newQuizButton"),
@@ -89,6 +81,7 @@ elements.topicLabel.textContent = isMixed ? config.label : "";
 elements.topicLabel.hidden = !isMixed;
 elements.quizTitle.textContent = config.title;
 $("#noteLink").href = config.notePath;
+$("#quizSetupLink").href = `index.html?topics=${config.topicKeys.join(",")}#quiz`;
 $("#resultNoteLink").href = config.notePath;
 $("#noteLink").hidden = isMixed;
 $("#resultNoteLink").hidden = isMixed;
@@ -438,15 +431,11 @@ function updateHeader() {
 }
 
 function showOnly(panel) {
-  [
-    elements.setupPanel,
-    elements.resumePanel,
-    elements.quizPanel,
-    elements.resultPanel,
-    elements.statsPanel,
-  ].forEach((item) => {
-    item.hidden = item !== panel;
-  });
+  [elements.resumePanel, elements.quizPanel, elements.resultPanel, elements.statsPanel].forEach(
+    (item) => {
+      item.hidden = item !== panel;
+    },
+  );
   const activeView = panel === elements.statsPanel ? "stats" : "quiz";
   document.querySelectorAll("[data-view]").forEach((button) => {
     const active = button.dataset.view === activeView;
@@ -926,12 +915,17 @@ function finishQuiz(timedOut = false, confirmed = false) {
 }
 
 function settingsFromForm() {
+  const params = new URLSearchParams(location.search);
+  const count = params.get("count");
   return {
-    examMode: elements.examMode.checked,
-    count: elements.countSelect.value,
-    includeMastered: elements.includeMastered.checked,
-    prioritizeMistakes: elements.prioritizeMistakes.checked,
-    autoAdvanceCorrect: elements.autoAdvanceCorrect.checked,
+    count:
+      count === "all" || (/^\d+$/.test(count || "") && Number(count) > 0)
+        ? count
+        : String(config.defaultSize),
+    examMode: params.get("examMode") === "1",
+    includeMastered: params.get("includeMastered") === "1",
+    prioritizeMistakes: params.get("prioritizeMistakes") !== "0",
+    autoAdvanceCorrect: params.get("autoAdvanceCorrect") !== "0",
   };
 }
 
@@ -959,9 +953,8 @@ function startQuiz(settings = settingsFromForm()) {
 
 function showSetup() {
   pauseTimer();
-  showOnly(elements.setupPanel);
-  updateEligibility();
-  updateHeader();
+  saveState();
+  location.href = `index.html?topics=${config.topicKeys.join(",")}#quiz`;
 }
 
 function showResumeChoice(saved) {
@@ -1008,14 +1001,6 @@ function resumeQuiz() {
   showOnly(elements.quizPanel);
   startTimer();
   renderQuestion(true);
-}
-
-function updateEligibility() {
-  const settings = settingsFromForm();
-  const eligible = eligibleQuestions(settings).length;
-  elements.eligibleHint.textContent = settings.includeMastered
-    ? `Доступно ${eligible} питань.`
-    : `До повторення доступно ${eligible} питань; засвоєні не включатимуться.`;
 }
 
 function makeBar(label, value, detail, href = null) {
@@ -1188,19 +1173,6 @@ function populateStatsResetTopics() {
   updateResetControls();
 }
 
-function populateCounts() {
-  const values = [10, 15, 20, 25, 30, 40, 50, 75, 100].filter(
-    (value) => value < config.questions.length,
-  );
-  if (!values.includes(config.defaultSize) && config.defaultSize < config.questions.length)
-    values.push(config.defaultSize);
-  values
-    .sort((a, b) => a - b)
-    .forEach((value) => elements.countSelect.add(new Option(String(value), String(value))));
-  elements.countSelect.add(new Option(`Усі (${config.questions.length})`, "all"));
-  elements.countSelect.value = String(config.defaultSize);
-}
-
 $("#showCorrectResults").addEventListener("change", renderMistakes);
 $("#showUnansweredResults").addEventListener("change", renderMistakes);
 $("#continueQuizButton").addEventListener("click", () => $("#finishDialog").close());
@@ -1208,20 +1180,13 @@ $("#confirmFinishButton").addEventListener("click", () => finishQuiz(false, true
 elements.finishButton.addEventListener("click", () => finishQuiz());
 elements.checkButton.addEventListener("click", checkAnswer);
 elements.nextButton.addEventListener("click", nextQuestion);
-elements.startButton.addEventListener("click", () => startQuiz());
 elements.restartButton.addEventListener("click", showSetup);
 elements.resumeButton.addEventListener("click", resumeQuiz);
 elements.newQuizButton.addEventListener("click", () => {
   pendingSavedState = null;
+  state.finished = true;
   clearSavedState();
   showSetup();
-});
-elements.countSelect.addEventListener("change", updateEligibility);
-elements.includeMastered.addEventListener("change", updateEligibility);
-elements.prioritizeMistakes.addEventListener("change", updateEligibility);
-elements.autoAdvanceCorrect.addEventListener("change", updateEligibility);
-elements.examMode.addEventListener("change", () => {
-  elements.autoAdvanceCorrect.disabled = elements.examMode.checked;
 });
 elements.statsResetTopic.addEventListener("change", () => {
   elements.statsResetStatus.textContent = "";
@@ -1230,73 +1195,9 @@ elements.statsResetTopic.addEventListener("change", () => {
 elements.clearTopicStats.addEventListener("click", clearSelectedTopicStats);
 elements.clearAllStats.addEventListener("click", clearAllStatistics);
 
-// Backups include all topics, regardless of the currently selected quiz slice.
-let pendingImport = null;
-const importDialog = $("#importStatsDialog");
-const transferStatus = $("#statsTransferStatus");
-$("#exportStats").addEventListener("click", () => {
-  try {
-    const stored = localStorage.getItem(STATS_KEY);
-    const text = window.QuizStatisticsBackup.serialize(
-      stored ? JSON.parse(stored) : { version: 1, topics: {}, mixedAttempts: [] },
-    );
-    const url = URL.createObjectURL(new Blob([text], { type: "application/json;charset=utf-8" }));
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = `vos420-statistics-${new Date().toISOString().slice(0, 10)}.json`;
-    document.body.append(link);
-    link.click();
-    link.remove();
-    setTimeout(() => URL.revokeObjectURL(url), 10000);
-    transferStatus.textContent = "Файл експорту підготовлено для завантаження.";
-  } catch (error) {
-    transferStatus.textContent = `Експорт не виконано. ${error.message}`;
-  }
-});
-$("#importStats").addEventListener("click", () => $("#importStatsFile").click());
-$("#importStatsFile").addEventListener("change", async (event) => {
-  const file = event.target.files[0];
-  event.target.value = "";
-  if (!file) return;
-  pendingImport = null;
-  try {
-    if (file.size > window.QuizStatisticsBackup.MAX_BYTES)
-      throw new Error("Максимальний розмір файлу — 20 МБ.");
-    pendingImport = window.QuizStatisticsBackup.parse(await file.text());
-    const topics = Object.values(pendingImport.topics);
-    const attempts =
-      topics.reduce((sum, topic) => sum + topic.attempts.length, 0) +
-      pendingImport.mixedAttempts.length;
-    $("#importStatsMessage").textContent =
-      `Файл «${file.name}»: тем — ${topics.length}, завершених спроб — ${attempts}, збережених результатів — ${Object.keys(pendingImport.latestResults || {}).length}.`;
-    transferStatus.textContent = "";
-    importDialog.showModal();
-  } catch (error) {
-    pendingImport = null;
-    transferStatus.textContent = `Імпорт не виконано. ${error.message} Поточні дані збережено.`;
-  }
-});
-$("#cancelImportStats").addEventListener("click", () => importDialog.close());
-importDialog.addEventListener("close", () => {
-  pendingImport = null;
-});
-$("#confirmImportStats").addEventListener("click", () => {
-  if (!pendingImport) return;
-  try {
-    // A single atomic write: quota or storage errors leave the old value intact.
-    localStorage.setItem(STATS_KEY, JSON.stringify(pendingImport));
-  } catch {
-    transferStatus.textContent =
-      "Імпорт не виконано: браузер не дозволив зберегти дані або бракує місця. Поточну статистику збережено.";
-    importDialog.close();
-    return;
-  }
-  importDialog.close();
+window.initQuizTransfer(() => {
   renderStats();
-  updateEligibility();
   updateHeader();
-  transferStatus.textContent =
-    "Статистику всіх тем і збережені результати замінено даними з файлу.";
 });
 document
   .querySelectorAll("[data-view]")
@@ -1373,9 +1274,7 @@ document.addEventListener("keydown", (event) => {
 setInterval(updateExamTimer, 250);
 setInterval(saveState, 5000);
 
-populateCounts();
 populateStatsResetTopics();
-updateEligibility();
 const savedState = readSavedState();
 const initialStatsView = viewFromUrl() === "stats";
 if (viewFromUrl() === "result") openLatestResult();
@@ -1383,4 +1282,5 @@ else if (initialStatsView) {
   renderStats();
   showOnly(elements.statsPanel);
 } else if (savedState) showResumeChoice(savedState);
+else if (new URLSearchParams(location.search).get("start") === "1") startQuiz();
 else showSetup();

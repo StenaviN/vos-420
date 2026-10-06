@@ -16,7 +16,7 @@ test("local editing, validation, concurrent changes, generated data and access r
       '<h1>Тема</h1><section id="section"><h2>Розділ</h2><h3 id="sub">Підрозділ</h3></section>',
     );
     await writeFile(path.join(root, "index.html"), '<input value="1" data-questions="1"></body>');
-    await writeFile(path.join(root, "quiz-loader.js"), "window.QUIZ_META={totalQuestions: 1};");
+    await writeFile(path.join(root, "quiz-meta.js"), "window.QUIZ_META={totalQuestions: 1};");
     await copyFile(
       new URL("../build-asset-versions.mjs", import.meta.url),
       path.join(root, "build-asset-versions.mjs"),
@@ -74,7 +74,7 @@ test("local editing, validation, concurrent changes, generated data and access r
     let saved = await response.json();
     assert.equal(saved.topic.data.questions[0].wrong.length, 8);
     assert.match(await readFile(path.join(root, "index.html"), "utf8"), /data-questions="2"/);
-    assert.match(await readFile(path.join(root, "quiz-loader.js"), "utf8"), /totalQuestions: 2/);
+    assert.match(await readFile(path.join(root, "quiz-meta.js"), "utf8"), /totalQuestions: 2/);
     assert.match(await readFile(path.join(root, "01-test/quiz-data.js"), "utf8"), /Виправлено/);
     assert.equal((await post(payload)).status, 409);
     response = await post({ ...payload, revision: saved.topic.revision, questions: [edited] });

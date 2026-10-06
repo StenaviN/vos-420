@@ -1241,3 +1241,12 @@ a.question-jump {
 #statsTransferStatus:empty {
   display: none;
 }
+.launcher-settings {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.launcher-settings h2 {
+  margin: 0 0 16px;
+}
