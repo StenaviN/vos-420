@@ -1,7 +1,7 @@
 "use strict";
 
 window.QUIZ_META = {
-  totalQuestions: 536,
+  totalQuestions: 562,
   topics: [
     {
       key: "1",
