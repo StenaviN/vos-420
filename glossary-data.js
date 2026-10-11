@@ -12,16 +12,25 @@ window.GLOSSARY_REVIEWED_TOPICS = [
   "09-tooway",
   "10-mototrbo",
   "11-mototrbo-programuvannia",
+  "12-mototrbo-repeater-programuvannia",
 ];
 
 window.GLOSSARY_TERMS = [
+  {
+    term: "RDAC",
+    full: "RDAC",
+    uk: "програма керування ретранслятором",
+    description:
+      "У матеріалі з програмування IP Site Connect рекомендована для налаштування порога RSSI ретранслятора.",
+    topics: [12],
+  },
   {
     term: "CPS",
     full: "Customer Programming Software",
     uk: "програмне забезпечення для програмування радіостанцій",
     description:
       "У темі MOTOTRBO використовується CPS 2.0 для читання, редагування та запису конфігурації радіостанцій.",
-    topics: [11],
+    topics: [11, 12],
   },
   {
     term: "Codeplug",
@@ -53,7 +62,7 @@ window.GLOSSARY_TERMS = [
     uk: "показник рівня прийнятого сигналу",
     description:
       "У роумінгу MOTOTRBO падіння RSSI домашнього ретранслятора нижче встановленого порога запускає пошук іншого ретранслятора за списком роумінгу.",
-    topics: [10],
+    topics: [10, 12],
   },
   {
     term: "IP Site Connect",
@@ -61,7 +70,7 @@ window.GLOSSARY_TERMS = [
     uk: "система об’єднаних ретрансляторів MOTOTRBO",
     description:
       "Роумінг у цій системі дозволяє перемикатися між ретрансляторами відповідно до рівня сигналу. Передбачено автоматичний і ручний вибір.",
-    topics: [10],
+    topics: [10, 12],
   },
   {
     term: "RAS",
@@ -69,7 +78,7 @@ window.GLOSSARY_TERMS = [
     uk: "ключ обмеження доступу",
     description:
       "Ключ, за яким ретранслятор MOTOTRBO ідентифікує свої радіостанції. Використовується на каналах через ретранслятор; довжина — 6–24 символи.",
-    topics: [10, 11],
+    topics: [10, 11, 12],
   },
   {
     term: "АНД",
@@ -218,7 +227,7 @@ window.GLOSSARY_TERMS = [
     full: "Advanced Encryption Standard",
     uk: "розширений стандарт шифрування",
     description: "Симетричний алгоритм шифрування; у матеріалах згадано ключі 128 і 256 біт.",
-    topics: [4, 5, 6, 8, 10, 11],
+    topics: [4, 5, 6, 8, 10, 11, 12],
   },
   {
     term: "ALE",

@@ -1,0 +1,667 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>12. Програмування ретранслятора MOTOTRBO</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="../style.css?v=cb2b615b6e5d" />
+    <link rel="stylesheet" href="../11-mototrbo-programuvannia/programming.css?v=cb2b615b6e5d" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="topbar">
+        <a href="../index.html">До змісту</a><a href="../10-mototrbo/index.html">ТТХ MOTOTRBO</a
+        ><a href="../11-mototrbo-programuvannia/index.html">Програмування радіостанції</a
+        ><a href="../glossary.html">Глосарій</a>
+      </div>
+      <header class="hero">
+        <h1>12. Програмування ретранслятора MOTOTRBO</h1>
+        <p>
+          CPS 2.0: базові параметри ретранслятора, RAS, роумінг, IP Site Connect та випадковий вибір
+          ключа AES-256 на радіостанції.
+        </p>
+      </header>
+      <nav class="section topic-toc" aria-label="Зміст конспекту">
+        <h2>Зміст</h2>
+        <ul>
+          <li><a href="#workflow">Порядок налаштування</a></li>
+          <li><a href="#repeater-identity">Псевдонім та ID ретранслятора</a></li>
+          <li><a href="#ras-authentication">Захист доступу RAS</a></li>
+          <li><a href="#radio-id-ranges">Перевірка діапазонів ID радіостанцій</a></li>
+          <li><a href="#repeater-channel">Канал ретранслятора</a></li>
+          <li><a href="#alarm-indicator">Червоний або помаранчевий індикатор</a></li>
+          <li><a href="#roaming-channels">Роумінг: підготовка каналів радіостанції</a></li>
+          <li><a href="#roaming-list">Створення списку роумінгу</a></li>
+          <li><a href="#roaming-mode">Автоматичний і ручний роумінг</a></li>
+          <li><a href="#assign-roaming">Призначення списку каналам</a></li>
+          <li><a href="#ip-site-connect">IP Site Connect: головний та одноранговий вузли</a></li>
+          <li><a href="#master-setup">Головний ретранслятор</a></li>
+          <li><a href="#peer-setup">Одноранговий ретранслятор</a></li>
+          <li><a href="#random-key">Random Key: випадковий ключ AES-256</a></li>
+        </ul>
+      </nav>
+      <section class="section" id="workflow">
+        <h2>Порядок налаштування</h2>
+        <p>
+          У CPS 2.0 налаштуй ретранслятор, а для роботи через мережу IP Site Connect — також канали
+          й роумінг абонентських радіостанцій.
+        </p>
+        <ol>
+          <li>Задай псевдонім та ID ретранслятора.</li>
+          <li>Налаштуй RAS і, за потреби, перевірку діапазонів ID радіостанцій.</li>
+          <li>Задай параметри каналу: назву, колірний код і частоти.</li>
+          <li>Для IP Site Connect визнач роль ретранслятора та мережеві параметри.</li>
+          <li>На радіостанціях налаштуй список роумінгу й признач його потрібним каналам.</li>
+        </ol>
+        <p>
+          Базові операції читання та запису конфігурації описані в
+          <a href="../11-mototrbo-programuvannia/index.html#read-write-clone"
+            >конспекті програмування MOTOTRBO</a
+          >.
+        </p>
+      </section>
+      <section class="section" id="repeater-identity">
+        <h2>Псевдонім та ID ретранслятора</h2>
+        <div class="menu-path"><span>Загальне</span><span>Загальні параметри</span></div>
+        <p>
+          Заповни поля <strong>«Псевдонім радіо»</strong> та <strong>«ID радіопристрою»</strong>. Ці
+          параметри задають як для окремого ретранслятора, так і для кожного вузла IP Site Connect.
+        </p>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Псевдонім та ID ретранслятора в CPS 2.0."
+          >
+            <img
+              src="repeater-identity.png"
+              alt="Псевдонім та ID ретранслятора в CPS 2.0."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Псевдонім та ID ретранслятора в CPS 2.0.</figcaption>
+        </figure>
+      </section>
+      <section class="section" id="ras-authentication">
+        <h2>Захист доступу RAS</h2>
+        <div class="menu-path">
+          <span>Загальне</span><span>Безпека</span><span>Обмежений доступ до системи (RAS)</span>
+        </div>
+        <p>
+          Увімкни <strong>«Автентифікація»</strong> та введи узгоджений ключ RAS. За ввімкненої
+          автентифікації ретранслятор застосовує ключ для обмеження доступу; за вимкненої ключ не
+          застосовується.
+        </p>
+        <p>
+          RAS керує доступом до ретранслятора. Налаштування шифрування AES-256 на радіостанціях
+          виконується окремо.
+        </p>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Автентифікація та ключ RAS ретранслятора."
+          >
+            <img
+              src="ras-authentication.png"
+              alt="Автентифікація та ключ RAS ретранслятора."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Автентифікація та ключ RAS ретранслятора.</figcaption>
+        </figure>
+      </section>
+      <section class="section" id="radio-id-ranges">
+        <h2>Перевірка діапазонів ID радіостанцій</h2>
+        <p>
+          Як додатковий захист увімкни <strong>«Перевірка діапазону ID радіопристрою»</strong>.
+          Додай діапазон і вкажи мінімальний та максимальний ID. За потреби створи декілька
+          діапазонів.
+        </p>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Дозволені діапазони ID радіостанцій."
+          >
+            <img
+              src="radio-id-ranges.png"
+              alt="Дозволені діапазони ID радіостанцій."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Дозволені діапазони ID радіостанцій.</figcaption>
+        </figure>
+      </section>
+      <section class="section" id="repeater-channel">
+        <h2>Канал ретранслятора</h2>
+        <div class="menu-path">
+          <span>Призначення зон/каналів</span><span>Зона</span><span>Канал</span>
+        </div>
+        <p>
+          Відкрий канал і заповни <strong>назву каналу</strong>, <strong>колірний код</strong>,
+          <strong>частоту приймання RX</strong> та <strong>частоту передавання TX</strong>.
+        </p>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Основні параметри каналу ретранслятора."
+          >
+            <img
+              src="repeater-channel.png"
+              alt="Основні параметри каналу ретранслятора."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Основні параметри каналу ретранслятора.</figcaption>
+        </figure>
+      </section>
+      <section class="section" id="alarm-indicator">
+        <h2>Червоний або помаранчевий індикатор</h2>
+        <div class="menu-path">
+          <span>Загальне</span><span>Загальні параметри</span><span>Тип сигналізації</span>
+        </div>
+        <p>
+          Якщо перший індикатор ретранслятора світиться червоним або помаранчевим, перевір
+          призначення сигналізації:
+        </p>
+        <ul>
+          <li><strong>Червоний:</strong> зверни увагу на поля зі значенням «Головний».</li>
+          <li><strong>Помаранчевий:</strong> перевір поля зі значенням «Другорядний».</li>
+        </ul>
+        <p>Ці значення стосуються типу сигналізації, а не ролі ретранслятора в IP Site Connect.</p>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Типи сигналізації в загальних параметрах."
+          >
+            <img
+              src="alarm-indicator.png"
+              alt="Типи сигналізації в загальних параметрах."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Типи сигналізації в загальних параметрах.</figcaption>
+        </figure>
+      </section>
+      <section class="section" id="roaming-channels">
+        <h2>Роумінг: підготовка каналів радіостанції</h2>
+        <p>
+          Ці дії виконуються в конфігурації <strong>абонентської радіостанції</strong>. Спочатку
+          мають бути створені канали й введені ключі RAS.
+        </p>
+        <div class="menu-path"><span>Призначення зон/каналів</span><span>Зона</span></div>
+        <p>
+          На каналах для роботи з ретрансляторами встанови позначку
+          <strong>«Під’єднання до вузла IP»</strong>.
+        </p>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Під’єднання до вузла IP на каналах радіостанції."
+          >
+            <img
+              src="roaming-channels.png"
+              alt="Під’єднання до вузла IP на каналах радіостанції."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Під’єднання до вузла IP на каналах радіостанції.</figcaption>
+        </figure>
+      </section>
+      <section class="section" id="roaming-list">
+        <h2>Створення списку роумінгу</h2>
+        <div class="menu-path"><span>Списки сканування</span><span>Список роумінгу</span></div>
+        <ol>
+          <li>
+            Створи новий список або відредагуй старий, якщо він більше не потрібний у попередньому
+            вигляді.
+          </li>
+          <li>Задай назву списку.</li>
+          <li>Додай потрібні канали з лівої колонки до правої.</li>
+        </ol>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Створення списку роумінгу."
+          >
+            <img src="roaming-list.png" alt="Створення списку роумінгу." loading="lazy" />
+          </button>
+          <figcaption>Створення списку роумінгу.</figcaption>
+        </figure>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Назва списку та додавання каналів."
+          >
+            <img
+              src="roaming-members.png"
+              alt="Назва списку та додавання каналів."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Назва списку та додавання каналів.</figcaption>
+        </figure>
+      </section>
+      <section class="section" id="roaming-mode">
+        <h2>Автоматичний і ручний роумінг</h2>
+        <h3 id="automatic-roaming">Автоматичний роумінг</h3>
+        <div class="menu-path"><span>Списки сканування</span><span>Роумінг</span></div>
+        <p>Увімкни <strong>«Пошук активного вузла»</strong>.</p>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Пошук активного вузла для автоматичного роумінгу."
+          >
+            <img
+              src="automatic-roaming.png"
+              alt="Пошук активного вузла для автоматичного роумінгу."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Пошук активного вузла для автоматичного роумінгу.</figcaption>
+        </figure>
+        <h3 id="manual-roaming">Ручний роумінг</h3>
+        <div class="menu-path"><span>Загальне</span><span>Кнопки керування</span></div>
+        <p>
+          Признач кнопкам функції <strong>«Ручний роумінг вузлів»</strong> і
+          <strong>«Блокування вузла увімк/вимк»</strong>.
+        </p>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Призначення кнопок ручного роумінгу та блокування вузла."
+          >
+            <img
+              src="manual-roaming.png"
+              alt="Призначення кнопок ручного роумінгу та блокування вузла."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Призначення кнопок ручного роумінгу та блокування вузла.</figcaption>
+        </figure>
+      </section>
+      <section class="section" id="assign-roaming">
+        <h2>Призначення списку каналам</h2>
+        <div class="menu-path">
+          <span>Призначення зон/каналів</span><span>Зона</span><span>Канал</span>
+        </div>
+        <p>
+          Повернися до потрібного каналу. У полі <strong>«Список сканування/роумінгу»</strong> обери
+          створений список за його назвою.
+        </p>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Вибір списку сканування/роумінгу на каналі."
+          >
+            <img
+              src="assign-roaming.png"
+              alt="Вибір списку сканування/роумінгу на каналі."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Вибір списку сканування/роумінгу на каналі.</figcaption>
+        </figure>
+      </section>
+      <section class="section" id="ip-site-connect">
+        <h2>IP Site Connect: головний та одноранговий вузли</h2>
+        <p>
+          Спочатку налаштуй головний ретранслятор, потім однорангові. Для кожного задаються власні
+          ID, псевдонім і мережеві параметри.
+        </p>
+        <div class="programming-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Параметр</th>
+                <th>Головний</th>
+                <th>Одноранговий</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>Тип каналу</th>
+                <td>Головний</td>
+                <td>Одноранговий</td>
+              </tr>
+              <tr>
+                <th>Ключ автентифікації</th>
+                <td>Надає організатор зв’язку</td>
+                <td>Такий самий, як на головному</td>
+              </tr>
+              <tr>
+                <th>Головна IP-адреса</th>
+                <td>За параметрами організатора зв’язку</td>
+                <td>Ethernet IP-адреса головного ретранслятора в наведеній схемі</td>
+              </tr>
+              <tr>
+                <th>Мережеві параметри</th>
+                <td colspan="2">
+                  Відповідно до маршрутизатора, підключеного до конкретного ретранслятора
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          Числа на знімках — приклади конфігурації. Адреси та ключ автентифікації використовуй
+          згідно з параметрами своєї мережі.
+        </p>
+      </section>
+      <section class="section" id="master-setup">
+        <h2>Головний ретранслятор</h2>
+        <h3>1. Ідентифікація</h3>
+        <div class="menu-path"><span>Загальне</span><span>Загальні параметри</span></div>
+        <p>Задай ID та псевдонім ретранслятора.</p>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Головний ретранслятор: ID та псевдонім."
+          >
+            <img
+              src="master-identity.png"
+              alt="Головний ретранслятор: ID та псевдонім."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Головний ретранслятор: ID та псевдонім.</figcaption>
+        </figure>
+        <h3>2. Зв’язок між вузлами</h3>
+        <div class="menu-path"><span>Загальне</span><span>Встановлення зв’язку</span></div>
+        <p>
+          У полі <strong>«Тип каналу»</strong> вибери <strong>«Головний»</strong>. Заповни
+          <strong>«Ключ автентифікації»</strong> та <strong>«Головна IP-адреса»</strong> за
+          параметрами, наданими штабом, що організовує зв’язок.
+        </p>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Головний ретранслятор: роль вузла, автентифікація та головна IP-адреса."
+          >
+            <img
+              src="master-link.png"
+              alt="Головний ретранслятор: роль вузла, автентифікація та головна IP-адреса."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>
+            Головний ретранслятор: роль вузла, автентифікація та головна IP-адреса.
+          </figcaption>
+        </figure>
+        <h3>3. Мережа</h3>
+        <div class="menu-path"><span>Загальне</span><span>Мережа</span></div>
+        <p>
+          Для <strong>«Швидкість з’єднання»</strong> вибери
+          <strong>«Автоматичне узгодження»</strong>. Параметри
+          <strong>«IP-адреса Ethernet»</strong>, <strong>«IP-адреса шлюзу»</strong> та
+          <strong>«Маска мережі шлюзу»</strong> задаються відповідно до маршрутизатора, підключеного
+          до цього ретранслятора.
+        </p>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Головний ретранслятор: мережеві параметри."
+          >
+            <img
+              src="master-network.png"
+              alt="Головний ретранслятор: мережеві параметри."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Головний ретранслятор: мережеві параметри.</figcaption>
+        </figure>
+        <h3>4. Доступ RAS</h3>
+        <div class="menu-path"><span>Загальне</span><span>Безпека</span></div>
+        <p>Введи ключ RAS для доступу радіостанцій до ретранслятора.</p>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Головний ретранслятор: ключ RAS."
+          >
+            <img src="master-ras.png" alt="Головний ретранслятор: ключ RAS." loading="lazy" />
+          </button>
+          <figcaption>Головний ретранслятор: ключ RAS.</figcaption>
+        </figure>
+        <h3>5. Канал</h3>
+        <div class="menu-path">
+          <span>Призначення зон/каналів</span><span>Зона</span><span>Канал</span>
+        </div>
+        <ul>
+          <li>Задай <strong>колірний код</strong>.</li>
+          <li>
+            У полі <strong>«Під’єднання до вузла IP»</strong> вибери тайм-слот, який працюватиме в
+            мережі.
+          </li>
+          <li>
+            Налаштуй <strong>поріг RSSI</strong>; у матеріалі рекомендовано виконувати це через
+            програму RDAC.
+          </li>
+          <li>Задай частоти приймання й передавання.</li>
+        </ul>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Головний ретранслятор: тайм-слот IP Site Connect, RSSI та частоти."
+          >
+            <img
+              src="master-channel.png"
+              alt="Головний ретранслятор: тайм-слот IP Site Connect, RSSI та частоти."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>
+            Головний ретранслятор: тайм-слот IP Site Connect, RSSI та частоти.
+          </figcaption>
+        </figure>
+      </section>
+      <section class="section" id="peer-setup">
+        <h2>Одноранговий ретранслятор</h2>
+        <h3>1. Ідентифікація</h3>
+        <div class="menu-path"><span>Загальне</span><span>Загальні параметри</span></div>
+        <p>Задай ID та псевдонім ретранслятора.</p>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Одноранговий ретранслятор: ID та псевдонім."
+          >
+            <img
+              src="peer-identity.png"
+              alt="Одноранговий ретранслятор: ID та псевдонім."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Одноранговий ретранслятор: ID та псевдонім.</figcaption>
+        </figure>
+        <h3>2. Зв’язок між вузлами</h3>
+        <div class="menu-path"><span>Загальне</span><span>Встановлення зв’язку</span></div>
+        <p>
+          У полі <strong>«Тип каналу»</strong> вибери <strong>«Одноранговий»</strong>. Вкажи той
+          самий <strong>ключ автентифікації</strong>, що й на головному. У наведеній схемі
+          <strong>«Головна IP-адреса»</strong> — це значення
+          <strong>«IP-адреса Ethernet» головного ретранслятора</strong>.
+        </p>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Одноранговий ретранслятор: роль вузла, автентифікація та головна IP-адреса."
+          >
+            <img
+              src="peer-link.png"
+              alt="Одноранговий ретранслятор: роль вузла, автентифікація та головна IP-адреса."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>
+            Одноранговий ретранслятор: роль вузла, автентифікація та головна IP-адреса.
+          </figcaption>
+        </figure>
+        <h3>3. Мережа</h3>
+        <div class="menu-path"><span>Загальне</span><span>Мережа</span></div>
+        <p>
+          Для <strong>«Швидкість з’єднання»</strong> вибери
+          <strong>«Автоматичне узгодження»</strong>. Параметри
+          <strong>«IP-адреса Ethernet»</strong>, <strong>«IP-адреса шлюзу»</strong> та
+          <strong>«Маска мережі шлюзу»</strong> задаються відповідно до маршрутизатора, підключеного
+          до цього ретранслятора.
+        </p>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Одноранговий ретранслятор: мережеві параметри."
+          >
+            <img
+              src="peer-network.png"
+              alt="Одноранговий ретранслятор: мережеві параметри."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Одноранговий ретранслятор: мережеві параметри.</figcaption>
+        </figure>
+        <h3>4. Доступ RAS</h3>
+        <div class="menu-path"><span>Загальне</span><span>Безпека</span></div>
+        <p>Введи ключ RAS для доступу радіостанцій до ретранслятора.</p>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Одноранговий ретранслятор: ключ RAS."
+          >
+            <img src="peer-ras.png" alt="Одноранговий ретранслятор: ключ RAS." loading="lazy" />
+          </button>
+          <figcaption>Одноранговий ретранслятор: ключ RAS.</figcaption>
+        </figure>
+        <h3>5. Канал</h3>
+        <div class="menu-path">
+          <span>Призначення зон/каналів</span><span>Зона</span><span>Канал</span>
+        </div>
+        <ul>
+          <li>Задай <strong>колірний код</strong>.</li>
+          <li>
+            У полі <strong>«Під’єднання до вузла IP»</strong> вибери тайм-слот, який працюватиме в
+            мережі.
+          </li>
+          <li>
+            Налаштуй <strong>поріг RSSI</strong>; у матеріалі рекомендовано виконувати це через
+            програму RDAC.
+          </li>
+          <li>Задай частоти приймання й передавання.</li>
+        </ul>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Одноранговий ретранслятор: тайм-слот IP Site Connect, RSSI та частоти."
+          >
+            <img
+              src="peer-channel.png"
+              alt="Одноранговий ретранслятор: тайм-слот IP Site Connect, RSSI та частоти."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>
+            Одноранговий ретранслятор: тайм-слот IP Site Connect, RSSI та частоти.
+          </figcaption>
+        </figure>
+      </section>
+      <section class="section" id="random-key">
+        <h2>Random Key: випадковий ключ AES-256</h2>
+        <p>
+          Це налаштування <strong>абонентської радіостанції</strong>. Для подальшої роботи
+          використовуй AES-256; 40-бітний ключ не рекомендований.
+        </p>
+        <h3>1. Дешифрування</h3>
+        <div class="menu-path"><span>Загальне</span><span>Безпека</span><span>Загальне</span></div>
+        <p>
+          Зніми позначку <strong>«Виправлено дешифрування ключа захисту конфіденційності»</strong>.
+        </p>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Поле фіксованого дешифрування має бути вимкнене."
+          >
+            <img
+              src="random-decryption.png"
+              alt="Поле фіксованого дешифрування має бути вимкнене."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Поле фіксованого дешифрування має бути вимкнене.</figcaption>
+        </figure>
+        <p class="note">
+          На знімку також видно старі поля посиленої конфіденційності. Для AES-256 ключі вводяться в
+          розділі «Симетричний», як показано нижче.
+        </p>
+        <h3>2. Ключі</h3>
+        <div class="menu-path">
+          <span>Загальне</span><span>Безпека</span><span>Симетричний</span>
+        </div>
+        <p>
+          Натисни <strong>«+»</strong> і введи ключі AES-256:
+          <strong>мінімум 2, максимум 32</strong>.
+        </p>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Додавання симетричних ключів AES-256."
+          >
+            <img src="random-keys.png" alt="Додавання симетричних ключів AES-256." loading="lazy" />
+          </button>
+          <figcaption>Додавання симетричних ключів AES-256.</figcaption>
+        </figure>
+        <h3>3. Вибір на каналі</h3>
+        <div class="menu-path">
+          <span>Призначення зон/каналів</span><span>Канал</span><span>Симетричний псевдонім</span>
+        </div>
+        <p>
+          Вибери <strong>«Випадково»</strong>. Пов’язані параметри AES-256 наведені в
+          <a href="../11-mototrbo-programuvannia/index.html#channel-aes"
+            >налаштуваннях шифрування каналу</a
+          >.
+        </p>
+        <figure class="procedure-shot">
+          <button
+            class="procedure-shot-button"
+            type="button"
+            aria-label="Збільшити: Випадковий вибір симетричного ключа на каналі."
+          >
+            <img
+              src="random-channel.png"
+              alt="Випадковий вибір симетричного ключа на каналі."
+              loading="lazy"
+            />
+          </button>
+          <figcaption>Випадковий вибір симетричного ключа на каналі.</figcaption>
+        </figure>
+      </section>
+    </main>
+    <script src="../asset-version.js?v=cb2b615b6e5d"></script>
+    <script src="../search-index.js?v=cb2b615b6e5d"></script>
+    <script src="../topic-search.js?v=cb2b615b6e5d"></script>
+    <script>
+      window.GLOSSARY_ROOT = "../";
+    </script>
+    <script src="../glossary-data.js?v=cb2b615b6e5d"></script>
+    <script src="../glossary-terms.js?v=cb2b615b6e5d"></script>
+    <script src="../site-ui.js?v=cb2b615b6e5d"></script>
+  </body>
+</html>
