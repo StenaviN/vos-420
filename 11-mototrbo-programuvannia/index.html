@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>11. Програмування MOTOTRBO</title>
     <link rel="icon" href="data:," />
-    <link rel="stylesheet" href="../style.css?v=83337433e237" />
-    <link rel="stylesheet" href="programming.css?v=83337433e237" />
+    <link rel="stylesheet" href="../style.css?v=cfc3b1a8bd67" />
+    <link rel="stylesheet" href="programming.css?v=cfc3b1a8bd67" />
   </head>
   <body>
     <main class="page">
@@ -44,6 +44,7 @@
           <li><a href="#copy-between-models">Копіювання між різними моделями</a></li>
           <li><a href="#remote-management">Віддалене керування та захист</a></li>
           <li><a href="#private-call">Приватний контакт та індивідуальний виклик</a></li>
+          <li><a href="#programming-diagnostics">Діагностика помилок програмування</a></li>
         </ul>
       </nav>
       <section class="section" id="workflow">
@@ -1125,15 +1126,88 @@
           </figure>
         </div>
       </section>
+      <section class="section" id="programming-diagnostics">
+        <h2>Діагностика помилок програмування</h2>
+        <p>
+          Зістав ознаки роботи радіостанції з можливими причинами нижче. Одна ознака може
+          відповідати кільком помилкам — перевіряй кожну з наведених причин.
+        </p>
+        <div class="programming-table">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Ознака</th>
+                <th scope="col">Можливі причини</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Індикатор не блимає, звук не відтворюється</th>
+                <td>Не узгоджені частоти приймання (ПРМ) і передавання (ПРД).</td>
+              </tr>
+              <tr>
+                <th scope="row">Відтворюється нерозбірливий звук</th>
+                <td>Не збігається значення ключа шифрування AES-256 на каналі.</td>
+              </tr>
+              <tr>
+                <th scope="row">Подвійне блимання зеленим, звук не відтворюється</th>
+                <td>
+                  <ul>
+                    <li>Не збігається ID ключа шифрування.</li>
+                    <li>Не збігається тайм-слот на ретрансляторі.</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Одинарне блимання зеленим, звук не відтворюється</th>
+                <td>
+                  <ul>
+                    <li>Не збігається колірний код.</li>
+                    <li>Не збігається ID виклику.</li>
+                    <li>
+                      Радіостанції мають однаковий ID під час роботи на каналах ретранслятора.
+                    </li>
+                    <li>На аналоговому каналі не збігається код DPL.</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  Після натискання тангенти <strong>з паузою</strong> лунає неперервний гудок
+                </th>
+                <td>
+                  <p>Немає зв’язку з ретранслятором. Можливі причини:</p>
+                  <ul>
+                    <li>Неправильний ключ RAS.</li>
+                    <li>Неправильна частота передавання радіостанції.</li>
+                    <li>Не збігається колірний код.</li>
+                    <li>Ретранслятор вимкнений або перебуває поза зоною дії.</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  Після натискання тангенти <strong>без паузи</strong> лунає неперервний гудок
+                </th>
+                <td>Не задано груповий контакт для передавання на каналі.</td>
+              </tr>
+              <tr>
+                <th scope="row">Під час перемикання каналів лунає неперервний гудок</th>
+                <td>Канал не запрограмовано.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
     </main>
-    <script src="../asset-version.js?v=83337433e237"></script>
-    <script src="../search-index.js?v=83337433e237"></script>
-    <script src="../topic-search.js?v=83337433e237"></script>
+    <script src="../asset-version.js?v=cfc3b1a8bd67"></script>
+    <script src="../search-index.js?v=cfc3b1a8bd67"></script>
+    <script src="../topic-search.js?v=cfc3b1a8bd67"></script>
     <script>
       window.GLOSSARY_ROOT = "../";
     </script>
-    <script src="../glossary-data.js?v=83337433e237"></script>
-    <script src="../glossary-terms.js?v=83337433e237"></script>
-    <script src="../site-ui.js?v=83337433e237"></script>
+    <script src="../glossary-data.js?v=cfc3b1a8bd67"></script>
+    <script src="../glossary-terms.js?v=cfc3b1a8bd67"></script>
+    <script src="../site-ui.js?v=cfc3b1a8bd67"></script>
   </body>
 </html>
