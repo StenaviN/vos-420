@@ -258,13 +258,9 @@ function selectDistractors(item) {
 
 function normalizedQuestion(item) {
   if (item.fixedOptions) {
-    return {
-      ...item,
-      options: item.options.map((text, index) => ({
-        text,
-        correct: item.acceptedAnswers.includes(index),
-      })),
-    };
+    const options = item.wrong.map((text) => ({ text, correct: false }));
+    options.splice(item.correctPosition, 0, { text: item.correct, correct: true });
+    return { ...item, options };
   }
   if (item.correct !== undefined) {
     const wrong = selectDistractors(item);
@@ -509,7 +505,7 @@ function selectAnswer(index) {
 }
 
 function referenceUrl(reference, item) {
-  if (!reference || item.fixedOptions) return "";
+  if (!reference) return "";
   return `${item.notePath || config.notePath}${reference}`;
 }
 

@@ -88,6 +88,42 @@ test("local editing, validation, concurrent changes, generated data and access r
     assert.equal((await post({ ...payload, revision: saved.topic.revision })).status, 409);
     assert.equal((await fetch(base + "/admin/server.mjs")).status, 403);
     assert.equal((await fetch(base + "/01-test/questions.json")).status, 403);
+    const fixed = {
+      ...q,
+      correctPosition: 1,
+      wrong: ["A", "B"],
+      explanation: "",
+      reference: "",
+      notePath: "",
+    };
+    await writeFile(
+      path.join(root, "01-test/questions.json"),
+      JSON.stringify({ id: "topic1", fixedOptions: true, allowNoNotes: true, questions: [fixed] }),
+    );
+    const refreshed = await (await fetch(base + "/api/state")).json();
+    response = await post({
+      directory: "01-test",
+      revision: refreshed.topics[0].revision,
+      questions: [
+        { ...fixed, correct: "Edited source answer" },
+        { ...fixed, id: "t1-source-new" },
+      ],
+    });
+    assert.equal(response.status, 200);
+    saved = await response.json();
+    assert.equal(saved.topic.data.questions[0].correctPosition, 1);
+    assert.equal(saved.topic.data.questions[0].correct, "Edited source answer");
+    assert.equal(saved.topic.data.questions[0].reference, "");
+    assert.equal(
+      (
+        await post({
+          directory: "01-test",
+          revision: saved.topic.revision,
+          questions: [{ ...fixed, correctPosition: 8 }],
+        })
+      ).status,
+      400,
+    );
   } finally {
     if (server) await new Promise((resolve) => server.close(resolve));
     await rm(root, { recursive: true, force: true });

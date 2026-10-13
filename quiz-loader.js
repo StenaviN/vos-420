@@ -30,7 +30,8 @@ function loadTopic(index) {
         sourceTopicId: meta.id,
         sourceTopicLabel: meta.shortLabel,
         fixedOptions: config.fixedOptions === true,
-        notePath: config.fixedOptions ? "" : item.notePath || `${meta.path}/index.html`,
+        notePath:
+          config.allowNoNotes && !item.reference ? "" : item.notePath || `${meta.path}/index.html`,
         topic: isMixed ? `${meta.shortLabel} · ${item.topic}` : item.topic,
       })),
     );
@@ -44,7 +45,7 @@ function loadTopic(index) {
           topicIds: selectedMeta.map((item) => item.id),
           topicKeys: selectedMeta.map((item) => item.key),
           defaultSize: Math.min(50, questions.length),
-          notePath: first.config.fixedOptions ? "" : first.meta.path + "/index.html",
+          notePath: first.config.allowNoNotes ? "" : first.meta.path + "/index.html",
           questions,
         }
       : {
@@ -54,7 +55,7 @@ function loadTopic(index) {
           topicIds: [first.meta.id],
           topicKeys: [first.meta.key],
           defaultSize: first.meta.defaultSize,
-          notePath: first.config.fixedOptions ? "" : first.meta.path + "/index.html",
+          notePath: first.config.allowNoNotes ? "" : first.meta.path + "/index.html",
           questions,
         };
     const engine = document.createElement("script");

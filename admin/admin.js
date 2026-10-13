@@ -55,31 +55,22 @@ function render() {
         el("p", q.topic, "card-meta"),
       );
       const list = el("ol");
-      if (topic.data.fixedOptions) {
-        q.options.forEach((text, i) =>
-          list.append(
-            el(
-              "li",
-              `${q.acceptedAnswers.includes(i) ? "✓ " : ""}${text}`,
-              q.acceptedAnswers.includes(i) ? "right-answer" : "",
-            ),
-          ),
-        );
-        card.append(
-          list,
+      const answers = q.wrong.map((text) => ({ text, correct: false }));
+      answers.splice(topic.data.fixedOptions ? q.correctPosition : 0, 0, {
+        text: q.correct,
+        correct: true,
+      });
+      answers.forEach((answer) =>
+        list.append(
           el(
-            "p",
-            "Оригінальний набір із документа. Формулювання та порядок варіантів збережені.",
-            "card-meta",
+            "li",
+            `${answer.correct ? "✓ " : ""}${answer.text}`,
+            answer.correct ? "right-answer" : "",
           ),
-        );
-        $("questions").append(card);
-        return;
-      }
-      list.append(el("li", `✓ ${q.correct}`, "right-answer"));
-      q.wrong.forEach((a) => list.append(el("li", a)));
+        ),
+      );
       card.append(list, el("p", q.explanation, "explanation"));
-      if (q.wrong.length < 6)
+      if (!topic.data.fixedOptions && q.wrong.length < 6)
         card.append(
           el(
             "p",
@@ -94,7 +85,8 @@ function render() {
       link.rel = "noopener";
       const edit = el("button", "Редагувати");
       edit.onclick = () => openEditor(topic, q);
-      footer.append(link, edit);
+      if (q.reference) footer.append(link);
+      footer.append(edit);
       card.append(footer);
       $("questions").append(card);
     });
@@ -177,6 +169,9 @@ function draft() {
     id: editing.id,
     topic: $("category").value.trim(),
     question: $("question").value.trim(),
+    ...(state.topics.find((t) => t.directory === $("editTopic").value)?.data.fixedOptions
+      ? { correctPosition: rows.indexOf(selected) }
+      : {}),
     correct: selected?.querySelector("textarea").value.trim() || "",
     wrong: rows.filter((r) => r !== selected).map((r) => r.querySelector("textarea").value.trim()),
     explanation: $("explanation").value.trim(),
@@ -187,11 +182,14 @@ function draft() {
 function dirty() {
   return editing && JSON.stringify(draft()) !== original;
 }
+function updateNoteRequirements() {
+  const optional = state.topics.find((t) => t.directory === $("editTopic").value)?.data
+    .allowNoNotes;
+  $("explanation").required = !optional;
+  $("reference").required = !optional;
+}
+$("editTopic").addEventListener("change", updateNoteRequirements);
 function openEditor(topic, q) {
-  if (topic.data.fixedOptions) {
-    status("Цей набір зберігає оригінальні питання документа й доступний для перегляду.");
-    return;
-  }
   editing = {
     directory: topic.directory,
     id: q?.id || `t${Number(topic.directory.slice(0, 2))}-${crypto.randomUUID()}`,
@@ -204,10 +202,19 @@ function openEditor(topic, q) {
   $("category").value = q?.topic || "";
   $("question").value = q?.question || "";
   $("explanation").value = q?.explanation || "";
-  $("reference").value = q ? (q.notePath || topic.directory + "/index.html") + q.reference : "";
+  $("reference").value = q?.reference
+    ? (q.notePath || topic.directory + "/index.html") + q.reference
+    : "";
   $("answers").replaceChildren();
-  addAnswer(q?.correct || "", true);
-  (q?.wrong || Array(6).fill("")).forEach((a) => addAnswer(a));
+  if (q && topic.data.fixedOptions) {
+    const answers = q.wrong.map((text) => ({ text, correct: false }));
+    answers.splice(q.correctPosition, 0, { text: q.correct, correct: true });
+    answers.forEach((answer) => addAnswer(answer.text, answer.correct));
+  } else {
+    addAnswer(q?.correct || "", true);
+    (q?.wrong || Array(topic.data.fixedOptions ? 2 : 6).fill("")).forEach((a) => addAnswer(a));
+  }
+  updateNoteRequirements();
   $("deleteQuestion").hidden = !q;
   $("formError").textContent = "";
   referencePreview();
@@ -254,8 +261,13 @@ $("editForm").onsubmit = async (e) => {
   if (saving) return;
   try {
     const { rawReference, topicDirectory, ...q } = draft();
-    Object.assign(q, normalizeReference(rawReference));
     const topic = state.topics.find((t) => t.directory === topicDirectory);
+    Object.assign(
+      q,
+      topic.data.allowNoNotes && !rawReference.trim()
+        ? { notePath: "", reference: "" }
+        : normalizeReference(rawReference),
+    );
     const qs = topic.data.questions.map((item) => (item.id === q.id ? q : item));
     if (editing.isNew) qs.push(q);
     await persist(qs, topic);
@@ -356,7 +368,7 @@ try {
   ]);
   options(
     $("editTopic"),
-    state.topics.filter((t) => !t.data.fixedOptions).map((t) => [t.directory, t.data.label]),
+    state.topics.map((t) => [t.directory, t.data.label]),
   );
   options(
     $("noteSelect"),

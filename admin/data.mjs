@@ -74,39 +74,29 @@ export function validate(data, directory, notes) {
     if (!q || !/^[a-z0-9-]+$/.test(q.id) || ids.has(q.id))
       throw Error("ID питань мають бути унікальні й містити латиницю, цифри та дефіс.");
     ids.add(q.id);
-    if (data.fixedOptions === true) {
-      if (
-        typeof q.question !== "string" ||
-        !q.question.trim() ||
-        typeof q.topic !== "string" ||
-        !q.topic.trim() ||
-        !Array.isArray(q.options) ||
-        q.options.length < 2 ||
-        q.options.some((text) => typeof text !== "string" || !text.trim()) ||
-        !Array.isArray(q.acceptedAnswers) ||
-        !q.acceptedAnswers.length ||
-        new Set(q.acceptedAnswers).size !== q.acceptedAnswers.length ||
-        q.acceptedAnswers.some(
-          (answer) => !Number.isInteger(answer) || answer < 0 || answer >= q.options.length,
-        ) ||
-        q.reference !== "" ||
-        q.notePath !== "" ||
-        q.explanation !== ""
-      )
-        throw Error(`${q.id}: некоректне питання з фіксованими відповідями.`);
-      if (new Set(q.options).size !== q.options.length)
-        throw Error(`${q.id}: повторення відповідей.`);
-      continue;
-    }
-    for (const field of ["topic", "question", "correct", "explanation", "reference"])
+    for (const field of [
+      "topic",
+      "question",
+      "correct",
+      ...(data.allowNoNotes ? [] : ["explanation", "reference"]),
+    ])
       if (typeof q[field] !== "string" || !q[field].trim())
         throw Error(`${q.id}: заповніть усі текстові поля.`);
     if (
       !Array.isArray(q.wrong) ||
-      q.wrong.length < 3 ||
+      q.wrong.length < (data.fixedOptions ? 1 : 3) ||
       q.wrong.some((a) => typeof a !== "string" || !a.trim())
     )
       throw Error(`${q.id}: потрібно щонайменше три непорожні неправильні відповіді.`);
+    if (
+      data.fixedOptions &&
+      (!Number.isInteger(q.correctPosition) ||
+        q.correctPosition < 0 ||
+        q.correctPosition > q.wrong.length)
+    )
+      throw Error(`${q.id}: некоректна позиція правильної відповіді.`);
+    if (typeof q.explanation !== "string" || typeof q.reference !== "string")
+      throw Error(`${q.id}: некоректні текстові поля.`);
     const normalized = [q.correct, ...q.wrong].map((a) =>
       a.normalize("NFC").replace(/\s+/g, " ").trim(),
     );
@@ -114,8 +104,9 @@ export function validate(data, directory, notes) {
       throw Error(`${q.id}: відповіді не повинні повторюватись.`);
     const note = notes.find((n) => n.path === (q.notePath || `${directory}/index.html`));
     if (
-      !/^#[a-zA-Z0-9_-]+$/.test(q.reference) ||
-      !note?.headings.some((h) => "#" + h.id === q.reference)
+      !(data.allowNoNotes && q.reference === "" && q.notePath === "") &&
+      (!/^#[a-zA-Z0-9_-]+$/.test(q.reference) ||
+        !note?.headings.some((h) => "#" + h.id === q.reference))
     )
       throw Error(`${q.id}: оберіть наявний розділ конспекту.`);
     if (JSON.stringify(q).length > 50000) throw Error("Питання завелике.");
