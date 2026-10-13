@@ -563,13 +563,27 @@ function renderQuestion(restore = false) {
     button.setAttribute("role", "radio");
     button.setAttribute("aria-checked", index === state.selected ? "true" : "false");
     button.classList.toggle("selected", index === state.selected);
+    button.classList.toggle(
+      "correct",
+      Boolean(state.settings.learningMode && !state.settings.examMode && option.correct),
+    );
     button.innerHTML = `<span class="answer-letter"${item.fixedOptions ? " hidden" : ""}>${letters[index] || index + 1}</span><span></span>`;
     button.lastElementChild.textContent = option.text;
     button.addEventListener("click", () => selectAnswer(index));
     elements.answers.append(button);
   });
   if (state.answered && state.selected !== null) showAnsweredQuestion();
-  else elements.checkButton.disabled = state.selected === null;
+  else {
+    elements.checkButton.disabled = state.selected === null;
+    if (state.settings.learningMode && !state.settings.examMode) {
+      elements.feedbackTitle.textContent = "Режим навчання · Правильна відповідь";
+      elements.feedbackText.textContent =
+        correctAnswerText(item) + (item.explanation ? `\n${item.explanation}` : "");
+      elements.referenceLink.href = referenceUrl(item.reference, item);
+      elements.referenceLink.hidden = !referenceUrl(item.reference, item);
+      elements.feedback.hidden = false;
+    }
+  }
   updateHeader();
   renderNavigation();
   updateExamTimer();
@@ -945,6 +959,7 @@ function settingsFromForm() {
         ? count
         : String(config.defaultSize),
     examMode: params.get("examMode") === "1",
+    learningMode: params.get("learningMode") === "1" && params.get("examMode") !== "1",
     includeMastered: params.get("includeMastered") === "1",
     prioritizeMistakes: params.get("prioritizeMistakes") !== "0",
     autoAdvanceCorrect: params.get("autoAdvanceCorrect") !== "0",

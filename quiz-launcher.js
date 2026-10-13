@@ -12,7 +12,13 @@ const quizPanel = document.querySelector("#quizPanel");
 const glossaryPanel = document.querySelector("#glossaryPanel");
 const searchPanel = document.querySelector("#searchPanel");
 const countSelect = document.querySelector("#countSelect");
-const settingNames = ["examMode", "includeMastered", "prioritizeMistakes", "autoAdvanceCorrect"];
+const settingNames = [
+  "learningMode",
+  "examMode",
+  "includeMastered",
+  "prioritizeMistakes",
+  "autoAdvanceCorrect",
+];
 const questionBanks = new Map();
 let banksReady = false;
 let countChosen = false;
@@ -37,6 +43,8 @@ function restoreSelection() {
       });
       countSelect.dataset.preferred = saved.count;
       countChosen = true;
+      if (document.getElementById("examMode").checked)
+        document.getElementById("learningMode").checked = false;
     }
   } catch {
     /* Settings are optional. */
@@ -217,7 +225,13 @@ countSelect.addEventListener("change", () => {
   updateSelection();
 });
 settingNames.forEach((name) =>
-  document.getElementById(name).addEventListener("change", updateSelection),
+  document.getElementById(name).addEventListener("change", () => {
+    if ((name === "learningMode" || name === "examMode") && document.getElementById(name).checked) {
+      document.getElementById(name === "learningMode" ? "examMode" : "learningMode").checked =
+        false;
+    }
+    updateSelection();
+  }),
 );
 homeTabs.forEach((button) =>
   button.addEventListener("click", () => showHomeTab(button.dataset.homeTab, true)),
