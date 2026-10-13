@@ -98,9 +98,11 @@
             (key) => string(question[key]),
           );
           // Only local note links may be restored from an external file.
+          const withoutNotes = question.reference === "" && question.notePath === "";
           if (
-            !/^\d{2}-[a-z0-9-]+\/index\.html$/.test(question.notePath) ||
-            !/^#[a-zA-Z0-9_-]+$/.test(question.reference)
+            !withoutNotes &&
+            (!/^\d{2}-[a-z0-9-]+\/index\.html$/.test(question.notePath) ||
+              !/^#[a-zA-Z0-9_-]+$/.test(question.reference))
           )
             fail();
           if (ids.has(question.id)) fail();
@@ -111,7 +113,8 @@
             string(option.text);
             boolean(option.correct);
           });
-          if (question.options.filter((option) => option.correct).length !== 1) fail();
+          const correctCount = question.options.filter((option) => option.correct).length;
+          if (!correctCount || (correctCount !== 1 && question.fixedOptions !== true)) fail();
         }
         const answered = new Set();
         for (const answer of saved.answers) {

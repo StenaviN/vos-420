@@ -78,6 +78,20 @@ test("empty statistics can be exported and restored", () => {
   const data = { version: 1, topics: {}, mixedAttempts: [] };
   assert.deepEqual(parse(serialize(data)), data);
 });
+test("fixed source questions preserve all answers and accept either marked answer without note links", () => {
+  const data = fixture();
+  const result = data.latestResults["mixed-09-10"];
+  const question = result.questions[0];
+  Object.assign(question, { fixedOptions: true, notePath: "", reference: "", explanation: "" });
+  question.options.push({ text: "Інший правильний варіант", correct: true });
+  result.answers[0].selected = 2;
+  assert.deepEqual(parse(serialize(data)), data);
+  question.notePath = "javascript:alert(1)";
+  assert.throws(() => serialize(data));
+  question.notePath = "";
+  delete question.fixedOptions;
+  assert.throws(() => serialize(data));
+});
 test("rejects broken JSON, unrelated files and unsupported versions", () => {
   for (const value of ["{", "{}", JSON.stringify({ format: "vos420-quiz-statistics", version: 2 })])
     assert.throws(() => parse(value));

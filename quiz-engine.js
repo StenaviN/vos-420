@@ -83,8 +83,8 @@ elements.quizTitle.textContent = config.title;
 $("#noteLink").href = config.notePath;
 $("#quizSetupLink").href = `index.html?topics=${config.topicKeys.join(",")}#quiz`;
 $("#resultNoteLink").href = config.notePath;
-$("#noteLink").hidden = isMixed;
-$("#resultNoteLink").hidden = isMixed;
+$("#noteLink").hidden = isMixed || !config.notePath;
+$("#resultNoteLink").hidden = isMixed || !config.notePath;
 document.title = `${config.title} - вікторина`;
 
 function shuffled(items) {
@@ -257,6 +257,15 @@ function selectDistractors(item) {
 }
 
 function normalizedQuestion(item) {
+  if (item.fixedOptions) {
+    return {
+      ...item,
+      options: item.options.map((text, index) => ({
+        text,
+        correct: item.acceptedAnswers.includes(index),
+      })),
+    };
+  }
   if (item.correct !== undefined) {
     const wrong = selectDistractors(item);
     return {
@@ -500,24 +509,32 @@ function selectAnswer(index) {
 }
 
 function referenceUrl(reference, item) {
+  if (!reference || item.fixedOptions) return "";
   return `${item.notePath || config.notePath}${reference}`;
+}
+
+function correctAnswerText(item) {
+  return item.options
+    .filter((option) => option.correct)
+    .map((option) => option.text)
+    .join("\n");
 }
 
 function showAnsweredQuestion() {
   const item = state.questions[state.index];
   const selected = item.options[state.selected];
-  const correctIndex = item.options.findIndex((option) => option.correct);
   [...elements.answers.children].forEach((button, index) => {
     button.disabled = true;
-    if (index === correctIndex) button.classList.add("correct");
+    if (item.options[index].correct) button.classList.add("correct");
     if (index === state.selected && !selected.correct) button.classList.add("incorrect");
   });
   elements.feedbackTitle.textContent = selected.correct ? "Правильно" : "Неправильно";
   elements.feedback.classList.toggle("wrong", !selected.correct);
   elements.feedbackText.textContent = selected.correct
     ? item.explanation
-    : `Правильна відповідь: ${item.options[correctIndex].text}. ${item.explanation}`;
+    : `Правильна відповідь: ${correctAnswerText(item)}${item.explanation ? `. ${item.explanation}` : ""}`;
   elements.referenceLink.href = referenceUrl(item.reference, item);
+  elements.referenceLink.hidden = !referenceUrl(item.reference, item);
   elements.feedback.hidden = false;
   elements.checkButton.hidden = true;
   elements.nextButton.textContent = "Наступне питання";
@@ -542,10 +559,11 @@ function renderQuestion(restore = false) {
     const button = document.createElement("button");
     button.type = "button";
     button.className = "answer-button";
+    button.classList.toggle("source-answer", Boolean(item.fixedOptions));
     button.setAttribute("role", "radio");
     button.setAttribute("aria-checked", index === state.selected ? "true" : "false");
     button.classList.toggle("selected", index === state.selected);
-    button.innerHTML = `<span class="answer-letter">${letters[index]}</span><span></span>`;
+    button.innerHTML = `<span class="answer-letter"${item.fixedOptions ? " hidden" : ""}>${letters[index] || index + 1}</span><span></span>`;
     button.lastElementChild.textContent = option.text;
     button.addEventListener("click", () => selectAnswer(index));
     elements.answers.append(button);
@@ -586,13 +604,12 @@ function checkAnswer() {
   state.answered = true;
   const item = state.questions[state.index];
   const selected = item.options[state.selected];
-  const correctIndex = item.options.findIndex((option) => option.correct);
   if (selected.correct) state.score += 1;
   else
     state.mistakes.push({
       question: item.question,
       selected: selected.text,
-      correct: item.options[correctIndex].text,
+      correct: correctAnswerText(item),
       explanation: item.explanation,
       reference: item.reference,
       notePath: item.notePath,
@@ -663,7 +680,7 @@ function renderMistakes() {
         correctLabel.className = "result-detail-label";
         correctLabel.textContent = "Правильна відповідь";
         const correctValue = document.createElement("strong");
-        correctValue.textContent = item.options.find((option) => option.correct).text;
+        correctValue.textContent = correctAnswerText(item);
         correct.append(correctLabel, correctValue);
         article.append(correct);
       }
@@ -673,7 +690,7 @@ function renderMistakes() {
       explanationLabel.className = "result-detail-label";
       explanationLabel.textContent = "Пояснення";
       explanation.append(explanationLabel, document.createTextNode(item.explanation));
-      article.append(explanation);
+      if (item.explanation) article.append(explanation);
     }
     const reference = document.createElement("a");
     reference.className = "mistake-reference";
@@ -681,7 +698,7 @@ function renderMistakes() {
     reference.target = "_blank";
     reference.rel = "noopener";
     reference.textContent = "Відкрити розділ конспекту →";
-    article.append(reference);
+    if (referenceUrl(item.reference, item)) article.append(reference);
     elements.mistakes.append(article);
     const link = document.createElement("button");
     link.type = "button";
@@ -1107,7 +1124,7 @@ function renderStats() {
       '<p class="empty-state">Питання з помилками поки відсутні.</p>';
   hardest.forEach(({ item, stat }) => {
     const accuracy = Math.round((stat.correct / (stat.correct + stat.wrong)) * 100);
-    const row = document.createElement("a");
+    const row = document.createElement(referenceUrl(item.reference, item) ? "a" : "div");
     row.className = "hard-question";
     row.href = referenceUrl(item.reference, item);
     row.innerHTML = `<span></span><strong>${accuracy}%</strong>`;
@@ -1140,7 +1157,7 @@ function renderStats() {
     topicLink.title = `${meta.shortLabel}: ${meta.name}`;
     topicLink.setAttribute("aria-label", `${meta.shortLabel}: ${meta.name}`);
     topicLink.textContent = meta.key;
-    const questionLink = document.createElement("a");
+    const questionLink = document.createElement(referenceUrl(item.reference, item) ? "a" : "span");
     questionLink.className = "stats-link";
     questionLink.href = referenceUrl(item.reference, item);
     questionLink.textContent = item.question;

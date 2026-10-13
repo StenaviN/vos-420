@@ -74,6 +74,30 @@ export function validate(data, directory, notes) {
     if (!q || !/^[a-z0-9-]+$/.test(q.id) || ids.has(q.id))
       throw Error("ID питань мають бути унікальні й містити латиницю, цифри та дефіс.");
     ids.add(q.id);
+    if (data.fixedOptions === true) {
+      if (
+        typeof q.question !== "string" ||
+        !q.question.trim() ||
+        typeof q.topic !== "string" ||
+        !q.topic.trim() ||
+        !Array.isArray(q.options) ||
+        q.options.length < 2 ||
+        q.options.some((text) => typeof text !== "string" || !text.trim()) ||
+        !Array.isArray(q.acceptedAnswers) ||
+        !q.acceptedAnswers.length ||
+        new Set(q.acceptedAnswers).size !== q.acceptedAnswers.length ||
+        q.acceptedAnswers.some(
+          (answer) => !Number.isInteger(answer) || answer < 0 || answer >= q.options.length,
+        ) ||
+        q.reference !== "" ||
+        q.notePath !== "" ||
+        q.explanation !== ""
+      )
+        throw Error(`${q.id}: некоректне питання з фіксованими відповідями.`);
+      if (new Set(q.options).size !== q.options.length)
+        throw Error(`${q.id}: повторення відповідей.`);
+      continue;
+    }
     for (const field of ["topic", "question", "correct", "explanation", "reference"])
       if (typeof q[field] !== "string" || !q[field].trim())
         throw Error(`${q.id}: заповніть усі текстові поля.`);

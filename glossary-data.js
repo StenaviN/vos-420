@@ -1,6 +1,7 @@
 "use strict";
 
 window.GLOSSARY_REVIEWED_TOPICS = [
+  "13-tsp-theory",
   "01-osnovy-radiozviazku",
   "02-tehnika-bezpeky",
   "03-radiohvyli-radiozviazok-zavady",

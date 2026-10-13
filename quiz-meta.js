@@ -1,8 +1,16 @@
 "use strict";
 
 window.QUIZ_META = {
-  totalQuestions: 562,
+  totalQuestions: 612,
   topics: [
+    {
+      key: "13",
+      id: "topic13-tsp-theory",
+      shortLabel: "ТСП",
+      name: "Теоретичні питання з тактико-спеціальної підготовки",
+      path: "13-tsp-theory",
+      defaultSize: 50,
+    },
     {
       key: "1",
       id: "topic1-basics",

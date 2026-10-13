@@ -226,6 +226,10 @@
   cursor: pointer;
 }
 
+.answer-button.source-answer {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 .answer-button:hover:not(:disabled) {
   border-color: #77998f;
   background: #f5faf8;

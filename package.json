@@ -26,7 +26,7 @@
     "build": "npm run build:quiz && npm run build:glossary && npm run build:search",
     "build:quiz": "node build-quiz-data.mjs",
     "quiz:admin": "node admin/server.mjs",
-    "test:admin": "node --test admin/server.test.mjs"
+    "test:admin": "node --test admin/server.test.mjs admin/fixed-questions.test.mjs"
   },
   "devDependencies": {
     "prettier": "3.9.9"

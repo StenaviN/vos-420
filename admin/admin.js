@@ -55,6 +55,27 @@ function render() {
         el("p", q.topic, "card-meta"),
       );
       const list = el("ol");
+      if (topic.data.fixedOptions) {
+        q.options.forEach((text, i) =>
+          list.append(
+            el(
+              "li",
+              `${q.acceptedAnswers.includes(i) ? "✓ " : ""}${text}`,
+              q.acceptedAnswers.includes(i) ? "right-answer" : "",
+            ),
+          ),
+        );
+        card.append(
+          list,
+          el(
+            "p",
+            "Оригінальний набір із документа. Формулювання та порядок варіантів збережені.",
+            "card-meta",
+          ),
+        );
+        $("questions").append(card);
+        return;
+      }
       list.append(el("li", `✓ ${q.correct}`, "right-answer"));
       q.wrong.forEach((a) => list.append(el("li", a)));
       card.append(list, el("p", q.explanation, "explanation"));
@@ -167,6 +188,10 @@ function dirty() {
   return editing && JSON.stringify(draft()) !== original;
 }
 function openEditor(topic, q) {
+  if (topic.data.fixedOptions) {
+    status("Цей набір зберігає оригінальні питання документа й доступний для перегляду.");
+    return;
+  }
   editing = {
     directory: topic.directory,
     id: q?.id || `t${Number(topic.directory.slice(0, 2))}-${crypto.randomUUID()}`,
@@ -331,7 +356,7 @@ try {
   ]);
   options(
     $("editTopic"),
-    state.topics.map((t) => [t.directory, t.data.label]),
+    state.topics.filter((t) => !t.data.fixedOptions).map((t) => [t.directory, t.data.label]),
   );
   options(
     $("noteSelect"),

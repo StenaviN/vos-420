@@ -53,6 +53,10 @@ export async function startServer(root, port = 8769) {
             topics = await loadTopics(root),
             topic = topics.find((t) => t.directory === input.directory);
           if (!topic) return json(res, 400, { error: "Невідома тема." });
+          if (topic.data.fixedOptions)
+            return json(res, 400, {
+              error: "Набір оригінальних питань доступний лише для перегляду.",
+            });
           if (topic.revision !== input.revision)
             return json(res, 409, {
               error:
