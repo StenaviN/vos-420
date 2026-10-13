@@ -29,7 +29,7 @@ function loadTopic(index) {
         id: item.id || `t${meta.key}-${String(questionIndex + 1).padStart(2, "0")}`,
         sourceTopicId: meta.id,
         sourceTopicLabel: meta.shortLabel,
-        fixedOptions: config.fixedOptions === true,
+        showAllOptions: config.showAllOptions === true,
         notePath:
           config.allowNoNotes && !item.reference ? "" : item.notePath || `${meta.path}/index.html`,
         topic: isMixed ? `${meta.shortLabel} · ${item.topic}` : item.topic,

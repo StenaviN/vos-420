@@ -5,7 +5,7 @@ if (!config || !Array.isArray(config.questions))
   throw new Error("QUIZ_CONFIG is missing or invalid");
 const isMixed = config.topicIds.length > 1;
 
-const letters = ["А", "Б", "В", "Г"];
+const letters = ["А", "Б", "В", "Г", "Д", "Е"];
 const STATE_VERSION = 6;
 const ACTIVE_KEY = `vos420-${config.id}-active-v6`;
 const STATS_KEY = "vos420-quiz-statistics-v1";
@@ -257,13 +257,8 @@ function selectDistractors(item) {
 }
 
 function normalizedQuestion(item) {
-  if (item.fixedOptions) {
-    const options = item.wrong.map((text) => ({ text, correct: false }));
-    options.splice(item.correctPosition, 0, { text: item.correct, correct: true });
-    return { ...item, options };
-  }
   if (item.correct !== undefined) {
-    const wrong = selectDistractors(item);
+    const wrong = item.showAllOptions ? item.wrong : selectDistractors(item);
     return {
       ...item,
       options: shuffled([

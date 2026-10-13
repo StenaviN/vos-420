@@ -90,7 +90,6 @@ test("local editing, validation, concurrent changes, generated data and access r
     assert.equal((await fetch(base + "/01-test/questions.json")).status, 403);
     const fixed = {
       ...q,
-      correctPosition: 1,
       wrong: ["A", "B"],
       explanation: "",
       reference: "",
@@ -98,7 +97,12 @@ test("local editing, validation, concurrent changes, generated data and access r
     };
     await writeFile(
       path.join(root, "01-test/questions.json"),
-      JSON.stringify({ id: "topic1", fixedOptions: true, allowNoNotes: true, questions: [fixed] }),
+      JSON.stringify({
+        id: "topic1",
+        showAllOptions: true,
+        allowNoNotes: true,
+        questions: [fixed],
+      }),
     );
     const refreshed = await (await fetch(base + "/api/state")).json();
     response = await post({
@@ -111,7 +115,7 @@ test("local editing, validation, concurrent changes, generated data and access r
     });
     assert.equal(response.status, 200);
     saved = await response.json();
-    assert.equal(saved.topic.data.questions[0].correctPosition, 1);
+    assert.equal(saved.topic.data.questions[0].wrong.length, 2);
     assert.equal(saved.topic.data.questions[0].correct, "Edited source answer");
     assert.equal(saved.topic.data.questions[0].reference, "");
     assert.equal(
@@ -119,7 +123,7 @@ test("local editing, validation, concurrent changes, generated data and access r
         await post({
           directory: "01-test",
           revision: saved.topic.revision,
-          questions: [{ ...fixed, correctPosition: 8 }],
+          questions: [{ ...fixed, wrong: [] }],
         })
       ).status,
       400,

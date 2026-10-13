@@ -63,7 +63,6 @@ export async function startServer(root, port = 8769) {
             "topic",
             "question",
             "correct",
-            "correctPosition",
             "wrong",
             "explanation",
             "reference",

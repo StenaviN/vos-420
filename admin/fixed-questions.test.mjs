@@ -13,10 +13,17 @@ test("source bank keeps 50 questions, 169 options and the combined answer for qu
     data.questions.reduce((n, q) => n + q.wrong.length + 1, 0),
     169,
   );
-  assert.equal(data.questions[31].correctPosition, 3);
-  assert.equal(data.questions[31].correct, "4. Все перелічене в пунктах 2 і 3.");
-  assert(data.questions.every((q) => !("options" in q) && !("acceptedAnswers" in q)));
+  assert(data.showAllOptions);
+  assert(data.questions[31].correct.includes("Постійна готовність"));
+  assert(data.questions[31].correct.includes("Своєчасність, достовірність, безпека"));
+  for (const q of data.questions) {
+    assert(!("correctPosition" in q));
+    for (const answer of [q.correct, ...q.wrong]) {
+      assert(!/^\d+\./.test(answer));
+      assert(!/пункти?\s*\d|вс[еі] перерахован|перелічене в пунктах/i.test(answer));
+    }
+  }
   assert.match(data.questions[27].question, /^26\./, "preserve source numbering");
-  data.questions[0].correctPosition = 99;
+  data.questions[0].wrong = [];
   assert.throws(() => validate(data, "13-tsp-theory", []));
 });

@@ -56,7 +56,7 @@ function render() {
       );
       const list = el("ol");
       const answers = q.wrong.map((text) => ({ text, correct: false }));
-      answers.splice(topic.data.fixedOptions ? q.correctPosition : 0, 0, {
+      answers.splice(0, 0, {
         text: q.correct,
         correct: true,
       });
@@ -70,7 +70,7 @@ function render() {
         ),
       );
       card.append(list, el("p", q.explanation, "explanation"));
-      if (!topic.data.fixedOptions && q.wrong.length < 6)
+      if (!topic.data.showAllOptions && q.wrong.length < 6)
         card.append(
           el(
             "p",
@@ -140,9 +140,10 @@ function addAnswer(text = "", correct = false) {
 }
 function poolHint() {
   const n = $("answers").children.length - 1;
+  const all = state.topics.find((t) => t.directory === $("editTopic").value)?.data.showAllOptions;
   $("poolHint").textContent =
-    `Неправильних варіантів: ${n}. ${n < 6 ? "Рекомендовано щонайменше 6." : ""}`;
-  $("poolHint").className = n < 6 ? "warning" : "";
+    `Неправильних варіантів: ${n}. ${all ? "Усі варіанти показуються у випадковому порядку." : n < 6 ? "Рекомендовано щонайменше 6." : ""}`;
+  $("poolHint").className = !all && n < 6 ? "warning" : "";
 }
 function normalizeReference(value) {
   const base = new URL("/", location.href),
@@ -169,9 +170,6 @@ function draft() {
     id: editing.id,
     topic: $("category").value.trim(),
     question: $("question").value.trim(),
-    ...(state.topics.find((t) => t.directory === $("editTopic").value)?.data.fixedOptions
-      ? { correctPosition: rows.indexOf(selected) }
-      : {}),
     correct: selected?.querySelector("textarea").value.trim() || "",
     wrong: rows.filter((r) => r !== selected).map((r) => r.querySelector("textarea").value.trim()),
     explanation: $("explanation").value.trim(),
@@ -187,6 +185,7 @@ function updateNoteRequirements() {
     .allowNoNotes;
   $("explanation").required = !optional;
   $("reference").required = !optional;
+  poolHint();
 }
 $("editTopic").addEventListener("change", updateNoteRequirements);
 function openEditor(topic, q) {
@@ -206,14 +205,8 @@ function openEditor(topic, q) {
     ? (q.notePath || topic.directory + "/index.html") + q.reference
     : "";
   $("answers").replaceChildren();
-  if (q && topic.data.fixedOptions) {
-    const answers = q.wrong.map((text) => ({ text, correct: false }));
-    answers.splice(q.correctPosition, 0, { text: q.correct, correct: true });
-    answers.forEach((answer) => addAnswer(answer.text, answer.correct));
-  } else {
-    addAnswer(q?.correct || "", true);
-    (q?.wrong || Array(topic.data.fixedOptions ? 2 : 6).fill("")).forEach((a) => addAnswer(a));
-  }
+  addAnswer(q?.correct || "", true);
+  (q?.wrong || Array(topic.data.showAllOptions ? 2 : 6).fill("")).forEach((a) => addAnswer(a));
   updateNoteRequirements();
   $("deleteQuestion").hidden = !q;
   $("formError").textContent = "";

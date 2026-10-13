@@ -84,17 +84,12 @@ export function validate(data, directory, notes) {
         throw Error(`${q.id}: заповніть усі текстові поля.`);
     if (
       !Array.isArray(q.wrong) ||
-      q.wrong.length < (data.fixedOptions ? 1 : 3) ||
+      q.wrong.length < (data.showAllOptions ? 1 : 3) ||
       q.wrong.some((a) => typeof a !== "string" || !a.trim())
     )
-      throw Error(`${q.id}: потрібно щонайменше три непорожні неправильні відповіді.`);
-    if (
-      data.fixedOptions &&
-      (!Number.isInteger(q.correctPosition) ||
-        q.correctPosition < 0 ||
-        q.correctPosition > q.wrong.length)
-    )
-      throw Error(`${q.id}: некоректна позиція правильної відповіді.`);
+      throw Error(
+        `${q.id}: потрібно щонайменше ${data.showAllOptions ? 1 : 3} непорожніх неправильних відповідей.`,
+      );
     if (typeof q.explanation !== "string" || typeof q.reference !== "string")
       throw Error(`${q.id}: некоректні текстові поля.`);
     const normalized = [q.correct, ...q.wrong].map((a) =>
