@@ -4,14 +4,6 @@ window.QUIZ_META = {
   totalQuestions: 612,
   topics: [
     {
-      key: "13",
-      id: "topic13-tsp-theory",
-      shortLabel: "ТСП",
-      name: "Теоретичні питання з тактико-спеціальної підготовки",
-      path: "13-tsp-theory",
-      defaultSize: 50,
-    },
-    {
       key: "1",
       id: "topic1-basics",
       shortLabel: "Тема 1",
@@ -82,6 +74,14 @@ window.QUIZ_META = {
       name: "MOTOTRBO",
       path: "10-mototrbo",
       defaultSize: 30,
+    },
+    {
+      key: "13",
+      id: "topic13-tsp-theory",
+      shortLabel: "ТСП",
+      name: "Тактико-спеціальна підготовка",
+      path: "13-tsp-theory",
+      defaultSize: 50,
     },
   ],
 };
