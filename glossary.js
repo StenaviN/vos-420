@@ -12,6 +12,7 @@
   const status = document.querySelector("#glossaryStatus");
   const embedded = Boolean(document.querySelector("#glossaryPanel"));
   const topicMeta = {
+    13: ["Тактико-спеціальна підготовка", "13-tsp-theory/index.html"],
     12: ["Програмування ретранслятора MOTOTRBO", "12-mototrbo-repeater-programuvannia/index.html"],
     1: ["Тема 1", "01-osnovy-radiozviazku/index.html"],
     2: ["Тема 2", "02-tehnika-bezpeky/index.html"],

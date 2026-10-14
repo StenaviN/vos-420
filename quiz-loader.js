@@ -36,6 +36,10 @@ function loadTopic(index) {
       })),
     );
     const first = loaded[0];
+    const firstNotePath =
+      !first.config.allowNoNotes || first.config.questions.some((question) => question.reference)
+        ? first.meta.path + "/index.html"
+        : "";
     window.QUIZ_CONFIG = isMixed
       ? {
           id: `mixed-${selectedMeta.map((item) => item.key).join("-")}`,
@@ -45,7 +49,7 @@ function loadTopic(index) {
           topicIds: selectedMeta.map((item) => item.id),
           topicKeys: selectedMeta.map((item) => item.key),
           defaultSize: Math.min(50, questions.length),
-          notePath: first.config.allowNoNotes ? "" : first.meta.path + "/index.html",
+          notePath: firstNotePath,
           questions,
         }
       : {
@@ -55,7 +59,7 @@ function loadTopic(index) {
           topicIds: [first.meta.id],
           topicKeys: [first.meta.key],
           defaultSize: first.meta.defaultSize,
-          notePath: first.config.allowNoNotes ? "" : first.meta.path + "/index.html",
+          notePath: firstNotePath,
           questions,
         };
     const engine = document.createElement("script");
