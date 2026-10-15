@@ -3469,3 +3469,12 @@ main .mototrbo-table table {
     overflow: visible;
   }
 }
+
+/* Full source topic name above every quiz question. */
+.question-source-topic {
+  margin: 18px 0 12px;
+  color: var(--accent-2);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+}

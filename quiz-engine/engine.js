@@ -537,7 +537,8 @@ function renderQuestion(restore = false) {
   state.selected = item.selected ?? null;
   state.answered = Boolean(item.checked);
   state.questionStartedAt = Date.now();
-  elements.questionTopic.textContent = item.topic;
+  const sourceTopic = window.QUIZ_META.topics.find((topic) => topic.id === item.sourceTopicId);
+  elements.questionTopic.textContent = sourceTopic?.name || item.sourceTopicLabel || item.topic;
   elements.questionText.textContent = item.question;
   elements.answers.replaceChildren();
   elements.feedback.hidden = true;
