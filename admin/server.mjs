@@ -79,7 +79,7 @@ export async function startServer(root, port = 8769) {
           );
           if (questions.some((q) => otherIds.has(q.id)))
             throw Error("ID вже використовується в іншій темі.");
-          const file = path.join(root, topic.directory, "questions.json"),
+          const file = path.join(root, "themes", topic.directory, "questions.json"),
             previous = await readFile(file, "utf8");
           if (revision(previous) !== input.revision)
             return json(res, 409, {
@@ -88,7 +88,7 @@ export async function startServer(root, port = 8769) {
           try {
             await atomicWrite(file, JSON.stringify(data, null, 2) + "\n");
             await buildQuiz(root);
-            execFileSync(process.execPath, ["build-asset-versions.mjs"], {
+            execFileSync(process.execPath, ["scripts/build-asset-versions.mjs"], {
               cwd: root,
               stdio: "pipe",
             });
@@ -129,7 +129,7 @@ export async function startServer(root, port = 8769) {
       if (path.relative(root, resolved).startsWith(".."))
         return json(res, 403, { error: "Недоступний шлях." });
       let content = await readFile(file);
-      if (["index.html", "quiz.html"].includes(relative))
+      if (["index.html", "quiz-engine/index.html"].includes(relative))
         content = Buffer.from(
           content
             .toString()

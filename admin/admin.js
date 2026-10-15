@@ -80,7 +80,7 @@ function render() {
         );
       const footer = el("footer"),
         link = el("a", "Відкрити фрагмент конспекту ↗");
-      link.href = "/" + (q.notePath || topic.directory + "/index.html") + q.reference;
+      link.href = "/" + (q.notePath || "themes/" + topic.directory + "/index.html") + q.reference;
       link.target = "_blank";
       link.rel = "noopener";
       const edit = el("button", "Редагувати");
@@ -202,7 +202,7 @@ function openEditor(topic, q) {
   $("question").value = q?.question || "";
   $("explanation").value = q?.explanation || "";
   $("reference").value = q?.reference
-    ? (q.notePath || topic.directory + "/index.html") + q.reference
+    ? (q.notePath || "themes/" + topic.directory + "/index.html") + q.reference
     : "";
   $("answers").replaceChildren();
   addAnswer(q?.correct || "", true);
@@ -323,7 +323,7 @@ $("chooseAnchor").onclick = () => {
   $("anchorChosen").textContent = "";
   $("anchorSearch").value = "";
   $("notePreview").removeAttribute("src");
-  let note = editing.directory + "/index.html";
+  let note = "themes/" + editing.directory + "/index.html";
   try {
     note = normalizeReference($("reference").value).notePath;
   } catch {}

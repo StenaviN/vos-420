@@ -1,5 +1,5 @@
 import { readFile, readdir, writeFile, rename, rm } from "node:fs/promises";
-import { formatJavaScript } from "../format-source.mjs";
+import { formatJavaScript } from "../scripts/format-source.mjs";
 import path from "node:path";
 import { createHash, randomUUID } from "node:crypto";
 
@@ -15,8 +15,10 @@ const plain = (text) =>
     .trim();
 export async function catalog(root) {
   const notes = [];
-  for (const name of (await readdir(root)).filter((n) => /^\d{2}-/.test(n)).sort()) {
-    const html = await readFile(path.join(root, name, "index.html"), "utf8");
+  for (const name of (await readdir(path.join(root, "themes")))
+    .filter((n) => /^\d{2}-/.test(n))
+    .sort()) {
+    const html = await readFile(path.join(root, "themes", name, "index.html"), "utf8");
     let section = "";
     const headings = [];
     for (const match of html.matchAll(
@@ -45,7 +47,7 @@ export async function catalog(root) {
         headings.push({ id: match[1], level: 3, title: label ? plain(label) : match[1] });
       }
     notes.push({
-      path: `${name}/index.html`,
+      path: `themes/${name}/index.html`,
       title: plain(html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)?.[1] || name),
       headings,
     });
@@ -54,10 +56,12 @@ export async function catalog(root) {
 }
 export async function loadTopics(root) {
   const topics = [];
-  for (const directory of (await readdir(root)).filter((n) => /^\d{2}-/.test(n)).sort()) {
+  for (const directory of (await readdir(path.join(root, "themes")))
+    .filter((n) => /^\d{2}-/.test(n))
+    .sort()) {
     let text;
     try {
-      text = await readFile(path.join(root, directory, "questions.json"), "utf8");
+      text = await readFile(path.join(root, "themes", directory, "questions.json"), "utf8");
     } catch (e) {
       if (e.code === "ENOENT") continue;
       throw e;
@@ -97,7 +101,7 @@ export function validate(data, directory, notes) {
     );
     if (new Set(normalized).size !== normalized.length)
       throw Error(`${q.id}: відповіді не повинні повторюватись.`);
-    const note = notes.find((n) => n.path === (q.notePath || `${directory}/index.html`));
+    const note = notes.find((n) => n.path === (q.notePath || `themes/${directory}/index.html`));
     if (
       !(data.allowNoNotes && q.reference === "" && q.notePath === "") &&
       (!/^#[a-zA-Z0-9_-]+$/.test(q.reference) ||
@@ -125,7 +129,7 @@ export async function buildQuiz(root) {
     validate(topic.data, topic.directory, notes);
     total += topic.data.questions.length;
     outputs.push([
-      path.join(root, topic.directory, "quiz-data.js"),
+      path.join(root, "themes", topic.directory, "quiz-data.js"),
       `"use strict";\n// Generated from questions.json by npm run build:quiz.\nwindow.QUIZ_CONFIG = ${JSON.stringify(topic.data, null, 2)};\n`,
     ]);
   }
@@ -137,7 +141,7 @@ export async function buildQuiz(root) {
       (_, prefix, suffix) => `${prefix}${t.data.questions.length}${suffix}`,
     );
   outputs.push([indexFile, index]);
-  const loader = path.join(root, "quiz-meta.js");
+  const loader = path.join(root, "quiz-engine/meta.js");
   outputs.push([
     loader,
     (await readFile(loader, "utf8")).replace(/totalQuestions: \d+/, `totalQuestions: ${total}`),
