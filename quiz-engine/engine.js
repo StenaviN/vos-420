@@ -913,11 +913,21 @@ function renderNavigation() {
 }
 
 function appendNavigationButton(navigation, button, index) {
+  const groupStart = Math.floor(index / 12) * 12;
+  const groupSize = Math.min(12, state.questions.length - groupStart);
+  const topRowSize = Math.floor(groupSize / 2);
+  const position = index - groupStart;
   if (index % 12 === 0) {
     const group = document.createElement("div");
     group.className = "question-navigation-group";
+    group.style.gridTemplateColumns = `repeat(${Math.ceil(groupSize / 2)}, 48px)`;
     navigation.append(group);
   }
+  // Keep the final number on the lower row, including a one-question final group.
+  button.style.gridRow = position < topRowSize ? "1" : "2";
+  button.style.gridColumn = String(
+    position < topRowSize ? position + 1 : position - topRowSize + 1,
+  );
   navigation.lastElementChild.append(button);
 }
 
