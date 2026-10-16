@@ -1,5 +1,24 @@
 "use strict";
 
+// Keep one horizontal scroll container for each table in topic notes.
+(() => {
+  if (!/\/themes\/[^/]+\/(?:index\.html)?$/.test(location.pathname)) return;
+  document
+    .querySelectorAll("main table:not(.phonetic-alphabet):not(.responsive-table)")
+    .forEach((table) => {
+      let wrapper = table.parentElement;
+      if (!wrapper.matches(".mototrbo-table, .programming-table, .topic-table-scroll")) {
+        wrapper = document.createElement("div");
+        table.before(wrapper);
+        wrapper.append(table);
+      }
+      wrapper.classList.add("topic-table-scroll");
+      wrapper.tabIndex = 0;
+      wrapper.setAttribute("role", "region");
+      wrapper.setAttribute("aria-label", "Таблиця з горизонтальним прокручуванням");
+    });
+})();
+
 (() => {
   const button = document.createElement("button");
   button.type = "button";
