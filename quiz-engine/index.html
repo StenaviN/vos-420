@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Вікторини ВОС-420</title>
     <link rel="icon" href="data:," />
-    <link rel="stylesheet" href="style.css?v=93f33e82df75" />
+    <link rel="stylesheet" href="style.css?v=c727acf499ff" />
   </head>
   <body>
     <main class="page quiz-page">
@@ -56,11 +56,15 @@
         <nav class="question-navigation" aria-label="Перехід до питання">
           <h2>Перехід до питання</h2>
           <p id="questionNavigationSummary"></p>
-          <div id="questionNavigation" class="question-navigation-grid"></div>
           <p class="question-navigation-legend">
             ✓ Правильно · × Неправильно · ○ Без перевіреної відповіді
           </p>
         </nav>
+        <nav
+          id="questionNavigation"
+          class="question-navigation-grid"
+          aria-label="Номери питань"
+        ></nav>
         <p id="questionTopic" class="question-source-topic"></p>
         <h2 id="questionText"></h2>
         <div id="answers" class="answers" role="radiogroup"></div>
@@ -103,9 +107,13 @@
             >
           </div>
           <p id="resultNavigationSummary" aria-live="polite"></p>
-          <div id="resultNavigation" class="question-navigation-grid"></div>
           <p class="question-navigation-legend">✓ Правильно · × Неправильно · ○ Без відповіді</p>
         </nav>
+        <nav
+          id="resultNavigation"
+          class="question-navigation-grid"
+          aria-label="Номери питань"
+        ></nav>
         <div id="mistakes" class="mistakes"></div>
         <div class="result-actions">
           <button id="restartButton" class="primary-button" type="button">Нова спроба</button
@@ -277,12 +285,12 @@
         </button>
       </div>
     </dialog>
-    <script src="asset-version.js?v=93f33e82df75"></script>
-    <script src="quiz-engine/statistics.js?v=93f33e82df75"></script>
+    <script src="asset-version.js?v=c727acf499ff"></script>
+    <script src="quiz-engine/statistics.js?v=c727acf499ff"></script>
 
-    <script src="quiz-engine/meta.js?v=93f33e82df75"></script>
-    <script src="quiz-engine/transfer.js?v=93f33e82df75"></script>
-    <script src="quiz-engine/loader.js?v=93f33e82df75"></script>
-    <script src="site-ui.js?v=93f33e82df75"></script>
+    <script src="quiz-engine/meta.js?v=c727acf499ff"></script>
+    <script src="quiz-engine/transfer.js?v=c727acf499ff"></script>
+    <script src="quiz-engine/loader.js?v=c727acf499ff"></script>
+    <script src="site-ui.js?v=c727acf499ff"></script>
   </body>
 </html>

@@ -722,11 +722,14 @@ function renderMistakes() {
     link.setAttribute("aria-label", `Питання ${index + 1}: ${label}`);
     link.addEventListener("click", (event) => {
       event.preventDefault();
+      navigation.querySelector("[aria-current]")?.removeAttribute("aria-current");
+      link.setAttribute("aria-current", "step");
+      revealNavigationButton(navigation, link);
       article.style.scrollMarginTop = `${navigation.closest("nav").getBoundingClientRect().height + 24}px`;
       article.focus({ preventScroll: true });
       article.scrollIntoView({ behavior: "smooth", block: "start" });
     });
-    navigation.append(link);
+    appendNavigationButton(navigation, link, index);
   });
   $("#resultNavigationSummary").textContent =
     `Показано питань: ${visible} з ${state.questions.length}. Помилки показуються завжди.`;
@@ -870,6 +873,7 @@ function cancelAutoAdvance() {
 }
 
 function renderNavigation() {
+  const previousScroll = elements.navigation.scrollLeft;
   elements.navigation.replaceChildren();
   $(".question-navigation-legend").textContent = examActive()
     ? "● Відповідь вибрано · ○ Без відповіді. Вибір можна змінити до завершення."
@@ -902,8 +906,28 @@ function renderNavigation() {
     button.setAttribute("aria-label", `Питання ${index + 1}: ${label}`);
     if (index === state.index) button.setAttribute("aria-current", "step");
     button.addEventListener("click", () => goToQuestion(index));
-    elements.navigation.append(button);
+    appendNavigationButton(elements.navigation, button, index);
   });
+  elements.navigation.scrollLeft = previousScroll;
+  revealNavigationButton(elements.navigation, elements.navigation.querySelector("[aria-current]"));
+}
+
+function appendNavigationButton(navigation, button, index) {
+  if (index % 12 === 0) {
+    const group = document.createElement("div");
+    group.className = "question-navigation-group";
+    navigation.append(group);
+  }
+  navigation.lastElementChild.append(button);
+}
+
+// Scroll only the horizontal strip; never move the page when changing a question.
+function revealNavigationButton(navigation, button) {
+  if (!button) return;
+  const strip = navigation.getBoundingClientRect();
+  const item = button.getBoundingClientRect();
+  if (item.left < strip.left + 8) navigation.scrollLeft -= strip.left + 8 - item.left;
+  else if (item.right > strip.right - 8) navigation.scrollLeft += item.right - strip.right + 8;
 }
 
 function goToQuestion(index) {

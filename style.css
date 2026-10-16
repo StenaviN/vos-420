@@ -3501,3 +3501,61 @@ main .topic-table-scroll > table {
     min-width: 520px;
   }
 }
+
+/* Compact question navigation: successive groups of twelve, read left to right. */
+.quiz-panel .question-navigation h2 {
+  min-height: 0;
+  margin: 0 0 8px;
+  font-size: 1.2rem;
+}
+.question-navigation,
+.result-navigation {
+  position: static;
+  max-height: none;
+  overflow: visible;
+  margin-bottom: 8px;
+  padding: 0;
+  border: 0;
+  box-shadow: none;
+}
+.question-navigation-grid {
+  position: sticky;
+  top: 8px;
+  z-index: 3;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 6px;
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  padding: 8px;
+  margin-bottom: 20px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 3px 10px #193b5112;
+  scrollbar-width: thin;
+}
+.question-navigation-group {
+  display: grid;
+  grid-template-columns: repeat(6, 48px);
+  grid-template-rows: repeat(2, 44px);
+  gap: 6px;
+  flex: 0 0 auto;
+}
+.question-navigation-group .question-jump {
+  width: 48px;
+  padding: 4px;
+  font-size: 13px;
+  white-space: nowrap;
+}
+.question-navigation-grid .question-jump:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  border-style: dashed;
+}
+@media print {
+  .question-navigation-grid {
+    display: none;
+  }
+}
