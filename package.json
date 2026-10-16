@@ -14,7 +14,8 @@
     "build:quiz": "npm run build:quiz — перевірити questions.json усіх тем, згенерувати quiz-data.js і оновити лічильники питань. Редагувати слід questions.json, а не згенеровані quiz-data.js.",
     "quiz:admin": "npm run quiz:admin — запустити локальний редактор: http://127.0.0.1:8769/admin/. Збереження у редакторі оновлює файли та версії ресурсів, але не створює коміт. Зупинка: Ctrl+C. Інший порт у PowerShell: $env:QUIZ_ADMIN_PORT='8770'; npm run quiz:admin.",
     "test:admin": "npm run test:admin — перевірити локальний сервер редактора: збереження, валідацію, конфлікти змін і обмеження доступу. Тести використовують тимчасовий каталог, не змінюючи робочі питання.",
-    "test:paths": "npm run test:paths — перевірити локальні посилання, скрипти та зображення в HTML."
+    "test:paths": "npm run test:paths — перевірити локальні посилання, скрипти та зображення в HTML.",
+    "test:selection": "npm run test:selection — перевірити вибір великих добірок, охоплення тем і кількість звернень до сховища."
   },
   "scripts": {
     "format": "prettier --write \"**/*.{html,js,mjs,cjs,css}\"",
@@ -28,7 +29,8 @@
     "build:quiz": "node scripts/build-quiz-data.mjs",
     "quiz:admin": "node admin/server.mjs",
     "test:admin": "node --test tests/admin.test.mjs tests/questions.test.mjs",
-    "test:paths": "node --test tests/paths.test.mjs"
+    "test:paths": "node --test tests/paths.test.mjs",
+    "test:selection": "node --test tests/selection.test.mjs"
   },
   "devDependencies": {
     "prettier": "3.9.9"

@@ -208,9 +208,8 @@ function clearAllStatistics() {
   elements.statsResetStatus.textContent = "Усю статистику очищено.";
 }
 
-function questionStat(id) {
+function questionStat(id, data = readStats()) {
   const item = config.questions.find((question) => question.id === id);
-  const data = readStats();
   const topic = ensureTopicStats(data, item.sourceTopicId, item.sourceTopicLabel);
   return topic.questions[id] || { shown: 0, correct: 0, wrong: 0, streak: 0, totalTimeMs: 0 };
 }
@@ -236,10 +235,9 @@ function readDistractorHistory() {
   }
 }
 
-function selectDistractors(item) {
+function selectDistractors(item, history) {
   const pool = Array.isArray(item.wrong) ? item.wrong : [];
   if (pool.length <= 3) return shuffled(pool).slice(0, 3);
-  const history = readDistractorHistory();
   let selected;
   let signature;
   for (let attempt = 0; attempt < 8; attempt += 1) {
@@ -248,17 +246,12 @@ function selectDistractors(item) {
     if (signature !== history[item.id]) break;
   }
   history[item.id] = signature;
-  try {
-    localStorage.setItem(DISTRACTOR_HISTORY_KEY, JSON.stringify(history));
-  } catch {
-    /* The quiz remains usable without storage. */
-  }
   return selected;
 }
 
-function normalizedQuestion(item) {
+function normalizedQuestion(item, history) {
   if (item.correct !== undefined) {
-    const wrong = item.showAllOptions ? item.wrong : selectDistractors(item);
+    const wrong = item.showAllOptions ? item.wrong : selectDistractors(item, history);
     return {
       ...item,
       options: shuffled([
@@ -275,17 +268,17 @@ function normalizedQuestion(item) {
   };
 }
 
-function weightedPick(items, count, prioritize) {
+function weightedPick(items, count, prioritize, data) {
+  if (!prioritize) return shuffled(items).slice(0, count);
   const pool = [...items];
   const picked = [];
+  const weights = pool.map((item) => {
+    const stat = questionStat(item.id, data);
+    const attempts = stat.correct + stat.wrong;
+    if (!attempts) return 3;
+    return 1 + (stat.wrong / attempts) * 7 + Math.min(stat.wrong, 4);
+  });
   while (pool.length && picked.length < count) {
-    const weights = pool.map((item) => {
-      const stat = questionStat(item.id);
-      if (!prioritize) return 1;
-      const attempts = stat.correct + stat.wrong;
-      if (!attempts) return 3;
-      return 1 + (stat.wrong / attempts) * 7 + Math.min(stat.wrong, 4);
-    });
     let cursor = Math.random() * weights.reduce((sum, value) => sum + value, 0);
     let index = 0;
     for (; index < weights.length - 1; index += 1) {
@@ -293,28 +286,42 @@ function weightedPick(items, count, prioritize) {
       if (cursor <= 0) break;
     }
     picked.push(pool.splice(index, 1)[0]);
+    weights.splice(index, 1);
   }
   return picked;
 }
 
-function eligibleQuestions(settings) {
+function eligibleQuestions(settings, data) {
   if (settings.includeMastered) return config.questions;
-  const filtered = config.questions.filter((item) => !isMastered(questionStat(item.id)));
+  const filtered = config.questions.filter((item) => !isMastered(questionStat(item.id, data)));
   return filtered.length ? filtered : config.questions;
 }
 
 function prepareQuestions(settings) {
-  const eligible = eligibleQuestions(settings);
+  const data = readStats();
+  const history = readDistractorHistory();
+  const questions = pickQuestions(settings, data).map((item) => normalizedQuestion(item, history));
+  try {
+    localStorage.setItem(DISTRACTOR_HISTORY_KEY, JSON.stringify(history));
+  } catch {
+    /* The quiz remains usable without storage. */
+  }
+  return questions;
+}
+
+function pickQuestions(settings, data) {
+  const eligible = eligibleQuestions(settings, data);
   const count =
     settings.count === "all" ? eligible.length : Math.min(Number(settings.count), eligible.length);
   if (!isMixed || count < config.topicIds.length || count === eligible.length) {
-    return weightedPick(eligible, count, settings.prioritizeMistakes).map(normalizedQuestion);
+    return weightedPick(eligible, count, settings.prioritizeMistakes, data);
   }
   const guaranteed = config.topicIds.flatMap((topicId) =>
     weightedPick(
       eligible.filter((item) => item.sourceTopicId === topicId),
       1,
       settings.prioritizeMistakes,
+      data,
     ),
   );
   const guaranteedIds = new Set(guaranteed.map((item) => item.id));
@@ -322,8 +329,9 @@ function prepareQuestions(settings) {
     eligible.filter((item) => !guaranteedIds.has(item.id)),
     count - guaranteed.length,
     settings.prioritizeMistakes,
+    data,
   );
-  return shuffled([...guaranteed, ...remainder]).map(normalizedQuestion);
+  return shuffled([...guaranteed, ...remainder]);
 }
 
 function currentElapsed() {
