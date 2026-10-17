@@ -3570,4 +3570,5 @@ main .topic-table-scroll > table {
   align-items: center;
   align-self: flex-start;
   margin-top: auto;
+  text-decoration: none;
 }
