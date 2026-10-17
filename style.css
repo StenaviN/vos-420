@@ -3568,7 +3568,8 @@ main .topic-table-scroll > table {
 .topic-quiz-link {
   display: inline-flex;
   align-items: center;
-  align-self: flex-start;
+  align-self: stretch;
+  justify-content: center;
   margin-top: auto;
   text-decoration: none;
 }
