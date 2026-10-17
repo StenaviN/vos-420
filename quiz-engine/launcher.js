@@ -140,7 +140,54 @@ function selectedTopics() {
   return topicBoxes.filter((box) => box.checked);
 }
 
+function renderTopicProgress() {
+  if (!banksReady) return;
+  let data = {};
+  try {
+    data = JSON.parse(localStorage.getItem("vos420-quiz-statistics-v1")) || {};
+  } catch {
+    /* Statistics are optional, including when browser storage is unavailable. */
+  }
+  for (const meta of window.QUIZ_META.topics) {
+    const button = topicsPanel.querySelector(
+      `.topic-quiz-link[href="index.html?topics=${meta.key}#quiz"]`,
+    );
+    if (!button) continue;
+    let summary = button.parentElement.querySelector(".topic-progress");
+    if (!summary) {
+      summary = document.createElement("p");
+      summary.className = "topic-progress";
+      button.before(summary);
+    }
+    summary.replaceChildren();
+    const questions = questionBanks.get(meta.key) || [];
+    const stats = data.topics?.[meta.id]?.questions || {};
+    const mastered = questions.filter(({ id }) => {
+      const stat = stats[id];
+      const answered = (stat?.correct || 0) + (stat?.wrong || 0);
+      return answered >= 2 && stat.streak >= 2 && stat.correct / answered >= 0.8;
+    }).length;
+    const progress = document.createElement("a");
+    progress.href = `quiz-engine/index.html?topic=${meta.key}&view=stats`;
+    progress.textContent = `Засвоєно ${mastered}/${questions.length}`;
+    summary.append(progress, document.createTextNode(" · "));
+    const latest = data.latestResults?.[meta.id];
+    if (latest?.questions?.length) {
+      const result = document.createElement("a");
+      result.href = `quiz-engine/index.html?topic=${meta.key}&view=result`;
+      result.textContent = `Остання спроба ${Math.round((latest.score / latest.questions.length) * 100)}%`;
+      summary.append(result);
+    } else {
+      const started = questions.some(({ id }) => stats[id]?.correct || stats[id]?.wrong);
+      summary.append(
+        document.createTextNode(started ? "Ще немає завершеної спроби" : "Ще не проходили"),
+      );
+    }
+  }
+}
+
 function updateSelection() {
+  renderTopicProgress();
   const selected = selectedTopics();
   const questions = selected.reduce((total, box) => total + Number(box.dataset.questions), 0);
   const topicWord =

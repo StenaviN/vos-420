@@ -3572,3 +3572,14 @@ main .topic-table-scroll > table {
   margin-top: auto;
   text-decoration: none;
 }
+
+#topicsPanel .topic-progress {
+  margin: auto 0 12px;
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+#topicsPanel .topic-progress + .topic-quiz-link {
+  margin-top: 0;
+}
