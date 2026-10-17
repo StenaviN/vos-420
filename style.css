@@ -3559,3 +3559,15 @@ main .topic-table-scroll > table {
     display: none;
   }
 }
+
+/* Keep topic actions aligned while descriptions and titles vary in length. */
+#topicsPanel .card {
+  display: flex;
+  flex-direction: column;
+}
+.topic-quiz-link {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  margin-top: auto;
+}
