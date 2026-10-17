@@ -169,7 +169,9 @@ function renderTopicProgress() {
     }).length;
     const progress = document.createElement("a");
     progress.href = `quiz-engine/index.html?topic=${meta.key}&view=stats`;
-    progress.textContent = `Засвоєно ${mastered}/${questions.length}`;
+    progress.textContent = `✓ ${mastered}/${questions.length}`;
+    progress.title = `Засвоєно ${mastered} із ${questions.length} питань`;
+    progress.setAttribute("aria-label", progress.title);
     summary.append(progress, document.createTextNode(" · "));
     const latest = data.latestResults?.[meta.id];
     if (latest?.questions?.length) {
